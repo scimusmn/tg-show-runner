@@ -595,20 +595,8 @@ export class Manager extends Component {
   // Retrieve slide.
   _getSlideByIndex(index) {
 
-    // TODO: Here, select correct deck
-    // slide by passing in a different
-    // set of children?
-
-    let deckChildren = this.props.children;
-    if (this.props.route.params.indexOf('secondary') !== -1) {
-
-      // deckChildren = this.props.secondaryChildren;
-      console.log('load from SECONDARY pool of slides');
-
-    }
-
     return getSlideByIndex(
-      deckChildren,
+      this.props.children,
       this.state.slideReference,
       index
     );

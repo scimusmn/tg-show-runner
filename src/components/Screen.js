@@ -6,7 +6,7 @@ class Screen extends Component {
   render() {
 
     // Only display screen if correct param is found
-    if (window.location.href.indexOf(this.props.output) == -1) {
+/*    if (window.location.href.indexOf(this.props.output) == -1) {
 
       return null;
 
@@ -14,7 +14,9 @@ class Screen extends Component {
 
       return <div>{this.props.children}</div>;
 
-    }
+    }*/
+
+    return <div>{this.props.children}</div>;
 
   }
 

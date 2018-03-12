@@ -46,7 +46,6 @@ const images = {
 const sounds = {
 
   boink: require('./assets/sounds/boink.mp3'),
-  bagpipe: require('./assets/sounds/bagpipe.mp3'),
   VO_001: require('./assets/sounds/VO_001.mp3'),
   VO_003: require('./assets/sounds/VO_003.mp3'),
   VO_034: require('./assets/sounds/VO_034.mp3'),
@@ -111,6 +110,7 @@ export default class Presentation extends React.Component {
 
       <Deck theme={theme} progress='number' >
 
+        {/* CUE 1 */}
         <Cue notes='Cue 0. Pre-show.'>
 
           <h1>Cue 1 Pre-show</h1>
@@ -119,6 +119,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 2 */}
         <Cue notes='Cue 1'>
 
           <Screen output='primary'>
@@ -133,6 +134,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 3 */}
         <Cue notes='Cue 2'>
 
           <Screen output='primary'>
@@ -149,7 +151,8 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
-        <Cue notes='Cue 3'>
+        {/* CUE 4 */}
+        <Cue notes='Cue 3.'>
 
           <Screen output='primary'>
             <h1>Cue 3. Primary screen.</h1>
@@ -161,15 +164,15 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 5 */}
         <Cue notes='What Does the Fox Say?!'>
-
-          <h1>Cue 4. What does the fox say?!</h1>
 
           <SoundCue src={sounds.whatthefoxsay} />
           <CueServerOut cueId='whatthefoxsay' />
 
         </Cue>
 
+        {/* CUE 6 */}
         <Cue notes='Cue 5'>
 
           <h1>Cue 5</h1>
@@ -180,11 +183,12 @@ export default class Presentation extends React.Component {
 
           <h1>Cue 6</h1>
 
-          <SoundCue src={sounds.vista_friendly_1} />
-          <SoundCue src={sounds.vista_friendly_2} />
+          <SoundCue src={sounds.vista_friendly_1}/>
+          <SoundCue src={sounds.vista_friendly_2}/>
 
         </Cue>
 
+        {/* CUE 7 */}
         <Cue notes='Cue 7. Tribble Pygmy family tree.'>
 
           <h1>Cue 7</h1>
@@ -194,6 +198,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 8 */}
         <Cue notes='Cue 8. After putting VISTA back in cage.'>
 
           <h1>Cue 8</h1>
@@ -204,6 +209,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 9 */}
         <Cue notes='Alex triggers THEORY OF EVOLUTION'>
 
           <h1>Cue 9</h1>
@@ -213,6 +219,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 10 */}
         <Cue notes='Alex triggers Sequence 1'>
 
           <h1>Cue 10</h1>
@@ -222,12 +229,14 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 11 */}
         <Cue notes='Cue 11'>
 
           <h1>Cue 11. Empty</h1>
 
         </Cue>
 
+        {/* CUE 12 */}
         <Cue notes='Alex triggers sequence 2'>
 
           <h1>Cue 12</h1>
@@ -237,12 +246,14 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 13 */}
         <Cue notes='Cue 13'>
 
           <h1>Cue 13. Empty</h1>
 
         </Cue>
 
+        {/* CUE 14 */}
         <Cue notes='Cue 14. Single cute VISTA sound.'>
 
           <h1>Cue 14</h1>
@@ -251,6 +262,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 15 */}
         <Cue notes='Cue 15. VISTA bites sandwhich.'>
 
           <h1>Cue 15</h1>
@@ -259,6 +271,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 16 */}
         <Cue notes='Cue 16. Burp interruption.'>
 
           <h1>Cue 16. Burp interruption.</h1>
@@ -267,6 +280,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 17 */}
         <Cue notes='Evaluation part ONE'>
 
           <h1>Cue 18. Evaluation part ONE.</h1>
@@ -275,6 +289,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 18 */}
         <Cue notes='Answer part ONE (V)'>
 
           <h1>Cue 19. Correct. You earned a V.</h1>
@@ -283,6 +298,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 19 */}
         <Cue notes='Cue 20. Alex triggers Sequence 3'>
 
           <h1>Cue 20. Alex Sequence 3</h1>
@@ -291,6 +307,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 20 */}
         <Cue notes='Cue 21'>
 
           <h1>Cue 21. Evaluation part TWO.</h1>
@@ -299,6 +316,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 21 */}
         <Cue notes='Cue 22'>
 
           <h1>Cue 22. Correct. You earned an I.</h1>
@@ -307,6 +325,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 22 */}
         <Cue notes='Cue 23. Alex triggers sequence 4.'>
 
           <h1>Cue 23. Alex sequence 4. </h1>
@@ -315,6 +334,7 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
+        {/* CUE 23 */}
         <Cue notes='Cue 24. Evaluation part THREE.'>
 
           <h1>Cue 24. Evaluation part THREE.</h1>
@@ -710,7 +730,6 @@ export default class Presentation extends React.Component {
         <Cue notes='Slide notes here.'>
           <h1>Ain't no chore, I am slide SIX</h1>
           <img src={images.sequence2} width="400px"/>
-          <SoundCue src={sounds.bagpipe}/>
         </Cue>
 
       </Deck>

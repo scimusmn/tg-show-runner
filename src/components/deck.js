@@ -7,8 +7,6 @@ import configureStore from '../store';
 import Controller from '../utils/controller';
 import Manager from './manager';
 
-import SoundCue from './SoundCue';
-
 const store = configureStore();
 
 export default class Deck extends Component {

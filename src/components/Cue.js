@@ -7,6 +7,9 @@ import { getStyles } from '../utils/base';
 import { addFragment } from '../actions';
 import stepCounter from '../utils/step-counter';
 import findIndex from 'lodash/findIndex';
+
+import Screen from './Screen';
+
 import {
   SlideContainer,
   SlideContent,
@@ -19,6 +22,7 @@ class Cue extends React.PureComponent {
     reverse: false,
     z: 1,
     zoom: 1,
+    outputScreen: '',
   };
 
   getChildContext() {
@@ -32,13 +36,30 @@ class Cue extends React.PureComponent {
 
   componentDidMount() {
 
-/*    console.log('CUE-> componentDidMount', this.props.slideIndex);
-    console.log('CONTEXT');
-    console.log(this.context);
-    console.log('route params');
-    console.log(this.context.store.getState().route.params);*/
-    if (this.context.store.getState().route.params.indexOf('presenter') !== -1) {
+    /*    console.log('CUE-> componentDidMount', this.props.slideIndex);
+        console.log('CONTEXT');
+        console.log(this.context);
+        console.log('route params');
+        console.log(this.context.store.getState().route.params);*/
+
+        const urlParams = this.context.store.getState().route.params;
+    if (urlParams.indexOf('presenter') !== -1) {
       console.log('IS PRESENTER/CONTROLLER. Release cue...');
+    }
+
+    // TODO - checking for valid output screen
+    // should be broken into a separate file
+    // where it's simple to add a third/fourth/fifth screen.
+    if (urlParams.indexOf('primary') !== -1) {
+
+      this.setState({outputScreen:'primary'});
+      console.log('Setting output screen: primary');
+
+    } else if (urlParams.indexOf('secondary') !== -1) {
+
+      this.setState({outputScreen:'secondary'});
+      console.log('Setting output screen: secondary');
+
     }
 
     this.setZoom();
@@ -155,6 +176,35 @@ class Cue extends React.PureComponent {
     return Math.max(0, slideIndex);
   };
 
+  // Filter out children that we  don't
+  // want displayed/triggered on current
+  // output screen.
+  filterChildren() {
+
+    let children = React.Children.toArray(this.props.children);
+
+    let hasScreen = false;
+
+    React.Children.forEach(this.props.children, (child) => {
+      console.log('child.type.name', child.type.name);
+      if (child.type.name == 'Screen' && child.props.output == this.state.outputScreen) {
+
+        hasScreen = true;
+
+      }
+
+    });
+
+    if (!hasScreen) {
+      // If no screen is found for current Output,
+      // add an empty screen.
+      children.push(<Screen key='auto-screen-empty' output={this.state.outputScreen}>Auto-added empty screen.</Screen>);
+    }
+
+    return children;
+
+  }
+
   render() {
     const { presenterStyle, children, transitionDuration } = this.props;
 
@@ -200,7 +250,7 @@ class Cue extends React.PureComponent {
                 margin={this.props.margin}
                 styles={{ context: this.context.styles.components.content }}
               >
-                {children}
+                {this.filterChildren()}
               </SlideContent>
             </SlideContentWrapper>
           </SlideContainer>
