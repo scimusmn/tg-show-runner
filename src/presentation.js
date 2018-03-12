@@ -4,6 +4,7 @@ import React from 'react';
 // Import Spectacle Core tags
 import Deck from './components/deck';
 import Slide from './components/slide';
+import Screen from './components/Screen';
 import Cue from './components/Cue';
 
 import SoundCue from './components/SoundCue';
@@ -120,7 +121,13 @@ export default class Presentation extends React.Component {
 
         <Cue notes='Cue 1'>
 
-          <h1>Cue 1</h1>
+          <Screen output='primary'>
+            <h1>Cue 1. Primary screen.</h1>
+          </Screen>
+
+          <Screen output='secondary'>
+            <h1>Cue 1. Secondary screen.</h1>
+          </Screen>
 
           <SoundCue src={sounds.VO_001} />
 
@@ -128,8 +135,14 @@ export default class Presentation extends React.Component {
 
         <Cue notes='Cue 2'>
 
-          <h1>Cue 2</h1>
-          <h2>Alex Makes It Amazing Youtube Intro</h2>
+          <Screen output='primary'>
+            <h1>Cue 2. Primary screen.</h1>
+            <h2>Alex Makes It Amazing Youtube Intro</h2>
+          </Screen>
+
+          <Screen output='secondary'>
+            <h1>Cue 2. Secondary screen.</h1>
+          </Screen>
 
           <SoundCue src={sounds.alex_intro} />
           <CueServerOut cueId='vistas-exit-popper' />
@@ -138,7 +151,13 @@ export default class Presentation extends React.Component {
 
         <Cue notes='Cue 3'>
 
-          <h1>Cue 3.</h1>
+          <Screen output='primary'>
+            <h1>Cue 3. Primary screen.</h1>
+          </Screen>
+
+          <Screen output='secondary'>
+            <h1>Cue 3. Secondary screen.</h1>
+          </Screen>
 
         </Cue>
 

@@ -15,6 +15,7 @@ export default class Deck extends Component {
   static displayName = 'Deck';
 
   static propTypes = {
+
     autoplay: PropTypes.bool,
     autoplayDuration: PropTypes.number,
     children: PropTypes.node,
@@ -25,42 +26,8 @@ export default class Deck extends Component {
     theme: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number,
+
   };
-
-  filterChildrenForRoute() {
-
-    let filteredChildren = [];
-
-    const href = window.location.href;
-    let isSecondaryScreen = false;
-
-    if (href.indexOf('secondary') == -1) {
-      // Show primary slides
-      console.log('show primary');
-    } else {
-      // Show secondary slides
-      console.log('show secondary');
-      isSecondaryScreen = true;
-    }
-
-    React.Children.forEach(this.props.children, function(child) {
-
-      console.log(isSecondaryScreen, child.props.notes);
-      if (isSecondaryScreen == true && child.props.notes == 'Cue 1') {
-
-        console.log('Remove audio cue');
-
-      } else {
-
-        filteredChildren.push(child);
-
-      }
-
-    });
-
-    return filteredChildren;
-
-  }
 
   render() {
     return (
@@ -70,7 +37,7 @@ export default class Deck extends Component {
           store={store}
           history={this.props.history}
         >
-          <Manager {...this.props}>{this.filterChildrenForRoute()}</Manager>
+          <Manager {...this.props}>{this.props.children}</Manager>
         </Controller>
       </Provider>
     );
