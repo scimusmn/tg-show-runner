@@ -240,9 +240,9 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
-        <Cue notes='Cue 16'>
+        <Cue notes='Cue 16. Burp interruption.'>
 
-          <h1>Cue 16. Burp interruption. “...some are not so friendly, and some are (BURP) lacking in manners.</h1>
+          <h1>Cue 16. Burp interruption.</h1>
 
           <SoundCue src={sounds.vista_burp} />
 
@@ -643,9 +643,9 @@ export default class Presentation extends React.Component {
 
         </Cue>
 
-        <Cue notes='Puzzle solved. Lockdown releases.'>
+        <Cue notes='Post show. Audience exiting.'>
 
-          <h1>Puzzle Solved. Lockdown releases.</h1>
+          <h1>Post show. Audience exiting.</h1>
           <h3>Script ref 166.</h3>
 
           <CueServerOut cueId='post-show' />

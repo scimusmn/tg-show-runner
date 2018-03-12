@@ -28,6 +28,7 @@ let convertStyle = styles => {
     .map(key => {
       return `${key} { ${toStringStyle(styles[key])}} `;
     })
+
     .join('');
 };
 
@@ -98,7 +99,7 @@ export class Manager extends Component {
   static childContextTypes = {
     contentWidth: PropTypes.number,
     contentHeight: PropTypes.number,
-    goToSlide: PropTypes.func
+    goToSlide: PropTypes.func,
   };
 
   constructor(props) {
@@ -123,7 +124,7 @@ export class Manager extends Component {
     return {
       contentWidth: this.props.contentWidth,
       contentHeight: this.props.contentHeight,
-      goToSlide: slide => this._goToSlide({ slide })
+      goToSlide: slide => this._goToSlide({ slide }),
     };
   }
 
@@ -158,6 +159,7 @@ export class Manager extends Component {
       this.props.dispatch(setGlobalStyle());
     }
   }
+
   componentWillUnmount() {
     this._detachEvents();
   }
@@ -195,7 +197,9 @@ export class Manager extends Component {
 
     /*----------  Keyboard Hotkeys  ----------*/
 
-    // Left / Prev slide
+    // Previous slide
+    // includes LEFT key
+    // and PAGE UP.
     if (
       event.keyCode === 37 ||
       event.keyCode === 33 ||
@@ -204,7 +208,9 @@ export class Manager extends Component {
       this._prevSlide();
       this._stopAutoplay();
 
-    // Right / Next slide
+    // Next slide
+    // includes RIGHT key
+    // and PAGE DOWN.
     } else if (
       event.keyCode === 39 ||
       event.keyCode === 34 ||
@@ -265,6 +271,7 @@ export class Manager extends Component {
       }
     }
   }
+
   // Listen for all keyboard events
   _handleKeyPress(e) {
     const event = window.event ? window.event : e;
@@ -278,27 +285,32 @@ export class Manager extends Component {
 
     this._handleEvent(e);
   }
+
   _handleScreenChange() {
     this.setState({
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < this.props.contentWidth,
     });
   }
+
   _toggleOverviewMode() {
     const suffix =
       this.props.route.params.indexOf('overview') !== -1 ? '' : '?overview';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+
   _togglePresenterMode() {
     const suffix =
       this.props.route.params.indexOf('presenter') !== -1 ? '' : '?presenter';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+
   _toggleControllerMode() {
     const suffix =
       this.props.route.params.indexOf('controller') !== -1 ? '' : '?controller';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+
   _toggleTimerMode() {
     const isTimer =
       this.props.route.params.indexOf('presenter') !== -1 &&
@@ -306,20 +318,31 @@ export class Manager extends Component {
     const suffix = isTimer ? '?presenter' : '?presenter&timer';
     this.context.history.replace(`/${this.props.route.slide}${suffix}`);
   }
+
   // This carries any current param
   // over to the next slide route.
   _getSuffix() {
-    if (this.props.route.params.indexOf('presenter') !== -1) {
-      const isTimerMode = this.props.route.params.indexOf('timer') !== -1;
-      return isTimerMode ? '?presenter&timer' : '?presenter';
-    } else if (this.props.route.params.indexOf('controller') !== -1) {
-      const isTimerMode = this.props.route.params.indexOf('timer') !== -1;
-      return isTimerMode ? '?controllerr&timer' : '?controller';
-    } else if (this.props.route.params.indexOf('overview') !== -1) {
-      return '?overview';
-    } else {
-      return '';
+
+    console.log('getSuffix');
+
+    console.log(this.props.route.params);
+    const params = this.props.route.params;
+    let suffix = '';
+
+    for (var i = 0; i < params.length; i++) {
+
+      if (i == 0) {
+        suffix += '?';
+      } else {
+        suffix += '&';
+      }
+
+      suffix += params[i];
+
     }
+
+    return suffix;
+
   }
 
   // This is how the various screens
@@ -363,6 +386,7 @@ export class Manager extends Component {
     } else {
       return;
     }
+
     const slideIndex = this._getSlideIndex();
     this.setState({
       lastSlideIndex: slideIndex || 0,
@@ -372,6 +396,7 @@ export class Manager extends Component {
       if (!isNaN(parseInt(slide, 10))) {
         slide = parseInt(slide, 10) - offset;
       }
+
       this.context.history.replace(`/${slide}${this._getSuffix()}`);
     }
   }
@@ -418,10 +443,13 @@ export class Manager extends Component {
         if (this.viewedIndexes.has(goTo - 1)) {
           return this._nextUnviewedIndex();
         }
+
         return goTo - 1;
       };
+
       return goToIndex() - slideIndex;
     }
+
     return nextUnviewedIndex - slideIndex;
   }
 
@@ -457,12 +485,15 @@ export class Manager extends Component {
       this.setLocalStorageSlide(slideIndex, true);
     }
   }
+
   _getHash(slideIndex) {
     return this.state.slideReference[slideIndex].id;
   }
+
   _checkFragments(slide, forward) {
     const state = this.context.store.getState();
     const fragments = state.fragment.fragments;
+
     // Not proud of this at all. 0.14 Parent based contexts will fix this.
     if (this.props.route.params.indexOf('presenter') !== -1) {
       const main = document.querySelector('.spectacle-presenter-main');
@@ -475,6 +506,7 @@ export class Manager extends Component {
         return true;
       }
     }
+
     if (slide in fragments) {
       const count = size(fragments[slide]);
       const visible = filter(fragments[slide], s => s.visible === true);
@@ -488,6 +520,7 @@ export class Manager extends Component {
         );
         return false;
       }
+
       if (forward === false && hidden.length !== count) {
         this.props.dispatch(
           updateFragment({
@@ -497,6 +530,7 @@ export class Manager extends Component {
         );
         return false;
       }
+
       return true;
     } else {
       return true;
@@ -522,6 +556,7 @@ export class Manager extends Component {
         if (child.props.goTo) {
           reference.goTo = child.props.goTo;
         }
+
         slideReference.push(reference);
       } else {
         child.props.children.forEach((setSlide, setIndex) => {
@@ -533,10 +568,12 @@ export class Manager extends Component {
           if (child.props.goTo) {
             reference.goTo = child.props.goTo;
           }
+
           slideReference.push(reference);
         });
       }
     });
+
     return slideReference;
   }
 
@@ -548,8 +585,10 @@ export class Manager extends Component {
       const foundIndex = findIndex(this.state.slideReference, reference => {
         return this.props.route.slide === reference.id;
       });
+
       index = foundIndex >= 0 ? foundIndex : 0;
     }
+
     return index;
   }
 
@@ -604,7 +643,6 @@ export class Manager extends Component {
       slideReference: this.state.slideReference,
     });
 
-
   }
 
   _getProgressStyles = () => {
@@ -614,6 +652,7 @@ export class Manager extends Component {
     if (slide.props.progressColor) {
       return slide.props.progressColor;
     }
+
     return null;
   }
 
@@ -624,6 +663,7 @@ export class Manager extends Component {
     if (slide.props.controlColor) {
       return slide.props.controlColor;
     }
+
     return null;
   }
 
@@ -690,7 +730,7 @@ export class Manager extends Component {
       // Default to rendering a
       // normal, fullscreen slide.
       componentToRender = (
-        <StyledTransition component="div">
+        <StyledTransition component='div'>
           {this._renderSlide()}
         </StyledTransition>
       );
@@ -706,7 +746,7 @@ export class Manager extends Component {
 
     return (
       <StyledDeck
-        className="spectacle-deck"
+        className='spectacle-deck'
         route={this.props.route}
         onClick={this.handleClick}
       >
