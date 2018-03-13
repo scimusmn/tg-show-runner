@@ -110,6 +110,49 @@ export default class Presentation extends React.Component {
 
       <Deck theme={theme} progress='number' >
 
+        {/* TEMP */}
+        <Cue notes='Cue'>
+
+          <h1>TEMP no cue</h1>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Cue'>
+
+          <h1>TEMP Cue 2 Go</h1>
+
+          <CueServerOut cueId='Cue 2 Go' />
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Cue'>
+
+          <h1>TEMP Cue 3 Go</h1>
+
+          <CueServerOut cueId='Cue 3 Go' />
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Cue'>
+
+          <h1>TEMP Cue 2 Go</h1>
+
+          <CueServerOut cueId='Cue 2 Go' />
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Cue'>
+
+          <h1>TEMP Cue 1 Go</h1>
+
+          <CueServerOut cueId='Cue 1 Go' />
+
+        </Cue>
+
         {/* CUE 1 */}
         <Cue notes='Cue 0. Pre-show.'>
 

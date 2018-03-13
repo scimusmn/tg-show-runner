@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Howl} from '../vendors/howler/howler';
+
+import { emitCueMessageToNode } from '../api/api';
 
 export default class CueServerOut extends Component {
 
@@ -20,7 +21,9 @@ export default class CueServerOut extends Component {
 
     this.delayTimeout = setTimeout(() => {
 
-      console.log('cueserver Out:', this.props.cueId);
+
+      emitCueMessageToNode(this.props.cueId);
+
 
     }, this.props.delay * 1000);
 
@@ -34,7 +37,7 @@ export default class CueServerOut extends Component {
 
   render() {
 
-    return (null);
+    return <div className='debug'>CueServerOut: {this.props.cueId}</div>
 
   }
 

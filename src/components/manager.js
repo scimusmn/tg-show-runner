@@ -105,7 +105,7 @@ export class Manager extends Component {
   constructor(props) {
     super(props);
     this._handleKeyPress = this._handleKeyPress.bind(this);
-    this._handleScreenChange = this._handleScreenChange.bind(this);
+    this._handleDisplayChange = this._handleDisplayChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
@@ -169,13 +169,13 @@ export class Manager extends Component {
   _attachEvents() {
     window.addEventListener('storage', this._goToSlide);
     window.addEventListener('keydown', this._handleKeyPress);
-    window.addEventListener('resize', this._handleScreenChange);
+    window.addEventListener('resize', this._handleDisplayChange);
   }
 
   _detachEvents() {
     window.removeEventListener('storage', this._goToSlide);
     window.removeEventListener('keydown', this._handleKeyPress);
-    window.removeEventListener('resize', this._handleScreenChange);
+    window.removeEventListener('resize', this._handleDisplayChange);
   }
 
   _startAutoplay() {
@@ -286,7 +286,7 @@ export class Manager extends Component {
     this._handleEvent(e);
   }
 
-  _handleScreenChange() {
+  _handleDisplayChange() {
     this.setState({
       fullscreen: window.innerHeight === screen.height,
       mobile: window.innerWidth < this.props.contentWidth,
@@ -323,9 +323,6 @@ export class Manager extends Component {
   // over to the next slide route.
   _getSuffix() {
 
-    console.log('getSuffix');
-
-    console.log(this.props.route.params);
     const params = this.props.route.params;
     let suffix = '';
 
@@ -473,7 +470,6 @@ export class Manager extends Component {
       } else if (slideIndex < slideReference.length - 1) {
         this.viewedIndexes.add(slideIndex);
         const offset = this._getOffset(slideIndex);
-        console.log('next slide ', this._getHash(slideIndex + offset) + this._getSuffix());
         this.context.history.replace(
           `/${this._getHash(slideIndex + offset) + this._getSuffix()}`
         );

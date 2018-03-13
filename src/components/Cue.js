@@ -36,16 +36,7 @@ class Cue extends React.PureComponent {
 
   componentDidMount() {
 
-    /*    console.log('CUE-> componentDidMount', this.props.slideIndex);
-        console.log('CONTEXT');
-        console.log(this.context);
-        console.log('route params');
-        console.log(this.context.store.getState().route.params);*/
-
-        const urlParams = this.context.store.getState().route.params;
-    if (urlParams.indexOf('presenter') !== -1) {
-      console.log('IS PRESENTER/CONTROLLER. Release cue...');
-    }
+    const urlParams = this.context.store.getState().route.params;
 
     // TODO - checking for valid output screen
     // should be broken into a separate file
@@ -53,12 +44,14 @@ class Cue extends React.PureComponent {
     if (urlParams.indexOf('primary') !== -1) {
 
       this.setState({outputScreen:'primary'});
-      console.log('Setting output screen: primary');
 
     } else if (urlParams.indexOf('secondary') !== -1) {
 
       this.setState({outputScreen:'secondary'});
-      console.log('Setting output screen: secondary');
+
+    }  else if (urlParams.indexOf('controller') !== -1) {
+
+      this.setState({outputScreen:'controller'});
 
     }
 
@@ -182,23 +175,53 @@ class Cue extends React.PureComponent {
   filterChildren() {
 
     let children = React.Children.toArray(this.props.children);
-
+    let removalIndices = [];
     let hasScreen = false;
 
-    React.Children.forEach(this.props.children, (child) => {
-      console.log('child.type.name', child.type.name);
-      if (child.type.name == 'Screen' && child.props.output == this.state.outputScreen) {
+    for (let i = children.length - 1; i >= 0; i--) {
 
-        hasScreen = true;
+      const child = children[i];
+
+      // Screen Type
+      if (child.type.name == 'Screen') {
+
+        if (child.props.output == this.state.outputScreen) {
+
+          hasScreen = true;
+
+        } else {
+
+          // Remove any Screen not matching
+          // current output screen.
+          children.splice(i, 1);
+
+        }
 
       }
 
-    });
+      // Prevent sounds and cueserver events from
+      // being triggered on multiple browsers.
+      if (child.type.name == 'SoundCue' || child.type.name == 'CueServerOut') {
 
+        // TODO: We should possibly only play sounds
+        // on Controller screen OR have a smart scree
+        // system that only plays on first screen, no
+        // matter which are connected....
+        if (this.state.outputScreen !== 'primary') {
+          // Remove sound if not on primary screen.
+
+          children.splice(i, 1);
+
+        }
+
+      }
+
+    }
+
+    // If no screen is found for current Output,
+    // add an empty screen.
     if (!hasScreen) {
-      // If no screen is found for current Output,
-      // add an empty screen.
-      children.push(<Screen key='auto-screen-empty' output={this.state.outputScreen}>Auto-added empty screen.</Screen>);
+      children.push(<Screen key='auto-screen-empty' output={this.state.outputScreen}><p>Auto-added empty screen.</p></Screen>);
     }
 
     return children;
