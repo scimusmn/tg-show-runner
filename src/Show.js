@@ -2,19 +2,23 @@
 import React from 'react';
 
 // Import Spectacle Core tags
+import Cue from './components/Cue';
 import Deck from './components/deck';
 import Slide from './components/slide';
 import Screen from './components/Screen';
-import Cue from './components/Cue';
 
 import SoundCue from './components/SoundCue';
 import CueServerOut from './components/CueServerOut';
+import CSL from './api/CueServerLookup';
+
+import {images, sounds, videos} from './assets/assets';
 
 // Import theme
 import createTheme from './themes/default';
 
 // Require CSS
 require('normalize.css');
+require('./assets/css/show.css');
 
 const theme = createTheme(
   {
@@ -30,80 +34,7 @@ const theme = createTheme(
   }
 );
 
-const images = {
-
-  moths: require('./assets/images/moths.gif'),
-  alex1: require('./assets/images/alex1.png'),
-  alex2: require('./assets/images/alex2.png'),
-  tribble: require('./assets/images/tribble.png'),
-  sequence1: require('./assets/images/sequence1.png'),
-  sequence2: require('./assets/images/sequence2.png'),
-  sequence3: require('./assets/images/sequence3.png'),
-  evolution: require('./assets/images/evolution.png'),
-
-};
-
-const sounds = {
-
-  boink: require('./assets/sounds/boink.mp3'),
-  VO_001: require('./assets/sounds/VO_001.mp3'),
-  VO_003: require('./assets/sounds/VO_003.mp3'),
-  VO_034: require('./assets/sounds/VO_034.mp3'),
-  VO_060: require('./assets/sounds/VO_060.mp3'),
-  VO_061: require('./assets/sounds/VO_061.mp3'),
-  VO_073: require('./assets/sounds/VO_073.mp3'),
-  VO_074: require('./assets/sounds/VO_074.mp3'),
-  VO_083: require('./assets/sounds/VO_083.mp3'),
-  VO_084: require('./assets/sounds/VO_084.mp3'),
-  VO_115: require('./assets/sounds/VO_115.mp3'),
-  VO_116: require('./assets/sounds/VO_116.mp3'),
-  VO_127: require('./assets/sounds/VO_127.mp3'),
-  VO_128: require('./assets/sounds/VO_128.mp3'),
-  VO_142: require('./assets/sounds/VO_142.mp3'),
-  VO_144: require('./assets/sounds/VO_144.mp3'),
-  VO_146: require('./assets/sounds/VO_146.mp3'),
-  VO_148: require('./assets/sounds/VO_148.mp3'),
-  VO_150: require('./assets/sounds/VO_150.mp3'),
-  VO_152: require('./assets/sounds/VO_152.mp3'),
-  VO_157: require('./assets/sounds/VO_157.mp3'),
-  VO_159: require('./assets/sounds/VO_159.mp3'),
-  VO_161: require('./assets/sounds/VO_161.mp3'),
-  vista_friendly_1: require('./assets/sounds/vista_friendly_1.mp3'),
-  vista_friendly_2: require('./assets/sounds/vista_friendly_2.mp3'),
-  vista_friendly_3: require('./assets/sounds/vista_friendly_2.mp3'),
-  vista_friendly_4: require('./assets/sounds/vista_friendly_2.mp3'),
-  vista_unfriendly_1: require('./assets/sounds/vista_unfriendly_1.mp3'),
-  vista_unfriendly_2: require('./assets/sounds/vista_unfriendly_2.mp3'),
-  vista_unfriendly_3: require('./assets/sounds/vista_unfriendly_2.mp3'),
-  vista_unfriendly_4: require('./assets/sounds/vista_unfriendly_2.mp3'),
-  vista_gobble: require('./assets/sounds/vista_gobble.mp3'),
-  vista_burp: require('./assets/sounds/vista_burp.mp3'),
-  alex_intro: require('./assets/sounds/alex_intro.mp3'),
-  whatthefoxsay: require('./assets/sounds/whatthefoxsay.mp3'),
-  upload: require('./assets/sounds/upload.mp3'),
-  fanfare: require('./assets/sounds/fanfare.mp3'),
-  unlock: require('./assets/sounds/unlock.mp3'),
-  lockdown: require('./assets/sounds/lockdown.mp3'),
-  alarm: require('./assets/sounds/alarm.mp3'),
-  power_down: require('./assets/sounds/power_down.mp3'),
-  cages_lock: require('./assets/sounds/cages_lock.mp3'),
-  train_swoosh: require('./assets/sounds/train_swoosh.mp3'),
-  power_increasing: require('./assets/sounds/power_increasing.mp3'),
-  generation_ding: require('./assets/sounds/generation_ding.mp3'),
-
-};
-
-/*
-const videos = {
-
-  explanation: require('./videos/explanation.mp4'),
-  video1: require('./assets/videos/video1.mp4'),
-  video2: require('./assets/videos/video2.mp4'),
-  video3: require('./assets/videos/video3.mp4'),
-
-};*/
-
-export default class Presentation extends React.Component {
+export default class Show extends React.Component {
 
   render() {
     return (
@@ -122,7 +53,7 @@ export default class Presentation extends React.Component {
 
           <h1>TEMP Cue 2 Go</h1>
 
-          <CueServerOut cueId='Cue 2 Go' />
+          <CueServerOut cueId={CSL.LOCKDOWN_RELEASE} />
 
         </Cue>
 
@@ -190,7 +121,7 @@ export default class Presentation extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.alex_intro} />
-          <CueServerOut cueId='vistas-exit-popper' />
+          <CueServerOut cueId={CSL.SHOW_START} />
 
         </Cue>
 
@@ -211,7 +142,7 @@ export default class Presentation extends React.Component {
         <Cue notes='What Does the Fox Say?!'>
 
           <SoundCue src={sounds.whatthefoxsay} />
-          <CueServerOut cueId='whatthefoxsay' />
+          <CueServerOut cueId='VISTAS_EXIT_POPPER' />
 
         </Cue>
 
@@ -738,44 +669,4 @@ export default class Presentation extends React.Component {
     );
   }
 
-  /*render() {
-    return (
-
-      <Deck theme={theme} progress="number" >
-
-        <Slide>
-          <h1>slide ONE.</h1>
-          <img src={images.moths}/>
-        </Slide>
-
-        <Slide>
-          <SoundCue src={sounds.vista_friendly_2}/>
-          <img src={images.alex1} width="400px"/>
-        </Slide>
-
-        <Slide>
-          <img src={images.tribble} width="400px"/>
-        </Slide>
-
-        <Cue notes='Black' bgColor='#ffa'>
-          <h1>CUE. I am slide FOUR</h1>
-          <img src={images.evolution} width="400px"/>
-          <CueServerOut cueId='vistas-exit-popper' delay={3.3}/>
-        </Cue>
-
-        <Cue notes='CUE WHOAH' bgColor='#4f7'>
-          <h2>CUE whowah</h2>
-          <h1>I am slide FIVE</h1>
-          <img src={images.moths} width="400px"/>
-          <SoundCue src={sounds.boink} delay={1.5}/>
-        </Cue>
-
-        <Cue notes='Slide notes here.'>
-          <h1>Ain't no chore, I am slide SIX</h1>
-          <img src={images.sequence2} width="400px"/>
-        </Cue>
-
-      </Deck>
-    );
-  }*/
 }

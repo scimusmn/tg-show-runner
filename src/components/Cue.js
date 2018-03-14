@@ -26,12 +26,17 @@ class Cue extends React.PureComponent {
   };
 
   getChildContext() {
+
     return {
+
       stepCounter: {
         setFragments: this.stepCounter.setFragments,
       },
+
       slideHash: this.props.hash,
+
     };
+
   }
 
   componentDidMount() {

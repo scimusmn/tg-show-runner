@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { emitCueMessageToNode } from '../api/api';
+import { emitCueMessageToNode } from '../api/CueServerAPI';
 
 export default class CueServerOut extends Component {
 
@@ -37,7 +37,7 @@ export default class CueServerOut extends Component {
 
   render() {
 
-    return <div className='debug'>CueServerOut: {this.props.cueId}</div>
+    return <div className='debug trygve'>CueServer: {this.props.cueId}</div>
 
   }
 

@@ -26,6 +26,10 @@ io.on('connection', (client) => {
 
 });
 
+// Begin listening for client socket action
+io.listen(SOCKETIO_PORT);
+console.log('socket.io listening on port ', SOCKETIO_PORT);
+
 /**
  *
  * CueServer communication
@@ -46,12 +50,26 @@ const CUESERVER_PORT = 52737;
 
 // ASCII messages based
 // on CueServer's protocol.
-const CUE_1 = 'Cue 1 Go'; // Or 'Q1G'
-const CUE_2 = 'Cue 2 Go'; // Or 'Q2G'
 
-// Begin listening
-io.listen(SOCKETIO_PORT);
-console.log('socket.io listening on port ', SOCKETIO_PORT);
+/*
+const CueServerLookup = {
+
+  PRE_SHOW:             'CUE 0 Go',
+  SHOW_START:           'CUE 0 Go',
+  HIGHLIGHT_EASEL:      'CUE 0 Go',
+  HIGHLIGHT_CAGES:      'CUE 0 Go',
+  HIGHLIGHT_POPPER:     'CUE 0 Go',
+  HIGHLIGHT_CHUTE:      'CUE 0 Go',
+  VISTAS_ENTER_POPPER:  'CUE 1 Go',
+  VISTAS_EXIT_POPPER:   'CUE 2 Go',
+  VISTAS_EXIT_SCREEN:   'CUE 3 Go',
+  UNPLUG_BLACKOUT:      'CUE 4 Go',
+  PLUG_IN_LOCKDOWN:     'CUE 5 Go',
+  LOCKDOWN_RELEASE:     'CUE 6 Go',
+  POST_SHOW:            'CUE 7 Go',
+
+};
+*/
 
 // Send messages to CueServer over
 // ethernet. The CueServer should
@@ -62,7 +80,7 @@ function toCueServer(message) {
   console.log('toCueServer[ ' + message + ' ]');
 
   // Convert to CueServer expected format.
-  message = lookupCue(message);
+  // message = lookup(message);
 
   socket.send(message, 0, message.length, CUESERVER_PORT, CUESERVER_IP, (err) => {
 
@@ -77,13 +95,13 @@ function toCueServer(message) {
 
 }
 
-function lookupCue(message) {
+/*function lookup(message) {
 
   let msgOut = message;
 
-  if (CUE_ID_LOOKUP.hasOwnProperty(message)) {
+  if (CueServerLookup.hasOwnProperty(message)) {
 
-    msgOut = CUE_ID_LOOKUP[message];
+    msgOut = CueServerLookup[message];
 
   } else {
 
@@ -93,17 +111,5 @@ function lookupCue(message) {
 
   return msgOut;
 
-}
-
-const CUE_ID_LOOKUP = {
-
-  PRE_SHOW:             'CUE 0 Go',
-  VISTAS_ENTER_POPPER:  'CUE 1 Go',
-  VISTAS_EXIT_POPPER:   'CUE 2 Go',
-  VISTAS_EXIT_SCREEN:   'CUE 3 Go',
-  VISTAS_EXIT_SCREEN:   'CUE 4 Go',
-  VISTAS_EXIT_SCREEN:   'CUE 5 Go',
-  POST_SHOW:            'CUE 6 Go',
-
-};
+}*/
 
