@@ -9,7 +9,7 @@ import Screen from './components/Screen';
 
 import SoundCue from './components/SoundCue';
 import CueServerOut from './components/CueServerOut';
-import CSL from './api/CueServerLookup';
+import Lookup from './api/CueServerLookup';
 
 import {images, sounds, videos} from './assets/assets';
 
@@ -34,6 +34,26 @@ const theme = createTheme(
   }
 );
 
+// ASCII messages based
+// on CueServer's protocol.
+const TEMPDELETELOOKUP = {
+
+  PRE_SHOW:             'CUE 1 Go',
+  SHOW_START:           'CUE 2 Go',
+  HIGHLIGHT_EASEL:      'CUE 3 Go',
+  HIGHLIGHT_CAGES:      'CUE 2 Go',
+  HIGHLIGHT_POPPER:     'CUE 1 Go',
+  HIGHLIGHT_CHUTE:      'CUE 2 Go',
+  VISTAS_ENTER_POPPER:  'CUE 3 Go',
+  VISTAS_EXIT_POPPER:   'CUE 2 Go',
+  VISTAS_EXIT_SCREEN:   'CUE 3 Go',
+  UNPLUG_BLACKOUT:      'CUE 4 Go',
+  PLUG_IN_LOCKDOWN:     'CUE 5 Go',
+  LOCKDOWN_RELEASE:     'CUE 6 Go',
+  POST_SHOW:            'CUE 7 Go',
+
+};
+
 export default class Show extends React.Component {
 
   render() {
@@ -41,60 +61,17 @@ export default class Show extends React.Component {
 
       <Deck theme={theme} progress='number' >
 
-        {/* TEMP */}
-        <Cue notes='Cue'>
-
-          <h1>TEMP no cue</h1>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Cue'>
-
-          <h1>TEMP Cue 2 Go</h1>
-
-          <CueServerOut cueId={CSL.LOCKDOWN_RELEASE} />
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Cue'>
-
-          <h1>TEMP Cue 3 Go</h1>
-
-          <CueServerOut cueId='Cue 3 Go' />
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Cue'>
-
-          <h1>TEMP Cue 2 Go</h1>
-
-          <CueServerOut cueId='Cue 2 Go' />
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Cue'>
-
-          <h1>TEMP Cue 1 Go</h1>
-
-          <CueServerOut cueId='Cue 1 Go' />
-
-        </Cue>
-
-        {/* CUE 1 */}
-        <Cue notes='Cue 0. Pre-show.'>
+        {/* PRE SHOW */}
+        <Cue notes='Pre-show lighting. Audience entering.'>
 
           <h1>Cue 1 Pre-show</h1>
 
-          <CueServerOut cueId='pre-show' />
+          <CueServerOut cueId={Lookup.PRE_SHOW} />
 
         </Cue>
 
-        {/* CUE 2 */}
-        <Cue notes='Cue 1'>
+        {/* SHOW START */}
+        <Cue notes='Stage lights. Presentation begins.'>
 
           <Screen output='primary'>
             <h1>Cue 1. Primary screen.</h1>
@@ -106,9 +83,11 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.VO_001} />
 
+          <CueServerOut cueId={Lookup.SHOW_START} />
+
         </Cue>
 
-        {/* CUE 3 */}
+        {/* CUE */}
         <Cue notes='Cue 2'>
 
           <Screen output='primary'>
@@ -121,24 +100,98 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.alex_intro} />
-          <CueServerOut cueId={CSL.SHOW_START} />
 
         </Cue>
 
-        {/* CUE 4 */}
-        <Cue notes='Cue 3.'>
+        {/* Highlight Easel */}
+        <Cue notes='Highlight Easel'>
 
-          <Screen output='primary'>
-            <h1>Cue 3. Primary screen.</h1>
-          </Screen>
-
-          <Screen output='secondary'>
-            <h1>Cue 3. Secondary screen.</h1>
-          </Screen>
+          <CueServerOut cueId={Lookup.HIGHLIGHT_EASEL} />
+          <h2 className='debug'>HIGHLIGHT_EASEL</h2>
 
         </Cue>
 
-        {/* CUE 5 */}
+        {/* Highlight Cages */}
+        <Cue notes='Highlight Cages'>
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_CAGES} />
+          <h2 className='debug'>HIGHLIGHT_CAGES</h2>
+
+        </Cue>
+
+      {/* Highlight Popper */}
+        <Cue notes='Highlight Popper'>
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_POPPER} />
+          <h2 className='debug'>HIGHLIGHT_POPPER</h2>
+
+        </Cue>
+
+        {/* Highlight CHUTE */}
+        <Cue notes='Highlight Chute'>
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_CHUTE} />
+          <h2 className='debug'>HIGHLIGHT_CHUTE</h2>
+
+        </Cue>
+
+        {/*  VISTAS_ENTER_POPPER */}
+        <Cue notes='VISTAS_ENTER_POPPER'>
+
+          <CueServerOut cueId={Lookup.VISTAS_ENTER_POPPER} />
+          <h2 className='debug'>VISTAS_ENTER_POPPER</h2>
+
+        </Cue>
+
+        {/* VISTAS_EXIT_POPPER */}
+        <Cue notes='VISTAS_EXIT_POPPER'>
+
+          <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
+          <h2 className='debug'>VISTAS_EXIT_POPPER</h2>
+
+        </Cue>
+
+        {/* VISTAS_EXIT_SCREEN */}
+        <Cue notes='VISTAS_EXIT_SCREEN'>
+
+          <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
+          <h2 className='debug'>VISTAS_EXIT_SCREEN</h2>
+
+        </Cue>
+
+        {/* UNPLUG_BLACKOUT */}
+        <Cue notes='UNPLUG_BLACKOUT'>
+
+          <CueServerOut cueId={Lookup.UNPLUG_BLACKOUT} />
+          <h2 className='debug'>UNPLUG_BLACKOUT</h2>
+
+        </Cue>
+
+        {/* PLUG_IN_LOCKDOWN */}
+        <Cue notes='PLUG_IN_LOCKDOWN'>
+
+          <CueServerOut cueId={Lookup.PLUG_IN_LOCKDOWN} />
+          <h2 className='debug'>PLUG_IN_LOCKDOWN</h2>
+
+        </Cue>
+
+        {/* LOCKDOWN_RELEASE */}
+        <Cue notes='LOCKDOWN_RELEASE'>
+
+          <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
+          <h2 className='debug'>LOCKDOWN_RELEASE</h2>
+
+        </Cue>
+
+        {/* POST_SHOW */}
+        <Cue notes='POST_SHOW'>
+
+          <CueServerOut cueId={Lookup.POST_SHOW} />
+          <h2 className='debug'>POST_SHOW</h2>
+
+        </Cue>
+
+        {/* CUE */}
         <Cue notes='What Does the Fox Say?!'>
 
           <SoundCue src={sounds.whatthefoxsay} />
@@ -146,7 +199,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* CUE 6 */}
+        {/* CUE */}
         <Cue notes='Cue 5'>
 
           <h1>Cue 5</h1>
@@ -162,7 +215,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* CUE 7 */}
+        {/* CUE */}
         <Cue notes='Cue 7. Tribble Pygmy family tree.'>
 
           <h1>Cue 7</h1>
@@ -172,7 +225,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* CUE 8 */}
+        {/* CUE */}
         <Cue notes='Cue 8. After putting VISTA back in cage.'>
 
           <h1>Cue 8</h1>
@@ -183,7 +236,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* CUE 9 */}
+        {/* CUE */}
         <Cue notes='Alex triggers THEORY OF EVOLUTION'>
 
           <h1>Cue 9</h1>
@@ -193,7 +246,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* CUE 10 */}
+        {/* CUE 1*/}
         <Cue notes='Alex triggers Sequence 1'>
 
           <h1>Cue 10</h1>

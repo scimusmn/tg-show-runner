@@ -37,7 +37,7 @@ export default class CueServerOut extends Component {
 
   render() {
 
-    return <div className='debug trygve'>CueServer: {this.props.cueId}</div>
+    return <div className='debug'>CueServer: {this.props.cueId}</div>
 
   }
 

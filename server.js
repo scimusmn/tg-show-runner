@@ -45,31 +45,11 @@ const socket = dgram.createSocket('udp4');
 
 // CueServer Info
 // Read from CueServer menu.
-const CUESERVER_IP = '169.254.148.59';
+const CUESERVER_IP = '169.254.80.104';
 const CUESERVER_PORT = 52737;
 
-// ASCII messages based
-// on CueServer's protocol.
-
-/*
-const CueServerLookup = {
-
-  PRE_SHOW:             'CUE 0 Go',
-  SHOW_START:           'CUE 0 Go',
-  HIGHLIGHT_EASEL:      'CUE 0 Go',
-  HIGHLIGHT_CAGES:      'CUE 0 Go',
-  HIGHLIGHT_POPPER:     'CUE 0 Go',
-  HIGHLIGHT_CHUTE:      'CUE 0 Go',
-  VISTAS_ENTER_POPPER:  'CUE 1 Go',
-  VISTAS_EXIT_POPPER:   'CUE 2 Go',
-  VISTAS_EXIT_SCREEN:   'CUE 3 Go',
-  UNPLUG_BLACKOUT:      'CUE 4 Go',
-  PLUG_IN_LOCKDOWN:     'CUE 5 Go',
-  LOCKDOWN_RELEASE:     'CUE 6 Go',
-  POST_SHOW:            'CUE 7 Go',
-
-};
-*/
+console.log('CUESERVER_IP:', CUESERVER_IP);
+console.log('CUESERVER_PORT:', CUESERVER_PORT);
 
 // Send messages to CueServer over
 // ethernet. The CueServer should
@@ -95,21 +75,4 @@ function toCueServer(message) {
 
 }
 
-/*function lookup(message) {
-
-  let msgOut = message;
-
-  if (CueServerLookup.hasOwnProperty(message)) {
-
-    msgOut = CueServerLookup[message];
-
-  } else {
-
-    console.log('WARNING! cueMessageLookup[ ' + message + ' ] NOT FOUND');
-
-  }
-
-  return msgOut;
-
-}*/
 
