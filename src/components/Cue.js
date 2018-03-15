@@ -226,7 +226,7 @@ class Cue extends React.PureComponent {
     // If no screen is found for current Output,
     // add an empty screen.
     if (!hasScreen) {
-      children.push(<Screen key='auto-screen-empty' output={this.state.outputScreen}><p>Auto-added empty screen.</p></Screen>);
+      children.push(<Screen key='auto-screen-empty' output={this.state.outputScreen}><p className='debug'>Auto-added empty screen.</p></Screen>);
     }
 
     return children;

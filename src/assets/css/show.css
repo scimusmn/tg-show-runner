@@ -3,4 +3,5 @@
 .debug {
   color: green;
   background-color: pink;
+  display: none;
 }
