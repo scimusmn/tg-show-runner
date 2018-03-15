@@ -1,7 +1,19 @@
-
+body {
+  background-color: black;
+}
 
 .debug {
   color: green;
   background-color: pink;
   display: none;
+}
+
+.debug.notes {
+  display: block;
+  font-size: 0.7em;
+  position: fixed;
+  bottom: -10px;
+  left: 10px;
+  color: white;
+  background-color: black;
 }

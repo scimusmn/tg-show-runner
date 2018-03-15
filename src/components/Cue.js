@@ -280,7 +280,9 @@ class Cue extends React.PureComponent {
               >
                 {this.filterChildren()}
               </SlideContent>
+              <p className='debug notes'>{this.props.notes}</p>
             </SlideContentWrapper>
+
           </SlideContainer>
     );
   }

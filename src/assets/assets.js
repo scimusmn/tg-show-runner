@@ -10,6 +10,7 @@ const images = {
   sequence4: require('./images/sequence4.png'),
   sequence5: require('./images/sequence5.png'),
   evolution: require('./images/evolution.png'),
+  whatthefoxsay: require('./images/whatthefoxsay.gif'),
 
 };
 

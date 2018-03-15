@@ -22,8 +22,8 @@ require('./assets/css/show.css');
 
 const theme = createTheme(
   {
-    primary: '#ededed',
-    secondary: '#074358',
+    primary: '#000000',
+    secondary: '#F74358',
     tertiary: '#677562',
     quartenary: '#A55C55',
     correct:'#458985',
@@ -70,8 +70,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex Intro'>
 
           <Screen output='primary'>
-            <h1>Alex Makes It Amazing Youtube Intro</h1>
-            <img src={images.alex1} width='400px'/>
+            <img src={images.alex1} width='900px'/>
           </Screen>
 
           <SoundCue src={sounds.alex_intro} />
@@ -81,16 +80,19 @@ export default class Show extends React.Component {
         {/* Highlight Easel */}
         <Cue notes='Highlight Easel'>
 
-          <CueServerOut cueId={Lookup.HIGHLIGHT_EASEL} />
           <h2 className='debug'>HIGHLIGHT_EASEL</h2>
+          <CueServerOut cueId={Lookup.HIGHLIGHT_EASEL} />
 
         </Cue>
 
         {/* What does the Fox Say!? */}
         <Cue notes='What Does the Fox Say?!'>
 
+          <Screen output='primary'>
+            <img src={images.whatthefoxsay} width='900px'/>
+          </Screen>
+
           <SoundCue src={sounds.whatthefoxsay} />
-          <CueServerOut cueId='VISTAS_EXIT_POPPER' />
 
         </Cue>
 
@@ -114,8 +116,7 @@ export default class Show extends React.Component {
         <Cue notes='Tribble/Pygmy family tree.'>
 
           <Screen output='primary'>
-            <h1>Tribble/Pygmy family tree.</h1>
-            <img src={images.tribble} width='400px'/>
+            <img src={images.tribble} width='900px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -133,7 +134,7 @@ export default class Show extends React.Component {
         <Cue notes='Theory of Evolution'>
 
           <Screen output='primary'>
-            <img src={images.evolution} width='400px'/>
+            <img src={images.evolution} width='900px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -149,7 +150,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex shows sequence 1'>
 
           <Screen output='primary'>
-            <img src={images.sequence1} width='400px'/>
+            <img src={images.sequence1} width='900px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -227,7 +228,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers sequence 2'>
 
           <Screen output='primary'>
-            <img src={images.sequence2} width='400px'/>
+            <img src={images.sequence2} width='900px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -284,7 +285,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 3'>
 
           <Screen output='primary'>
-            <img src={images.sequence3} width='400px'/>
+            <img src={images.sequence3} width='900px'/>
           </Screen>
 
         </Cue>
@@ -415,15 +416,13 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 4'>
 
           <Screen output='primary'>
-            <img src={images.sequence4} width='400px'/>
+            <img src={images.sequence4} width='900px'/>
           </Screen>
 
         </Cue>
 
         {/* Empty. */}
         <Cue notes=''>
-
-          <h1>Empty.</h1>
 
         </Cue>
 
@@ -657,7 +656,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 5'>
 
           <Screen output='primary'>
-            <img src={images.sequence5} width='400px'/>
+            <img src={images.sequence5} width='900px'/>
           </Screen>
 
         </Cue>
