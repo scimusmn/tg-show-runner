@@ -609,6 +609,16 @@ export class Manager extends Component {
     // Retrieve slide.
     const slide = this._getSlideByIndex(slideIndex);
 
+    //TEMP: Get next slide notes
+    const nextSlide = this._getSlideByIndex(slideIndex+1);
+    let nextNotes = '';
+    if (nextSlide){
+      console.log(nextSlide);
+      if (nextSlide.props.notes) {
+        nextNotes = nextSlide.props.notes;
+      }
+    }
+
     // Return a clone of the slide
     return cloneElement(slide, {
       dispatch: this.props.dispatch,
@@ -625,6 +635,7 @@ export class Manager extends Component {
         ? slide.props.transitionDuration
         : this.props.transitionDuration,
       slideReference: this.state.slideReference,
+      nextNotes: nextNotes,
     });
 
   }
@@ -665,6 +676,19 @@ export class Manager extends Component {
 
     // children includes all CUES within Deck
     const children = Children.toArray(this.props.children);
+
+    // TEMP: LOG ALL CUE NOTES IN ORDER
+/*    console.log('======= MEDIA CUES ======');
+    var alright = [];
+    for (var i = 0; i < children.length; i++) {
+      const ch = children[i];
+
+      console.log(ch.props.notes);
+      alright.push(ch.props.notes);
+
+    }
+    console.log('======= ========== ======');
+    */
 
     // Render PRESENTER view
     if (this.props.route.params.indexOf('presenter') !== -1) {

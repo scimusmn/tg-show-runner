@@ -96,11 +96,8 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Vista Cooing */}
-        <Cue notes='Vistas cooing'>
-
-          <SoundCue src={sounds.vista_friendly_1}/>
-          <SoundCue src={sounds.vista_friendly_2}/>
+        {/* Empty */}
+        <Cue notes='Empty'>
 
         </Cue>
 
@@ -112,6 +109,21 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Vista Cooing */}
+        <Cue notes='Vistas cooing'>
+
+          <SoundCue src={sounds.vista_friendly_1}/>
+          <SoundCue src={sounds.vista_friendly_2}/>
+
+        </Cue>
+
+        {/* VO: Should any cage open... */}
+        <Cue notes='VO: Should any cage open...'>
+
+          <SoundCue src={sounds.VO_034}/>
+
+        </Cue>
+
         {/* Family Tree */}
         <Cue notes='Tribble/Pygmy family tree.'>
 
@@ -120,6 +132,11 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.upload} />
+
+        </Cue>
+
+        {/* Empty */}
+        <Cue notes='Empty'>
 
         </Cue>
 
@@ -192,13 +209,13 @@ export default class Show extends React.Component {
               [ - - - - - ]
             </h1>
 
-            <h3>
+            <p>
               Variation’s the name of this game<br/>
               Everything has it, wild or tame<br/>
               In any group<br/>
               School, flock, or troupe<br/>
               Individuals are not all the _______.
-            </h3>
+            </p>
 
           </Screen>
 
@@ -250,13 +267,13 @@ export default class Show extends React.Component {
               [ V - - - - ]
             </h1>
 
-            <h3>
+            <p>
               You can have the best traits ever seen<br/>
               But if you covet them, what does it mean?<br/>
               You can’t evolve on your own<br/>
               So remember, when you’re grown,<br/>
               You simply must pass on your ________.
-            </h3>
+            </p>
 
           </Screen>
 
@@ -288,6 +305,8 @@ export default class Show extends React.Component {
             <img src={images.sequence3} width='900px'/>
           </Screen>
 
+          <SoundCue src={sounds.upload} />
+
         </Cue>
 
         {/* Empty */}
@@ -304,13 +323,13 @@ export default class Show extends React.Component {
               [ V I - - - ]
             </h1>
 
-            <h3>
+            <p>
               Take a moment’s reflection<br/>
               On that brutal election<br/>
               Where good traits pass on<br/>
               And bad ones get gone<br/>
               It’s the process we call __________.
-            </h3>
+            </p>
 
           </Screen>
 
@@ -370,7 +389,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='600px'/>
+            <img src={images.vis_interface} width='200px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -420,10 +439,12 @@ export default class Show extends React.Component {
             <img src={images.sequence4} width='900px'/>
           </Screen>
 
+          <SoundCue src={sounds.upload} />
+
         </Cue>
 
         {/* Empty. */}
-        <Cue notes=''>
+        <Cue notes='Empty'>
 
         </Cue>
 
@@ -454,7 +475,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='600px'/>
+            <img src={images.vis_interface} width='200px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -532,7 +553,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='600px'/>
+            <img src={images.vis_interface} width='200px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -587,7 +608,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='600px'/>
+            <img src={images.vis_interface} width='200px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -625,13 +646,13 @@ export default class Show extends React.Component {
               [ V I S - - ]
             </h1>
 
-            <h3>
+            <p>
               Whenever a new feature appears,<br/>
               Like long hair, sharp teeth, or big ears,<br/>
               Not all will have the trait<br/>
               First, genes must accumulate<br/>
               And that can take thousands of ________,
-            </h3>
+            </p>
 
           </Screen>
 
@@ -663,6 +684,13 @@ export default class Show extends React.Component {
             <img src={images.sequence5} width='900px'/>
           </Screen>
 
+          <SoundCue src={sounds.upload} />
+
+        </Cue>
+
+        {/* Empty */}
+        <Cue notes='Empty'>
+
         </Cue>
 
         {/* Evaluation part 5 */}
@@ -674,13 +702,13 @@ export default class Show extends React.Component {
               [ V I S T - ]
             </h1>
 
-            <h3>
+            <p>
               Remember, you cannot control<br/>
               How evolution fulfills its role.<br/>
               Species may get stronger,<br/>
               Faster, shorter, or longer<br/>
               To simply adapt is the real  ________,
-            </h3>
+            </p>
 
           </Screen>
 
@@ -711,11 +739,18 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.power_down} />
           <SoundCue src={sounds.cages_open} delay={0.75} />
           <SoundCue src={sounds.vistas_dropping} delay={2.5} />
-          <SoundCue src={sounds.vistas_escape} delay={5.0} />
 
           <CueServerOut cueId={Lookup.UNPLUG_BLACKOUT} />
 
         </Cue>
+
+        {/* Vistas escape through door. */}
+        <Cue notes='Vistas escape through door.'>
+
+          <SoundCue src={sounds.vistas_escape} />
+
+        </Cue>
+
 
         {/* Plug in lockdown */}
         <Cue notes='Lockdown on plug in.'>

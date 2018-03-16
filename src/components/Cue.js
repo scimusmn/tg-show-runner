@@ -280,7 +280,7 @@ class Cue extends React.PureComponent {
               >
                 {this.filterChildren()}
               </SlideContent>
-              <p className='debug notes'>{this.props.notes}</p>
+              <p className='debug notes'>Next: {this.props.nextNotes}</p>
             </SlideContentWrapper>
 
           </SlideContainer>
@@ -306,6 +306,7 @@ Cue.propTypes = {
   lastCueIndex: PropTypes.number,
   margin: PropTypes.number,
   notes: PropTypes.any,
+  nextNotes: PropTypes.any,
   onActive: PropTypes.func,
   presenterStyle: PropTypes.object,
   print: PropTypes.bool,
