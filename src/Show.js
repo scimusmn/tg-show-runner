@@ -8,6 +8,7 @@ import Slide from './components/slide';
 import Screen from './components/Screen';
 
 import SoundCue from './components/SoundCue';
+import VideoCue from './components/VideoCue';
 import CueServerOut from './components/CueServerOut';
 import Lookup from './api/CueServerLookup';
 
@@ -40,6 +41,21 @@ export default class Show extends React.Component {
     return (
 
       <Deck theme={theme} progress='number' >
+
+
+        {/* Video Cue Test */}
+        <Cue notes='Video Cue Test'>
+
+          <Screen output='primary'>
+            <VideoCue src={videos.video3} />
+          </Screen>
+
+        </Cue>
+
+        {/* Empty */}
+        <Cue notes='Empty'>
+
+        </Cue>
 
         {/* Pre show */}
         <Cue notes='Pre-show lighting. Audience entering.'>

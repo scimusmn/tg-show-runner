@@ -613,7 +613,6 @@ export class Manager extends Component {
     const nextSlide = this._getSlideByIndex(slideIndex+1);
     let nextNotes = '';
     if (nextSlide){
-      console.log(nextSlide);
       if (nextSlide.props.notes) {
         nextNotes = nextSlide.props.notes;
       }

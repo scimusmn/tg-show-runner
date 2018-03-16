@@ -79,12 +79,10 @@ const sounds = {
 
 const videos = {
 
-  /*
   explanation: require('./videos/explanation.mp4'),
   video1: require('./videos/video1.mp4'),
   video2: require('./videos/video2.mp4'),
   video3: require('./videos/video3.mp4'),
-  */
 
 };
 
