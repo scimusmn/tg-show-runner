@@ -369,7 +369,8 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h2>Vistas enter screen. Visualization begins. X generations pass.</h2>
+            <h3>Visualization begins.<br/>Generations pass.</h3>
+            <img src={images.vis_interface} width='600px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -452,7 +453,8 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h2>Vistas enter screen. Visualization begins.</h2>
+            <h3>Visualization begins.<br/>Generations pass.</h3>
+            <img src={images.vis_interface} width='600px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -472,7 +474,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h1>Generation speed ramps up.</h1>
-            <h2>...X generations pass...</h2>
+            <h2>...Generations pass...</h2>
           </Screen>
 
           <SoundCue src={sounds.power_increasing} />
@@ -529,7 +531,8 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h2>Vistas enter screen. Visualization begins. X generations pass...</h2>
+            <h3>Visualization begins.<br/>Generations pass.</h3>
+            <img src={images.vis_interface} width='600px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -583,7 +586,8 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h2>Vistas enter screen. Visualization begins. X generations pass...</h2>
+            <h3>Visualization begins.<br/>Generations pass.</h3>
+            <img src={images.vis_interface} width='600px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
