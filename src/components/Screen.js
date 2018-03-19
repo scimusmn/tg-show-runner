@@ -3,20 +3,52 @@ import PropTypes from 'prop-types';
 
 class Screen extends Component {
 
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      lifespanComplete: false,
+    };
+
+    this.lifespanTimeout = {};
+
+  }
+
+  componentDidMount() {
+
+    this.setState({lifespanComplete:false});
+
+    if (this.props.lifespan > 0.0) {
+
+      this.lifespanTimeout = setTimeout(() => {
+
+        this.setState({lifespanComplete:true});
+
+      }, this.props.lifespan * 1000);
+
+    }
+
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  componentWillUnmount() {
+
+    clearTimeout(this.lifespanTimeout);
+
+  }
+
   render() {
 
-    // Only display screen if correct param is found
-/*    if (window.location.href.indexOf(this.props.output) == -1) {
+    const doFade = this.state.lifespanComplete ? 'fadeIn' : '';
 
-      return null;
-
-    } else {
-
-      return <div>{this.props.children}</div>;
-
-    }*/
-
-    return <div>{this.props.children}</div>;
+    return <div>
+              <div className={`fade-overlay ${doFade}`}></div>
+              {this.props.children}
+            </div>;
 
   }
 
@@ -24,6 +56,11 @@ class Screen extends Component {
 
 Screen.propTypes = {
   output: PropTypes.string,
+  lifespan: PropTypes.number,
+};
+
+Screen.defaultProps = {
+  lifespan: 0.0,
 };
 
 export default Screen;

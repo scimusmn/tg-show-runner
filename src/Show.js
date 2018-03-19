@@ -166,7 +166,7 @@ export default class Show extends React.Component {
         {/* Theory of Evolution */}
         <Cue notes='Theory of Evolution'>
 
-          <Screen output='primary'>
+          <Screen output='primary' lifespan={15.0}>
             <img src={images.evolution} width='900px'/>
           </Screen>
 
