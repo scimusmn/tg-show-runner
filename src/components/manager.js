@@ -110,6 +110,7 @@ export class Manager extends Component {
     this._goToSlide = this._goToSlide.bind(this);
     this._startAutoplay = this._startAutoplay.bind(this);
     this._stopAutoplay = this._stopAutoplay.bind(this);
+    this.resetShow = this.resetShow.bind(this);
     this.state = {
       lastSlideIndex: null,
       slideReference: [],
@@ -269,6 +270,15 @@ export class Manager extends Component {
       if (this.props.autoplay) {
         this._startAutoplay();
       }
+    } else if (
+      event.keyCode === 81 &&
+      !event.ctrlKey &&
+      !event.metaKey
+
+    // q to reset show
+    ) {
+      // q
+      this.resetShow();
     }
   }
 
@@ -356,6 +366,15 @@ export class Manager extends Component {
           time: Date.now(),
         })
       );
+
+  }
+
+  resetShow() {
+
+    this.viewedIndexes.clear();
+
+    const slideData = '{ "slide": "0", "forward": "false" }';
+    this._goToSlide({ key: 'show-runner-slide', newValue: slideData });
 
   }
 
@@ -464,8 +483,7 @@ export class Manager extends Component {
       if (slideIndex === slideReference.length - 1) {
         // On last slide, loop to first slide
         if (this.props.autoplay && this.state.autoplaying) {
-          const slideData = '{ "slide": "0", "forward": "false" }';
-          this._goToSlide({ key: 'spectacle-slide', newValue: slideData });
+          this.resetShow();
         }
       } else if (slideIndex < slideReference.length - 1) {
         this.viewedIndexes.add(slideIndex);
@@ -610,9 +628,9 @@ export class Manager extends Component {
     const slide = this._getSlideByIndex(slideIndex);
 
     //TEMP: Get next slide notes
-    const nextSlide = this._getSlideByIndex(slideIndex+1);
+    const nextSlide = this._getSlideByIndex(slideIndex + 1);
     let nextNotes = '';
-    if (nextSlide){
+    if (nextSlide) {
       if (nextSlide.props.notes) {
         nextNotes = nextSlide.props.notes;
       }
@@ -677,17 +695,17 @@ export class Manager extends Component {
     const children = Children.toArray(this.props.children);
 
     // TEMP: LOG ALL CUE NOTES IN ORDER
-/*    console.log('======= MEDIA CUES ======');
-    var alright = [];
-    for (var i = 0; i < children.length; i++) {
-      const ch = children[i];
+    /*    console.log('======= MEDIA CUES ======');
+        var alright = [];
+        for (var i = 0; i < children.length; i++) {
+          const ch = children[i];
 
-      console.log(ch.props.notes);
-      alright.push(ch.props.notes);
+          console.log(ch.props.notes);
+          alright.push(ch.props.notes);
 
-    }
-    console.log('======= ========== ======');
-    */
+        }
+        console.log('======= ========== ======');
+        */
 
     // Render PRESENTER view
     if (this.props.route.params.indexOf('presenter') !== -1) {

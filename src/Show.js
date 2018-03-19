@@ -133,17 +133,10 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* VO: Should any cage open... */}
-        <Cue notes='VO: Should any cage open...'>
-
-          <SoundCue src={sounds.VO_034}/>
-
-        </Cue>
-
         {/* Family Tree */}
         <Cue notes='Tribble/Pygmy family tree.'>
 
-          <Screen output='primary'>
+          <Screen output='primary' lifepan={15.0}>
             <img src={images.tribble} width='900px'/>
           </Screen>
 
@@ -151,15 +144,16 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Empty */}
-        <Cue notes='Empty'>
+        {/* VO: Should any cage open... */}
+        <Cue notes='VO: Should any cage open...'>
+
+          <SoundCue src={sounds.VO_034}/>
 
         </Cue>
 
-        {/* Cages locking */}
-        <Cue notes='Cages locking'>
 
-          <SoundCue src={sounds.cages_lock}/>
+        {/* Empty */}
+        <Cue notes='Empty'>
 
         </Cue>
 
@@ -499,13 +493,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Vistas chute dump. */}
-        <Cue notes='Chute dump'>
-
-          <SoundCue src={sounds.chute_dump} />
-
-        </Cue>
-
         {/* Generation speed crank. */}
         <Cue notes='Generation speed ramps up.'>
 
@@ -526,6 +513,13 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.generation_ding} delay={6.9}/>
           <SoundCue src={sounds.generation_ding} delay={7.1}/>
           <SoundCue src={sounds.generation_ding} delay={7.3}/>
+
+        </Cue>
+
+        {/* Vistas chute dump. */}
+        <Cue notes='Chute dump'>
+
+          <SoundCue src={sounds.chute_dump} />
 
         </Cue>
 
