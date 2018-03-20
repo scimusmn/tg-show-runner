@@ -42,21 +42,6 @@ export default class Show extends React.Component {
 
       <Deck theme={theme} progress='number' >
 
-
-        {/* Video Cue Test */}
-        <Cue notes='Video Cue Test'>
-
-          <Screen output='primary'>
-            <VideoCue src={videos.video3} />
-          </Screen>
-
-        </Cue>
-
-        {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
         {/* Pre show */}
         <Cue notes='Pre-show lighting. Audience entering.'>
 
@@ -177,7 +162,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex shows sequence 1'>
 
           <Screen output='primary'>
-            <img src={images.sequence1} width='900px'/>
+            <VideoCue src={videos.video1} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -255,7 +240,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers sequence 2'>
 
           <Screen output='primary'>
-            <img src={images.sequence2} width='900px'/>
+            <VideoCue src={videos.video2} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -312,7 +297,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 3'>
 
           <Screen output='primary'>
-            <img src={images.sequence3} width='900px'/>
+            <VideoCue src={videos.video3} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
