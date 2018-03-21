@@ -376,6 +376,13 @@ export class Manager extends Component {
     const slideData = '{ "slide": "0", "forward": "false" }';
     this._goToSlide({ key: 'show-runner-slide', newValue: slideData });
 
+    // Clear cache with referesh.
+    // TODO: This should also reload
+    // pages on other browser windows...
+    setTimeout(function() {
+      window.location.reload();
+    }, 500);
+
   }
 
   // This is used to navigate

@@ -9,6 +9,7 @@ import Screen from './components/Screen';
 
 import SoundCue from './components/SoundCue';
 import VideoCue from './components/VideoCue';
+import Visualization from './components/Visualization';
 import CueServerOut from './components/CueServerOut';
 import Lookup from './api/CueServerLookup';
 
@@ -50,6 +51,63 @@ export default class Show extends React.Component {
           <CueServerOut cueId={Lookup.PRE_SHOW} />
 
         </Cue>
+
+
+        {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP VIS 1 */}
+        <Cue notes='Vis 1'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={0} endGen={2} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.14, 0.86]} />
+          </Screen>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP VIS 2 */}
+        <Cue notes='Empty'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={0.95} seedVistas={[0.7, 0.2, 0.4, 0.4, 0.3]} />
+          </Screen>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP VIS 2 */}
+        <Cue notes='Empty'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={12} endGen={24} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.2, 0.5, 0.6, 0.1, 0.7, 0.9]} />
+          </Screen>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+
 
         {/* Show Start. VO Intro. */}
         <Cue notes='Stage lights. Presentation begins. VO.'>
@@ -735,7 +793,7 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.cages_open} delay={0.75} />
           <SoundCue src={sounds.vistas_dropping} delay={2.5} />
 
-          <CueServerOut cueId={Lookup.UNPLUG_BLACKOUT} />
+          <CueServerOut cueId={Lookup.UNPLUG_BLACKOUT} delay={1.5} />
 
         </Cue>
 

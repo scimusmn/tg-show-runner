@@ -32,3 +32,27 @@ body {
 .fade-overlay.fadeIn {
   opacity: 1.0;
 }
+
+.visualization {
+  position: static;
+  top: 0px;
+  left: 0px;
+  width: 666px;
+  height: 999px;
+  background-color: #1e1e1e;
+}
+
+.visualization img {
+  position: absolute;
+}
+
+.visualization .vista {
+  position: absolute;
+  background-color: pink;
+}
+
+.visualization .vista .silhouette {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

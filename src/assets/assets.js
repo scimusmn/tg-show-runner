@@ -13,6 +13,35 @@ const images = {
   vis_interface: require('./images/vis_interface.png'),
   whatthefoxsay: require('./images/whatthefoxsay.gif'),
 
+  vis_sil_1_white: require('./images/vis_sil_1_white.png'),
+  vis_sil_2_white: require('./images/vis_sil_2_white.png'),
+  vis_sil_3_white: require('./images/vis_sil_3_white.png'),
+  vis_sil_4_white: require('./images/vis_sil_4_white.png'),
+  vis_sil_5_white: require('./images/vis_sil_5_white.png'),
+  vis_sil_6_white: require('./images/vis_sil_6_white.png'),
+  vis_sil_7_white: require('./images/vis_sil_7_white.png'),
+  vis_sil_8_white: require('./images/vis_sil_8_white.png'),
+
+  vis_sil_1_red: require('./images/vis_sil_1_red.png'),
+  vis_sil_2_red: require('./images/vis_sil_2_red.png'),
+  vis_sil_3_red: require('./images/vis_sil_3_red.png'),
+  vis_sil_4_red: require('./images/vis_sil_4_red.png'),
+  vis_sil_5_red: require('./images/vis_sil_5_red.png'),
+  vis_sil_6_red: require('./images/vis_sil_6_red.png'),
+  vis_sil_7_red: require('./images/vis_sil_7_red.png'),
+  vis_sil_8_red: require('./images/vis_sil_8_red.png'),
+
+  vis_sil_1_mint: require('./images/vis_sil_1_mint.png'),
+  vis_sil_2_mint: require('./images/vis_sil_2_mint.png'),
+  vis_sil_3_mint: require('./images/vis_sil_3_mint.png'),
+  vis_sil_4_mint: require('./images/vis_sil_4_mint.png'),
+  vis_sil_5_mint: require('./images/vis_sil_5_mint.png'),
+  vis_sil_6_mint: require('./images/vis_sil_6_mint.png'),
+  vis_sil_7_mint: require('./images/vis_sil_7_mint.png'),
+  vis_sil_8_mint: require('./images/vis_sil_8_mint.png'),
+
+  vis_gen_speed: require('./images/vis_gen_speed.png'),
+
 };
 
 const sounds = {
@@ -86,4 +115,18 @@ const videos = {
 
 };
 
-export { images, sounds, videos };
+const getVistaSet = () => {
+
+  const random = Math.floor(Math.random() * 8) + 1;
+
+  return {
+
+    friendly: images['vis_sil_'+random+'_white'],
+    unfriendly: images['vis_sil_'+random+'_red'],
+    other: images['vis_sil_'+random+'_mint'],
+
+  };
+
+};
+
+export { images, sounds, videos, getVistaSet };

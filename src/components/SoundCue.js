@@ -36,8 +36,6 @@ export default class SoundCue extends Component {
 
   componentWillUnmount() {
 
-    console.log('Stop Sound');
-
     this.sound.stop();
 
     clearTimeout(this.delayTimeout);
