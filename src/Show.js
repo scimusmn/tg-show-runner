@@ -43,6 +43,13 @@ export default class Show extends React.Component {
 
       <Deck theme={theme} progress='number' >
 
+        {/* Empty first cue */}
+        <Cue notes='Empty first cue'>
+
+          <CueServerOut cueId={Lookup.PRE_SHOW} />
+
+        </Cue>
+
         {/* Pre show */}
         <Cue notes='Pre-show lighting. Audience entering.'>
 
@@ -66,7 +73,7 @@ export default class Show extends React.Component {
         <Cue notes='Vis 1'>
 
           <Screen output='secondary'>
-            <Visualization startGen={0} endGen={2} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.14, 0.86]} />
+            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.6]} />
           </Screen>
 
         </Cue>
@@ -80,7 +87,7 @@ export default class Show extends React.Component {
         <Cue notes='Empty'>
 
           <Screen output='secondary'>
-            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={0.95} seedVistas={[0.7, 0.2, 0.4, 0.4, 0.3]} />
+            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={0.95} seedVistas={[0.7, 0.6, 0.6, 0.7]} />
           </Screen>
 
         </Cue>
@@ -94,7 +101,7 @@ export default class Show extends React.Component {
         <Cue notes='Empty'>
 
           <Screen output='secondary'>
-            <Visualization startGen={12} endGen={24} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.2, 0.5, 0.6, 0.1, 0.7, 0.9]} />
+            <Visualization startGen={12} endGen={32} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
           </Screen>
 
         </Cue>
@@ -642,53 +649,9 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.vista_friendly_1} delay={0.4} />
           <SoundCue src={sounds.vista_friendly_2} delay={0.0} />
           <SoundCue src={sounds.vista_unfriendly_2} delay={0.4} />
-          <SoundCue src={sounds.vista_friendly_4} delay={0.8} />
-          <SoundCue src={sounds.vista_friendly_3} delay={0.9} />
+          <SoundCue src={sounds.vista_friendly_3} delay={0.2} />
 
         </Cue>
-
-        {/*  Vistas enter popper. */}
-        <Cue notes='Vistas enter popper.'>
-
-          <SoundCue src={sounds.popper} />
-          <SoundCue src={sounds.vistas_popping} delay={2.0} />
-          <CueServerOut cueId={Lookup.VISTAS_ENTER_POPPER} />
-
-        </Cue>
-
-        {/* Vistas exit popper. */}
-        <Cue notes='Vistas exit popper. Visualization begins.'>
-
-          <Screen output='secondary'>
-            <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='200px'/>
-          </Screen>
-
-          <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
-          <SoundCue src={sounds.train_swoosh_short} />
-
-        </Cue>
-
-        {/* Vistas chute dump. */}
-        <Cue notes='Chute dump'>
-
-          <SoundCue src={sounds.chute_dump} />
-
-        </Cue>
-
-        {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen. Cage refill.'>
-
-          <Screen output='secondary'>
-            <h2>20 Vistas exit screen back to cages.</h2>
-          </Screen>
-
-          <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
-
-          <SoundCue src={sounds.train_swoosh_long} />
-
-        </Cue>
-
 
         {/* Evaluation part 4 */}
         <Cue notes='Evaluation part 4'>

@@ -20,13 +20,13 @@ class Vista extends Component {
   componentDidMount() {
 
     // uncomment for binary style
-/*    if (this.props.friendliness < 0.5) {
+    if (this.props.friendliness < 0.7) {
       TweenMax.set(this.refs.friendly, { autoAlpha: 0.0 });
     } else {
       TweenMax.set(this.refs.unfriendly, { autoAlpha: 0.0 });
-    }*/
+    }
 
-    TweenMax.set(this.refs.friendly, { autoAlpha: this.props.friendliness });
+    // TweenMax.set(this.refs.friendly, { autoAlpha: this.props.friendliness });
 
   }
 

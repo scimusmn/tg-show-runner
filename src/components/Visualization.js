@@ -47,6 +47,8 @@ export default class Visualization extends Component {
     this.onEntranceComplete = this.onEntranceComplete.bind(this);
     this.onExitComplete = this.onExitComplete.bind(this);
     this.onNewGenerationComplete = this.onNewGenerationComplete.bind(this);
+    this.onAllGenerationsComplete = this.onAllGenerationsComplete.bind(this);
+    this.onSortAnimComplete = this.onSortAnimComplete.bind(this);
 
   }
 
@@ -144,23 +146,9 @@ export default class Visualization extends Component {
   }
 
   onEntranceComplete() {
+
     this.setState({systemState:'allowing reproduction...'});
-
-    this.updateGenerationSpeed(this.props.endSpeed);
-
-    // Pass Generations...
-    /*    this.utilTimer = setTimeout( () => {
-          // newGenerationGo();
-          // this.vistasExit();
-
-          this.newGenerationGo();
-
-        }, 2000);*/
-
-    this.newGenerationGo();
-
-    // console.log(grid.getNearestOpenCell());
-
+    this.generationSequenceGo();
   }
 
   vistasExit() {
@@ -168,6 +156,8 @@ export default class Visualization extends Component {
     // Create entrance animation
     // for seed vistas.
     this.exitTL = new TimelineMax({onComplete:this.onExitComplete});
+
+    this.exitTL.delay(2.0)
 
     for (let i = 0; i < this.spawnedVistas.length; i++) {
 
@@ -203,42 +193,101 @@ export default class Visualization extends Component {
 
   }
 
-  newGenerationGo() {
+  generationSequenceGo() {
 
-    if (!this.pairingTL) {
-      this.pairingTL = new TimelineMax({onComplete:this.onNewGenerationComplete});
-    } else {
-      this.pairingTL.clear();
-    }
+    this.pairingTL = new TimelineMax({onComplete:this.onAllGenerationsComplete});
 
-    const stagger = 0.15;
+    // Set initial gen speeed
+    this.updateGenerationSpeed(this.props.startSpeed, true);
 
-    // Temp: shuffle before pairing?
-    this.spawnedVistas = this.utilShuffle(this.spawnedVistas);
+    // Tween timescale (geneation speed)
+    // if it doesn't match 4 secs into vis.
+    setTimeout(() => {
+      if (this.props.startSpeed != this.props.endSpeed) {
+        this.updateGenerationSpeed(this.props.endSpeed, false);
+      }
+    }, 4000);
 
-    // Pair off existing VISTAS
-    for (let i = 0; i < this.spawnedVistas.length; i += 2) {
+    const numGens = this.props.endGen - this.props.startGen;
+    const stagger = 0.02;
+    for (let j = 0; j < numGens; j++) {
 
-      // Don't pair last vista if singleton
-      if (i >= this.spawnedVistas.length - 1) {
-        break;
+      // Temp: shuffle before pairing?
+      this.spawnedVistas = this.utilShuffle(this.spawnedVistas);
+
+      // Pair off existing VISTAS
+      for (let i = 0; i < this.spawnedVistas.length; i += 2) {
+
+        // Don't pair last vista if singleton
+        if (i >= this.spawnedVistas.length - 1) {
+          break;
+        }
+
+        const vista1 = this.spawnedVistas[i].target;
+        const vista2 = this.spawnedVistas[i + 1].target;
+
+        // Find point between two vistas
+        const e1trans = vista1[0]._gsTransform;
+        const e2trans = vista2[0]._gsTransform;
+
+        const meetup = this.utilMidpoint(e1trans.x, e1trans.y, e2trans.x, e2trans.y, 0.5);
+
+        // Tween the mating dance
+        const tween1 = new TweenMax(vista1, 0.15, {x:meetup[0], y:meetup[1], ease: Bounce.easeOut, repeat:1, yoyo:true});
+        const tween2 = new TweenMax(vista2, 0.15, {x:meetup[0], y:meetup[1], ease: Bounce.easeOut, repeat:1, yoyo:true});
+
+        // Attach oncomplete to last to pair up.
+        if (i >= this.spawnedVistas.length - 2) {
+          tween2.vars._onComplete = this.onNewGenerationComplete;
+        }
+
+        let curTime = (i * stagger) + (j * 0.4);
+
+        // Add pair animation to timeline
+        this.pairingTL.add(tween1, curTime);
+        this.pairingTL.add(tween2, curTime);
+
+        // TODO: Create and add offspring animation for each pair.
+
+        /*
+        // Each pair have FOUR offspring
+        for (let k = 0; k < 1; k++) {
+
+          const childFriendliness = Math.random();
+          const childVista = this.spawnVista(childFriendliness);
+
+          const $vista = $('.visualization .vistaContainer #' + childVista.id);
+          childVista.target = $vista;
+
+          this.pairingTL.add(this.createBirthingAnim(childVista.target, meetup[0], meetup[1] ), curTime);
+
+        }
+        */
+
       }
 
-      const vista1 = this.spawnedVistas[i].target;
-      const vista2 = this.spawnedVistas[i + 1].target;
-      const pairAnim = this.createPairAnim(vista1, vista2);
-
-      // Start vista animation
-      this.pairingTL.add(pairAnim[0], i * stagger);
-      this.pairingTL.add(pairAnim[1], i * stagger);
-
     }
-
-    this.pairingTL.addPause(1.0);
 
     // Start entrance drama
     this.setState({systemState:'pairing...'});
     this.pairingTL.play();
+
+  }
+
+  createBirthingAnim(element, parentsX, parentsY) {
+
+    TweenLite.set(element, {x:parentsX, y:parentsY, scale:0.16})
+
+    // Create a semi-random tween
+    let bezTween = new TweenMax(element, 2, {
+      bezier:{
+        type:'soft',
+        values:[{x:parentsX, y:parentsY}, {x:parentsX, y:parentsY - 80}],
+        autoRotate:false,
+      },
+    ease:Linear.easeNone,});
+
+    return bezTween;
 
   }
 
@@ -249,29 +298,15 @@ export default class Visualization extends Component {
     // Update generation counter.
     this.updateGenerationCount(1);
 
-    if (this.state.generationCount >= this.props.endGen) {
-      // Cue exit if end generation hit.
-      this.vistasExit();
-    } else {
-      // Start next generation.
-      this.newGenerationGo();
-    }
+    console.log(this.state.generationCount);
 
   }
 
-  createPairAnim(element1, element2) {
+  onAllGenerationsComplete() {
 
-    // Find point between two vistas
-    const e1trans = element1[0]._gsTransform;
-    const e2trans = element2[0]._gsTransform;
+    console.log('onAllGenerationsComplete()');
 
-    const meetup = this.utilMidpoint(e1trans.x, e1trans.y, e2trans.x, e2trans.y, 0.5);
-
-    // Tween the mating dance
-    const tween1 = new TweenMax(element1, 0.25, {x:meetup[0], y:meetup[1], ease: Bounce.easeOut});
-    const tween2 = new TweenMax(element2, 0.25, {x:meetup[0], y:meetup[1], ease: Bounce.easeOut});
-
-    return [tween1, tween2];
+    this.sortByFriendliness();
 
   }
 
@@ -293,7 +328,7 @@ export default class Visualization extends Component {
     const keyId = 'spawn-' + this.spawnedVistas.length;
     const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:seedFriendliness}, '');
 
-    let vista = {id:keyId, renderElement:renderElement};
+    let vista = {id:keyId, renderElement:renderElement, friendliness:seedFriendliness, generation:this.state.generationCount};
 
     this.spawnedVistas.push(vista);
 
@@ -339,18 +374,58 @@ export default class Visualization extends Component {
 
     } else {
 
-      const tweenTime = 2.0;
+      const tweenTime = 3.0;
       TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
-      if (this.pairingTL) {
-        console.log('tween timescale');
-        TweenMax.to(this.pairingTL, tweenTime, {timeScale:speedValue});
-      }
+      if (this.pairingTL) TweenMax.to(this.pairingTL, tweenTime, {timeScale:speedValue});
 
     }
 
   }
 
-  sortFriendliness() {
+  sortByFriendliness() {
+
+    // Sort array by friendliness
+    this.spawnedVistas.sort(function(a,b) {return (a.friendliness < b.friendliness) ? 1 : ((b.friendliness < a.friendliness) ? -1 : 0);});
+
+    // Create entrance animation
+    // for seed vistas.
+    this.entranceTL = new TimelineMax({onComplete:this.onSortAnimComplete});
+
+    for (let i = 0; i < this.spawnedVistas.length; i++) {
+
+      const sortedX = 200;
+      const sortedY = (i * 50) + 150;
+
+      this.entranceTL.add(this.createSortAnim(this.spawnedVistas[i].target, sortedX, sortedY), i * 0.03);
+
+    }
+
+    // Start entrance drama
+    this.setState({systemState:'sorting...'});
+
+    this.entrace
+    this.entranceTL.play();
+
+  }
+
+  createSortAnim(element, sortedX, sortedY) {
+
+    let bezTween = new TweenMax(element, 0.4, {
+      bezier:{
+        type:'soft',
+        values:[{x:sortedX + 70, y:sortedY}, {x:sortedX, y:sortedY}],
+        autoRotate:false,
+      },
+    ease:Linear.easeNone,});
+
+    return bezTween;
+
+  }
+
+  onSortAnimComplete() {
+
+    // Vista train exit
+    this.vistasExit();
 
   }
 

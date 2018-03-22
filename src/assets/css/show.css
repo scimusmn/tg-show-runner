@@ -33,8 +33,14 @@ body {
   opacity: 1.0;
 }
 
+.spectacle-content {
+  position: fixed !important;
+  top: 0px !important;
+  left: 0px !important;
+}
+
 .visualization {
-  position: static;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 666px;
