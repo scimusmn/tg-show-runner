@@ -7,6 +7,7 @@ import $ from 'jquery';
 import {images, sounds} from '../assets/assets';
 import Vista from './Vista';
 import grid from '../utils/VisGrid';
+import generationSimulator from '../utils/GenerationSimulator';
 
 export default class Visualization extends Component {
 
@@ -24,6 +25,7 @@ export default class Visualization extends Component {
       volume: 0.2,
     });
 
+    this.renderVistas = [];
     this.spawnedVistas = [];
 
     this.entranceTL;
@@ -62,6 +64,12 @@ export default class Visualization extends Component {
     this.updateGenerationCount(this.props.startGen, false);
     this.updateGenerationSpeed(this.props.startSpeed, true);
 
+    // Find element targets for
+    // all render vistas
+    console.log('assignVistaTargets', this.renderVistas.length);
+    this.assignVistaTargets();
+
+
     // Start
     this.vistasEnter();
 
@@ -93,15 +101,45 @@ export default class Visualization extends Component {
 
   createAnimations() {
 
-    // Create first seed vistas
-    for (let i = 0; i < this.props.seedVistas.length; i++) {
+    // How many visual Vistas will we need
+    // for this simulation?
+    const numGens = this.props.endGen - this.props.startGen;
+    const vistasToSpawn = generationSimulator.totalVistaCount(numGens, this.props.seedVistas.length);
+
+    console.log('vistasToSpawn', vistasToSpawn);
+
+    // Create vista placeholders for each generation...
+    for (let i = 0; i < 200; i++) {
 
       // Create new vista with
       // specific friendliness
-      const seedFriendliness = this.props.seedVistas[i];
-      const vista = this.spawnVista(seedFriendliness);
+      // this.spawnVista(simVistas[i].friendliness, simVistas[i].generation);
+
+      this.createRenderVista();
 
     }
+
+    /*
+        const simVistas = generationSimulator.simulateVistas(numGens, this.props.seedVistas.length);
+        console.log('simulateVistas', simVistas.length);
+        console.log(simVistas);
+
+        // Create vista placeholders for each generation...
+        for (let i = 0; i < simVistas.length; i++) {
+
+          // Create new vista with
+          // specific friendliness
+          this.spawnVista(simVistas[i].friendliness, simVistas[i].generation);
+
+        }
+*/
+/*    for (let i = 0; i < this.props.seedVistas.length; i++) {
+
+      // Create new vista with
+      // specific friendliness
+      this.spawnVista(this.props.seedVistas[i].friendliness, 0);
+
+    }*/
 
   }
 
@@ -111,14 +149,15 @@ export default class Visualization extends Component {
     // for seed vistas.
     this.entranceTL = new TimelineMax({onComplete:this.onEntranceComplete});
 
-    for (let i = 0; i < this.spawnedVistas.length; i++) {
+    for (let i = 0; i < this.props.seedVistas.length; i++) {
 
-      const vista = this.spawnedVistas[i];
-      const $vista = $('.visualization .vistaContainer #' + vista.id);
-      this.spawnedVistas[i].target = $vista;
+      const seedVista = this.props.seedVistas[i];
 
-      // Start vista animation every 0.3 secs
-      this.entranceTL.add(this.createEntrance(this.spawnedVistas[i].target), i * 0.3);
+      // Activate vistas for entering
+      const aVista = this.activateVista(seedVista.friendliness, this.state.generationCount);
+
+      // Start vista animation for seed vistas
+      this.entranceTL.add(this.createEntrance(aVista.target), i * 0.3);
 
     }
 
@@ -130,7 +169,9 @@ export default class Visualization extends Component {
 
   createEntrance(element) {
 
-    TweenLite.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:0.36})
+    console.log('createEntrance');
+
+    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:0.36});
 
     // Create a semi-random tween
     let bezTween = new TweenMax(element, 2, {
@@ -148,7 +189,7 @@ export default class Visualization extends Component {
   onEntranceComplete() {
 
     this.setState({systemState:'allowing reproduction...'});
-    this.generationSequenceGo();
+    // this.generationSequenceGo();
   }
 
   vistasExit() {
@@ -157,7 +198,7 @@ export default class Visualization extends Component {
     // for seed vistas.
     this.exitTL = new TimelineMax({onComplete:this.onExitComplete});
 
-    this.exitTL.delay(2.0)
+    this.exitTL.delay(1.0);
 
     for (let i = 0; i < this.spawnedVistas.length; i++) {
 
@@ -323,12 +364,24 @@ export default class Visualization extends Component {
     return a;
   }
 
-  spawnVista(seedFriendliness) {
+  createRenderVista() {
 
-    const keyId = 'spawn-' + this.spawnedVistas.length;
-    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:seedFriendliness}, '');
+    const keyId = 'spawn-' + this.renderVistas.length;
+    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:-1}, '');
 
-    let vista = {id:keyId, renderElement:renderElement, friendliness:seedFriendliness, generation:this.state.generationCount};
+    let vista = {id:keyId, active: true, renderElement:renderElement, friendliness:-1, generation:-1};
+
+    this.renderVistas.push(vista);
+
+    return vista;
+
+  }
+
+  spawnVista(seedFriendliness, generation) {
+
+    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:-1}, '');
+
+    let vista = {id:keyId, active: false, renderElement:renderElement, friendliness:seedFriendliness, generation:generation};
 
     this.spawnedVistas.push(vista);
 
@@ -336,17 +389,76 @@ export default class Visualization extends Component {
 
   }
 
-  renderSpawnedVistas() {
+  assignVistaTargets() {
 
-    let renderVistas = [];
+    // Find first availaible inactive vista...
+    for (let i = 0; i < this.renderVistas.length; i++) {
 
-    for (var i = 0; i < this.spawnedVistas.length; i++) {
+      const $vista = $('.visualization .vistaContainer #' + this.renderVistas[i].id);
+      this.renderVistas[i].target = $vista;
+      console.log($vista.length);
 
-      renderVistas.push(this.spawnedVistas[i].renderElement);
+      this.renderVistas[i].active = false;
 
     }
 
-    return <div>{renderVistas}</div>;
+  }
+
+  activateVista(friendliness, generation) {
+
+    // Find first availaible inactive vista...
+    let vistaToActivate;
+    for (let i = 0; i < this.renderVistas.length; i++) {
+      if (this.renderVistas[i].active == false) {
+        vistaToActivate = this.renderVistas[i];
+        break;
+      }
+    }
+
+    if (!vistaToActivate) {
+
+      console.log('WARNING! No availaiable inactive vista');
+
+    }
+
+    vistaToActivate.active = true;
+    vistaToActivate.friendliness = friendliness;
+    // vistaToActivate.renderElement.setProps({ friendliness: friendliness });
+    vistaToActivate.generation = generation;
+
+    return vistaToActivate;
+
+  }
+
+  killVista(vistaToKill) {
+
+    vistaToKill.active = false;
+
+    // Move to end of array
+    const targetIndex = arr.indexOf(vistaToKill);
+    this.renderVistas.push(arr.splice(targetIndex, 1)[0]);
+
+    return vista;
+
+  }
+
+  renderSpawnedVistas() {
+
+    let rVistas = [];
+    let rVista;
+
+    // TODO: we could assume once one non-active
+    // vista is hit, break from loop...
+    for (var i = 0; i < this.renderVistas.length; i++) {
+
+      rVista = this.renderVistas[i];
+      if (rVista.active == true) {
+        rVistas.push(rVista.renderElement);
+      }
+
+    }
+
+    return <div>{rVistas}</div>;
 
   }
 

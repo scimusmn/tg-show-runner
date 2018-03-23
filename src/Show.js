@@ -59,63 +59,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-
-        {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP VIS 1 */}
-        <Cue notes='Vis 1'>
-
-          <Screen output='secondary'>
-            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.6]} />
-          </Screen>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP VIS 2 */}
-        <Cue notes='Empty'>
-
-          <Screen output='secondary'>
-            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={0.95} seedVistas={[0.7, 0.6, 0.6, 0.7]} />
-          </Screen>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP VIS 2 */}
-        <Cue notes='Empty'>
-
-          <Screen output='secondary'>
-            <Visualization startGen={12} endGen={32} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
-          </Screen>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-
-
         {/* Show Start. VO Intro. */}
         <Cue notes='Stage lights. Presentation begins. VO.'>
 
@@ -801,35 +744,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        <Cue notes='Isolation mode engaged.'>
-
-          <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <SoundCue src={sounds.VO_146} />
-
-        </Cue>
-
-        <Cue notes='Isolation mode[interrupted]'>
-
-          <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <SoundCue src={sounds.VO_148} />
-
-        </Cue>
-
-        <Cue notes='You dont. To ensure...'>
+        <Cue notes='I cant. To ensure...'>
 
           <Screen output='primary'>
             <h1>ISOLATION MODE: ENGAGED</h1>
@@ -897,7 +812,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.unlock} />
-          <SoundCue src={sounds.VO_161} delay={1.5} />
+          <SoundCue src={sounds.unlock} delay={0.2}/>
 
           <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
 

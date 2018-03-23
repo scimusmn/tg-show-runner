@@ -33,11 +33,11 @@ body {
   opacity: 1.0;
 }
 
-.spectacle-content {
+/*.spectacle-content {
   position: fixed !important;
   top: 0px !important;
   left: 0px !important;
-}
+}*/
 
 .visualization {
   position: fixed;
