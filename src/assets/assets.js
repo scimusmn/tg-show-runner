@@ -10,7 +10,6 @@ const images = {
   sequence4: require('./images/sequence4.png'),
   sequence5: require('./images/sequence5.png'),
   evolution: require('./images/evolution.png'),
-  vis_interface: require('./images/vis_interface.png'),
   whatthefoxsay: require('./images/whatthefoxsay.gif'),
 
   vis_sil_1_white: require('./images/vis_sil_1_white.png'),
@@ -41,6 +40,15 @@ const images = {
   vis_sil_8_mint: require('./images/vis_sil_8_mint.png'),
 
   vis_gen_speed: require('./images/vis_gen_speed.png'),
+  vis_fg_1: require('./images/vis_fg_1.png'),
+  vis_bg_1: require('./images/vis_bg_1.png'),
+
+  badges_none: require('./images/badges_none.png'),
+  badges_v: require('./images/badges_v.png'),
+  badges_i: require('./images/badges_i.png'),
+  badges_s: require('./images/badges_s.png'),
+  badges_t: require('./images/badges_t.png'),
+  badges_a: require('./images/badges_a.png'),
 
 };
 

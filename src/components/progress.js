@@ -125,7 +125,7 @@ export default class Progress extends Component {
     case 'number':
       style = style.number;
       markup = (
-          <div>{currentSlideIndex + 1} / {items.length}</div>
+          <div className='progress'>{currentSlideIndex + 1} / {items.length}</div>
         );
       break;
     case 'bar':

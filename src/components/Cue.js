@@ -12,8 +12,6 @@ import Screen from './Screen';
 
 import {
   SlideContainer,
-  SlideContent,
-  SlideContentWrapper,
 } from './slide-components';
 
 class Cue extends React.PureComponent {
@@ -43,7 +41,7 @@ class Cue extends React.PureComponent {
 
     const urlParams = this.context.store.getState().route.params;
 
-    // TODO - checking for valid output screen
+    // TODO: Checking for valid output screen
     // should be broken into a separate file
     // where it's simple to add a third/fourth/fifth screen.
     if (urlParams.indexOf('primary') !== -1) {
@@ -174,6 +172,12 @@ class Cue extends React.PureComponent {
     return Math.max(0, slideIndex);
   };
 
+  getFSClassNames() {
+
+    return 'cue-fullscreen ' + this.state.outputScreen;
+
+  }
+
   // Filter out children that we  don't
   // want displayed/triggered on current
   // output screen.
@@ -236,10 +240,6 @@ class Cue extends React.PureComponent {
   render() {
     const { presenterStyle, children, transitionDuration } = this.props;
 
-    if (!this.props.viewerScaleMode) {
-      document.documentElement.style.fontSize = `${16 * this.state.zoom}px`;
-    }
-
     const contentClass = isUndefined(this.props.className)
       ? ''
       : this.props.className;
@@ -247,7 +247,7 @@ class Cue extends React.PureComponent {
     return (
 
           <SlideContainer
-            className='spectacle-slide'
+            className={this.getFSClassNames()}
             innerRef={s => {
               this.slideRef = s;
             }}
@@ -260,28 +260,10 @@ class Cue extends React.PureComponent {
               presenter: presenterStyle,
             }}
           >
-            <SlideContentWrapper
-              align={this.props.align}
-              overviewMode={this.context.overview}
-            >
-              <SlideContent
-                innerRef={c => {
-                  this.contentRef = c;
-                }}
 
-                className={`${contentClass} spectacle-content`}
-                overviewMode={this.context.overview}
-                width={this.context.contentWidth}
-                height={this.context.contentHeight}
-                scale={this.state.contentScale}
-                zoom={this.state.zoom}
-                margin={this.props.margin}
-                styles={{ context: this.context.styles.components.content }}
-              >
-                {this.filterChildren()}
-              </SlideContent>
-              <p className='debug notes'>Next: {this.props.nextNotes}</p>
-            </SlideContentWrapper>
+            {this.filterChildren()}
+
+            <p className='debug notes'>Next: {this.props.nextNotes}</p>
 
           </SlideContainer>
     );

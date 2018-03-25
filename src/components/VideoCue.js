@@ -67,7 +67,7 @@ export default class VideoCue extends Component {
 
       <div>
 
-        <video ref='videoCue' width='720'>
+        <video ref='videoCue' width='1920'>
           <source ref='cueSrc' type='video/mp4' />
         </video>
 

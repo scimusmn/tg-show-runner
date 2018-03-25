@@ -26,7 +26,8 @@ export default class Visualization extends Component {
     });
 
     this.renderVistas = [];
-    this.spawnedVistas = [];
+    this.currentGeneration = [];
+    this.nextGeneration = [];
 
     this.entranceTL;
     this.exitTL;
@@ -34,14 +35,16 @@ export default class Visualization extends Component {
 
     this.utilTimer = {};
 
+    this.maxRenderedVistas = 300;
+
     // Important sizes
-    this.visWidth = 500;
-    this.visHeight = 700;
+    this.visWidth = 600;
+    this.visHeight = 800;
 
     // Important locations
     this.visCenter = {x:0.5 * this.visWidth, y:0.5 * this.visHeight};
-    this.entrancePoint = {x:0.95 * this.visWidth, y:0.95 * this.visHeight};
-    this.exitPoint = {x:0.95 * this.visWidth, y:0.05 * this.visHeight};
+    this.entrancePoint = {x:0.84 * this.visWidth, y:0.09 * this.visHeight};
+    this.exitPoint = {x:0.84 * this.visWidth, y:0.09 * this.visHeight};
 
     this.createAnimations();
 
@@ -51,6 +54,7 @@ export default class Visualization extends Component {
     this.onNewGenerationComplete = this.onNewGenerationComplete.bind(this);
     this.onAllGenerationsComplete = this.onAllGenerationsComplete.bind(this);
     this.onSortAnimComplete = this.onSortAnimComplete.bind(this);
+    this.onDeathComplete = this.onDeathComplete.bind(this);
 
   }
 
@@ -68,7 +72,6 @@ export default class Visualization extends Component {
     // all render vistas
     console.log('assignVistaTargets', this.renderVistas.length);
     this.assignVistaTargets();
-
 
     // Start
     this.vistasEnter();
@@ -109,38 +112,11 @@ export default class Visualization extends Component {
     console.log('vistasToSpawn', vistasToSpawn);
 
     // Create vista placeholders for each generation...
-    for (let i = 0; i < 200; i++) {
-
-      // Create new vista with
-      // specific friendliness
-      // this.spawnVista(simVistas[i].friendliness, simVistas[i].generation);
+    for (let i = 0; i < this.maxRenderedVistas; i++) {
 
       this.createRenderVista();
 
     }
-
-    /*
-        const simVistas = generationSimulator.simulateVistas(numGens, this.props.seedVistas.length);
-        console.log('simulateVistas', simVistas.length);
-        console.log(simVistas);
-
-        // Create vista placeholders for each generation...
-        for (let i = 0; i < simVistas.length; i++) {
-
-          // Create new vista with
-          // specific friendliness
-          this.spawnVista(simVistas[i].friendliness, simVistas[i].generation);
-
-        }
-*/
-/*    for (let i = 0; i < this.props.seedVistas.length; i++) {
-
-      // Create new vista with
-      // specific friendliness
-      this.spawnVista(this.props.seedVistas[i].friendliness, 0);
-
-    }*/
-
   }
 
   vistasEnter() {
@@ -156,30 +132,31 @@ export default class Visualization extends Component {
       // Activate vistas for entering
       const aVista = this.activateVista(seedVista.friendliness, this.state.generationCount);
 
+      this.currentGeneration.push(aVista);
+
       // Start vista animation for seed vistas
       this.entranceTL.add(this.createEntrance(aVista.target), i * 0.3);
 
     }
 
     // Start entrance drama
-    this.setState({systemState:'scanning...'});
+    this.setState({systemState:'Scanning'});
     this.entranceTL.play();
 
   }
 
   createEntrance(element) {
 
-    console.log('createEntrance');
-
-    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:0.36});
+    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:0.36, autoAlpha:1.0});
 
     // Create a semi-random tween
     let bezTween = new TweenMax(element, 2, {
       bezier:{
         type:'soft',
-        values:[{x:this.visCenter.x, y:this.entrancePoint.y}, {x:this.visCenter.x, y:this.entrancePoint.y - 50}, {x:this.visCenter.x, y:this.entrancePoint.y - 100}, {x:this.visCenter.x + Math.random() * 500 - 250, y:this.visCenter.y + Math.random() * 600 - 300}],
+        values:[{x:this.entrancePoint.x, y:this.entrancePoint.y,x:this.visCenter.x, y:this.entrancePoint.y}, {x:this.visCenter.x, y:this.entrancePoint.y + 30}, {x:this.visCenter.x + Math.random() * 300 - 150, y:this.visCenter.y + Math.random() * 500 - 200}],
         autoRotate:false,
       },
+      delay:0.75,
     ease:Linear.easeNone,});
 
     return bezTween;
@@ -188,8 +165,9 @@ export default class Visualization extends Component {
 
   onEntranceComplete() {
 
-    this.setState({systemState:'allowing reproduction...'});
-    // this.generationSequenceGo();
+    this.setState({systemState:'Allowing for reproduction'});
+    this.generationSequenceGo();
+
   }
 
   vistasExit() {
@@ -200,15 +178,15 @@ export default class Visualization extends Component {
 
     this.exitTL.delay(1.0);
 
-    for (let i = 0; i < this.spawnedVistas.length; i++) {
+    for (let i = 0; i < this.currentGeneration.length; i++) {
 
       // Start vista animation every 0.1 secs
-      this.exitTL.add(this.createExit(this.spawnedVistas[i].target), i * 0.1);
+      this.exitTL.add(this.createExit(this.currentGeneration[i].target), i * 0.1);
 
     }
 
     // Start entrance drama
-    this.setState({systemState:'releasing...'});
+    this.setState({systemState:'Release to cages'});
     this.exitTL.play();
 
   }
@@ -230,11 +208,13 @@ export default class Visualization extends Component {
 
   onExitComplete() {
 
-    this.setState({systemState:'empty'});
+    this.setState({systemState:'Waiting'});
 
   }
 
   generationSequenceGo() {
+
+    console.log('generationSequenceGo');
 
     this.pairingTL = new TimelineMax({onComplete:this.onAllGenerationsComplete});
 
@@ -250,85 +230,108 @@ export default class Visualization extends Component {
     }, 4000);
 
     const numGens = this.props.endGen - this.props.startGen;
-    const stagger = 0.02;
+    const stagger = 0.01;
+    let totalVistasSpawned = this.currentGeneration.length;
+
     for (let j = 0; j < numGens; j++) {
 
       // Temp: shuffle before pairing?
-      this.spawnedVistas = this.utilShuffle(this.spawnedVistas);
+      // this.currentGeneration = this.utilShuffle(this.currentGeneration);
+
+      console.log('GENERATION LOOP', this.currentGeneration.length);
+      let genTime = (j * 0.7);
 
       // Pair off existing VISTAS
-      for (let i = 0; i < this.spawnedVistas.length; i += 2) {
+      for (let i = 0; i < this.currentGeneration.length; i += 2) {
+
+        let curTime = (i * stagger) + genTime;
 
         // Don't pair last vista if singleton
-        if (i >= this.spawnedVistas.length - 1) {
+        // Skip to death animation :(
+        if (i >= this.currentGeneration.length - 1) {
+
+          const singletonDeath = new TweenMax(this.currentGeneration[i].target, 0.13, {delay:0.25, autoAlpha:0.0});
+          this.pairingTL.add(singletonDeath, curTime);
+
           break;
         }
 
-        const vista1 = this.spawnedVistas[i].target;
-        const vista2 = this.spawnedVistas[i + 1].target;
+        const v1 = this.currentGeneration[i];
+        const v2 = this.currentGeneration[i + 1];
+
+        const vista1 = v1.target;
+        const vista2 = v2.target;
 
         // Find point between two vistas
         const e1trans = vista1[0]._gsTransform;
         const e2trans = vista2[0]._gsTransform;
 
-        const meetup = this.utilMidpoint(e1trans.x, e1trans.y, e2trans.x, e2trans.y, 0.5);
+        const midX = (e1trans.x + e2trans.x) * 0.5;
+        const midY = (e1trans.y + e2trans.y) * 0.5;
 
         // Tween the mating dance
-        const tween1 = new TweenMax(vista1, 0.15, {x:meetup[0], y:meetup[1], ease: Bounce.easeOut, repeat:1, yoyo:true});
-        const tween2 = new TweenMax(vista2, 0.15, {x:meetup[0], y:meetup[1], ease: Bounce.easeOut, repeat:1, yoyo:true});
+        const tween1 = new TweenMax(vista1, 0.15, {x:midX, y:midY, ease: Bounce.easeOut});
+        const tween2 = new TweenMax(vista2, 0.15, {x:midX, y:midY, ease: Bounce.easeOut});
 
         // Attach oncomplete to last to pair up.
-        if (i >= this.spawnedVistas.length - 2) {
+        if (i >= this.currentGeneration.length - 2) {
           tween2.vars._onComplete = this.onNewGenerationComplete;
         }
-
-        let curTime = (i * stagger) + (j * 0.4);
 
         // Add pair animation to timeline
         this.pairingTL.add(tween1, curTime);
         this.pairingTL.add(tween2, curTime);
 
-        // TODO: Create and add offspring animation for each pair.
+        // Create death tweens for each pair
+        const death1 = new TweenMax(vista1, 0.13, {delay:0.25, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v1]});
+        const death2 = new TweenMax(vista2, 0.13, {delay:0.25, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v2]});
 
-        /*
+        // Add death animations to timeline
+        this.pairingTL.add(death1, curTime);
+        this.pairingTL.add(death2, curTime);
+
         // Each pair have FOUR offspring
-        for (let k = 0; k < 1; k++) {
+        const numKids = Math.floor(Math.random() * 2) + 2;
+        for (let k = 0; k < numKids; k++) {
 
+          if (totalVistasSpawned >= this.maxRenderedVistas) {
+            console.log('max vista limit');
+            break;
+          }
+
+          // Activate one vista for each...
           const childFriendliness = Math.random();
-          const childVista = this.spawnVista(childFriendliness);
+          const childVista = this.activateVista(childFriendliness, j + 1);
+          totalVistasSpawned++;
 
-          const $vista = $('.visualization .vistaContainer #' + childVista.id);
-          childVista.target = $vista;
+          this.pairingTL.add(this.createBirthingAnim(childVista.target, midX, midY), curTime + 0.14);
 
-          this.pairingTL.add(this.createBirthingAnim(childVista.target, meetup[0], meetup[1] ), curTime);
+          this.nextGeneration.push(childVista);
 
         }
-        */
 
       }
+
+      this.currentGeneration = this.nextGeneration;
+      this.nextGeneration = [];
 
     }
 
     // Start entrance drama
-    this.setState({systemState:'pairing...'});
+    this.setState({systemState:'Allowing for reproduction'});
     this.pairingTL.play();
 
   }
 
   createBirthingAnim(element, parentsX, parentsY) {
 
-    TweenLite.set(element, {x:parentsX, y:parentsY, scale:0.16})
+    const setTween = new TweenMax.set(element, {x:parentsX, y:parentsY, scale:0.16});
 
-    // Create a semi-random tween
-    let bezTween = new TweenMax(element, 2, {
-      bezier:{
-        type:'soft',
-        values:[{x:parentsX, y:parentsY}, {x:parentsX, y:parentsY - 80}],
-        autoRotate:false,
-      },
-    ease:Linear.easeNone,});
+    const tween1 = new TweenMax(element, 0.04, {x:parentsX + (Math.random() * 500 - 250), y:parentsY + (Math.random() * 500 - 250),  autoAlpha:1.0, ease:Power2.easeOut});
 
-    return bezTween;
+    const tween2 = new TweenMax(element, 0.18, {delay:0.06, scale:0.36, ease:Power2.easeInOut});
+
+    return [setTween, tween1, tween2];
 
   }
 
@@ -367,23 +370,14 @@ export default class Visualization extends Component {
   createRenderVista() {
 
     const keyId = 'spawn-' + this.renderVistas.length;
-    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:-1}, '');
 
-    let vista = {id:keyId, active: true, renderElement:renderElement, friendliness:-1, generation:-1};
+    const rFriendliness = Math.random();
+
+    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:rFriendliness}, '');
+
+    let vista = {id:keyId, active: true, renderElement:renderElement, friendliness:rFriendliness, generation:-1};
 
     this.renderVistas.push(vista);
-
-    return vista;
-
-  }
-
-  spawnVista(seedFriendliness, generation) {
-
-    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:-1}, '');
-
-    let vista = {id:keyId, active: false, renderElement:renderElement, friendliness:seedFriendliness, generation:generation};
-
-    this.spawnedVistas.push(vista);
 
     return vista;
 
@@ -396,7 +390,9 @@ export default class Visualization extends Component {
 
       const $vista = $('.visualization .vistaContainer #' + this.renderVistas[i].id);
       this.renderVistas[i].target = $vista;
-      console.log($vista.length);
+
+      // Hide offscreen
+      TweenMax.set(this.renderVistas[i].target, {scale:0.0, autoAlpha:0.0, x:-999});
 
       this.renderVistas[i].active = false;
 
@@ -415,18 +411,26 @@ export default class Visualization extends Component {
       }
     }
 
-    if (!vistaToActivate) {
-
-      console.log('WARNING! No availaiable inactive vista');
-
-    }
+    // Shouldn't need to reset jq target
+    // vistaToActivate.target = $('.visualization .vistaContainer #' + vistaToActivate.id);
 
     vistaToActivate.active = true;
-    vistaToActivate.friendliness = friendliness;
+
+    // vistaToActivate.friendliness = friendliness;
+
+    TweenMax.set(vistaToActivate.target, {scale:0.0, autoAlpha:0.0, transformOrigin:'center center'});
+
     // vistaToActivate.renderElement.setProps({ friendliness: friendliness });
     vistaToActivate.generation = generation;
 
     return vistaToActivate;
+
+  }
+
+  onDeathComplete(vista) {
+    // console.log('deathComplete', vista);
+
+    // TODO: prep this vis for recycle
 
   }
 
@@ -452,9 +456,11 @@ export default class Visualization extends Component {
     for (var i = 0; i < this.renderVistas.length; i++) {
 
       rVista = this.renderVistas[i];
-      if (rVista.active == true) {
-        rVistas.push(rVista.renderElement);
-      }
+
+      // if (rVista.active == true) {
+      rVistas.push(rVista.renderElement);
+
+      // }
 
     }
 
@@ -481,7 +487,7 @@ export default class Visualization extends Component {
 
     if (setInitial == true) {
 
-      TweenMax.set(this.refs.genSpeedBar, {scaleY:speedValue, width:25, x:200, y:50, transformOrigin:'right bottom'});
+      TweenMax.set(this.refs.genSpeedBar, {scaleY:speedValue, transformOrigin:'right bottom'});
       if (this.pairingTL) TweenMax.set(this.pairingTL, {timeScale:speedValue});
 
     } else {
@@ -497,23 +503,23 @@ export default class Visualization extends Component {
   sortByFriendliness() {
 
     // Sort array by friendliness
-    this.spawnedVistas.sort(function(a,b) {return (a.friendliness < b.friendliness) ? 1 : ((b.friendliness < a.friendliness) ? -1 : 0);});
+    this.currentGeneration.sort(function(a,b) {return (a.friendliness < b.friendliness) ? 1 : ((b.friendliness < a.friendliness) ? -1 : 0);});
 
     // Create entrance animation
     // for seed vistas.
     this.entranceTL = new TimelineMax({onComplete:this.onSortAnimComplete});
 
-    for (let i = 0; i < this.spawnedVistas.length; i++) {
+    for (let i = 0; i < this.currentGeneration.length; i++) {
 
       const sortedX = 200;
       const sortedY = (i * 50) + 150;
 
-      this.entranceTL.add(this.createSortAnim(this.spawnedVistas[i].target, sortedX, sortedY), i * 0.03);
+      this.entranceTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);
 
     }
 
     // Start entrance drama
-    this.setState({systemState:'sorting...'});
+    this.setState({systemState:'Sorting by friendliness'});
 
     this.entrace
     this.entranceTL.play();
@@ -547,13 +553,13 @@ export default class Visualization extends Component {
 
       <div className='visualization'>
 
-        <h1 className='genCounter' ref='genCounter'>{this.state.generationCount}</h1>
+        <h1 className='genCounter' ref='genCounter'>000{this.state.generationCount}</h1>
 
         <img className='genSpeedBar' ref='genSpeedBar' src={images.vis_gen_speed} />
 
         <h2 className='avgDataNum' ref='avgDataNum'></h2>
 
-        <h3 className='systemState' ref='systemState'>[{this.state.systemState}]</h3>
+        <h3 className='systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
 
         <div className='vistaContainer' ref='vistaContainer'>
 

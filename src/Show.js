@@ -50,6 +50,66 @@ export default class Show extends React.Component {
 
         </Cue>
 
+              {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP VIS 1 */}
+        <Cue notes='Vis 1'>
+
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.6]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+            <img src={images.badges_none} className='fs-image'/>
+          </Screen>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP VIS 2 */}
+        <Cue notes='Empty'>
+
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.7, 0.6, 0.6, 0.7]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP VIS 2 */}
+        <Cue notes='Empty'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={12} endGen={32} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
+          </Screen>
+
+        </Cue>
+
+        {/* TEMP */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
+        {/* TEMP */}
+        {/* TEMP */}
+        {/* TEMP */}
+
+
         {/* Pre show */}
         <Cue notes='Pre-show lighting. Audience entering.'>
 
@@ -79,7 +139,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex Intro'>
 
           <Screen output='primary'>
-            <img src={images.alex1} width='900px'/>
+            <img src={images.alex1}/>
           </Screen>
 
           <SoundCue src={sounds.alex_intro} />
@@ -98,7 +158,7 @@ export default class Show extends React.Component {
         <Cue notes='What Does the Fox Say?!'>
 
           <Screen output='primary'>
-            <img src={images.whatthefoxsay} width='900px'/>
+            <img src={images.whatthefoxsay} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.whatthefoxsay} />
@@ -130,7 +190,7 @@ export default class Show extends React.Component {
         <Cue notes='Tribble/Pygmy family tree.'>
 
           <Screen output='primary' lifepan={15.0}>
-            <img src={images.tribble} width='900px'/>
+            <img src={images.tribble} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -154,7 +214,7 @@ export default class Show extends React.Component {
         <Cue notes='Theory of Evolution'>
 
           <Screen output='primary' lifespan={15.0}>
-            <img src={images.evolution} width='900px'/>
+            <img src={images.evolution} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -208,16 +268,14 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ - - - - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
 
-            <p>
+            <p className='evaluation'>
               Variation’s the name of this game<br/>
               Everything has it, wild or tame<br/>
               In any group<br/>
               School, flock, or troupe<br/>
-              Individuals are not all the _______.
+              Individuals are not all the ____.
             </p>
 
           </Screen>
@@ -232,9 +290,16 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V - - - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_v} className='fs-image'/>
+
+            <p className='evaluation'>
+              Variation’s the name of this game<br/>
+              Everything has it, wild or tame<br/>
+              In any group<br/>
+              School, flock, or troupe<br/>
+              Individuals are not all the same.
+            </p>
 
           </Screen>
 
@@ -266,16 +331,15 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V - - - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_v} className='fs-image'/>
 
-            <p>
+            <p className='evaluation'>
               You can have the best traits ever seen<br/>
               But if you covet them, what does it mean?<br/>
               You can’t evolve on your own<br/>
               So remember, when you’re grown,<br/>
-              You simply must pass on your ________.
+              You simply must pass on your _____.
             </p>
 
           </Screen>
@@ -290,9 +354,16 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I - - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_i} className='fs-image'/>
+
+            <p className='evaluation'>
+              You can have the best traits ever seen<br/>
+              But if you covet them, what does it mean?<br/>
+              You can’t evolve on your own<br/>
+              So remember, when you’re grown,<br/>
+              You simply must pass on your genes.
+            </p>
 
           </Screen>
 
@@ -322,16 +393,15 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I - - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_i} className='fs-image'/>
 
-            <p>
+            <p className='evaluation'>
               Take a moment’s reflection<br/>
-              On that brutal election<br/>
-              Where good traits pass on<br/>
+              On the effects of selection:<br/>
+              Good traits pass on<br/>
               And bad ones get gone<br/>
-              It’s the process we call __________.
+              To improve survival, not achieve __________.
             </p>
 
           </Screen>
@@ -346,9 +416,16 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I S - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_s} className='fs-image'/>
+
+            <p className='evaluation'>
+              Take a moment’s reflection<br/>
+              On the effects of selection:<br/>
+              Good traits pass on<br/>
+              And bad ones get gone<br/>
+              To improve survival, not achieve perfection.
+            </p>
 
           </Screen>
 
@@ -391,8 +468,9 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='200px'/>
+            <img src={images.vis_bg_1}/>
+            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.6]} />
+            <img src={images.vis_fg_1}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -439,7 +517,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 4'>
 
           <Screen output='primary'>
-            <img src={images.sequence4} width='900px'/>
+            <img src={images.sequence4} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -478,7 +556,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='200px'/>
+            <img src={images.vis_interface} width='1920px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -556,7 +634,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='200px'/>
+            <img src={images.vis_interface} width='1920px'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -601,16 +679,15 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I S - - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_s} className='fs-image'/>
 
-            <p>
+            <p className='evaluation'>
               Whenever a new feature appears,<br/>
               Like long hair, sharp teeth, or big ears,<br/>
               Not all will have the trait<br/>
               First, genes must accumulate<br/>
-              And that can take thousands of ________,
+              And that can take thousands of _____,
             </p>
 
           </Screen>
@@ -625,9 +702,16 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I S T - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_t} className='fs-image'/>
+
+            <p className='evaluation'>
+              Whenever a new feature appears,<br/>
+              Like long hair, sharp teeth, or big ears,<br/>
+              Not all will have the trait<br/>
+              First, genes must accumulate<br/>
+              And that can take thousands of years,
+            </p>
 
           </Screen>
 
@@ -640,7 +724,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 5'>
 
           <Screen output='primary'>
-            <img src={images.sequence5} width='900px'/>
+            <img src={images.sequence5} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -657,16 +741,15 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I S T - ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_t} className='fs-image'/>
 
-            <p>
-              Remember, you cannot control<br/>
-              How evolution fulfills its role.<br/>
-              Species may get stronger,<br/>
-              Faster, shorter, or longer<br/>
-              To simply adapt is the real  ________,
+            <p className='evaluation'>
+              There’s no perfection, no goal, and no win<br/>
+              You just pass your traits on to your kin<br/>
+              The useful genes in you<br/>
+              Help your species continue<br/>
+              Adapting to the environment it’s __,
             </p>
 
           </Screen>
@@ -681,9 +764,16 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
 
-            <h1>
-              [ V I S T A ]
-            </h1>
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_a} className='fs-image'/>
+
+            <p className='evaluation'>
+              There’s no perfection, no goal, and no win<br/>
+              You just pass your traits on to your kin<br/>
+              The useful genes in you<br/>
+              Help your species continue<br/>
+              Adapting to the environment it’s in,
+            </p>
 
           </Screen>
 
