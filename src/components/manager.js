@@ -375,13 +375,17 @@ export class Manager extends Component {
 
     const slideData = '{ "slide": "0", "forward": "false" }';
     this._goToSlide({ key: 'show-runner-slide', newValue: slideData });
+    this.setLocalStorageSlide(0, true);
 
-    // Clear cache with referesh.
-    // TODO: This should also reload
-    // pages on other browser windows...
-    setTimeout(function() {
+      // When on slide zero, assume we
+      // have just reset show.
+      // Clear cache with referesh.
+      /// - TN
       window.location.reload();
-    }, 500);
+
+  }
+
+  onStorageChanged(e) {
 
   }
 
@@ -396,6 +400,15 @@ export class Manager extends Component {
     if (e.key === 'show-runner-slide') {
       data = JSON.parse(e.newValue);
       canNavigate = this._checkFragments(this.props.route.slide, data.forward);
+
+      // When on slide zero, assume we
+      // have just reset show.
+      // Clear cache with referesh.
+      /// - TN
+      if (data.slide == 0 && data.forward == true) {
+        window.location.reload();
+      }
+
     } else if (e.slide) {
       data = e;
       offset = 1;

@@ -227,7 +227,7 @@ export default class Visualization extends Component {
       if (this.props.startSpeed != this.props.endSpeed) {
         this.updateGenerationSpeed(this.props.endSpeed, false);
       }
-    }, 4000);
+    }, 7000);
 
     const numGens = this.props.endGen - this.props.startGen;
     const stagger = 0.01;
@@ -492,7 +492,7 @@ export default class Visualization extends Component {
 
     } else {
 
-      const tweenTime = 3.0;
+      const tweenTime = 8.0;
       TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
       if (this.pairingTL) TweenMax.to(this.pairingTL, tweenTime, {timeScale:speedValue});
 

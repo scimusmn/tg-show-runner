@@ -14,6 +14,7 @@ export default class SoundCue extends Component {
 
     this.sound = new Howl({
       src: [this.props.src],
+      volume: this.props.volume,
     });
 
     this.delayTimeout = {};
@@ -54,8 +55,10 @@ export default class SoundCue extends Component {
 SoundCue.propTypes = {
   src: PropTypes.string,
   delay: PropTypes.number,
+  volume: PropTypes.number,
 };
 
 SoundCue.defaultProps = {
   delay: 0.0,
+  volume: 1.0,
 };

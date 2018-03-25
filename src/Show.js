@@ -95,7 +95,9 @@ export default class Show extends React.Component {
         <Cue notes='Empty'>
 
           <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
             <Visualization startGen={12} endGen={32} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
         </Cue>
@@ -447,11 +449,11 @@ export default class Show extends React.Component {
         {/* Vista chorus 1. Mostly unfriendly. */}
         <Cue notes='Vista chorus 1. Mostly unfriendly.'>
 
-          <SoundCue src={sounds.vista_friendly_3} delay={0.5} />
-          <SoundCue src={sounds.vista_unfriendly_1} delay={0.0} />
-          <SoundCue src={sounds.vista_unfriendly_2} delay={0.4} />
-          <SoundCue src={sounds.vista_unfriendly_3} delay={0.8} />
-          <SoundCue src={sounds.vista_unfriendly_4} delay={0.9} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.5} />
+          <SoundCue src={sounds.vista_unfriendly_1} volume={0.3} delay={0.0} />
+          <SoundCue src={sounds.vista_unfriendly_2} volume={0.3} delay={0.4} />
+          <SoundCue src={sounds.vista_unfriendly_3} volume={0.3} delay={0.8} />
+          <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.9} />
 
         </Cue>
 
@@ -534,11 +536,11 @@ export default class Show extends React.Component {
         {/* Vista chorus 2. Majority unfriendly. */}
         <Cue notes='Vista chorus 2. Majority unfriendly.'>
 
-          <SoundCue src={sounds.vista_friendly_2} delay={0.4} />
-          <SoundCue src={sounds.vista_friendly_3} delay={0.0} />
-          <SoundCue src={sounds.vista_unfriendly_2} delay={0.4} />
-          <SoundCue src={sounds.vista_unfriendly_3} delay={0.8} />
-          <SoundCue src={sounds.vista_unfriendly_4} delay={0.9} />
+          <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.4} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.0} />
+          <SoundCue src={sounds.vista_unfriendly_2} volume={0.3} delay={0.4} />
+          <SoundCue src={sounds.vista_unfriendly_3} volume={0.3} delay={0.8} />
+          <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.9} />
 
         </Cue>
 
@@ -555,35 +557,14 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='1920px'/>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.7, 0.6, 0.6, 0.7]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
           <SoundCue src={sounds.train_swoosh_short} />
-
-        </Cue>
-
-        {/* Generation speed crank. */}
-        <Cue notes='Generation speed ramps up.'>
-
-          <Screen output='secondary'>
-            <h1>Generation speed ramps up.</h1>
-            <h2>...Generations pass...</h2>
-          </Screen>
-
-          <SoundCue src={sounds.power_increasing} />
-
-          <SoundCue src={sounds.generation_ding} delay={1.0}/>
-          <SoundCue src={sounds.generation_ding} delay={3.0}/>
-          <SoundCue src={sounds.generation_ding} delay={4.5}/>
-          <SoundCue src={sounds.generation_ding} delay={5.5}/>
-          <SoundCue src={sounds.generation_ding} delay={6.1}/>
-          <SoundCue src={sounds.generation_ding} delay={6.4}/>
-          <SoundCue src={sounds.generation_ding} delay={6.7}/>
-          <SoundCue src={sounds.generation_ding} delay={6.9}/>
-          <SoundCue src={sounds.generation_ding} delay={7.1}/>
-          <SoundCue src={sounds.generation_ding} delay={7.3}/>
+          <SoundCue src={sounds.power_increasing} volume={0.3} delay={10.0} />
 
         </Cue>
 
@@ -612,11 +593,11 @@ export default class Show extends React.Component {
         {/* Vista chorus 3. Mixed friendly/unfriendly. */}
         <Cue notes='Vista chorus 3. Mixed friendly/unfriendly.'>
 
-          <SoundCue src={sounds.vista_friendly_3} delay={0.4} />
-          <SoundCue src={sounds.vista_friendly_1} delay={0.0} />
-          <SoundCue src={sounds.vista_friendly_4} delay={0.4} />
-          <SoundCue src={sounds.vista_unfriendly_3} delay={0.8} />
-          <SoundCue src={sounds.vista_unfriendly_4} delay={0.9} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.6} />
+          <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.0} />
+          <SoundCue src={sounds.vista_friendly_4} volume={0.3} delay={0.2} />
+          <SoundCue src={sounds.vista_unfriendly_3} volume={0.2} delay={0.5} />
+          <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.1} />
 
         </Cue>
 
@@ -633,8 +614,9 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <h3>Visualization begins.<br/>Generations pass.</h3>
-            <img src={images.vis_interface} width='1920px'/>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={12} endGen={32} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -667,10 +649,10 @@ export default class Show extends React.Component {
         {/* Vista chorus 4. Majority friendly. */}
         <Cue notes='Vista chorus 4. Majority friendly.'>
 
-          <SoundCue src={sounds.vista_friendly_1} delay={0.4} />
-          <SoundCue src={sounds.vista_friendly_2} delay={0.0} />
-          <SoundCue src={sounds.vista_unfriendly_2} delay={0.4} />
-          <SoundCue src={sounds.vista_friendly_3} delay={0.2} />
+          <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.4} />
+          <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.0} />
+          <SoundCue src={sounds.vista_unfriendly_2} volume={0.2} delay={0.4} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.2} />
 
         </Cue>
 
