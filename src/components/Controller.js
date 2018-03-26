@@ -207,9 +207,15 @@ export default class Controller extends Component {
 
   _renderNextNotes() {
     let notes;
+
     // const currentSlide = this.getCurrentSlide();
 
-    const child = this._getSlideByIndex(this.props.slideIndex+1);
+    const child = this._getSlideByIndex(this.props.slideIndex + 1);
+
+    if (!child) {
+      return false;
+    }
+
     notes = child.props.notes;
 
     if (!notes) {

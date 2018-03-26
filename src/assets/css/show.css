@@ -56,17 +56,17 @@ body {
 }
 
 .secondary.fullscreen-cue {
-  width: 600px;
-  height: 800px;
+  width: 480px;
+  height: 640px;
 }
 
 .secondary.fullscreen-cue img {
-  width: 600px;
-  height: 800px;
+  width: 480px;
+  height: 640px;
 }
 
 p.evaluation {
-  width: 600px;
+  width: 480px;
   margin-top: 30%;
   padding: 12%;
   font-size: 0.8em;
@@ -104,48 +104,52 @@ p.evaluation {
 .text-fullscreen.success {
   color: #6ab452;
 }
+.text-fullscreen.success {
+  color: #6ab452;
+}
 
 .fs-image {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 600px;
+  width: 480px;
 }
 
 .visualization {
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 600px;
-  height: 800px;
+  width: 480px;
+  height: 640px;
   color: #a1b5ac;
   /*background-color: #111;*/
 }
 
 .visualization .genCounter {
   position: fixed;
-  top: 84%;
-  left: 15.5%;
+  top: -11px;
+  left: 21.5%;
   width: 100%;
   text-align: center;
   color: #c41d25;
+  font-size: 1.6em;
 }
 
 .visualization .systemState {
   position: fixed;
-  top: 2%;
+  bottom: 1%;
   left: 0%;
   width: 100%;
   text-align: center;
-  color: #fff;
-  font-size: 20px;
+  color: #a1b5ac;
+  font-size: 18px;
 }
 
 .visualization .genSpeedBar {
   position: fixed;
   bottom: 0%;
   right: 0%;
-  width: 45px
+  width: 35px
 }
 
 .visualization .vistaContainer {

@@ -42,8 +42,10 @@ export default class Visualization extends Component {
     this.matingMatrix = {};
 
     // Important sizes
-    this.visWidth = 600;
-    this.visHeight = 800;
+    // this.visWidth = 600;
+    // this.visHeight = 800;
+    this.visWidth = 480;
+    this.visHeight = 640;
 
     // Default sizes
     this.vistaAdultSize = 0.36;
@@ -158,7 +160,7 @@ export default class Visualization extends Component {
     }
 
     // Start entrance drama
-    this.setState({systemState:'Scanning'});
+    this.setState({systemState:'Vistas entering'});
     this.entranceTL.play();
 
   }
@@ -185,7 +187,7 @@ export default class Visualization extends Component {
 
   onEntranceComplete() {
 
-    this.setState({systemState:'Allowing for reproduction'});
+    this.setState({systemState:'Reproducing'});
     this.generationSequenceGo();
 
   }
@@ -209,7 +211,7 @@ export default class Visualization extends Component {
     }
 
     // Start entrance drama
-    this.setState({systemState:'Flushing'});
+    this.setState({systemState:'Vistas exiting'});
     this.exitTL.play();
 
   }
