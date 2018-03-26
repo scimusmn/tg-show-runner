@@ -35,18 +35,23 @@ export default class Visualization extends Component {
 
     this.utilTimer = {};
 
-    this.maxRenderedVistas = 300;
+    this.maxRenderedVistas = 666;
+
+    this.gridCols = 7;
+    this.cellWidth = 60;
+    this.matingMatrix = {};
 
     // Important sizes
     this.visWidth = 600;
     this.visHeight = 800;
 
-    // Important locations
-    this.visCenter = {x:0.5 * this.visWidth, y:0.5 * this.visHeight};
-    this.entrancePoint = {x:0.84 * this.visWidth, y:0.09 * this.visHeight};
-    this.exitPoint = {x:0.84 * this.visWidth, y:0.09 * this.visHeight};
+    // Default sizes
+    this.vistaAdultSize = 0.36;
 
-    this.createAnimations();
+    // Important locations
+    this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
+    this.entrancePoint = {x:0.84 * this.visWidth, y:0.13 * this.visHeight};
+    this.exitPoint = {x:0.84 * this.visWidth, y:0.13 * this.visHeight};
 
     // Bind methods
     this.onEntranceComplete = this.onEntranceComplete.bind(this);
@@ -55,6 +60,14 @@ export default class Visualization extends Component {
     this.onAllGenerationsComplete = this.onAllGenerationsComplete.bind(this);
     this.onSortAnimComplete = this.onSortAnimComplete.bind(this);
     this.onDeathComplete = this.onDeathComplete.bind(this);
+
+    // No need to continue if no seed vistas...
+    if (this.props.seedVistas.length == 0) {
+      return;
+    }
+
+    // Prep assets for animations
+    this.createAnimations();
 
   }
 
@@ -67,6 +80,11 @@ export default class Visualization extends Component {
 
     this.updateGenerationCount(this.props.startGen, false);
     this.updateGenerationSpeed(this.props.startSpeed, true);
+
+    // No need to continue if no seed vistas...
+    if (this.props.seedVistas.length == 0) {
+      return;
+    }
 
     // Find element targets for
     // all render vistas
@@ -130,12 +148,12 @@ export default class Visualization extends Component {
       const seedVista = this.props.seedVistas[i];
 
       // Activate vistas for entering
-      const aVista = this.activateVista(seedVista.friendliness, this.state.generationCount);
+      const aVista = this.activateVista(seedVista, this.state.generationCount);
 
       this.currentGeneration.push(aVista);
 
       // Start vista animation for seed vistas
-      this.entranceTL.add(this.createEntrance(aVista.target), i * 0.3);
+      this.entranceTL.add(this.createEntrance(aVista.target, i), i * 0.16);
 
     }
 
@@ -145,15 +163,17 @@ export default class Visualization extends Component {
 
   }
 
-  createEntrance(element) {
+  createEntrance(element, index) {
 
-    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:0.36, autoAlpha:1.0});
+    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:this.vistaAdultSize, autoAlpha:1.0});
+
+    const gridPos = this.getGridPosition(index);
 
     // Create a semi-random tween
-    let bezTween = new TweenMax(element, 2, {
+    let bezTween = new TweenMax(element, 1.4, {
       bezier:{
         type:'soft',
-        values:[{x:this.entrancePoint.x, y:this.entrancePoint.y,x:this.visCenter.x, y:this.entrancePoint.y}, {x:this.visCenter.x, y:this.entrancePoint.y + 30}, {x:this.visCenter.x + Math.random() * 300 - 150, y:this.visCenter.y + Math.random() * 500 - 200}],
+        values:[{x:this.entrancePoint.x, y:this.entrancePoint.y,x:this.visCenter.x, y:this.entrancePoint.y}, {x:gridPos.x, y:gridPos.y}],
         autoRotate:false,
       },
       delay:0.75,
@@ -180,29 +200,35 @@ export default class Visualization extends Component {
 
     for (let i = 0; i < this.currentGeneration.length; i++) {
 
-      // Start vista animation every 0.1 secs
-      this.exitTL.add(this.createExit(this.currentGeneration[i].target), i * 0.1);
+      if (i < 20) {
+        this.exitTL.add(this.createExit(this.currentGeneration[i].target), i * 0.1);
+      } else {
+        this.exitTL.add(this.createOblivionAnim(this.currentGeneration[i].target), i * 0.01);
+      }
 
     }
 
     // Start entrance drama
-    this.setState({systemState:'Release to cages'});
+    this.setState({systemState:'Flushing'});
     this.exitTL.play();
 
   }
 
   createExit(element) {
 
+    // Made the cut. March to exit.
     // Create a semi-random tween
-    let bezTween = new TweenMax(element, 2, {
-      bezier:{
-        type:'soft',
-        values:[{x:this.visCenter.x, y:this.exitPoint.y + 70}, {x:this.visCenter.x, y:this.exitPoint.y}, {x:this.exitPoint.x, y:this.exitPoint.y}],
-        autoRotate:false,
-      },
-    ease:Linear.easeNone,});
+    let tween = new TweenMax(element, 2, {
+        bezier:{
+          type:'soft',
+          values:[{x:this.visCenter.x, y:this.exitPoint.y}, {x:(this.visCenter.x + this.exitPoint.x) / 2, y:this.exitPoint.y}, {x:this.exitPoint.x, y:this.exitPoint.y}],
+          autoRotate:false,
+        },
+      ease:Linear.easeNone,});
 
-    return bezTween;
+    let scaleTween = new TweenMax(element, 0.15, {delay:1.7, scale:this.vistaAdultSize});
+
+    return [tween, scaleTween];
 
   }
 
@@ -213,8 +239,6 @@ export default class Visualization extends Component {
   }
 
   generationSequenceGo() {
-
-    console.log('generationSequenceGo');
 
     this.pairingTL = new TimelineMax({onComplete:this.onAllGenerationsComplete});
 
@@ -230,15 +254,18 @@ export default class Visualization extends Component {
     }, 7000);
 
     const numGens = this.props.endGen - this.props.startGen;
-    const stagger = 0.01;
+    const stagger = 0.001;
     let totalVistasSpawned = this.currentGeneration.length;
 
     for (let j = 0; j < numGens; j++) {
 
       // Temp: shuffle before pairing?
       // this.currentGeneration = this.utilShuffle(this.currentGeneration);
+      // this.currentGeneration = this.mateShuffle(this.currentGeneration);
 
-      console.log('GENERATION LOOP', this.currentGeneration.length);
+      // Set correct ration of friendly/unfriendly offspring
+      const generationFriendlyCount = Math.round(this.getProperFriendlyCount(this.props.startGen + j + 1));
+
       let genTime = (j * 0.7);
 
       // Pair off existing VISTAS
@@ -250,32 +277,42 @@ export default class Visualization extends Component {
         // Skip to death animation :(
         if (i >= this.currentGeneration.length - 1) {
 
-          const singletonDeath = new TweenMax(this.currentGeneration[i].target, 0.13, {delay:0.25, autoAlpha:0.0});
+          const singletonDeath = new TweenMax(this.currentGeneration[i].target, 0.09, {delay:0.2, autoAlpha:0.0});
           this.pairingTL.add(singletonDeath, curTime);
 
           break;
+
+        }
+
+        // TODO: Create more elegant
+        // solution for pairing off vistas.
+        // Ideally, they pair with a vista
+        // adjacent to them.
+        let mateIndex = i + 3;
+        if (i >= this.currentGeneration.length - 3) {
+          mateIndex = 1;
         }
 
         const v1 = this.currentGeneration[i];
-        const v2 = this.currentGeneration[i + 1];
+        const v2 = this.currentGeneration[mateIndex];
 
         const vista1 = v1.target;
         const vista2 = v2.target;
 
         // Find point between two vistas
-        const e1trans = vista1[0]._gsTransform;
-        const e2trans = vista2[0]._gsTransform;
+        const gridPos1 = this.getGridPosition(i);
+        const gridPos2 = this.getGridPosition(mateIndex);
 
-        const midX = (e1trans.x + e2trans.x) * 0.5;
-        const midY = (e1trans.y + e2trans.y) * 0.5;
+        const midX = (gridPos1.x + gridPos2.x) * 0.5;
+        const midY = (gridPos1.y + gridPos2.y) * 0.5;
 
         // Tween the mating dance
-        const tween1 = new TweenMax(vista1, 0.15, {x:midX, y:midY, ease: Bounce.easeOut});
-        const tween2 = new TweenMax(vista2, 0.15, {x:midX, y:midY, ease: Bounce.easeOut});
+        const tween1 = new TweenMax(vista1, 0.13, {x:midX, y:midY, ease: Bounce.easeOut});
+        let tween2 = new TweenMax(vista2, 0.13, {x:midX, y:midY, ease: Bounce.easeOut});
 
-        // Attach oncomplete to last to pair up.
-        if (i >= this.currentGeneration.length - 2) {
-          tween2.vars._onComplete = this.onNewGenerationComplete;
+        // Attach oncomplete to first pair up.
+        if (i == 0) {
+          tween2 = new TweenMax(vista2, 0.13, {x:midX, y:midY, ease: Bounce.easeOut, onComplete:this.onNewGenerationComplete});
         }
 
         // Add pair animation to timeline
@@ -283,15 +320,22 @@ export default class Visualization extends Component {
         this.pairingTL.add(tween2, curTime);
 
         // Create death tweens for each pair
-        const death1 = new TweenMax(vista1, 0.13, {delay:0.25, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v1]});
-        const death2 = new TweenMax(vista2, 0.13, {delay:0.25, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v2]});
+        const death1 = new TweenMax(vista1, 0.09, {delay:0.2, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v1]});
+        const death2 = new TweenMax(vista2, 0.09, {delay:0.2, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v2]});
 
         // Add death animations to timeline
         this.pairingTL.add(death1, curTime);
         this.pairingTL.add(death2, curTime);
 
-        // Each pair have FOUR offspring
-        const numKids = Math.floor(Math.random() * 2) + 2;
+        // Determine number of offspring for thi
+        // couple to produce...
+        let numKids = 2;
+        if (this.currentGeneration.length < 6) {
+          numKids = 4;
+        } else if (this.currentGeneration.length < 30) {
+          numKids += Math.floor(Math.random() * 2);
+        }
+
         for (let k = 0; k < numKids; k++) {
 
           if (totalVistasSpawned >= this.maxRenderedVistas) {
@@ -299,12 +343,23 @@ export default class Visualization extends Component {
             break;
           }
 
+          if (this.nextGeneration.length > 52) {
+            // This generation has enough offspring to fill screen.
+            // no need for more....
+            console.log('max offspring limit');
+            break;
+          }
+
           // Activate one vista for each...
-          const childFriendliness = Math.random();
+          let childFriendliness = Math.random() * 0.5;
+          if (this.nextGeneration.length < generationFriendlyCount) {
+            childFriendliness += 0.5;
+          }
+
           const childVista = this.activateVista(childFriendliness, j + 1);
           totalVistasSpawned++;
 
-          this.pairingTL.add(this.createBirthingAnim(childVista.target, midX, midY), curTime + 0.14);
+          this.pairingTL.add(this.createBirthingAnim(childVista.target, midX, midY, this.nextGeneration.length), curTime + 0.145);
 
           this.nextGeneration.push(childVista);
 
@@ -312,6 +367,7 @@ export default class Visualization extends Component {
 
       }
 
+      // Child generation becomes current gen.
       this.currentGeneration = this.nextGeneration;
       this.nextGeneration = [];
 
@@ -323,32 +379,111 @@ export default class Visualization extends Component {
 
   }
 
-  createBirthingAnim(element, parentsX, parentsY) {
+  createBirthingAnim(element, parentsX, parentsY, index) {
+
+    const birthTargetPos = this.getOffspringPosition(index);
 
     const setTween = new TweenMax.set(element, {x:parentsX, y:parentsY, scale:0.16});
 
-    const tween1 = new TweenMax(element, 0.04, {x:parentsX + (Math.random() * 500 - 250), y:parentsY + (Math.random() * 500 - 250),  autoAlpha:1.0, ease:Power2.easeOut});
+    const tween0 = new TweenMax(element, 0.001, {autoAlpha:1.0, ease:Power2.easeOut});
 
-    const tween2 = new TweenMax(element, 0.18, {delay:0.06, scale:0.36, ease:Power2.easeInOut});
+    const tween1 = new TweenMax(element, 0.05, {x:birthTargetPos.x, y:birthTargetPos.y,  autoAlpha:1.0, ease:Power2.easeOut});
 
-    return [setTween, tween1, tween2];
+    const tween2 = new TweenMax(element, 0.2, {delay:0.2, scale:this.vistaAdultSize, ease:Power2.easeInOut});
+
+    // After birth, reform grid.
+    const pos = this.getGridPosition(index);
+    const tweenToGrid = new TweenMax(element, 0.03, {delay:0.22, x:pos.x, y:pos.y, ease:Linear.easeNone});
+
+    return [setTween, tween0, tween1, tween2, tweenToGrid];
 
   }
 
-  onNewGenerationComplete() {
+  getGridPosition(index, fromCenter) {
 
-    console.log('onNewGenerationComplete()');
+    if (fromCenter == undefined) fromCenter = true;
+
+    let pos = {x:0, y:0};
+
+    let col = index % this.gridCols;
+    let row = (index - col) / this.gridCols;
+
+    if (fromCenter) {
+
+      // Instead of counting columns left to right
+      // count from the center out.
+      const isOddCol = col % 2;
+      const startCol = Math.floor(this.gridCols / 2);
+      let colOffset = Math.ceil(col / 2);
+
+      if (isOddCol == 1) {
+        colOffset *= -1;
+      }
+
+      col = colOffset;
+
+      pos.x = this.visCenter.x + (this.cellWidth * col);
+      pos.y = this.visHeight * 0.15 + (this.cellWidth * row);
+
+    } else {
+
+      pos.x = this.visCenter.x + (this.cellWidth * col);
+      pos.y = this.visHeight * 0.15 + (this.cellWidth * row);
+
+    }
+
+    return pos;
+
+  };
+
+  getOffspringPosition(index, fromCenter) {
+
+    if (fromCenter == undefined) fromCenter = true;
+
+    let pos = {x:0, y:0};
+
+    const offGridCols = 11;
+    const cellSize = 36;
+
+    let col = index % offGridCols;
+    let row = (index - col) / offGridCols;
+
+    if (fromCenter) {
+
+      // Instead of counting columns left to right
+      // count from the center out.
+      const isOddCol = col % 2;
+      const startCol = Math.floor(this.gridCols / 2);
+      let colOffset = Math.ceil(col / 2);
+
+      if (isOddCol == 1) {
+        colOffset *= -1;
+      }
+
+      col = colOffset;
+
+      pos.x = this.visCenter.x + (cellSize * col);
+      pos.y = this.visCenter.y * 1.33 + (cellSize * row);
+
+    } else {
+
+      pos.x = this.visCenter.x + (this.cellWidth * col);
+      pos.y = this.visCenter.y * 1.33 + (cellSize * row);
+
+    }
+
+    return pos;
+
+  };
+
+  onNewGenerationComplete() {
 
     // Update generation counter.
     this.updateGenerationCount(1);
 
-    console.log(this.state.generationCount);
-
   }
 
   onAllGenerationsComplete() {
-
-    console.log('onAllGenerationsComplete()');
 
     this.sortByFriendliness();
 
@@ -358,13 +493,47 @@ export default class Visualization extends Component {
     return [lat1 + (lat2 - lat1) * per, long1 + (long2 - long1) * per];
   }
 
+  utilMap(value, inmin, inmax, outmin, outmax) {
+    return (value - inmin) * (outmax - outmin) / (inmax - inmin) + outmin;
+  }
+
   utilShuffle(a) {
+
     for (let i = a.length - 1; i > 0; i--) {
+
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
+
     }
 
     return a;
+
+  }
+
+  mateShuffle(a) {
+
+    for (let i = a.length - 1; i > 0; i--) {
+
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [a[i], a[j]] = [a[j], a[i]];
+
+    }
+
+    return a;
+  }
+
+  getProperFriendlyCount(forGen) {
+
+    const exits = this.props.exitFriendlies;
+    const enters = this.props.seedVistas.length;
+
+    const fCount = this.utilMap(forGen, this.props.startGen, this.props.endGen, enters, exits);
+
+    console.log('getProperFriendlyCount', fCount);
+
+    return fCount;
+
   }
 
   createRenderVista() {
@@ -416,9 +585,23 @@ export default class Visualization extends Component {
 
     vistaToActivate.active = true;
 
-    // vistaToActivate.friendliness = friendliness;
+    vistaToActivate.friendliness = friendliness;
 
     TweenMax.set(vistaToActivate.target, {scale:0.0, autoAlpha:0.0, transformOrigin:'center center'});
+
+    // Uncomment for binary style.
+    /*    if (friendliness < 0.6) {
+          TweenMax.set(vistaToActivate.target.find('.friendly'), { autoAlpha: 0.0 });
+        } else {
+          TweenMax.set(vistaToActivate.target.find('.unfriendly'), { autoAlpha: 0.0 });
+        }*/
+
+    TweenMax.set(vistaToActivate.target.find('.friendly'), { autoAlpha: friendliness });
+
+    // Uncomment for internal friendly movement
+    if (friendliness > 0.75) {
+      TweenMax.to(vistaToActivate.target.find('.friendly'), Math.random() * 0.3 + 0.4, {scale:1.15, rotation:Math.random() * 25, ease: Power2.easeInOut, repeat:-1, yoyo:true});
+    }
 
     // vistaToActivate.renderElement.setProps({ friendliness: friendliness });
     vistaToActivate.generation = generation;
@@ -479,21 +662,24 @@ export default class Visualization extends Component {
 
   }
 
-  updateAverageData() {
-
-  }
-
   updateGenerationSpeed(speedValue, setInitial) {
 
     if (setInitial == true) {
 
       TweenMax.set(this.refs.genSpeedBar, {scaleY:speedValue, transformOrigin:'right bottom'});
+
+      // Temp
+      if (speedValue > 0.35) speedValue = 0.35;
       if (this.pairingTL) TweenMax.set(this.pairingTL, {timeScale:speedValue});
 
     } else {
 
       const tweenTime = 8.0;
+
       TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
+
+      // Temp
+      if (speedValue > 0.35) speedValue = 0.35;
       if (this.pairingTL) TweenMax.to(this.pairingTL, tweenTime, {timeScale:speedValue});
 
     }
@@ -511,8 +697,8 @@ export default class Visualization extends Component {
 
     for (let i = 0; i < this.currentGeneration.length; i++) {
 
-      const sortedX = 200;
-      const sortedY = (i * 50) + 150;
+      const sortedX = 100;
+      const sortedY = (i * 30) + 50;
 
       this.entranceTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);
 
@@ -521,14 +707,13 @@ export default class Visualization extends Component {
     // Start entrance drama
     this.setState({systemState:'Sorting by friendliness'});
 
-    this.entrace
     this.entranceTL.play();
 
   }
 
   createSortAnim(element, sortedX, sortedY) {
 
-    let bezTween = new TweenMax(element, 0.4, {
+    let bezTween = new TweenMax(element, 0.4, {scale:0.2,
       bezier:{
         type:'soft',
         values:[{x:sortedX + 70, y:sortedY}, {x:sortedX, y:sortedY}],
@@ -537,6 +722,14 @@ export default class Visualization extends Component {
     ease:Linear.easeNone,});
 
     return bezTween;
+
+  }
+
+  createOblivionAnim(element) {
+
+    let tween = new TweenMax(element, 0.2, {autoAlpha:0.0, ease:Linear.easeNone});
+
+    return tween;
 
   }
 
@@ -582,8 +775,9 @@ Visualization.propTypes = {
   startSpeed: PropTypes.number,
   endSpeed: PropTypes.number,
   seedVistas: PropTypes.array,
+  exitFriendlies: PropTypes.number,
 };
 
 Visualization.defaultProps = {
-
+  exitFriendlies: 5,
 };

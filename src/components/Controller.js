@@ -1,10 +1,13 @@
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 import { getSlideByIndex } from '../utils/slides';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 import {
   HeaderContainer,
   EndHeader,
   ControllerContent,
+  PresenterContent,
   SlideInfo,
   ContentContainer,
   PreviewPane,
@@ -24,6 +27,85 @@ export default class Controller extends Component {
   state = {
     notes: {},
   };
+
+  componentDidMount() {
+
+    // Generate cue data
+    this.cueTableData = [];
+    for (var i = 0; i < this.props.slides.length; i++) {
+
+      const cueData = this.getCueData(this.props.slides[i], i + 1);
+      this.cueTableData.push(cueData);
+
+    }
+
+    console.log(this.cueTableData);
+
+  }
+
+  getCueData(cue, num) {
+
+    let notes = cue.props.notes;
+    let children = React.Children.toArray(cue.props.children);
+    let hasScreen = false;
+    let primaryScreen = false;
+    let secondaryScreen = false;
+    let hasSoundCue = false;
+    let hasCueServer = false;
+    let hasEmpty = false;
+
+    for (let i = children.length - 1; i >= 0; i--) {
+
+      const child = children[i];
+
+      // Screen Type
+      if (child.type.name == 'Screen') {
+
+        if (child.props.output == 'primary') {
+
+          hasScreen = true;
+          primaryScreen = true;
+
+        } else if (child.props.output == 'secondary') {
+
+          hasScreen = true;
+          secondaryScreen = true;
+
+        }
+
+      }
+
+      if (child.type.name == 'SoundCue') {
+
+        hasSoundCue = true;
+
+      }
+
+      if (child.type.name == 'CueServerOut') {
+
+        hasCueServer = true;
+
+      }
+
+    }
+
+    // If no screen is found for current Output,
+    // add an empty screen.
+    if (!hasScreen) {
+      hasEmpty = true;
+    }
+
+    return {num:num,
+            notes:notes,
+            hasScreen:hasScreen,
+            primaryScreen:primaryScreen,
+            secondaryScreen:secondaryScreen,
+            hasSoundCue:hasSoundCue,
+            hasCueServer:hasCueServer,
+            hasEmpty:hasEmpty,
+          };
+
+  }
 
   getChildContext() {
     return {
@@ -49,6 +131,7 @@ export default class Controller extends Component {
       index
     );
   }
+
   _renderMainSlide() {
     const { slideIndex, hash, lastSlideIndex } = this.props;
     const child = this._getSlideByIndex(slideIndex);
@@ -71,6 +154,7 @@ export default class Controller extends Component {
       presenterStyle,
     });
   }
+
   _renderNextSlide() {
     const { slideIndex, lastSlideIndex } = this.props;
     const presenterStyle = {
@@ -117,13 +201,78 @@ export default class Controller extends Component {
     if (typeof notes === 'string') {
       return <div dangerouslySetInnerHTML={{ __html: notes }} />;
     }
+
     return <div>{notes}</div>;
   }
 
+  _renderNextNotes() {
+    let notes;
+    // const currentSlide = this.getCurrentSlide();
+
+    const child = this._getSlideByIndex(this.props.slideIndex+1);
+    notes = child.props.notes;
+
+    if (!notes) {
+      return false;
+    }
+
+    if (typeof notes === 'string') {
+      return <div dangerouslySetInnerHTML={{ __html: notes }} />;
+    }
+
+    return <div>{notes}</div>;
+  }
+
+  renderCellCue(props) {
+
+    let jsx = '';
+
+    console.log(props);
+
+    return jsx;
+  }
+
   render() {
+
+    const columns = [{
+      Header: 'Order',
+      accessor: 'num',
+    },
+    {
+      Header: 'CueServer',
+      accessor: 'hasCueServer',
+      Cell: row => (
+          <span>{row.value == true ? 'X' : '-'}</span>
+      ),
+    },
+    {
+      Header: 'Sound Cue',
+      accessor: 'hasSoundCue',
+      Cell: row => (
+          <span>{row.value == true ? 'X' : '-'}</span>
+      ),
+    },
+    {
+      Header: 'Primary Screen',
+      accessor: 'primaryScreen',
+      Cell: row => (
+          <span>{row.value == true ? 'X' : '-'}</span>
+      ),
+    },
+    {
+      Header: 'Secondary Screen',
+      accessor: 'secondaryScreen',
+      Cell: row => (
+          <span>{row.value == true ? 'X' : '-'}</span>
+      ),
+    },
+    {
+      Header: 'Notes',
+      accessor: 'notes' // String-based value accessors!
+    },];
+
     return (
-      <div>
-      <h1>CONTROLLER----------</h1>
+      <PresenterContent>
         <HeaderContainer>
           <SlideInfo>
             Slide {this.props.slideIndex + 1} of{' '}
@@ -133,14 +282,19 @@ export default class Controller extends Component {
         </HeaderContainer>
         <ContentContainer>
           <PreviewPane>
-            <PreviewCurrentSlide className="spectacle-presenter-main">
-              {this._renderMainSlide()}
-            </PreviewCurrentSlide>
-            <PreviewNextSlide>{this._renderNextSlide()}</PreviewNextSlide>
+            <ReactTable
+              data={this.cueTableData}
+              columns={columns}
+              showPagination= {false}
+              showPageJump= {false}
+              defaultPageSize={this.props.slides.length}
+              className='-highlight -striped'
+            />
           </PreviewPane>
-          <Notes>{this._renderNotes()}</Notes>
+          <Notes>Current: {this._renderNotes()}</Notes>
+          <Notes className='nextnotes'>Next: {this._renderNextNotes()}</Notes>
         </ContentContainer>
-      </div>
+      </PresenterContent>
     );
   }
 }

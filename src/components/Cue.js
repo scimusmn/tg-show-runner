@@ -212,10 +212,9 @@ class Cue extends React.PureComponent {
       // being triggered on multiple browsers.
       if (child.type.name == 'SoundCue' || child.type.name == 'CueServerOut') {
 
-        // TODO: We should possibly only play sounds
-        // on Controller screen OR have a smart scree
-        // system that only plays on first screen, no
-        // matter which are connected....
+        // We should only play sound cues
+        // on Primary screen to avoid duplicate
+        // playback. Same for CueServer out messages.
         if (this.state.outputScreen !== 'primary') {
           // Remove sound if not on primary screen.
 

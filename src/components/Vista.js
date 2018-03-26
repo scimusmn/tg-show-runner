@@ -20,13 +20,16 @@ class Vista extends Component {
   componentDidMount() {
 
     // uncomment for binary style
-    if (this.props.friendliness < 0.7) {
-      TweenMax.set(this.refs.friendly, { autoAlpha: 0.0 });
-    } else {
-      TweenMax.set(this.refs.unfriendly, { autoAlpha: 0.0 });
-    }
+    // if (this.props.friendliness < 0.6) {
+    //   TweenMax.set(this.refs.friendly, { autoAlpha: 0.0 });
+    // } else {
+    //   TweenMax.set(this.refs.unfriendly, { autoAlpha: 0.0 });
+    // }
 
     // TweenMax.set(this.refs.friendly, { autoAlpha: this.props.friendliness });
+
+    // Uncomment for internal friendly movement
+    // TweenMax.to(this.refs.friendly, Math.random() * 0.3 + 0.4, {scale:0.9, rotation:Math.random() * 15, ease: Power2.easeInOut, repeat:99, yoyo:true});
 
   }
 
@@ -38,8 +41,8 @@ class Vista extends Component {
 
     return <div id={this.props.id} className='vista'>
 
-              <img key='unfriendly' className='silhouette' ref='unfriendly' src={this.assets.unfriendly} />
-              <img key='friendly' className='silhouette' ref='friendly' src={this.assets.friendly} />
+              <img key='unfriendly' className='silhouette unfriendly' ref='unfriendly' src={this.assets.unfriendly} />
+              <img key='friendly' className='silhouette friendly' ref='friendly' src={this.assets.friendly} />
 
           </div>;
 

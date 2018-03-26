@@ -50,68 +50,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-              {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP VIS 1 */}
-        <Cue notes='Vis 1'>
-
-          <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.6]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
-            <img src={images.badges_none} className='fs-image'/>
-          </Screen>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP VIS 2 */}
-        <Cue notes='Empty'>
-
-          <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.7, 0.6, 0.6, 0.7]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
-          </Screen>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP VIS 2 */}
-        <Cue notes='Empty'>
-
-          <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={12} endGen={32} startSpeed={0.95} endSpeed={0.95} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
-          </Screen>
-
-        </Cue>
-
-        {/* TEMP */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* TEMP */}
-        {/* TEMP */}
-        {/* TEMP */}
-
-
         {/* Pre show */}
         <Cue notes='Pre-show lighting. Audience entering.'>
 
@@ -470,9 +408,9 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit popper. Visualization begins.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1}/>
-            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.6]} />
-            <img src={images.vis_fg_1}/>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.74]} exitFriendlies={4} />
+            <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -483,6 +421,12 @@ export default class Show extends React.Component {
         {/* Highlight Chute */}
         <Cue notes='Highlight Chute'>
 
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
           <CueServerOut cueId={Lookup.HIGHLIGHT_CHUTE} />
           <h2 className='debug'>HIGHLIGHT_CHUTE</h2>
 
@@ -491,16 +435,18 @@ export default class Show extends React.Component {
         {/* Vistas chute dump. */}
         <Cue notes='Chute dump'>
 
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
           <SoundCue src={sounds.chute_dump} />
 
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
         <Cue notes='Vistas exit screen. Cage refill.'>
-
-          <Screen output='secondary'>
-            <h2>20 Vistas exit screen back to cages.</h2>
-          </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
 
@@ -558,7 +504,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={2} endGen={12} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.7, 0.6, 0.6, 0.7]} />
+            <Visualization startGen={3} endGen={13} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.7, 0.6, 0.6, 0.7]} exitFriendlies={8} />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -571,16 +517,18 @@ export default class Show extends React.Component {
         {/* Vistas chute dump. */}
         <Cue notes='Chute dump'>
 
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={13} startSpeed={1.0} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
           <SoundCue src={sounds.chute_dump} />
 
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
         <Cue notes='Vistas exit screen. Cage refill.'>
-
-          <Screen output='secondary'>
-            <h2>20 Vistas exit screen back to cages.</h2>
-          </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
 
@@ -615,7 +563,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={12} endGen={32} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.8, 0.7, 0.6, 0.6, 0.7, 0.9, 0.6, 0.7]} />
+            <Visualization startGen={13} endGen={33} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.8, 0.7, 0.6, 0.65, 0.7, 0.9, 0.6, 0.7]} exitFriendlies={16} />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -627,16 +575,18 @@ export default class Show extends React.Component {
         {/* Vistas chute dump. */}
         <Cue notes='Chute dump'>
 
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={33} startSpeed={1.0} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
           <SoundCue src={sounds.chute_dump} />
 
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
         <Cue notes='Vistas exit screen. Cage refill.'>
-
-          <Screen output='secondary'>
-            <h2>20 Vistas exit screen back to cages.</h2>
-          </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
 
@@ -787,11 +737,11 @@ export default class Show extends React.Component {
         <Cue notes='Lockdown on plug in.'>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <CueServerOut cueId={Lookup.PLUG_IN_LOCKDOWN} />
@@ -805,11 +755,11 @@ export default class Show extends React.Component {
         <Cue notes='And whose fault is that?'>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_144} />
@@ -819,11 +769,11 @@ export default class Show extends React.Component {
         <Cue notes='I cant. To ensure...'>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_150} />
@@ -833,11 +783,11 @@ export default class Show extends React.Component {
         <Cue notes='Yes. I understand your problem. '>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_152} />
@@ -847,11 +797,11 @@ export default class Show extends React.Component {
         <Cue notes='Override codes are changed daily'>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_157} />
@@ -861,11 +811,11 @@ export default class Show extends React.Component {
         <Cue notes='No. I was simply communicating...'>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: ENGAGED</h1>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_159} />
@@ -876,11 +826,11 @@ export default class Show extends React.Component {
         <Cue notes='Lockdown release on puzzle solved.'>
 
           <Screen output='primary'>
-            <h1>ISOLATION MODE: DISENGAGED</h1>
+            <h1 className='text-fullscreen success' >ISOLATION MODE: DISENGAGED</h1>
           </Screen>
 
           <Screen output='secondary'>
-            <h1>ISOLATION MODE: DISENGAGED</h1>
+            <h1 className='text-fullscreen success' >ISOLATION MODE: DISENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.unlock} />
