@@ -398,6 +398,12 @@ export default class Show extends React.Component {
         {/*  Vistas enter popper. */}
         <Cue notes='Vistas enter popper.'>
 
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={0} startSpeed={0.1} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
           <SoundCue src={sounds.popper} />
           <SoundCue src={sounds.vistas_popping} delay={2.0} />
           <CueServerOut cueId={Lookup.VISTAS_ENTER_POPPER} />
@@ -429,19 +435,6 @@ export default class Show extends React.Component {
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_CHUTE} />
           <h2 className='debug'>HIGHLIGHT_CHUTE</h2>
-
-        </Cue>
-
-        {/* Vistas chute dump. */}
-        <Cue notes='Chute dump'>
-
-          <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
-          </Screen>
-
-          <SoundCue src={sounds.chute_dump} />
 
         </Cue>
 
@@ -493,6 +486,12 @@ export default class Show extends React.Component {
         {/*  Vistas enter popper. */}
         <Cue notes='Vistas enter popper.'>
 
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
+
           <SoundCue src={sounds.popper} />
           <SoundCue src={sounds.vistas_popping} delay={2.0} />
           <CueServerOut cueId={Lookup.VISTAS_ENTER_POPPER} />
@@ -511,19 +510,6 @@ export default class Show extends React.Component {
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
           <SoundCue src={sounds.train_swoosh_short} />
           <SoundCue src={sounds.power_increasing} volume={0.3} delay={10.0} />
-
-        </Cue>
-
-        {/* Vistas chute dump. */}
-        <Cue notes='Chute dump'>
-
-          <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={13} startSpeed={1.0} seedVistas={[]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
-          </Screen>
-
-          <SoundCue src={sounds.chute_dump} />
 
         </Cue>
 
@@ -551,6 +537,12 @@ export default class Show extends React.Component {
 
         {/*  Vistas enter popper. */}
         <Cue notes='Vistas enter popper.'>
+
+          <Screen output='secondary'>
+            <img src={images.vis_bg_1} className='fs-image'/>
+            <Visualization startGen={13} startSpeed={1.0} seedVistas={[]} />
+            <img src={images.vis_fg_1} className='fs-image'/>
+          </Screen>
 
           <SoundCue src={sounds.popper} />
           <SoundCue src={sounds.vistas_popping} delay={2.0} />

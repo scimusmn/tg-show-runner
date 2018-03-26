@@ -1,5 +1,6 @@
 body {
   background-color: black;
+  font-family: Arial !important;
 }
 
 .debug {
@@ -69,12 +70,12 @@ p.evaluation {
   width: 480px;
   margin-top: 30%;
   padding: 12%;
-  font-size: 0.8em;
+  font-size: 0.64em;
   text-align: left;
   line-height: 1.6em;
   color: black;
   font-weight: bold;
-  font-family: Courier;
+  font-family: "Arial Narrow";
   background-color: #a1b5ac;
 }
 
@@ -96,9 +97,14 @@ p.evaluation {
 }
 
 .primary .text-fullscreen {
-  margin: 0 25%;
   font-size: 3em;
-  width: 70%;
+  width: 100%;
+  margin: 0 22%;
+}
+
+.primary .text-fullscreen.success {
+
+  margin: 0 17%;
 }
 
 .text-fullscreen.success {
@@ -187,7 +193,7 @@ p.evaluation {
 
 .nextnotes {
   padding-top: 300px !important;
-  color: yellow !important;
+  color: #6ab452 !important;
 }
 
 .fixed-height-data-table {
