@@ -168,7 +168,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex shows sequence 1'>
 
           <Screen output='primary'>
-            <VideoCue src={videos.video1} />
+            <img src={images.sequence1} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -251,7 +251,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers sequence 2'>
 
           <Screen output='primary'>
-            <VideoCue src={videos.video2} />
+            <VideoCue src={videos.sequence2} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -314,7 +314,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 3'>
 
           <Screen output='primary'>
-            <VideoCue src={videos.video3} />
+            <VideoCue src={videos.sequence3} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -456,7 +456,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 4'>
 
           <Screen output='primary'>
-            <img src={images.sequence4} width='1920px'/>
+            <VideoCue src={videos.sequence4} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -646,7 +646,8 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 5'>
 
           <Screen output='primary'>
-            <img src={images.sequence5} width='1920px'/>
+            <br/><br/><br/><br/>
+            <VideoCue src={videos.sequence5} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -825,6 +826,7 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.unlock} />
           <SoundCue src={sounds.unlock} delay={0.2}/>
+          <SoundCue src={sounds.VO_161} delay={0.35}/>
 
           <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
 
