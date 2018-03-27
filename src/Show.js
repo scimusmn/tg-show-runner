@@ -437,11 +437,24 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen. Cage refill.'>
+        <Cue notes='Vistas exit screen via train.'>
 
-          <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
+          <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
 
           <SoundCue src={sounds.train_swoosh_long} />
+
+        </Cue>
+
+        {/* Vista-train off. Cages refill. */}
+        <Cue notes='Vistas train off. Cages refill.'>
+
+          <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.4} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.0} />
+          <SoundCue src={sounds.vista_unfriendly_2} volume={0.3} delay={0.4} />
+          <SoundCue src={sounds.vista_unfriendly_3} volume={0.3} delay={0.8} />
+          <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.9} />
+
+          <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT_OFF} />
 
         </Cue>
 
@@ -465,19 +478,6 @@ export default class Show extends React.Component {
 
         {/* Empty. */}
         <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* CAGE SET 2 */}
-
-        {/* Vista chorus 2. Majority unfriendly. */}
-        <Cue notes='Vista chorus 2. Majority unfriendly.'>
-
-          <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.4} />
-          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.0} />
-          <SoundCue src={sounds.vista_unfriendly_2} volume={0.3} delay={0.4} />
-          <SoundCue src={sounds.vista_unfriendly_3} volume={0.3} delay={0.8} />
-          <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.9} />
 
         </Cue>
 
@@ -512,24 +512,24 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen. Cage refill.'>
+        <Cue notes='Vistas exit screen via train.'>
 
-          <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
+          <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
 
           <SoundCue src={sounds.train_swoosh_long} />
 
         </Cue>
 
-        {/* CAGE SET 3 */}
-
-        {/* Vista chorus 3. Mixed friendly/unfriendly. */}
-        <Cue notes='Vista chorus 3. Mixed friendly/unfriendly.'>
+        {/* Vista-train off. Cages refill. */}
+        <Cue notes='Vistas train off. Cages refill.'>
 
           <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.6} />
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.0} />
           <SoundCue src={sounds.vista_friendly_4} volume={0.3} delay={0.2} />
           <SoundCue src={sounds.vista_unfriendly_3} volume={0.2} delay={0.5} />
           <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.1} />
+
+          <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT_OFF} />
 
         </Cue>
 
@@ -576,23 +576,23 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen. Cage refill.'>
+        <Cue notes='Vistas exit screen via train.'>
 
-          <CueServerOut cueId={Lookup.VISTAS_EXIT_SCREEN} />
+          <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
 
           <SoundCue src={sounds.train_swoosh_long} />
 
         </Cue>
 
-        {/* CAGE SET 4 */}
-
-        {/* Vista chorus 4. Majority friendly. */}
-        <Cue notes='Vista chorus 4. Majority friendly.'>
+        {/* Vista-train off. Cages refill. */}
+        <Cue notes='Vistas train off. Cages refill.'>
 
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.4} />
           <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.0} />
           <SoundCue src={sounds.vista_unfriendly_2} volume={0.2} delay={0.4} />
           <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.2} />
+
+          <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT_OFF} />
 
         </Cue>
 
