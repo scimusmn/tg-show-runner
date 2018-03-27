@@ -38,8 +38,11 @@ export default class Visualization extends Component {
     this.maxRenderedVistas = 666;
 
     this.gridCols = 7;
-    this.cellWidth = 60;
+    this.cellWidth = 45;
     this.matingMatrix = {};
+
+    this.childGridCols = 10;
+    this.childCellSize = 32;
 
     // Important sizes
     // this.visWidth = 600;
@@ -48,12 +51,13 @@ export default class Visualization extends Component {
     this.visHeight = 640;
 
     // Default sizes
-    this.vistaAdultSize = 0.36;
+    this.vistaAdultScale = 0.26;
+    this.vistaChildScale = 0.14;
 
     // Important locations
     this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
-    this.entrancePoint = {x:0.84 * this.visWidth, y:0.13 * this.visHeight};
-    this.exitPoint = {x:0.84 * this.visWidth, y:0.13 * this.visHeight};
+    this.entrancePoint = {x:0.83 * this.visWidth, y:0.12 * this.visHeight};
+    this.exitPoint = {x:0.83 * this.visWidth, y:0.12 * this.visHeight};
 
     // Bind methods
     this.onEntranceComplete = this.onEntranceComplete.bind(this);
@@ -167,7 +171,7 @@ export default class Visualization extends Component {
 
   createEntrance(element, index) {
 
-    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:this.vistaAdultSize, autoAlpha:1.0});
+    TweenMax.set(element, {x:this.entrancePoint.x, y:this.entrancePoint.y, scale:this.vistaAdultScale, autoAlpha:1.0});
 
     const gridPos = this.getGridPosition(index);
 
@@ -200,12 +204,28 @@ export default class Visualization extends Component {
 
     this.exitTL.delay(1.0);
 
+    let gridPoints = [];
+    gridPoints.push({x:this.visCenter.x, y:this.exitPoint.y});
+    gridPoints.push({x:this.exitPoint.x, y:this.exitPoint.y});
+
+    let numToExit = 20;
+
     for (let i = 0; i < this.currentGeneration.length; i++) {
 
-      if (i < 20) {
-        this.exitTL.add(this.createExit(this.currentGeneration[i].target), i * 0.1);
+      if (i < numToExit) {
+
+        this.exitTL.add(this.createExit(this.currentGeneration[i].target, gridPoints), (i % this.offGridCols) * 0.1);
+
+        // Add next vista's point to path
+        const gridPos = this.getOffspringPosition(i, false);
+
+        // gridPoints.push({x:gridPos.x, y:gridPos.y});
+        // gridPoints.splice(gridPoints.length - 2, 0, gridPos);
+
       } else {
-        this.exitTL.add(this.createOblivionAnim(this.currentGeneration[i].target), i * 0.01);
+
+        this.exitTL.add(this.createOblivionAnim(this.currentGeneration[i].target), (i % this.offGridCols) * 0.004);
+
       }
 
     }
@@ -216,21 +236,23 @@ export default class Visualization extends Component {
 
   }
 
-  createExit(element) {
+  createExit(element, bezPoints) {
 
     // Made the cut. March to exit.
     // Create a semi-random tween
-    let tween = new TweenMax(element, 2, {
+    let tween = new TweenMax(element, 1.5, {
         bezier:{
           type:'soft',
-          values:[{x:this.visCenter.x, y:this.exitPoint.y}, {x:(this.visCenter.x + this.exitPoint.x) / 2, y:this.exitPoint.y}, {x:this.exitPoint.x, y:this.exitPoint.y}],
+          values:bezPoints,
           autoRotate:false,
         },
+      delay:0.8,
       ease:Linear.easeNone,});
 
-    let scaleTween = new TweenMax(element, 0.15, {delay:1.7, scale:this.vistaAdultSize});
+    let scaleTween = new TweenMax(element, 0.3, {delay:2.8, scale:this.vistaAdultScale});
+    let scaleTween2 = new TweenMax(element, 0.1, {delay:3.1, scale:0.01});
 
-    return [tween, scaleTween];
+    return [tween, scaleTween, scaleTween2];
 
   }
 
@@ -253,7 +275,7 @@ export default class Visualization extends Component {
       if (this.props.startSpeed != this.props.endSpeed) {
         this.updateGenerationSpeed(this.props.endSpeed, false);
       }
-    }, 7000);
+    }, 1500);
 
     const numGens = this.props.endGen - this.props.startGen;
     const stagger = 0.001;
@@ -353,10 +375,17 @@ export default class Visualization extends Component {
           }
 
           // Activate one vista for each...
-          let childFriendliness = Math.random() * 0.5;
-          if (this.nextGeneration.length < generationFriendlyCount) {
-            childFriendliness += 0.5;
-          }
+          let childFriendliness = this.utilMap(j + 1, 0, 33, 0, 1);
+          console.log('childFriendliness', childFriendliness);
+
+          childFriendliness += Math.random() * 0.9 - 0.45;
+
+          if (childFriendliness > 1) childFriendliness = 1.0;
+          if (childFriendliness < 0) childFriendliness = 0.0;
+
+          // if (this.nextGeneration.length < generationFriendlyCount) {
+          //   childFriendliness += 0.5;
+          // }
 
           const childVista = this.activateVista(childFriendliness, j + 1);
           totalVistasSpawned++;
@@ -385,13 +414,21 @@ export default class Visualization extends Component {
 
     const birthTargetPos = this.getOffspringPosition(index);
 
-    const setTween = new TweenMax.set(element, {x:parentsX, y:parentsY, scale:0.16});
+    const setTween = new TweenMax.set(element, {x:parentsX, y:parentsY, scale:this.vistaChildScale});
 
-    const tween0 = new TweenMax(element, 0.001, {autoAlpha:1.0, ease:Power2.easeOut});
+    const tween0 = new TweenMax(element, 0.002, {autoAlpha:1.0, ease:Power2.easeOut});
 
-    const tween1 = new TweenMax(element, 0.05, {x:birthTargetPos.x, y:birthTargetPos.y,  autoAlpha:1.0, ease:Power2.easeOut});
+    const tween1 = new TweenMax(element, 0.1, {
+      bezier:{
+        type:'soft',
+        values:[{x:parentsX, y:parentsY + 100}, {x:birthTargetPos.x, y:birthTargetPos.y}],
+        autoRotate:false,
+      },
+    ease:Power2.easeOut, delay:0.01,});
 
-    const tween2 = new TweenMax(element, 0.2, {delay:0.2, scale:this.vistaAdultSize, ease:Power2.easeInOut});
+    // const tween1 = new TweenMax(element, 0.08, {delay:0.01, x:birthTargetPos.x, y:birthTargetPos.y,  autoAlpha:1.0, ease:Power2.easeOut});
+
+    const tween2 = new TweenMax(element, 0.2, {delay:0.23, scale:this.vistaAdultScale, ease:Power2.easeInOut});
 
     // After birth, reform grid.
     const pos = this.getGridPosition(index);
@@ -444,18 +481,15 @@ export default class Visualization extends Component {
 
     let pos = {x:0, y:0};
 
-    const offGridCols = 11;
-    const cellSize = 36;
-
-    let col = index % offGridCols;
-    let row = (index - col) / offGridCols;
+    let col = index % this.childGridCols;
+    let row = (index - col) / this.childGridCols;
 
     if (fromCenter) {
 
       // Instead of counting columns left to right
       // count from the center out.
       const isOddCol = col % 2;
-      const startCol = Math.floor(this.gridCols / 2);
+      const startCol = Math.floor(this.childGridCols / 2);
       let colOffset = Math.ceil(col / 2);
 
       if (isOddCol == 1) {
@@ -464,13 +498,13 @@ export default class Visualization extends Component {
 
       col = colOffset;
 
-      pos.x = this.visCenter.x + (cellSize * col);
-      pos.y = this.visCenter.y * 1.33 + (cellSize * row);
+      pos.x = this.visCenter.x + (this.childCellSize * col);
+      pos.y = this.visCenter.y * 1.5 + (this.childCellSize * row);
 
     } else {
 
-      pos.x = this.visCenter.x + (this.cellWidth * col);
-      pos.y = this.visCenter.y * 1.33 + (cellSize * row);
+      pos.x = 24 + (this.childCellSize * col);
+      pos.y = 120 + (this.childCellSize * row);
 
     }
 
@@ -601,8 +635,12 @@ export default class Visualization extends Component {
     TweenMax.set(vistaToActivate.target.find('.friendly'), { autoAlpha: friendliness });
 
     // Uncomment for internal friendly movement
-    if (friendliness > 0.75) {
-      TweenMax.to(vistaToActivate.target.find('.friendly'), Math.random() * 0.3 + 0.4, {scale:1.15, rotation:Math.random() * 25, ease: Power2.easeInOut, repeat:-1, yoyo:true});
+    if (friendliness > 0.4 && friendliness < 0.65) {
+      TweenMax.set(vistaToActivate.target.find('img'),  {scale:0.99});
+      TweenMax.to(vistaToActivate.target.find('img'), Math.random() * 0.3 + 0.3, {scale:1.1, rotation:Math.random() * 10, ease: Power2.easeInOut, repeat:-1, yoyo:true});
+    } else if (friendliness >= 0.65) {
+      TweenMax.set(vistaToActivate.target.find('img'),  {scale:0.96});
+      TweenMax.to(vistaToActivate.target.find('img'), Math.random() * 0.2 + 0.2, {scale:1.25, rotation:Math.random() * 25, ease: Power2.easeInOut, repeat:-1, yoyo:true});
     }
 
     // vistaToActivate.renderElement.setProps({ friendliness: friendliness });
@@ -671,7 +709,7 @@ export default class Visualization extends Component {
       TweenMax.set(this.refs.genSpeedBar, {scaleY:speedValue, transformOrigin:'right bottom'});
 
       // Temp
-      if (speedValue > 0.35) speedValue = 0.35;
+      if (speedValue > 0.6) speedValue = 0.6;
       if (this.pairingTL) TweenMax.set(this.pairingTL, {timeScale:speedValue});
 
     } else {
@@ -681,7 +719,7 @@ export default class Visualization extends Component {
       TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
 
       // Temp
-      if (speedValue > 0.35) speedValue = 0.35;
+      if (speedValue > 0.6) speedValue = 0.6;
       if (this.pairingTL) TweenMax.to(this.pairingTL, tweenTime, {timeScale:speedValue});
 
     }
@@ -699,10 +737,15 @@ export default class Visualization extends Component {
 
     for (let i = 0; i < this.currentGeneration.length; i++) {
 
-      const sortedX = 100;
+      // Single file snake sort
+      /*const sortedX = 100;
       const sortedY = (i * 30) + 50;
 
-      this.entranceTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);
+      this.entranceTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);*/
+
+      // Sorted grid.
+      let gridPos = this.getOffspringPosition(i, false);
+      this.entranceTL.add(this.createSortAnim(this.currentGeneration[i].target, gridPos.x, gridPos.y), i * 0.03);
 
     }
 
@@ -729,7 +772,7 @@ export default class Visualization extends Component {
 
   createOblivionAnim(element) {
 
-    let tween = new TweenMax(element, 0.2, {autoAlpha:0.0, ease:Linear.easeNone});
+    let tween = new TweenMax(element, 0.5, {autoAlpha:0.0, y:'+=20', ease:Power2.easeIn});
 
     return tween;
 

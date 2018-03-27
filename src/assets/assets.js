@@ -39,6 +39,10 @@ const images = {
   vis_sil_7_mint: require('./images/vis_sil_7_mint.png'),
   vis_sil_8_mint: require('./images/vis_sil_8_mint.png'),
 
+  vis_sil_o_white: require('./images/vis_sil_o_white.png'),
+  vis_sil_o_red: require('./images/vis_sil_o_red.png'),
+  vis_sil_o_mint: require('./images/vis_sil_o_mint.png'),
+
   vis_gen_speed: require('./images/vis_gen_speed.png'),
   vis_fg_1: require('./images/vis_fg_1.png'),
   vis_bg_1: require('./images/vis_bg_1.png'),
@@ -70,8 +74,6 @@ const sounds = {
   VO_128: require('./sounds/VO_128.mp3'),
   VO_142: require('./sounds/VO_142.mp3'),
   VO_144: require('./sounds/VO_144.mp3'),
-  VO_146: require('./sounds/VO_146.mp3'),
-  VO_148: require('./sounds/VO_148.mp3'),
   VO_150: require('./sounds/VO_150.mp3'),
   VO_152: require('./sounds/VO_152.mp3'),
   VO_157: require('./sounds/VO_157.mp3'),
@@ -127,13 +129,22 @@ const getVistaSet = () => {
 
   const random = Math.floor(Math.random() * 8) + 1;
 
-  return {
+/*  return {
 
     friendly: images['vis_sil_'+random+'_white'],
     unfriendly: images['vis_sil_'+random+'_red'],
     other: images['vis_sil_'+random+'_mint'],
 
-  };
+  };*/
+
+  return {
+
+
+    friendly: images['vis_sil_o_white'],
+    unfriendly: images['vis_sil_o_red'],
+    other: images['vis_sil_o_mint'],
+
+  }
 
 };
 

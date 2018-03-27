@@ -53,8 +53,6 @@ export default class Show extends React.Component {
         {/* Pre show */}
         <Cue notes='Pre-show lighting. Audience entering.'>
 
-          <h1>Cue 1 Pre-show</h1>
-
           <CueServerOut cueId={Lookup.PRE_SHOW} />
 
         </Cue>
@@ -221,7 +219,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_060} />
-          <SoundCue src={sounds.quiz} delay={14} />
+          <SoundCue src={sounds.quiz} delay={17} />
 
         </Cue>
 
@@ -285,7 +283,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_073} />
-          <SoundCue src={sounds.quiz} delay={12} />
+          <SoundCue src={sounds.quiz} delay={13.5} />
 
         </Cue>
 
@@ -415,7 +413,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.6, 0.74]} exitFriendlies={4} />
+            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.35, 0.2]} exitFriendlies={4} />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -503,13 +501,13 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} endGen={13} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.7, 0.6, 0.6, 0.7]} exitFriendlies={8} />
+            <Visualization startGen={3} endGen={13} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.5, 0.6, 0.3, 0.4]} exitFriendlies={8} />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
           <SoundCue src={sounds.train_swoosh_short} />
-          <SoundCue src={sounds.power_increasing} volume={0.3} delay={10.0} />
+          <SoundCue src={sounds.power_increasing} volume={0.4} delay={4} />
 
         </Cue>
 
@@ -555,7 +553,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={13} endGen={33} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.8, 0.7, 0.6, 0.65, 0.7, 0.9, 0.6, 0.7]} exitFriendlies={16} />
+            <Visualization startGen={13} endGen={33} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.65, 0.7, 0.5, 0.35, 0.75, 0.6, 0.6, 0.53]} exitFriendlies={16} />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 

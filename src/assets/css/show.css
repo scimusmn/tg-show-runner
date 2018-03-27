@@ -142,6 +142,7 @@ p.evaluation {
 }
 
 .visualization .systemState {
+  display: none;
   position: fixed;
   bottom: 1%;
   left: 0%;
