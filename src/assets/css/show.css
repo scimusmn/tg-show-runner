@@ -69,14 +69,19 @@ body {
 p.evaluation {
   width: 480px;
   margin-top: 30%;
-  padding: 12%;
-  font-size: 0.64em;
+  padding: 5% 10%;
+  font-size: 0.66em;
   text-align: left;
-  line-height: 1.6em;
+  line-height: 1.9em;
+  letter-spacing: 0.5px;
   color: black;
-  font-weight: bold;
+  font-weight: 500;
   font-family: "Arial Narrow";
-  background-color: #a1b5ac;
+  background-color: #fff;
+}
+
+p.evaluation .highlight {
+  color: #d21349 !important;
 }
 
 .fullscreen-cue {
