@@ -84,6 +84,21 @@ p.evaluation .highlight {
   color: #d21349 !important;
 }
 
+.primary p.evaluation {
+  width: 1920px;
+  margin-top: 7%;
+  padding: 5% 10%;
+  font-size: 2em;
+  text-align: left;
+  line-height: 1.9em;
+  letter-spacing: 0.5px;
+  color: black;
+  font-weight: 500;
+  font-family: "Arial Narrow";
+  background-color: #fff;
+}
+
+
 .fullscreen-cue {
 
   position: fixed !important;

@@ -204,6 +204,20 @@ export default class Show extends React.Component {
         {/* Evaluation part 1 */}
         <Cue notes='Evaluation part ONE'>
 
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+
+            <p className='evaluation'>
+              Variation’s the name of this <span className='highlight'>game</span><br/>
+              Everything has it, wild or <span className='highlight'>tame</span><br/>
+              In any group<br/>
+              School, flock, or troupe<br/>
+              Individuals are not all the <span className='highlight'>____.</span>
+            </p>
+
+          </Screen>
+
           <Screen output='secondary'>
 
             <img src={images.badges_none} className='fs-image'/>
@@ -219,12 +233,27 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_060} />
-          <SoundCue src={sounds.quiz} delay={17} />
+          <SoundCue src={sounds.quiz} delay={15.25} />
 
         </Cue>
 
         {/* Correct Answer 1. */}
         <Cue notes='Correct answer. Part 1 (V).'>
+
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_v} className='fs-image'/>
+
+            <p className='evaluation'>
+              Variation’s the name of this <span className='highlight'>game</span><br/>
+              Everything has it, wild or <span className='highlight'>tame</span><br/>
+              In any group<br/>
+              School, flock, or troupe<br/>
+              Individuals are not all the <span className='highlight'>same.</span>
+            </p>
+
+          </Screen>
 
           <Screen output='secondary'>
 
@@ -267,6 +296,21 @@ export default class Show extends React.Component {
         {/* Evaluation part 2 */}
         <Cue notes='Evaluation part 2'>
 
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_v} className='fs-image'/>
+
+            <p className='evaluation'>
+              You can have the best traits ever <span className='highlight'>seen</span><br/>
+              But if you covet them, what does it <span className='highlight'>mean?</span><br/>
+              You can’t evolve on your own<br/>
+              So remember, when you’re grown,<br/>
+              You simply must pass on your <span className='highlight'>_____.</span>
+            </p>
+
+          </Screen>
+
           <Screen output='secondary'>
 
             <img src={images.badges_none} className='fs-image'/>
@@ -283,12 +327,27 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_073} />
-          <SoundCue src={sounds.quiz} delay={13.5} />
+          <SoundCue src={sounds.quiz} delay={14} />
 
         </Cue>
 
         {/* Correct answer 2. (I) */}
         <Cue notes='Correct answer 2 (I)'>
+
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_i} className='fs-image'/>
+
+            <p className='evaluation'>
+              You can have the best traits ever <span className='highlight'>seen</span><br/>
+              But if you covet them, what does it <span className='highlight'>mean?</span><br/>
+              You can’t evolve on your own<br/>
+              So remember, when you’re grown,<br/>
+              You simply must pass on your <span className='highlight'>genes.</span>
+            </p>
+
+          </Screen>
 
           <Screen output='secondary'>
 
@@ -329,6 +388,21 @@ export default class Show extends React.Component {
         {/* Evaluation part 3 */}
         <Cue notes='Evaluation part 3.'>
 
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_i} className='fs-image'/>
+
+            <p className='evaluation'>
+              Take a moment’s <span className='highlight'>reflection</span><br/>
+              On the effects of <span className='highlight'>selection:</span><br/>
+              Good traits pass on<br/>
+              And bad ones get gone<br/>
+              To improve survival, not achieve <span className='highlight'>__________.</span>
+            </p>
+
+          </Screen>
+
           <Screen output='secondary'>
 
             <img src={images.badges_none} className='fs-image'/>
@@ -345,12 +419,27 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_083} />
-          <SoundCue src={sounds.quiz} delay={10.5} />
+          <SoundCue src={sounds.quiz} delay={13} />
 
         </Cue>
 
         {/* Correct answer 3. */}
         <Cue notes='Correct answer. Part 3 (S).'>
+
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_s} className='fs-image'/>
+
+            <p className='evaluation'>
+              Take a moment’s <span className='highlight'>reflection</span><br/>
+              On the effects of <span className='highlight'>selection:</span><br/>
+              Good traits pass on<br/>
+              And bad ones get gone<br/>
+              To improve survival, not achieve <span className='highlight'>perfection.</span>
+            </p>
+
+          </Screen>
 
           <Screen output='secondary'>
 
@@ -638,6 +727,21 @@ export default class Show extends React.Component {
         {/* Evaluation part 4 */}
         <Cue notes='Evaluation part 4'>
 
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_s} className='fs-image'/>
+
+            <p className='evaluation'>
+              Whenever a new feature <span className='highlight'>appears,</span><br/>
+              Like long hair, sharp teeth, or big <span className='highlight'>ears,</span><br/>
+              Not all will have the trait<br/>
+              First, genes must accumulate<br/>
+              And that can take thousands of <span className='highlight'>_____.</span>
+            </p>
+
+          </Screen>
+
           <Screen output='secondary'>
 
             <img src={images.badges_none} className='fs-image'/>
@@ -654,12 +758,27 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_115} />
-          <SoundCue src={sounds.quiz} delay={14} />
+          <SoundCue src={sounds.quiz} delay={15} />
 
         </Cue>
 
         {/* Correct answer. Part 4 (T) */}
         <Cue notes='Correct answer. Part FOUR (T)'>
+
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_t} className='fs-image'/>
+
+            <p className='evaluation'>
+              Whenever a new feature <span className='highlight'>appears,</span><br/>
+              Like long hair, sharp teeth, or big <span className='highlight'>ears,</span><br/>
+              Not all will have the trait<br/>
+              First, genes must accumulate<br/>
+              And that can take thousands of <span className='highlight'>years.</span>
+            </p>
+
+          </Screen>
 
           <Screen output='secondary'>
 
@@ -700,6 +819,21 @@ export default class Show extends React.Component {
         {/* Evaluation part 5 */}
         <Cue notes='Evaluation part 5'>
 
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_t} className='fs-image'/>
+
+            <p className='evaluation'>
+              There’s no perfection, no goal, and no <span className='highlight'>win</span><br/>
+              You just pass your traits on to your <span className='highlight'>kin</span><br/>
+              The useful genes in you<br/>
+              Help your species continue<br/>
+              Adapting to the environment it’s <span className='highlight'>__.</span>
+            </p>
+
+          </Screen>
+
           <Screen output='secondary'>
 
             <img src={images.badges_none} className='fs-image'/>
@@ -716,12 +850,27 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_127} />
-          <SoundCue src={sounds.quiz} delay={13} />
+          <SoundCue src={sounds.quiz} delay={14.5} />
 
         </Cue>
 
         {/* Correct answer. Part 5 (A) */}
         <Cue notes='Correct answer. Part 5 (A)'>
+
+          <Screen output='primary'>
+
+            <img src={images.badges_none} className='fs-image'/>
+            <img src={images.badges_a} className='fs-image'/>
+
+            <p className='evaluation'>
+              There’s no perfection, no goal, and no <span className='highlight'>win</span><br/>
+              You just pass your traits on to your <span className='highlight'>kin</span><br/>
+              The useful genes in you<br/>
+              Help your species continue<br/>
+              Adapting to the environment it’s <span className='highlight'>in.</span>
+            </p>
+
+          </Screen>
 
           <Screen output='secondary'>
 
