@@ -709,17 +709,17 @@ export default class Visualization extends Component {
       TweenMax.set(this.refs.genSpeedBar, {scaleY:speedValue, transformOrigin:'right bottom'});
 
       // Temp
-      if (speedValue > 0.6) speedValue = 0.6;
+      if (speedValue > 0.7) speedValue = 0.7;
       if (this.pairingTL) TweenMax.set(this.pairingTL, {timeScale:speedValue});
 
     } else {
 
-      const tweenTime = 8.0;
+      const tweenTime = 7.0;
 
       TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
 
       // Temp
-      if (speedValue > 0.6) speedValue = 0.6;
+      if (speedValue > 0.7) speedValue = 0.7;
       if (this.pairingTL) TweenMax.to(this.pairingTL, tweenTime, {timeScale:speedValue});
 
     }
