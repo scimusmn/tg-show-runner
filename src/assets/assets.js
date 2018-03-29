@@ -119,6 +119,7 @@ const sounds = {
 const videos = {
 
   explanation: require('./videos/explanation.mp4'),
+  sequence1: require('./videos/sequence1.mp4'),
   sequence2: require('./videos/sequence2.mp4'),
   sequence3: require('./videos/sequence3.mp4'),
   sequence4: require('./videos/sequence4.mp4'),
