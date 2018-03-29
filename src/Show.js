@@ -168,7 +168,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex shows sequence 1'>
 
           <Screen output='primary'>
-            <img src={images.sequence1}/>
+            <img src={images.sequence1} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -251,7 +251,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers sequence 2'>
 
           <Screen output='primary'>
-            <img src={images.sequence2}/>
+            <img src={images.sequence2} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -314,7 +314,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 3'>
 
           <Screen output='primary'>
-            <img src={images.sequence3}/>
+            <img src={images.sequence3} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -482,7 +482,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 4'>
 
           <Screen output='primary'>
-            <img src={images.sequence4}/>
+            <img src={images.sequence4} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -685,7 +685,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 5'>
 
           <Screen output='primary'>
-            <img src={images.sequence5}/>
+            <img src={images.sequence5} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
