@@ -1,8 +1,6 @@
 const images = {
 
-  moths: require('./images/moths.gif'),
   alex1: require('./images/alex1.png'),
-  alex2: require('./images/alex2.png'),
   tribble: require('./images/tribble.png'),
   sequence1: require('./images/sequence1.png'),
   sequence2: require('./images/sequence2.png'),
@@ -11,6 +9,9 @@ const images = {
   sequence5: require('./images/sequence5.png'),
   evolution: require('./images/evolution.png'),
   whatthefoxsay: require('./images/whatthefoxsay.gif'),
+
+  heart: require('./images/heart.png'),
+  heart_small: require('./images/heart_small.png'),
 
   vis_sil_1_white: require('./images/vis_sil_1_white.png'),
   vis_sil_2_white: require('./images/vis_sil_2_white.png'),
@@ -58,7 +59,9 @@ const images = {
 
 const sounds = {
 
-  boink: require('./sounds/boink.mp3'),
+  kiss1: require('./sounds/kiss1.mp3'),
+  kiss2: require('./sounds/kiss2.mp3'),
+  kiss3: require('./sounds/kiss3.mp3'),
   VO_001: require('./sounds/VO_001.mp3'),
   VO_003: require('./sounds/VO_003.mp3'),
   VO_034: require('./sounds/VO_034.mp3'),
@@ -129,16 +132,16 @@ const videos = {
 
 const getVistaSet = () => {
 
-  const random = Math.floor(Math.random() * 8) + 1;
+/*  const random = Math.floor(Math.random() * 8) + 1;
 
-/*  return {
+  return {
 
     friendly: images['vis_sil_'+random+'_white'],
     unfriendly: images['vis_sil_'+random+'_red'],
     other: images['vis_sil_'+random+'_mint'],
 
-  };*/
-
+  };
+*/
   return {
 
 

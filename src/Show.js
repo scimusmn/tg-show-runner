@@ -84,6 +84,15 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Stop intro music */}
+        <Cue notes='Stop music'>
+
+          <Screen output='primary'>
+            <img src={images.alex1}/>
+          </Screen>
+
+        </Cue>
+
         {/* Highlight Easel */}
         <Cue notes='Highlight Easel'>
 
@@ -622,7 +631,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
-          <SoundCue src={sounds.power_increasing} volume={0.4} delay={3} />
+          <SoundCue src={sounds.power_increasing} volume={0.4} delay={1.0} />
 
         </Cue>
 

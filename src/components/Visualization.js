@@ -25,9 +25,27 @@ export default class Visualization extends Component {
       volume: 0.2,
     });
 
+    this.kissSound1 = new Howl({
+      src: [sounds.kiss1],
+      volume: 0.4,
+    });
+
+    this.kissSound2 = new Howl({
+      src: [sounds.kiss2],
+      volume: 0.4,
+    });
+
+    this.kissSound3 = new Howl({
+      src: [sounds.kiss3],
+      volume: 0.4,
+    });
+
     this.renderVistas = [];
     this.currentGeneration = [];
     this.nextGeneration = [];
+
+    this.renderHearts = [];
+    this.maxHeartRenders = 333;
 
     this.entranceTL;
     this.exitTL;
@@ -69,11 +87,14 @@ export default class Visualization extends Component {
 
     // No need to continue if no seed vistas...
     if (this.props.seedVistas.length == 0) {
-      return;
-    }
 
-    // Prep assets for animations
-    this.createAnimations();
+      this.createAnimations(2);
+
+    } else {
+
+      this.createAnimations(this.maxRenderedVistas);
+
+    }
 
   }
 
@@ -87,6 +108,9 @@ export default class Visualization extends Component {
     this.updateGenerationCount(this.props.startGen, false);
     this.updateGenerationSpeed(this.props.startSpeed, true);
 
+    // Create example vistas.
+    this.createVistaColorKey();
+
     // No need to continue if no seed vistas...
     if (this.props.seedVistas.length == 0) {
       return;
@@ -96,6 +120,9 @@ export default class Visualization extends Component {
     // all render vistas
     console.log('assignVistaTargets', this.renderVistas.length);
     this.assignVistaTargets();
+
+
+    this.assignHeartTargets();
 
     // Start
     this.vistasEnter();
@@ -126,21 +153,22 @@ export default class Visualization extends Component {
 
   }
 
-  createAnimations() {
+  createAnimations(vistasToRender) {
 
     // How many visual Vistas will we need
     // for this simulation?
-    const numGens = this.props.endGen - this.props.startGen;
-    const vistasToSpawn = generationSimulator.totalVistaCount(numGens, this.props.seedVistas.length);
+    // const numGens = this.props.endGen - this.props.startGen;
+    // const vistasToSpawn = generationSimulator.totalVistaCount(numGens, this.props.seedVistas.length);
 
-    console.log('vistasToSpawn', vistasToSpawn);
+    // console.log('vistasToSpawn', vistasToSpawn);
 
     // Create vista placeholders for each generation...
-    for (let i = 0; i < this.maxRenderedVistas; i++) {
+    for (let i = 0; i < vistasToRender; i++) {
 
       this.createRenderVista();
 
     }
+
   }
 
   vistasEnter() {
@@ -166,6 +194,14 @@ export default class Visualization extends Component {
     // Start entrance drama
     this.setState({systemState:'Vistas entering'});
     this.entranceTL.play();
+
+  }
+
+  createVistaColorKey() {
+
+    // Make one completely friendly vista
+    // and one completely unfriendly vista
+    console.log('createVistaColorKey');
 
   }
 
@@ -275,7 +311,7 @@ export default class Visualization extends Component {
       if (this.props.startSpeed != this.props.endSpeed) {
         this.updateGenerationSpeed(this.props.endSpeed, false);
       }
-    }, 1500);
+    }, 1000);
 
     const numGens = this.props.endGen - this.props.startGen;
     const stagger = 0.001;
@@ -330,9 +366,12 @@ export default class Visualization extends Component {
         const midX = (gridPos1.x + gridPos2.x) * 0.5;
         const midY = (gridPos1.y + gridPos2.y) * 0.5;
 
+        const mid1 = this.utilMidpoint(gridPos1.x, gridPos1.y, gridPos2.x, gridPos2.y, 0.3);
+        const mid2 = this.utilMidpoint(gridPos1.x, gridPos1.y, gridPos2.x, gridPos2.y, 0.7);
+
         // Tween the mating dance
-        const tween1 = new TweenMax(vista1, 0.13, {x:midX, y:midY, ease: Bounce.easeOut});
-        let tween2 = new TweenMax(vista2, 0.13, {x:midX, y:midY, ease: Bounce.easeOut});
+        const tween1 = new TweenMax(vista1, 0.13, {x:mid1[0], y:mid1[1], ease: Bounce.easeOut});
+        let tween2 = new TweenMax(vista2, 0.13, {x:mid2[0], y:mid2[1], ease: Bounce.easeOut});
 
         // Attach oncomplete to first pair up.
         if (i == 0) {
@@ -342,6 +381,11 @@ export default class Visualization extends Component {
         // Add pair animation to timeline
         this.pairingTL.add(tween1, curTime);
         this.pairingTL.add(tween2, curTime);
+
+        // Add heart animation
+        const heartTween = this.activateHeart(midX, midY);
+        this.pairingTL.add(heartTween, curTime+0.13);
+
 
         // Create death tweens for each pair
         const death1 = new TweenMax(vista1, 0.09, {delay:0.2, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v1]});
@@ -514,8 +558,19 @@ export default class Visualization extends Component {
 
   onNewGenerationComplete() {
 
+    const r = Math.random();
+    if (r <= 0.33) {
+      this.kissSound1.play();
+    } else if (r <= 0.66) {
+      this.kissSound2.play();
+    } else {
+      this.kissSound3.play();
+    }
+
     // Update generation counter.
-    this.updateGenerationCount(1);
+    setTimeout(() => {
+      this.updateGenerationCount(1);
+    }, 500);
 
   }
 
@@ -605,6 +660,28 @@ export default class Visualization extends Component {
 
   }
 
+  assignHeartTargets() {
+
+    // Find first availaible inactive vista...
+    this.renderHearts = [];
+
+    for (let i = 0; i < this.maxHeartRenders; i++) {
+
+      const keyId = 'heart-' + i;
+
+      const $target = $('.visualization .vistaContainer .' + keyId);
+
+      const heart = {id:keyId, target:$target, active:false};
+
+      this.renderHearts.push(heart);
+
+      // Hide offscreen
+      TweenMax.set(this.renderHearts[i].target, {scale:0.0, autoAlpha:0.0, x:88});
+
+    }
+
+  }
+
   activateVista(friendliness, generation) {
 
     // Find first availaible inactive vista...
@@ -650,9 +727,37 @@ export default class Visualization extends Component {
 
   }
 
-  onDeathComplete(vista) {
-    // console.log('deathComplete', vista);
+  activateHeart(x, y) {
 
+    // Find first availaible inactive vista...
+    let heartToActivate;
+    for (let i = 0; i < this.renderHearts.length; i++) {
+      if (this.renderHearts[i].active == false) {
+        heartToActivate = this.renderHearts[i];
+        break;
+      }
+    }
+
+    heartToActivate.active = true;
+
+    console.log('active heart', heartToActivate.id);
+
+    const setTween = new TweenMax(heartToActivate.target, 0.0, {scale:0.2, autoAlpha:0.0, x:x+50, y:y+40, transformOrigin:'center center'});
+    const inTween = new TweenMax(heartToActivate.target, 0.05, {scale:0.5, autoAlpha:1.0, y:'-=40', ease: Power2.easeOut});
+    const outTween = new TweenMax(heartToActivate.target, 0.01, {delay:0.07, autoAlpha:0.0, ease: Power2.easeIn, onComplete:this.onHeartAnimComplete, onCompleteParams:[heartToActivate]});
+
+    return [setTween, inTween, outTween];
+  }
+
+  onHeartAnimComplete(heart) {
+
+    heart.active = false;
+
+  }
+
+  onDeathComplete(vista) {
+
+    // console.log('deathComplete', vista);
     // TODO: prep this vis for recycle
 
   }
@@ -672,22 +777,34 @@ export default class Visualization extends Component {
   renderSpawnedVistas() {
 
     let rVistas = [];
-    let rVista;
 
     // TODO: we could assume once one non-active
     // vista is hit, break from loop...
     for (var i = 0; i < this.renderVistas.length; i++) {
 
-      rVista = this.renderVistas[i];
-
-      // if (rVista.active == true) {
-      rVistas.push(rVista.renderElement);
-
-      // }
+      rVistas.push(this.renderVistas[i].renderElement);
 
     }
 
     return <div>{rVistas}</div>;
+
+  }
+
+  renderHeartsLayer() {
+
+    let hearts = [];
+
+    for (var i = 0; i < this.maxHeartRenders; i++) {
+
+      const keyId = 'heart-' + i;
+
+      const heartJSX = <img key={keyId} className={keyId} src={images.heart_small}></img>;
+
+      hearts.push(heartJSX);
+
+    }
+
+    return <div>{hearts}</div>;
 
   }
 
@@ -802,6 +919,7 @@ export default class Visualization extends Component {
         <div className='vistaContainer' ref='vistaContainer'>
 
           {this.renderSpawnedVistas()}
+          {this.renderHeartsLayer()}
 
         </div>
 
