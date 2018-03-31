@@ -123,7 +123,7 @@ export default class Visualization extends Component {
     // Turn on vistas glowing lights
     if (this.props.trainMode) {
 
-      TweenMax.set(this.trainLights, {autoAlpha: 0.75});
+      TweenMax.set(this.trainLights, {autoAlpha: 1.0});
       TweenMax.to(this.trainLights, 0.14, {autoAlpha: 0.0, ease: Power3.easeInOut, repeat:-1, yoyo:true});
 
     } else {
@@ -891,7 +891,7 @@ export default class Visualization extends Component {
 
     } else {
 
-      const tweenTime = 7.0;
+      const tweenTime = 5.0;
 
       TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
 
