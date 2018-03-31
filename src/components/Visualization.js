@@ -123,7 +123,7 @@ export default class Visualization extends Component {
     // Turn on vistas glowing lights
     if (this.props.trainMode) {
 
-      TweenMax.set(this.trainLights, {autoAlpha: 1.0});
+      TweenMax.set(this.trainLights, {autoAlpha: 0.9});
       TweenMax.to(this.trainLights, 0.14, {autoAlpha: 0.0, ease: Power3.easeInOut, repeat:-1, yoyo:true});
 
     } else {
@@ -221,8 +221,8 @@ export default class Visualization extends Component {
     const vistaFriendly = this.activateVista(1.0, -1);
     const vistaUnfriendly = this.activateVista(0.0, -1);
 
-    TweenMax.set(vistaFriendly.target, {x:-28, y:-38, scale:0.16, autoAlpha:1.0});
-    TweenMax.set(vistaUnfriendly.target, {x:-28, y:-9, scale:0.16, autoAlpha:1.0});
+    TweenMax.set(vistaFriendly.target, {x:5, y:-39, scale:0.16, autoAlpha:1.0});
+    TweenMax.set(vistaUnfriendly.target, {x:5, y:-8, scale:0.16, autoAlpha:1.0});
 
   }
 
