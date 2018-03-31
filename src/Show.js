@@ -136,7 +136,7 @@ export default class Show extends React.Component {
         {/* Family Tree */}
         <Cue notes='Tribble/Pygmy family tree.'>
 
-          <Screen output='primary' lifepan={15.0}>
+          <Screen output='primary' lifepan={10.0}>
             <img src={images.tribble} width='1920px'/>
           </Screen>
 
@@ -160,7 +160,7 @@ export default class Show extends React.Component {
         {/* Theory of Evolution */}
         <Cue notes='Theory of Evolution'>
 
-          <Screen output='primary' lifespan={15.0}>
+          <Screen output='primary' lifespan={10.0}>
             <img src={images.evolution} width='1920px'/>
           </Screen>
 
@@ -177,7 +177,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex shows sequence 1'>
 
           <Screen output='primary'>
-            <img src={images.sequence1} width='1920px'/>
+            <VideoCue src={videos.sequence1} />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -227,20 +227,6 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-
-            <p className='evaluation'>
-              Variation’s the name of this <span className='highlight'>game</span><br/>
-              Everything has it, wild or <span className='highlight'>tame</span><br/>
-              In any group<br/>
-              School, flock, or troupe<br/>
-              Individuals are not all the <span className='highlight'>____.</span>
-            </p>
-
-          </Screen>
-
           <SoundCue src={sounds.VO_060} />
           <SoundCue src={sounds.quiz} delay={15.25} />
 
@@ -249,22 +235,7 @@ export default class Show extends React.Component {
         {/* Correct Answer 1. */}
         <Cue notes='Correct answer. Part 1 (V).'>
 
-          <Screen output='primary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_v} className='fs-image'/>
-
-            <p className='evaluation'>
-              Variation’s the name of this <span className='highlight'>game</span><br/>
-              Everything has it, wild or <span className='highlight'>tame</span><br/>
-              In any group<br/>
-              School, flock, or troupe<br/>
-              Individuals are not all the <span className='highlight'>same.</span>
-            </p>
-
-          </Screen>
-
-          <Screen output='secondary'>
+          <Screen output='primary' lifespan={8.0}>
 
             <img src={images.badges_none} className='fs-image'/>
             <img src={images.badges_v} className='fs-image'/>
@@ -289,7 +260,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers sequence 2'>
 
           <Screen output='primary'>
-            <img src={images.sequence2} width='1920px'/>
+            <VideoCue src={videos.sequence2} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -320,21 +291,6 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_v} className='fs-image'/>
-
-            <p className='evaluation'>
-              You can have the best traits ever <span className='highlight'>seen</span><br/>
-              But if you covet them, what does it <span className='highlight'>mean?</span><br/>
-              You can’t evolve on your own<br/>
-              So remember, when you’re grown,<br/>
-              You simply must pass on your <span className='highlight'>_____.</span>
-            </p>
-
-          </Screen>
-
           <SoundCue src={sounds.VO_073} />
           <SoundCue src={sounds.quiz} delay={14} />
 
@@ -343,22 +299,7 @@ export default class Show extends React.Component {
         {/* Correct answer 2. (I) */}
         <Cue notes='Correct answer 2 (I)'>
 
-          <Screen output='primary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_i} className='fs-image'/>
-
-            <p className='evaluation'>
-              You can have the best traits ever <span className='highlight'>seen</span><br/>
-              But if you covet them, what does it <span className='highlight'>mean?</span><br/>
-              You can’t evolve on your own<br/>
-              So remember, when you’re grown,<br/>
-              You simply must pass on your <span className='highlight'>genes.</span>
-            </p>
-
-          </Screen>
-
-          <Screen output='secondary'>
+          <Screen output='primary' lifespan={8.0}>
 
             <img src={images.badges_none} className='fs-image'/>
             <img src={images.badges_i} className='fs-image'/>
@@ -382,7 +323,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 3'>
 
           <Screen output='primary'>
-            <img src={images.sequence3} width='1920px'/>
+            <VideoCue src={videos.sequence3} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -412,45 +353,15 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_i} className='fs-image'/>
-
-            <p className='evaluation'>
-              Take a moment’s <span className='highlight'>reflection</span><br/>
-              On the effects of <span className='highlight'>selection:</span><br/>
-              Good traits pass on<br/>
-              And bad ones get gone<br/>
-              To improve survival, not achieve <span className='highlight'>__________.</span>
-            </p>
-
-          </Screen>
-
           <SoundCue src={sounds.VO_083} />
           <SoundCue src={sounds.quiz} delay={13} />
 
         </Cue>
 
         {/* Correct answer 3. */}
-        <Cue notes='Correct answer. Part 3 (S).'>
+        <Cue notes='Correct answer. Part 3 (S).' lifespan={8.0}>
 
-          <Screen output='primary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_s} className='fs-image'/>
-
-            <p className='evaluation'>
-              Take a moment’s <span className='highlight'>reflection</span><br/>
-              On the effects of <span className='highlight'>selection:</span><br/>
-              Good traits pass on<br/>
-              And bad ones get gone<br/>
-              To improve survival, not achieve <span className='highlight'>perfection.</span>
-            </p>
-
-          </Screen>
-
-          <Screen output='secondary'>
+          <Screen output='primary' lifespan={8.0}>
 
             <img src={images.badges_none} className='fs-image'/>
             <img src={images.badges_s} className='fs-image'/>
@@ -467,6 +378,11 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.VO_084} delay={1.0} />
           <SoundCue src={sounds.correct_answer_3} />
+
+        </Cue>
+
+        {/* Empty */}
+        <Cue notes='Empty'>
 
         </Cue>
 
@@ -495,9 +411,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={0} startSpeed={0.1} seedVistas={[]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={0} startSpeed={0.1} />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -510,9 +424,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={0} startSpeed={0.1} seedVistas={[]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={0} startSpeed={0.1} trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -524,9 +436,9 @@ export default class Show extends React.Component {
         <Cue notes='Visualization begins.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
+
             <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.35, 0.2]} exitFriendlies={4} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -538,7 +450,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
+            <Visualization startGen={3} startSpeed={0.1}  />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -549,6 +461,10 @@ export default class Show extends React.Component {
 
         {/* Vistas exit screen. Cage refill. */}
         <Cue notes='Vistas exit screen via train.'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={0} startSpeed={0.1} trainMode={true}/>
+          </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
 
@@ -580,7 +496,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 4'>
 
           <Screen output='primary'>
-            <img src={images.sequence4} width='1920px'/>
+            <VideoCue src={videos.sequence4} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -597,7 +513,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
+            <Visualization startGen={3} startSpeed={0.1}  />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -611,9 +527,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} startSpeed={0.1} seedVistas={[]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={3} startSpeed={0.1} trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -637,6 +551,10 @@ export default class Show extends React.Component {
 
         {/* Vistas exit screen. Cage refill. */}
         <Cue notes='Vistas exit screen via train.'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={13} startSpeed={1.0} trainMode={true}/>
+          </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
 
@@ -662,7 +580,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={13} startSpeed={1.0} seedVistas={[]} />
+            <Visualization startGen={13} startSpeed={1.0}  />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -676,9 +594,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={13} startSpeed={1.0} seedVistas={[]} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={13} startSpeed={1.0} trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -704,7 +620,7 @@ export default class Show extends React.Component {
 
           <Screen output='secondary'>
             <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={33} startSpeed={1.0} seedVistas={[]} />
+            <Visualization startGen={33} startSpeed={1.0}  />
             <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
@@ -714,6 +630,10 @@ export default class Show extends React.Component {
 
         {/* Vistas exit screen. Cage refill. */}
         <Cue notes='Vistas exit screen via train.'>
+
+          <Screen output='secondary'>
+            <Visualization startGen={33} startSpeed={1.0} trainMode={true}/>
+          </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
 
@@ -751,21 +671,6 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_s} className='fs-image'/>
-
-            <p className='evaluation'>
-              Whenever a new feature <span className='highlight'>appears,</span><br/>
-              Like long hair, sharp teeth, or big <span className='highlight'>ears,</span><br/>
-              Not all will have the trait<br/>
-              First, genes must accumulate<br/>
-              And that can take thousands of <span className='highlight'>_____.</span>
-            </p>
-
-          </Screen>
-
           <SoundCue src={sounds.VO_115} />
           <SoundCue src={sounds.quiz} delay={15} />
 
@@ -774,22 +679,7 @@ export default class Show extends React.Component {
         {/* Correct answer. Part 4 (T) */}
         <Cue notes='Correct answer. Part FOUR (T)'>
 
-          <Screen output='primary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_t} className='fs-image'/>
-
-            <p className='evaluation'>
-              Whenever a new feature <span className='highlight'>appears,</span><br/>
-              Like long hair, sharp teeth, or big <span className='highlight'>ears,</span><br/>
-              Not all will have the trait<br/>
-              First, genes must accumulate<br/>
-              And that can take thousands of <span className='highlight'>years.</span>
-            </p>
-
-          </Screen>
-
-          <Screen output='secondary'>
+          <Screen output='primary' lifespan={8.0}>
 
             <img src={images.badges_none} className='fs-image'/>
             <img src={images.badges_t} className='fs-image'/>
@@ -813,7 +703,7 @@ export default class Show extends React.Component {
         <Cue notes='Alex triggers Sequence 5'>
 
           <Screen output='primary'>
-            <img src={images.sequence5} width='1920px'/>
+            <VideoCue src={videos.sequence5} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -843,21 +733,6 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_t} className='fs-image'/>
-
-            <p className='evaluation'>
-              There’s no perfection, no goal, and no <span className='highlight'>win</span><br/>
-              You just pass your traits on to your <span className='highlight'>kin</span><br/>
-              The useful genes in you<br/>
-              Help your species continue<br/>
-              Adapting to the environment it’s <span className='highlight'>__.</span>
-            </p>
-
-          </Screen>
-
           <SoundCue src={sounds.VO_127} />
           <SoundCue src={sounds.quiz} delay={14.5} />
 
@@ -866,22 +741,7 @@ export default class Show extends React.Component {
         {/* Correct answer. Part 5 (A) */}
         <Cue notes='Correct answer. Part 5 (A)'>
 
-          <Screen output='primary'>
-
-            <img src={images.badges_none} className='fs-image'/>
-            <img src={images.badges_a} className='fs-image'/>
-
-            <p className='evaluation'>
-              There’s no perfection, no goal, and no <span className='highlight'>win</span><br/>
-              You just pass your traits on to your <span className='highlight'>kin</span><br/>
-              The useful genes in you<br/>
-              Help your species continue<br/>
-              Adapting to the environment it’s <span className='highlight'>in.</span>
-            </p>
-
-          </Screen>
-
-          <Screen output='secondary'>
+          <Screen output='primary' lifespan={8.0}>
 
             <img src={images.badges_none} className='fs-image'/>
             <img src={images.badges_a} className='fs-image'/>

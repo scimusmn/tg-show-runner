@@ -43,10 +43,13 @@ const images = {
   vis_sil_o_white: require('./images/vis_sil_o_white.png'),
   vis_sil_o_red: require('./images/vis_sil_o_red.png'),
   vis_sil_o_mint: require('./images/vis_sil_o_mint.png'),
+  vis_sil_o_redb: require('./images/vis_sil_o_redb.png'),
+  vis_sil_o_blue: require('./images/vis_sil_o_blue.png'),
 
   vis_gen_speed: require('./images/vis_gen_speed.png'),
   vis_fg_1: require('./images/vis_fg_1.png'),
   vis_bg_1: require('./images/vis_bg_1.png'),
+  vis_train_lights: require('./images/vis_train_lights.png'),
 
   badges_none: require('./images/badges_none.png'),
   badges_v: require('./images/badges_v.png'),
@@ -132,21 +135,21 @@ const videos = {
 
 const getVistaSet = () => {
 
-/*  const random = Math.floor(Math.random() * 8) + 1;
+  const random = Math.floor(Math.random() * 8) + 1;
 
-  return {
+/*  return {
 
     friendly: images['vis_sil_'+random+'_white'],
     unfriendly: images['vis_sil_'+random+'_red'],
     other: images['vis_sil_'+random+'_mint'],
 
-  };
-*/
+  };*/
+
   return {
 
 
-    friendly: images['vis_sil_o_white'],
-    unfriendly: images['vis_sil_o_red'],
+    friendly: images['vis_sil_o_blue'],
+    unfriendly: images['vis_sil_o_redb'],
     other: images['vis_sil_o_mint'],
 
   }

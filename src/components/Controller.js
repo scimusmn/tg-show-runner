@@ -281,7 +281,7 @@ export default class Controller extends Component {
       <PresenterContent>
         <HeaderContainer>
           <SlideInfo>
-            Slide {this.props.slideIndex + 1} of{' '}
+            Cue {this.props.slideIndex + 1} of{' '}
             {this.props.slideReference.length}
           </SlideInfo>
           <Time timer={this.props.timer} />

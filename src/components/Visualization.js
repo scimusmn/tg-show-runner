@@ -108,17 +108,8 @@ export default class Visualization extends Component {
     this.updateGenerationCount(this.props.startGen, false);
     this.updateGenerationSpeed(this.props.startSpeed, true);
 
-    // Create example vistas.
-    this.createVistaColorKey();
-
-    // No need to continue if no seed vistas...
-    if (this.props.seedVistas.length == 0) {
-      return;
-    }
-
     // Find element targets for
     // all render vistas
-    console.log('assignVistaTargets', this.renderVistas.length);
     this.assignVistaTargets();
 
 
@@ -384,8 +375,6 @@ export default class Visualization extends Component {
 
         // Add heart animation
         const heartTween = this.activateHeart(midX, midY);
-        this.pairingTL.add(heartTween, curTime+0.13);
-
 
         // Create death tweens for each pair
         const death1 = new TweenMax(vista1, 0.09, {delay:0.2, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v1]});
@@ -420,7 +409,6 @@ export default class Visualization extends Component {
 
           // Activate one vista for each...
           let childFriendliness = this.utilMap(j + 1, 0, 33, 0, 1);
-          console.log('childFriendliness', childFriendliness);
 
           childFriendliness += Math.random() * 0.9 - 0.45;
 
@@ -555,6 +543,8 @@ export default class Visualization extends Component {
     return pos;
 
   };
+
+
 
   onNewGenerationComplete() {
 
@@ -742,7 +732,6 @@ export default class Visualization extends Component {
 
     console.log('active heart', heartToActivate.id);
 
-    const setTween = new TweenMax(heartToActivate.target, 0.0, {scale:0.2, autoAlpha:0.0, x:x+50, y:y+40, transformOrigin:'center center'});
     const inTween = new TweenMax(heartToActivate.target, 0.05, {scale:0.5, autoAlpha:1.0, y:'-=40', ease: Power2.easeOut});
     const outTween = new TweenMax(heartToActivate.target, 0.01, {delay:0.07, autoAlpha:0.0, ease: Power2.easeIn, onComplete:this.onHeartAnimComplete, onCompleteParams:[heartToActivate]});
 
