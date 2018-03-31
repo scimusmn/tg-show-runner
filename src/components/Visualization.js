@@ -104,6 +104,7 @@ export default class Visualization extends Component {
     this.genCounter = this.refs.genCounter;
     this.genSpeedBar = this.refs.genSpeedBar;
     this.avgDataNum = this.refs.avgDataNum;
+    this.trainLights = this.refs.trainLights;
 
     this.updateGenerationCount(this.props.startGen, false);
     this.updateGenerationSpeed(this.props.startSpeed, true);
@@ -112,8 +113,29 @@ export default class Visualization extends Component {
     // all render vistas
     this.assignVistaTargets();
 
+    // Create legend vistas.
+    this.createVistaColorKey();
 
+    // Find targets for all
+    // render hearts.
     this.assignHeartTargets();
+
+    // Turn on vistas glowing lights
+    if (this.props.trainMode) {
+
+      TweenMax.set(this.trainLights, {autoAlpha: 0.75});
+      TweenMax.to(this.trainLights, 0.14, {autoAlpha: 0.0, ease: Power3.easeInOut, repeat:-1, yoyo:true});
+
+    } else {
+
+      TweenMax.set(this.trainLights, {autoAlpha: 0.0});
+
+    }
+
+    // No need to continue if no seed vistas...
+    if (this.props.seedVistas.length == 0) {
+      return;
+    }
 
     // Start
     this.vistasEnter();
@@ -192,7 +214,15 @@ export default class Visualization extends Component {
 
     // Make one completely friendly vista
     // and one completely unfriendly vista
+    // Always uses first two renderable vistas.
+
     console.log('createVistaColorKey');
+
+    const vistaFriendly = this.activateVista(1.0, -1);
+    const vistaUnfriendly = this.activateVista(0.0, -1);
+
+    TweenMax.set(vistaFriendly.target, {x:-28, y:-38, scale:0.16, autoAlpha:1.0});
+    TweenMax.set(vistaUnfriendly.target, {x:-28, y:-9, scale:0.16, autoAlpha:1.0});
 
   }
 
@@ -314,6 +344,8 @@ export default class Visualization extends Component {
       // this.currentGeneration = this.utilShuffle(this.currentGeneration);
       // this.currentGeneration = this.mateShuffle(this.currentGeneration);
 
+      // this.refreshMatingMatrix(this.currentGeneration.length);
+
       // Set correct ration of friendly/unfriendly offspring
       const generationFriendlyCount = Math.round(this.getProperFriendlyCount(this.props.startGen + j + 1));
 
@@ -343,6 +375,9 @@ export default class Visualization extends Component {
         if (i >= this.currentGeneration.length - 3) {
           mateIndex = 1;
         }
+
+        // Temp
+        // mateIndex = this.matingMatrix[i];
 
         const v1 = this.currentGeneration[i];
         const v2 = this.currentGeneration[mateIndex];
@@ -375,6 +410,7 @@ export default class Visualization extends Component {
 
         // Add heart animation
         const heartTween = this.activateHeart(midX, midY);
+        this.pairingTL.add(heartTween, curTime + 0.13);
 
         // Create death tweens for each pair
         const death1 = new TweenMax(vista1, 0.09, {delay:0.2, autoAlpha:0.0, onComplete:this.onDeathComplete, onCompleteParams:[v1]});
@@ -544,7 +580,41 @@ export default class Visualization extends Component {
 
   };
 
+  refreshMatingMatrix(withCount) {
 
+    console.log('--- refreshMatingMatrix ----');
+
+    const rows = Math.ceil(withCount / this.gridCols);
+
+    console.log('withCount', withCount);
+    console.log('gridCols', this.gridCols);
+
+    if (this.gridCols % 2 == 0) {
+      // EVEN
+
+      for (var i = 0; i < rows; i++) {
+
+        const rowBuff = i * this.gridCols;
+        let numOnRow = this.gridCols;
+
+        // On Last row
+        if (i == rows - 1) {
+          // Get remainder as last row count
+          numOnRow = withCount % this.gridCols;
+          if (numOnRow == 0) numOnRow = this.gridCols;
+        }
+
+      }
+
+    } else {
+      // ODD
+      console.log(' ----- odd ----');
+    }
+
+    console.log('refreshMatingMatrix');
+    console.log(this.matingMatrix);
+
+  }
 
   onNewGenerationComplete() {
 
@@ -732,6 +802,7 @@ export default class Visualization extends Component {
 
     console.log('active heart', heartToActivate.id);
 
+    const setTween = new TweenMax(heartToActivate.target, 0.0, {scale:0.2, autoAlpha:0.0, x:x + 50, y:y + 40, transformOrigin:'center center'});
     const inTween = new TweenMax(heartToActivate.target, 0.05, {scale:0.5, autoAlpha:1.0, y:'-=40', ease: Power2.easeOut});
     const outTween = new TweenMax(heartToActivate.target, 0.01, {delay:0.07, autoAlpha:0.0, ease: Power2.easeIn, onComplete:this.onHeartAnimComplete, onCompleteParams:[heartToActivate]});
 
@@ -897,6 +968,8 @@ export default class Visualization extends Component {
 
       <div className='visualization'>
 
+        <img src={images.vis_bg_1} className='fs-image'/>
+
         <h1 className='genCounter' ref='genCounter'>000{this.state.generationCount}</h1>
 
         <img className='genSpeedBar' ref='genSpeedBar' src={images.vis_gen_speed} />
@@ -912,6 +985,9 @@ export default class Visualization extends Component {
 
         </div>
 
+        <img src={images.vis_fg_1} className='fs-image'/>
+
+        <img className='trainLights fs-image' ref='trainLights' src={images.vis_train_lights} />
 
       </div>
 
@@ -928,8 +1004,11 @@ Visualization.propTypes = {
   endSpeed: PropTypes.number,
   seedVistas: PropTypes.array,
   exitFriendlies: PropTypes.number,
+  trainMode: PropTypes.bool,
 };
 
 Visualization.defaultProps = {
   exitFriendlies: 5,
+  seedVistas: [],
+  trainMode: false,
 };
