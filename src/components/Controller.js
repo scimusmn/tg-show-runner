@@ -39,7 +39,7 @@ export default class Controller extends Component {
 
     }
 
-    console.log(this.cueTableData);
+    this.getTrProps = this.getTrProps.bind(this);
 
   }
 
@@ -238,29 +238,47 @@ export default class Controller extends Component {
     return jsx;
   }
 
+  getTrProps(state, rowInfo, instance) {
+
+    if (rowInfo) {
+      return {
+        style: {
+          background: rowInfo.index == this.props.slideIndex ? '#f3e523' : '',
+        },
+      }
+    }
+
+    return {};
+
+  }
+
   render() {
 
     const columns = [{
-      Header: 'Order',
+      Header: 'Cue',
       accessor: 'num',
+      maxWidth: 50,
     },
     {
       Header: 'CueServer',
       accessor: 'hasCueServer',
+      maxWidth: 50,
       Cell: row => (
           <span>{row.value == true ? 'X' : '-'}</span>
       ),
     },
     {
-      Header: 'Sound Cue',
+      Header: 'Sound',
       accessor: 'hasSoundCue',
+      maxWidth: 50,
       Cell: row => (
-          <span>{row.value == true ? 'X' : '-'}</span>
+       <span>{row.value == true ? 'X' : '-'}</span>
       ),
     },
     {
       Header: 'Primary Screen',
       accessor: 'primaryScreen',
+      maxWidth: 50,
       Cell: row => (
           <span>{row.value == true ? 'X' : '-'}</span>
       ),
@@ -268,13 +286,15 @@ export default class Controller extends Component {
     {
       Header: 'Secondary Screen',
       accessor: 'secondaryScreen',
+      maxWidth: 50,
       Cell: row => (
           <span>{row.value == true ? 'X' : '-'}</span>
       ),
     },
     {
       Header: 'Notes',
-      accessor: 'notes' // String-based value accessors!
+      accessor: 'notes',
+      minWidth: 350,
     },];
 
     return (
@@ -295,10 +315,11 @@ export default class Controller extends Component {
               showPageJump= {false}
               defaultPageSize={this.props.slides.length}
               className='-highlight -striped'
+              getTrProps={this.getTrProps}
             />
           </PreviewPane>
-          <Notes>Current: {this._renderNotes()}</Notes>
-          <Notes className='nextnotes'>Next: {this._renderNextNotes()}</Notes>
+          <Notes className='currentnotes'>Current: <span>{this._renderNotes()}</span></Notes>
+          <Notes className='nextnotes'>Next: <span>{this._renderNextNotes()}</span> </Notes>
         </ContentContainer>
       </PresenterContent>
     );

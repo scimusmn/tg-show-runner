@@ -219,8 +219,15 @@ p.evaluation .highlight {
   overflow: hidden;
 }
 
+.currentnotes span {
+  color: #f3e523 !important;
+}
+
 .nextnotes {
   padding-top: 300px !important;
+}
+
+.nextnotes span {
   color: #6ab452 !important;
 }
 

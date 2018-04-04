@@ -506,6 +506,36 @@ export default class Visualization extends Component {
 
   }
 
+  // Takes index from a center-out
+  // grid and converts to left-right based.
+  convertIndexFromCenterBased(index) {
+
+    let convertedIndex = -1;
+
+    let pos = {x:0, y:0};
+
+    let col = index % this.childGridCols;
+    let row = (index - col) / this.childGridCols;
+
+    // Instead of counting columns left to right
+    // count from the center out.
+    const isOddCol = col % 2;
+    const startCol = Math.floor(this.childGridCols / 2);
+    let colOffset = Math.ceil(col / 2);
+
+    if (isOddCol == 1) {
+      colOffset *= -1;
+    }
+
+    col = colOffset;
+
+    pos.x = this.visCenter.x + (this.childCellSize * col);
+    pos.y = this.visCenter.y * 1.5 + (this.childCellSize * row);
+
+    return convertedIndex;
+
+  }
+
   getGridPosition(index, fromCenter) {
 
     if (fromCenter == undefined) fromCenter = true;
@@ -818,6 +848,7 @@ export default class Visualization extends Component {
   onDeathComplete(vista) {
 
     // console.log('deathComplete', vista);
+    vista.active = false;
     // TODO: prep this vis for recycle
 
   }
