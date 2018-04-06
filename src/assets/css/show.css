@@ -11,11 +11,18 @@
     font-style:normal;font-weight:400;
 }
 
-@font-face {
+/*@font-face {
     font-family:"Tungsten-Medium";
     src:url(url("../fonts/Tungsten-Medium.woff") format("woff");
     font-style:normal;font-weight:400;
+}*/
+
+@font-face {
+    font-family:"Tungsten-Medium";
+    src:url("../fonts/Tungsten-Medium.woff2") format("woff2"),url("../fonts/Tungsten-Medium.woff") format("woff"),url("../fonts/Tungsten-Medium.otf") format("opentype");
+    font-style:normal;font-weight:400;
 }
+
 
 @font-face {
     font-family:"Tungsten-Semibold";
