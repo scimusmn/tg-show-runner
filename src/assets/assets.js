@@ -157,4 +157,35 @@ const getVistaSet = () => {
 
 };
 
-export { images, sounds, videos, getVistaSet };
+const preloadAllImages = () => {
+
+  console.log('assets.preloadAllImages()');
+
+  let numLoaded = 0;
+  const loadTarget = Object.keys(images).length;
+
+  if (!images || images.length <= 0) {
+
+    console.log('Warning. No images found to preload.');
+
+  } else {
+
+    Object.keys(images).forEach(function (key) {
+
+      // Do something with obj[key]
+      const image = new Image();
+
+      image.onload = function() {
+        numLoaded++;
+        // console.log('Image preloaded', numLoaded, '/', loadTarget);
+      }
+
+      image.src = images[key];
+
+    });
+
+  }
+
+};
+
+export { images, sounds, videos, getVistaSet, preloadAllImages };

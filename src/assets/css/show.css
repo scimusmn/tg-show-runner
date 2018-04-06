@@ -1,6 +1,32 @@
+/*----------  FONTS  ----------*/
+@font-face {
+    font-family:"Tungsten-Black";
+    src:url("../fonts/Tungsten-Black.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"Tungsten-Bold";
+    src:url(url("../fonts/Tungsten-Bold.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"Tungsten-Medium";
+    src:url(url("../fonts/Tungsten-Medium.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"Tungsten-Semibold";
+    src:url(url("../fonts/Tungsten-Semibold.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+/*----------  CUSTOM STYLES  ----------*/
 body {
   background-color: black;
-  font-family: Arial !important;
+  font-family: "Arial" !important;
 }
 
 .debug {
@@ -83,7 +109,7 @@ p.evaluation {
   letter-spacing: 0.5px;
   color: black;
   font-weight: 500;
-  font-family: "Arial Narrow";
+  font-family: "Tungsten-Medium";
   background-color: #fff;
 }
 
@@ -93,15 +119,15 @@ p.evaluation .highlight {
 
 .primary p.evaluation {
   width: 1920px;
-  margin-top: 7%;
+  margin-top: 9%;
   padding: 4% 14% 5.5% 14%;
-  font-size: 2.2em;
+  font-size: 2.6em;
   text-align: left;
-  line-height: 1.9em;
-  letter-spacing: 0.5px;
+  line-height: 1.26em;
+  letter-spacing: 1.1px;
   color: black;
   font-weight: 500;
-  font-family: "Arial Narrow";
+  font-family: "Tungsten-Semibold";
   background-color: #fff;
 }
 

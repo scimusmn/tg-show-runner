@@ -17,6 +17,7 @@ import memoize from 'lodash/memoize';
 
 import Presenter from './presenter';
 import Controller from './Controller';
+import {preloadAllImages} from '../assets/assets';
 import Export from './export';
 import Overview from './overview';
 
@@ -137,6 +138,15 @@ export class Manager extends Component {
 
   componentDidMount() {
     const slideIndex = this._getSlideIndex();
+
+    // TN
+    if (slideIndex == 0) {
+
+      // Preload all images for all cues.
+      preloadAllImages();
+
+    }
+
     this.setState({
       lastSlideIndex: slideIndex,
     });
@@ -144,6 +154,7 @@ export class Manager extends Component {
     if (this.props.autoplay) {
       this._startAutoplay();
     }
+
   }
 
   componentWillReceiveProps(nextProps) {
