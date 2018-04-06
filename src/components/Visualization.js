@@ -6,7 +6,7 @@ import {Howl} from '../vendors/howler/howler';
 import $ from 'jquery';
 import {images, sounds} from '../assets/assets';
 import Vista from './Vista';
-import grid from '../utils/VisGrid';
+import VisGrid from '../utils/VisGrid';
 import generationSimulator from '../utils/GenerationSimulator';
 
 export default class Visualization extends Component {
@@ -20,59 +20,35 @@ export default class Visualization extends Component {
       systemState: 'waiting...',
     };
 
-    this.dingSound = new Howl({
-      src: [sounds.generation_ding],
-      volume: 0.2,
-    });
-
-    this.kissSound1 = new Howl({
-      src: [sounds.kiss1],
-      volume: 0.4,
-    });
-
-    this.kissSound2 = new Howl({
-      src: [sounds.kiss2],
-      volume: 0.4,
-    });
-
-    this.kissSound3 = new Howl({
-      src: [sounds.kiss3],
-      volume: 0.4,
-    });
-
-    this.renderVistas = [];
     this.currentGeneration = [];
     this.nextGeneration = [];
 
-    this.renderHearts = [];
-    this.maxHeartRenders = 333;
+    this.testdudes = [];
+    this.hearts = [];
 
+    // Reusable main gsap timelines
+    this.mainTL;
     this.entranceTL;
     this.exitTL;
     this.pairingTL;
 
-    this.utilTimer = {};
+    this.gridColumns = 7;
+    this.gridRows = 10;
+    this.gridCellSize = 45;
 
-    this.maxRenderedVistas = 666;
-
-    this.gridCols = 7;
-    this.cellWidth = 45;
     this.matingMatrix = {};
 
-    this.testdudes = [];
-
-    this.childGridCols = 10;
-    this.childCellSize = 32;
+    this.utilTimer = {};
 
     // Important sizes
     // this.visWidth = 600;
     // this.visHeight = 800;
-    this.visWidth = 480;
-    this.visHeight = 640;
+    this.visWidth = 1080;
+    this.visHeight = 1550;
 
-    // Default sizes
-    this.vistaAdultScale = 0.26;
-    this.vistaChildScale = 0.14;
+    // Important scales
+    this.vistaAdultScale = 0.86;
+    this.vistaChildScale = 0.36;
 
     // Important locations
     this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
@@ -87,22 +63,18 @@ export default class Visualization extends Component {
     this.onSortAnimComplete = this.onSortAnimComplete.bind(this);
     this.onDeathComplete = this.onDeathComplete.bind(this);
 
-    // No need to continue if no seed vistas...
-    if (this.props.seedVistas.length == 0) {
+    // Load all sounds
+    this.createSounds();
 
-      this.createAnimations(2);
-
-    } else {
-
-      this.createAnimations(this.maxRenderedVistas);
-
-    }
+    // TODO:
+    // Perform initilizations based
+    // current visualization mode.
 
   }
 
   componentDidMount() {
 
-    // Set initial states of all.
+    // Set initial states of visual refs.
     this.genCounter = this.refs.genCounter;
     this.genSpeedBar = this.refs.genSpeedBar;
     this.avgDataNum = this.refs.avgDataNum;
@@ -111,12 +83,8 @@ export default class Visualization extends Component {
     this.updateGenerationCount(this.props.startGen, false);
     this.updateGenerationSpeed(this.props.startSpeed, true);
 
-    // Find element targets for
-    // all render vistas
-    this.assignVistaTargets();
-
-    // Create legend vistas.
-    this.createVistaColorKey();
+    // Create legend
+    this.vistaColorKey();
 
     // Find targets for all
     // render hearts.
@@ -149,40 +117,34 @@ export default class Visualization extends Component {
     // Clear all timeouts, intervals
     clearTimeout(this.utilTimer);
 
-    // Unload all sounds and animations.
-    this.dingSound.stop();
-    if (this.entranceTL) {
-      this.entranceTL.pause();
-      this.entranceTL.kill();
-    }
-
-    if (this.exitTL) {
-      this.exitTL.pause();
-      this.exitTL.kill();
-    }
-
-    if (this.pairingTL) {
-      this.pairingTL.pause();
-      this.pairingTL.kill();
+    if (this.mainTL) {
+      this.mainTL.pause();
+      this.mainTL.kill();
     }
 
   }
 
-  createAnimations(vistasToRender) {
+  createSounds() {
 
-    // How many visual Vistas will we need
-    // for this simulation?
-    // const numGens = this.props.endGen - this.props.startGen;
-    // const vistasToSpawn = generationSimulator.totalVistaCount(numGens, this.props.seedVistas.length);
+    this.dingSound = new Howl({
+      src: [sounds.generation_ding],
+      volume: 0.25,
+    });
 
-    // console.log('vistasToSpawn', vistasToSpawn);
+    this.kissSound1 = new Howl({
+      src: [sounds.kiss1],
+      volume: 0.5,
+    });
 
-    // Create vista placeholders for each generation...
-    for (let i = 0; i < vistasToRender; i++) {
+    this.kissSound2 = new Howl({
+      src: [sounds.kiss2],
+      volume: 0.5,
+    });
 
-      this.createRenderVista();
-
-    }
+    this.kissSound3 = new Howl({
+      src: [sounds.kiss3],
+      volume: 0.5,
+    });
 
   }
 
@@ -212,13 +174,11 @@ export default class Visualization extends Component {
 
   }
 
-  createVistaColorKey() {
+  vistaColorKey() {
 
     // Make one completely friendly vista
     // and one completely unfriendly vista
     // Always uses first two renderable vistas.
-
-    console.log('createVistaColorKey');
 
     const vistaFriendly = this.activateVista(1.0, -1);
     const vistaUnfriendly = this.activateVista(0.0, -1);
@@ -292,7 +252,7 @@ export default class Visualization extends Component {
     // TEMP
     for (var i = 0; i < this.testdudes.length; i++) {
 
-      this.exitTL.add(this.createExit(this.testdudes[i].div , gridPoints), i * 0.25);
+      this.exitTL.add(this.createExit(this.testdudes[i].div, gridPoints), i * 0.25);
 
     }
 
@@ -460,10 +420,6 @@ export default class Visualization extends Component {
           if (childFriendliness > 1) childFriendliness = 1.0;
           if (childFriendliness < 0) childFriendliness = 0.0;
 
-          // if (this.nextGeneration.length < generationFriendlyCount) {
-          //   childFriendliness += 0.5;
-          // }
-
           const childVista = this.activateVista(childFriendliness, j + 1);
           totalVistasSpawned++;
 
@@ -492,24 +448,48 @@ export default class Visualization extends Component {
     const keyId = 'testduder_' + this.testdudes.length;
 
     // Add new flyer div to stage
-    $(this.refs.vistaContainer).append('<div id="' + keyId + '" class="flyer" ><img id="idle" src='+images.testdude+'/></div>');
-    var flyerDiv = $('#' + keyId);
+    $(this.refs.vistaContainer).append('<div id="' + keyId + '" class="vista" ><img id="friendly" class="friendly" src=' + images.testdude + '/></div>');
+    const vistaDiv = $('#' + keyId);
 
-    // Pop in
-    var startX = Math.random() * 400;
-    var startY = 200;
-    TweenLite.set($(flyerDiv), { css: { x:startX, y:startY } });
-    TweenLite.from($(flyerDiv), 1, { css: { scale:0 }, ease:Elastic.easeOut });
+    // Start off screen
+    TweenMax.set($(vistaDiv), { x:-999, autoAlpha:0.0 });
 
     // Add to game loop
     var newDude = {     id:keyId,
-                        div:flyerDiv,
-                        img:$(flyerDiv).children('img'),
+                        target:vistaDiv,
+                        img:$(vistaDiv).children('img'),
                         active:false,
-                        friendliness: 0,
+                        friendliness: -1,
+                        generation: -1,
                     };
 
     this.testdudes.push(newDude);
+
+    return newDude;
+
+  };
+
+  superExperimentalAddHeart() {
+
+    const keyId = 'heart_' + this.hearts.length;
+
+    // Add new flyer div to stage
+    $(this.refs.vistaContainer).append('<div id="' + keyId + '" class="heart" ><img src=' + images.heart + '/></div>');
+    const heartDiv = $('#' + keyId);
+
+    // Start off screen
+    TweenMax.set($(heartDiv), { x:-999, autoAlpha:0.0 });
+
+    // Add to game loop
+    var newHeart = {    id:keyId,
+                        target:heartDiv,
+                        img:$(heartDiv).children('img'),
+                        active:false,
+                    };
+
+    this.hearts.push(newHeart);
+
+    return newHeart;
 
   };
 
@@ -577,15 +557,15 @@ export default class Visualization extends Component {
 
     let pos = {x:0, y:0};
 
-    let col = index % this.gridCols;
-    let row = (index - col) / this.gridCols;
+    let col = index % this.gridColumns;
+    let row = (index - col) / this.gridColumns;
 
     if (fromCenter) {
 
       // Instead of counting columns left to right
       // count from the center out.
       const isOddCol = col % 2;
-      const startCol = Math.floor(this.gridCols / 2);
+      const startCol = Math.floor(this.gridColumns / 2);
       let colOffset = Math.ceil(col / 2);
 
       if (isOddCol == 1) {
@@ -594,13 +574,13 @@ export default class Visualization extends Component {
 
       col = colOffset;
 
-      pos.x = this.visCenter.x + (this.cellWidth * col);
-      pos.y = this.visHeight * 0.15 + (this.cellWidth * row);
+      pos.x = this.visCenter.x + (this.gridCellSize * col);
+      pos.y = this.visHeight * 0.15 + (this.gridCellSize * row);
 
     } else {
 
-      pos.x = this.visCenter.x + (this.cellWidth * col);
-      pos.y = this.visHeight * 0.15 + (this.cellWidth * row);
+      pos.x = this.visCenter.x + (this.gridCellSize * col);
+      pos.y = this.visHeight * 0.15 + (this.gridCellSize * row);
 
     }
 
@@ -645,42 +625,6 @@ export default class Visualization extends Component {
 
   };
 
-  refreshMatingMatrix(withCount) {
-
-    console.log('--- refreshMatingMatrix ----');
-
-    const rows = Math.ceil(withCount / this.gridCols);
-
-    console.log('withCount', withCount);
-    console.log('gridCols', this.gridCols);
-
-    if (this.gridCols % 2 == 0) {
-      // EVEN
-
-      for (var i = 0; i < rows; i++) {
-
-        const rowBuff = i * this.gridCols;
-        let numOnRow = this.gridCols;
-
-        // On Last row
-        if (i == rows - 1) {
-          // Get remainder as last row count
-          numOnRow = withCount % this.gridCols;
-          if (numOnRow == 0) numOnRow = this.gridCols;
-        }
-
-      }
-
-    } else {
-      // ODD
-      console.log(' ----- odd ----');
-    }
-
-    console.log('refreshMatingMatrix');
-    console.log(this.matingMatrix);
-
-  }
-
   onNewGenerationComplete() {
 
     const r = Math.random();
@@ -705,43 +649,10 @@ export default class Visualization extends Component {
 
   }
 
-  utilMidpoint(lat1, long1, lat2, long2, per) {
-    return [lat1 + (lat2 - lat1) * per, long1 + (long2 - long1) * per];
-  }
-
-  utilMap(value, inmin, inmax, outmin, outmax) {
-    return (value - inmin) * (outmax - outmin) / (inmax - inmin) + outmin;
-  }
-
-  utilShuffle(a) {
-
-    for (let i = a.length - 1; i > 0; i--) {
-
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-
-    }
-
-    return a;
-
-  }
-
-  mateShuffle(a) {
-
-    for (let i = a.length - 1; i > 0; i--) {
-
-      const j = Math.floor(Math.random() * (i + 1));
-
-      [a[i], a[j]] = [a[j], a[i]];
-
-    }
-
-    return a;
-  }
-
   getProperFriendlyCount(forGen) {
 
     const exits = this.props.exitFriendlies;
+
     const enters = this.props.seedVistas.length;
 
     const fCount = this.utilMap(forGen, this.props.startGen, this.props.endGen, enters, exits);
@@ -749,45 +660,6 @@ export default class Visualization extends Component {
     console.log('getProperFriendlyCount', fCount);
 
     return fCount;
-
-  }
-
-  createRenderVista() {
-
-    const keyId = 'spawn-' + this.renderVistas.length;
-
-    const rFriendliness = Math.random();
-
-    const renderElement = React.createElement(Vista, {id: keyId, key:keyId, friendliness:rFriendliness}, '');
-
-    let vista = {id:keyId, active: true, renderElement:renderElement, friendliness:rFriendliness, generation:-1};
-
-    this.renderVistas.push(vista);
-
-    return vista;
-
-  }
-
-  assignVistaTargets() {
-
-    // Find first availaible inactive vista...
-    for (let i = 0; i < this.renderVistas.length; i++) {
-
-      const $vista = $('.visualization .vistaContainer #' + this.renderVistas[i].id);
-      this.renderVistas[i].target = $vista;
-
-      // Hide offscreen
-      TweenMax.set(this.renderVistas[i].target, {scale:0.0, autoAlpha:0.0, x:-999});
-
-      this.renderVistas[i].active = false;
-
-      // TEMP
-      if (i<40){
-        this.superExperimentalAddDude();
-      }
-
-
-    }
 
   }
 
@@ -815,63 +687,41 @@ export default class Visualization extends Component {
 
   activateVista(friendliness, generation) {
 
-    // Find first availaible inactive vista...
-    let vistaToActivate;
-    for (let i = 0; i < this.renderVistas.length; i++) {
-      if (this.renderVistas[i].active == false) {
-        vistaToActivate = this.renderVistas[i];
-        break;
-      }
-    }
+    console.log('activateVista', friendliness, generation);
 
-    // Shouldn't need to reset jq target
-    // vistaToActivate.target = $('.visualization .vistaContainer #' + vistaToActivate.id);
+    const newVista = this.superExperimentalAddDude();
 
-    vistaToActivate.active = true;
+    // Set initial properties
+    newVista.active = true;
+    newVista.friendliness = friendliness;
+    newVista.generation = generation;
 
-    vistaToActivate.friendliness = friendliness;
+    // Start hidden
+    TweenMax.set(newVista.target, {scale:0.0, autoAlpha:0.0, transformOrigin:'center center'});
 
-    TweenMax.set(vistaToActivate.target, {scale:0.0, autoAlpha:0.0, transformOrigin:'center center'});
-
-    // Uncomment for binary style.
-    /*    if (friendliness < 0.6) {
-          TweenMax.set(vistaToActivate.target.find('.friendly'), { autoAlpha: 0.0 });
-        } else {
-          TweenMax.set(vistaToActivate.target.find('.unfriendly'), { autoAlpha: 0.0 });
-        }*/
-
-    TweenMax.set(vistaToActivate.target.find('.friendly'), { autoAlpha: friendliness });
+    // Fade friendly top color
+    // TweenMax.set(newVista.target.find('.friendly'), { autoAlpha: friendliness });
 
     // Uncomment for internal friendly movement
     if (friendliness > 0.4 && friendliness < 0.65) {
-      TweenMax.set(vistaToActivate.target.find('img'),  {scale:0.99});
-      TweenMax.to(vistaToActivate.target.find('img'), Math.random() * 0.3 + 0.3, {scale:1.1, rotation:Math.random() * 10, ease: Power2.easeInOut, repeat:-1, yoyo:true});
+      TweenMax.set(newVista.target.find('img'),  {scale:0.99});
+      TweenMax.to(newVista.target.find('img'), Math.random() * 0.3 + 0.3, {scale:1.1, rotation:Math.random() * 10, ease: Power2.easeInOut, repeat:-1, yoyo:true});
     } else if (friendliness >= 0.65) {
-      TweenMax.set(vistaToActivate.target.find('img'),  {scale:0.96});
-      TweenMax.to(vistaToActivate.target.find('img'), Math.random() * 0.2 + 0.2, {scale:1.25, rotation:Math.random() * 25, ease: Power2.easeInOut, repeat:-1, yoyo:true});
+      TweenMax.set(newVista.target.find('img'),  {scale:0.96});
+      TweenMax.to(newVista.target.find('img'), Math.random() * 0.2 + 0.2, {scale:1.25, rotation:Math.random() * 25, ease: Power2.easeInOut, repeat:-1, yoyo:true});
     }
 
-    // vistaToActivate.renderElement.setProps({ friendliness: friendliness });
-    vistaToActivate.generation = generation;
-
-    return vistaToActivate;
+    return newVista;
 
   }
 
   activateHeart(x, y) {
 
-    // Find first availaible inactive vista...
-    let heartToActivate;
-    for (let i = 0; i < this.renderHearts.length; i++) {
-      if (this.renderHearts[i].active == false) {
-        heartToActivate = this.renderHearts[i];
-        break;
-      }
-    }
+    const heartToActivate = this.superExperimentalAddHeart();
 
     heartToActivate.active = true;
 
-    console.log('active heart', heartToActivate.id);
+    console.log('activateHeart', heartToActivate.id);
 
     const setTween = new TweenMax(heartToActivate.target, 0.0, {scale:0.2, autoAlpha:0.0, x:x + 50, y:y + 40, transformOrigin:'center center'});
     const inTween = new TweenMax(heartToActivate.target, 0.05, {scale:0.5, autoAlpha:1.0, y:'-=40', ease: Power2.easeOut});
@@ -904,22 +754,6 @@ export default class Visualization extends Component {
     this.renderVistas.push(arr.splice(targetIndex, 1)[0]);
 
     return vista;
-
-  }
-
-  renderSpawnedVistas() {
-
-    let rVistas = [];
-
-    // TODO: we could assume once one non-active
-    // vista is hit, break from loop...
-    for (var i = 0; i < this.renderVistas.length; i++) {
-
-      rVistas.push(this.renderVistas[i].renderElement);
-
-    }
-
-    return <div>{rVistas}</div>;
 
   }
 
@@ -1035,6 +869,32 @@ export default class Visualization extends Component {
 
   }
 
+  /**
+   *
+   * UTILS
+   *
+   */
+  utilMidpoint(lat1, long1, lat2, long2, per) {
+    return [lat1 + (lat2 - lat1) * per, long1 + (long2 - long1) * per];
+  }
+
+  utilMap(value, inmin, inmax, outmin, outmax) {
+    return (value - inmin) * (outmax - outmin) / (inmax - inmin) + outmin;
+  }
+
+  utilShuffle(a) {
+
+    for (let i = a.length - 1; i > 0; i--) {
+
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+
+    }
+
+    return a;
+
+  }
+
   render() {
 
     return (
@@ -1053,7 +913,6 @@ export default class Visualization extends Component {
 
         <div className='vistaContainer' ref='vistaContainer'>
 
-          {this.renderSpawnedVistas()}
           {this.renderHeartsLayer()}
 
         </div>
