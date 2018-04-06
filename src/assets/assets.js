@@ -134,6 +134,12 @@ const videos = {
 
 };
 
+const fonts = {
+
+  TungstenMedium: require("./fonts/Tungsten-Medium.woff"),
+
+};
+
 const getVistaSet = () => {
 
   const random = Math.floor(Math.random() * 8) + 1;
