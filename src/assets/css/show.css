@@ -11,18 +11,11 @@
     font-style:normal;font-weight:400;
 }
 
-/*@font-face {
+@font-face {
     font-family:"Tungsten-Medium";
     src:url(url("../fonts/Tungsten-Medium.woff") format("woff");
     font-style:normal;font-weight:400;
-}*/
-
-@font-face {
-    font-family:"Tungsten-Medium";
-    src:url("../fonts/Tungsten-Medium.woff2") format("woff2"),url("../fonts/Tungsten-Medium.woff") format("woff"),url("../fonts/Tungsten-Medium.otf") format("opentype");
-    font-style:normal;font-weight:400;
 }
-
 
 @font-face {
     font-family:"Tungsten-Semibold";
@@ -116,7 +109,7 @@ p.evaluation {
   letter-spacing: 0.5px;
   color: black;
   font-weight: 500;
-  font-family: "Tungsten-Medium";
+  font-family: "Arial Narrow";
   background-color: #fff;
 }
 
@@ -126,16 +119,17 @@ p.evaluation .highlight {
 
 .primary p.evaluation {
   width: 1920px;
-  margin-top: 9%;
+  margin-top: 7%;
   padding: 4% 14% 5.5% 14%;
-  font-size: 2.6em;
+  font-size: 2.2em;
   text-align: left;
-  line-height: 1.26em;
-  letter-spacing: 1.1px;
+  line-height: 1.9em;
+  letter-spacing: 0.4px;
   color: black;
   font-weight: 500;
-  font-family: "Tungsten-Semibold";
+  font-family: "Arial Narrow";
   background-color: #fff;
+
 }
 
 
