@@ -59,6 +59,8 @@ export default class Visualization extends Component {
     this.cellWidth = 45;
     this.matingMatrix = {};
 
+    this.testdudes = [];
+
     this.childGridCols = 10;
     this.childCellSize = 32;
 
@@ -287,6 +289,13 @@ export default class Visualization extends Component {
 
     }
 
+    // TEMP
+    for (var i = 0; i < this.testdudes.length; i++) {
+
+      this.exitTL.add(this.createExit(this.testdudes[i].div , gridPoints), i * 0.25);
+
+    }
+
     // Start entrance drama
     this.setState({systemState:'Vistas exiting'});
     this.exitTL.play();
@@ -477,6 +486,32 @@ export default class Visualization extends Component {
     this.pairingTL.play();
 
   }
+
+  superExperimentalAddDude() {
+
+    const keyId = 'testduder_' + this.testdudes.length;
+
+    // Add new flyer div to stage
+    $(this.refs.vistaContainer).append('<div id="' + keyId + '" class="flyer" ><img id="idle" src='+images.testdude+'/></div>');
+    var flyerDiv = $('#' + keyId);
+
+    // Pop in
+    var startX = Math.random() * 400;
+    var startY = 200;
+    TweenLite.set($(flyerDiv), { css: { x:startX, y:startY } });
+    TweenLite.from($(flyerDiv), 1, { css: { scale:0 }, ease:Elastic.easeOut });
+
+    // Add to game loop
+    var newDude = {     id:keyId,
+                        div:flyerDiv,
+                        img:$(flyerDiv).children('img'),
+                        active:false,
+                        friendliness: 0,
+                    };
+
+    this.testdudes.push(newDude);
+
+  };
 
   createBirthingAnim(element, parentsX, parentsY, index) {
 
@@ -746,6 +781,12 @@ export default class Visualization extends Component {
 
       this.renderVistas[i].active = false;
 
+      // TEMP
+      if (i<40){
+        this.superExperimentalAddDude();
+      }
+
+
     }
 
   }
@@ -849,6 +890,7 @@ export default class Visualization extends Component {
 
     // console.log('deathComplete', vista);
     vista.active = false;
+
     // TODO: prep this vis for recycle
 
   }
