@@ -136,7 +136,7 @@ export default class Show extends React.Component {
         {/* Family Tree */}
         <Cue notes='Tribble/Pygmy family tree.'>
 
-          <Screen output='primary' lifepan={10.0}>
+          <Screen output='primary' lifespan={11.0}>
             <img src={images.tribble} width='1920px'/>
           </Screen>
 
@@ -160,7 +160,7 @@ export default class Show extends React.Component {
         {/* Theory of Evolution */}
         <Cue notes='Theory of Evolution'>
 
-          <Screen output='primary' lifespan={10.0}>
+          <Screen output='primary' lifespan={11.0}>
             <img src={images.evolution} width='1920px'/>
           </Screen>
 
@@ -699,6 +699,17 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Vista trait progression */}
+        <Cue notes='Alex shows vista progression'>
+
+          <Screen output='primary' lifespan={15.0}>
+            <img src={images.progression} width='1920px'/>
+          </Screen>
+
+          <SoundCue src={sounds.upload} />
+
+        </Cue>
+
         {/* Alex sequence 5 */}
         <Cue notes='Alex triggers Sequence 5'>
 
@@ -824,20 +835,6 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_150} />
-
-        </Cue>
-
-        <Cue notes='Yes. I understand your problem. '>
-
-          <Screen output='primary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <SoundCue src={sounds.VO_152} />
 
         </Cue>
 
