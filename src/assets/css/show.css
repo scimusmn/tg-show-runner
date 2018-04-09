@@ -172,7 +172,7 @@ p.evaluation .highlight {
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 480px;
+  width: 1080px;
 }
 
 .visualization {
@@ -183,16 +183,22 @@ p.evaluation .highlight {
   height: 1500px;
   color: #a1b5ac;
   /*background-color: #111;*/
+
+
+
 }
 
 .visualization .genCounter {
   position: fixed;
-  top: -11px;
-  left: 21.5%;
+  top: -77px;
+  left: 22.25%;
   width: 100%;
   text-align: center;
   color: #c41d25;
-  font-size: 1.6em;
+
+  font-family: "Tungsten-Medium";
+  font-size: 5em;
+  letter-spacing: 0.05em;
 }
 
 .visualization .systemState {

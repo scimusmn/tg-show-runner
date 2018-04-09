@@ -436,9 +436,7 @@ export default class Show extends React.Component {
         <Cue notes='Visualization begins.'>
 
           <Screen output='secondary'>
-
-            <Visualization startGen={0} endGen={3} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.35, 0.2]} exitFriendlies={4} />
-
+            <Visualization startGen={0} endGen={5} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.35, 0.2]} />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -449,9 +447,7 @@ export default class Show extends React.Component {
         <Cue notes='Highlight Chute'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} startSpeed={0.1}  />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={3} startSpeed={0.1} />
           </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_CHUTE} />
@@ -512,9 +508,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
             <Visualization startGen={3} startSpeed={0.1}  />
-            <img src={images.vis_fg_1} className='fs-image'/>
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -539,9 +533,7 @@ export default class Show extends React.Component {
         <Cue notes='Visualization begins.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={3} endGen={13} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.5, 0.6, 0.3, 0.4]} exitFriendlies={8} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={5} endGen={25} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.5, 0.6, 0.3, 0.4]}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -553,7 +545,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={13} startSpeed={1.0} trainMode={true}/>
+            <Visualization startGen={25} startSpeed={1.0} trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -579,9 +571,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={13} startSpeed={1.0}  />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={25} startSpeed={1.0}  />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -594,7 +584,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={13} startSpeed={1.0} trainMode={true}/>
+            <Visualization startGen={25} startSpeed={1.0} trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -606,9 +596,7 @@ export default class Show extends React.Component {
         <Cue notes='Visualization begins.'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={13} endGen={33} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.65, 0.7, 0.5, 0.35, 0.75, 0.6, 0.6, 0.53]} exitFriendlies={16} />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={25} endGen={50} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.65, 0.7, 0.5, 0.35, 0.75, 0.6, 0.6, 0.53]} />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -619,9 +607,7 @@ export default class Show extends React.Component {
         <Cue notes='Chute dump'>
 
           <Screen output='secondary'>
-            <img src={images.vis_bg_1} className='fs-image'/>
-            <Visualization startGen={33} startSpeed={1.0}  />
-            <img src={images.vis_fg_1} className='fs-image'/>
+            <Visualization startGen={50} startSpeed={1.0}  />
           </Screen>
 
           <SoundCue src={sounds.chute_dump} />
@@ -632,7 +618,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={33} startSpeed={1.0} trainMode={true}/>
+            <Visualization startGen={50} startSpeed={1.0} trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
