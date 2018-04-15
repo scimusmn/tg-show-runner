@@ -471,6 +471,10 @@ export default class Show extends React.Component {
         {/* Vista-train off. Cages refill. */}
         <Cue notes='Vistas train off. Cages refill.'>
 
+          <Screen output='secondary'>
+            <Visualization/>
+          </Screen>
+
           <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.4} />
           <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.0} />
           <SoundCue src={sounds.vista_unfriendly_2} volume={0.3} delay={0.4} />
@@ -484,12 +488,20 @@ export default class Show extends React.Component {
         {/*  Vista growls at Alex. */}
         <Cue notes='Vista growls at Alex.'>
 
+          <Screen output='secondary'>
+            <Visualization/>
+          </Screen>
+
           <SoundCue src={sounds.vista_unfriendly_4} />
 
         </Cue>
 
         {/* Alex sequence 4 */}
         <Cue notes='Alex triggers Sequence 4'>
+
+          <Screen output='secondary'>
+            <Visualization/>
+          </Screen>
 
           <Screen output='primary'>
             <VideoCue src={videos.sequence4} width='1920px'/>
@@ -502,13 +514,17 @@ export default class Show extends React.Component {
         {/* Empty. */}
         <Cue notes='Empty'>
 
+          <Screen output='secondary'>
+            <Visualization/>
+          </Screen>
+
         </Cue>
 
         {/*  Vistas enter popper. */}
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <Visualization />
+            <Visualization/>
           </Screen>
 
           <SoundCue src={sounds.popper} />
