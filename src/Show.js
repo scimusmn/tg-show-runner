@@ -557,6 +557,10 @@ export default class Show extends React.Component {
         {/* Vista-train off. Cages refill. */}
         <Cue notes='Vistas train off. Cages refill.'>
 
+          <Screen output='secondary'>
+            <Visualization/>
+          </Screen>
+
           <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.6} />
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.0} />
           <SoundCue src={sounds.vista_friendly_4} volume={0.3} delay={0.2} />
@@ -571,7 +575,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <Visualization />
+            <Visualization/>
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -629,6 +633,10 @@ export default class Show extends React.Component {
 
         {/* Vista-train off. Cages refill. */}
         <Cue notes='Vistas train off. Cages refill.'>
+
+          <Screen output='secondary'>
+            <Visualization/>
+          </Screen>
 
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.4} />
           <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.0} />
