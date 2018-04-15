@@ -388,15 +388,16 @@ export class Manager extends Component {
     this._goToSlide({ key: 'show-runner-slide', newValue: slideData });
     this.setLocalStorageSlide(0, true);
 
+    // Reset any saved state for vizualiations
+    localStorage.setItem(
+      'visualization-state', JSON.stringify({})
+    );
+
       // When on slide zero, assume we
       // have just reset show.
       // Clear cache with referesh.
       /// - TN
       window.location.reload();
-
-  }
-
-  onStorageChanged(e) {
 
   }
 

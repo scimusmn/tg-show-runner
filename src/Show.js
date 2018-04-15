@@ -411,7 +411,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={0} startSpeed={0.1} />
+            <Visualization startGen={0} endGen={0} startSpeed={0.1} endSpeed={0.1} />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -424,7 +424,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={0} startSpeed={0.1} trainMode={true}/>
+            <Visualization trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -447,7 +447,7 @@ export default class Show extends React.Component {
         <Cue notes='Highlight Chute'>
 
           <Screen output='secondary'>
-            <Visualization startGen={3} startSpeed={0.1} />
+            <Visualization />
           </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_CHUTE} />
@@ -459,7 +459,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={0} startSpeed={0.1} trainMode={true}/>
+            <Visualization trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -508,7 +508,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={3} startSpeed={0.1}  />
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -521,7 +521,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={3} startSpeed={0.1} trainMode={true}/>
+            <Visualization trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -533,7 +533,7 @@ export default class Show extends React.Component {
         <Cue notes='Visualization begins.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={5} endGen={25} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.5, 0.6, 0.3, 0.4]}/>
+            <Visualization startGen={5} endGen={25} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.3, 0.65, 0.3, 0.4]}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -545,7 +545,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={25} startSpeed={1.0} trainMode={true}/>
+            <Visualization trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -571,7 +571,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas enter popper.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={25} startSpeed={1.0}  />
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -584,7 +584,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={25} startSpeed={1.0} trainMode={true}/>
+            <Visualization trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -607,7 +607,7 @@ export default class Show extends React.Component {
         <Cue notes='Chute dump'>
 
           <Screen output='secondary'>
-            <Visualization startGen={50} startSpeed={1.0}  />
+            <Visualization startSpeed={1.0}  />
           </Screen>
 
           <SoundCue src={sounds.chute_dump} />
@@ -618,7 +618,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization startGen={50} startSpeed={1.0} trainMode={true}/>
+            <Visualization trainMode={true}/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />

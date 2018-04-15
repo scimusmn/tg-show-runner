@@ -59,6 +59,7 @@ const images = {
   badges_a: require('./images/badges_a.png'),
 
   testdude: require('./images/testdude.png'),
+  red_digital_clock: require('./images/red_digital_clock.gif'),
 
 };
 
@@ -138,16 +139,15 @@ const getVistaSet = () => {
 
   const random = Math.floor(Math.random() * 8) + 1;
 
-/*  return {
+  /*  return {
 
-    friendly: images['vis_sil_'+random+'_white'],
-    unfriendly: images['vis_sil_'+random+'_red'],
-    other: images['vis_sil_'+random+'_mint'],
+      friendly: images['vis_sil_'+random+'_white'],
+      unfriendly: images['vis_sil_'+random+'_red'],
+      other: images['vis_sil_'+random+'_mint'],
 
-  };*/
+    };*/
 
   return {
-
 
     friendly: images['vis_sil_o_blue'],
     unfriendly: images['vis_sil_o_redb'],
@@ -170,13 +170,14 @@ const preloadAllImages = () => {
 
   } else {
 
-    Object.keys(images).forEach(function (key) {
+    Object.keys(images).forEach(function(key) {
 
       // Do something with obj[key]
       const image = new Image();
 
       image.onload = function() {
         numLoaded++;
+
         // console.log('Image preloaded', numLoaded, '/', loadTarget);
       }
 

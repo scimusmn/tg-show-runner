@@ -1,13 +1,13 @@
 const VisGrid = () => {
 
-  const GRID_WIDTH = 19;
-  const GRID_HEIGHT = 16;
+  const GRID_WIDTH = 8;
+  const GRID_HEIGHT = 8;
 
-  const CELL_PIXEL_SIZE = 45;
+  const CELL_PIXEL_SIZE = 60;//45;
 
   const TOTAL_SLOTS = GRID_WIDTH * GRID_HEIGHT;
 
-  let gridCenter = {x:349, y:670};
+  let gridCenter = {x:344, y:670};
   let cells = [];
   let proximityLookups = {};
 
@@ -58,21 +58,90 @@ const VisGrid = () => {
   const getNearestAvailableCell = (forCell) => {
 
     console.log('getNearestAvailableCell', forCell.id);
-    // const proxArray = proximityLookups[forCell.id];
 
-    const memoDistFrom = memoized(distanceFrom(forCell));
-    const proxArray = cells.sort(memoDistFrom);
+    // Grab pre-sorted array for this cell.
+    const proxArray = proximityLookups[forCell.id];
 
-    for (var i = 0; i < proxArray.length; i++) {
+    // Skip 0 index as will be self.
+    for (var i = 1; i < proxArray.length; i++) {
 
-      if (proxArray[i].occupied == false) {
-        return cells[i];
+      // Must find original cell,
+      // not clone from prox array
+      const origIndex = proxArray[i].order;
+
+      if (cells[origIndex].occupied == false) {
+
+        return cells[origIndex];
+
       }
 
     }
 
     // All cells occupied :(
     return null;
+
+  };
+
+  const resetMates = (vistasToPair) => {
+
+    const mateLookup = {};
+
+    const clones = vistasToPair.slice(0);
+
+    console.log(clones);
+
+    let forCell;
+    let otherCell;
+
+    let recordDist = 999;
+    let recordCell;
+    let dist;
+    let wasMatched = false;
+
+    for (var i = clones.length - 1; i >= 0; i--) {
+
+      wasMatched = false;
+      recordDist = 999;
+
+      forCell = clones[i].cell;
+
+      // Skip if this cell is already set.
+      if (mateLookup.hasOwnProperty(forCell.id)) {
+        continue;
+      }
+
+      for (var j = clones.length - 1; j >= 0; j--) {
+        otherCell = clones[j].cell;
+
+        if (mateLookup.hasOwnProperty(otherCell.id) || otherCell == forCell) {
+          continue;
+        }
+
+        dist = simpleDist(forCell, otherCell);
+
+        if (dist < recordDist) {
+
+          wasMatched = true;
+          recordDist = dist;
+          recordCell = otherCell;
+
+        }
+
+      }
+
+      // Commit to the pair
+      if (wasMatched == true) {
+        mateLookup[forCell.id] = recordCell.id;
+        mateLookup[recordCell.id] = forCell.id;
+      } else {
+        console.log('Singleton! No match');
+      }
+
+    }
+
+    console.log('matching complete', clones.length, Object.keys(mateLookup).length);
+
+    return mateLookup;
 
   };
 
@@ -101,7 +170,7 @@ const VisGrid = () => {
         const pixelX = (x * CELL_PIXEL_SIZE) + gridCenter.x;
         const pixelY = (y * CELL_PIXEL_SIZE) + gridCenter.y;
         const id = '' + x + ',' + y;
-        const newCell = {order:i, id:id, x:x, y:y, pixelX:pixelX, pixelY:pixelY, occupied:false};
+        const newCell = {order:cells.length, id:id, x:x, y:y, pixelX:pixelX, pixelY:pixelY, occupied:false};
         cells.push(newCell);
 
         // console.log('Cell', cells.length, 'of', TOTAL_SLOTS, ' | ', newCell);
@@ -119,33 +188,19 @@ const VisGrid = () => {
 
   }
 
-  const calcProximityCells = (forCell) => {
-
-    const sortPt = {};
-
-  }
-
   const buildLookupArrays = () => {
 
     proximityLookups = {};
 
-    const cellsClone = cells.slice(0);
+    for (var i = 0; i < cells.length; i++) {
 
-    for (var i = 0; i < cellsClone.length; i++) {
+      const refCell = cells[i];
 
-      const refCell = cellsClone[i];
+      const lookup = createProximityLookup(cells[i]);
 
-      const memoDistFrom = memoized(distanceFrom(refCell));
-
-      console.log('Lookup built for:', refCell.id);
-      proximityLookups[refCell.id] = cells.sort(memoDistFrom);
+      proximityLookups[refCell.id] = lookup;
 
     }
-
-    console.log('TOTAL_SLOTS',TOTAL_SLOTS);
-    console.log('cells.length', cells.length);
-    console.log('proximityLookups',Object.keys(proximityLookups).length);
-    console.log(proximityLookups);
 
     // After lookups are built, resort by order
     sortByKey(cells, 'order');
@@ -168,22 +223,14 @@ const VisGrid = () => {
   // for each cell.
   buildLookupArrays();
 
-  function memoized(fn) {
+  function createProximityLookup(forCell) {
 
-    let lookupTable = {};
+    // Make clone of array before resorting.
+    const cellClones = cells.slice(0);
 
-    let keymaker = function(args) {
-      // console.log(JSON.stringify(args));
-      return JSON.stringify(args)
+    const sorted = cellClones.sort(distanceFrom(forCell));
 
-    };
-
-    return function() {
-      let key = keymaker.call(this, arguments);
-
-      return lookupTable[key] || (
-      lookupTable[key] = fn.apply(this, arguments))
-    }
+    return sorted;
 
   }
 
@@ -207,16 +254,17 @@ const VisGrid = () => {
 
   function sortByKey(array, key) {
     return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
-}
+  }
 
   return {
     getNextAvailableCell,
     getRandomAvailableCell,
     getNearestAvailableCell,
     reset,
+    resetMates,
     cells,
   };
 

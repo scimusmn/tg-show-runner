@@ -8,6 +8,9 @@ import {images, sounds, getVistaSet} from '../assets/assets';
 import Vista from './Vista';
 import VisGrid from '../utils/VisGrid';
 import generationSimulator from '../utils/GenerationSimulator';
+import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesBars } from 'react-sparklines';
+
+// import {Area, CirclePie, BarMetric} from 'react-simple-charts';
 
 export default class Visualization extends Component {
 
@@ -17,7 +20,8 @@ export default class Visualization extends Component {
 
     this.state = {
       generationCount:0,
-      averageFriendliness: 0.0,
+      generationSpeed:0,
+      averageFriendliness: 0,
       totalVistasSpawned: 0,
       systemState: 'waiting...',
     };
@@ -25,7 +29,8 @@ export default class Visualization extends Component {
     this.currentGeneration = [];
     this.nextGeneration = [];
 
-    this.totalVistasSpawned = 0;
+    this.newVistasSpawned = 0;
+    this.friendlinessData = [];
 
     this.vistas = [];
     this.hearts = [];
@@ -75,8 +80,8 @@ export default class Visualization extends Component {
     this.genSpeedBar = this.refs.genSpeedBar;
     this.trainLights = this.refs.trainLights;
 
-    this.updateGenerationCount(this.props.startGen, false);
-    this.updateGenerationSpeed(this.props.startSpeed, true);
+    // Load initial state
+    this.loadInitialState();
 
     // Create legend
     this.vistaColorKey();
@@ -111,6 +116,10 @@ export default class Visualization extends Component {
   }
 
   componentWillUnmount() {
+
+    // Save ending state
+    // for next vis to pick up.
+    this.storeCurrentState();
 
     // Clear all timeouts, intervals
     clearTimeout(this.utilTimer);
@@ -194,7 +203,7 @@ export default class Visualization extends Component {
       const seedVista = this.props.seedVistas[i];
 
       // Increment for data vis
-      this.totalVistasSpawned++;
+      this.newVistasSpawned++;
 
       // Activate vistas for entering
       const aVista = this.activateVista(seedVista, this.state.generationCount);
@@ -259,6 +268,8 @@ export default class Visualization extends Component {
 
     this.pairingTL = new TimelineMax({onComplete:this.onNewGenerationComplete});
 
+    // const mateLookup = VisGrid.resetMates(this.currentGeneration);
+
     // Pair off existing VISTAS
     for (let i = 0; i < this.currentGeneration.length; i += 2) {
 
@@ -279,10 +290,13 @@ export default class Visualization extends Component {
       // solution for pairing off vistas.
       // Ideally, they pair with a vista
       // adjacent to them.
-      let mateIndex = i + 1;
+      let mainIndex = i;
+      let mateIndex = mainIndex + 1;
 
+      // mainIndex = mateLookup[mainIndex];
+      // mateIndex = mateLookup[mateIndex];
 
-      const v1 = this.currentGeneration[i];
+      const v1 = this.currentGeneration[mainIndex];
       const v2 = this.currentGeneration[mateIndex];
 
       console.log('pairing:', i, mateIndex, this.currentGeneration.length);
@@ -320,11 +334,11 @@ export default class Visualization extends Component {
       // couple to produce...
       let numKids = 0;
       if (this.currentGeneration.length < 6) {
-        numKids = 4 + Math.round(Math.random());
-      } else if (this.currentGeneration.length < 30) {
         numKids = 3 + Math.round(Math.random());
-      } else {
+      } else if (this.currentGeneration.length < 30) {
         numKids = 2 + Math.round(Math.random());
+      } else {
+        numKids = 1 + Math.round(Math.random() * 2);
       }
 
       // Buffer time before spawn anims.
@@ -338,7 +352,7 @@ export default class Visualization extends Component {
         const childVista = this.activateVista(childFriendliness, this.state.currentGeneration + 1);
 
         // Increment for data vis
-        this.totalVistasSpawned++;
+        this.newVistasSpawned++;
 
         const birthTweens = this.createBirthAnim(childVista, midX, midY, k, cell1);
 
@@ -383,6 +397,8 @@ export default class Visualization extends Component {
 
     // const cell = VisGrid.getRandomAvailableCell();
 
+    // TODO: This is where the program gets help up.
+    // Need to optimize further.
     const cell = VisGrid.getNearestAvailableCell(parentCellRef);
 
     if (!cell) {
@@ -415,7 +431,7 @@ export default class Visualization extends Component {
     console.log('onNewGenerationSpawned()');
 
     // Update data
-    this.setState({totalVistasSpawned:this.totalVistasSpawned});
+    this.setState({totalVistasSpawned:this.newVistasSpawned});
 
     // Get sum of all active vistas' friendliness
     let sumFriendliness = 0.0;
@@ -424,7 +440,7 @@ export default class Visualization extends Component {
 
       if (this.vistas[i].active == true) {
         sumFriendliness += this.vistas[i].friendliness;
-        numActive ++;
+        numActive++;
       }
 
     }
@@ -432,7 +448,13 @@ export default class Visualization extends Component {
     const newAvg = (sumFriendliness / numActive).toFixed(2);
     this.setState({averageFriendliness:newAvg});
 
-    this.updateGenerationCount(1);
+    // Update sparkline data
+    console.log('newAvg', newAvg);
+    this.friendlinessData.push(newAvg);
+
+    setTimeout(() => {
+      this.updateGenerationCount(1);
+    }, 400 * this.timeScale);
 
     console.log('end onNewGenerationSpawned()');
 
@@ -671,24 +693,28 @@ export default class Visualization extends Component {
 
   }
 
-  updateGenerationSpeed(speedValue, setInitial) {
+  updateGenerationSpeed(generationSpeed, setInitial) {
+
+    console.log('updateGenerationSpeed', generationSpeed);
+
+    this.setState({generationSpeed:generationSpeed});
 
     if (setInitial == true) {
 
-      TweenMax.set(this.refs.genSpeedBar, {scaleY:speedValue, transformOrigin:'right bottom'});
+      TweenMax.set(this.refs.genSpeedBar, {scaleY:generationSpeed, transformOrigin:'right bottom'});
 
-      if (speedValue < 0.5) {
-        this.timeScale = 1.5;
+      if (generationSpeed >= 0.5) {
+        this.timeScale = 0.35;
       }
 
     } else {
 
       const tweenTime = 5.0;
 
-      TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:speedValue, ease: Power2.easeInOut});
+      TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:generationSpeed, ease: Power2.easeInOut});
 
-      if (speedValue >= 0.5) {
-        TweenMax.to(this, tweenTime, {timeScale:0.75});
+      if (generationSpeed >= 0.5) {
+        TweenMax.to(this, tweenTime, {timeScale:0.35});
       }
 
     }
@@ -747,6 +773,79 @@ export default class Visualization extends Component {
 
   }
 
+  loadInitialState() {
+
+    // Look for a previously saved initial state.
+    let storedState = JSON.parse(window.localStorage.getItem('visualization-state'));
+
+    console.log('-- storedState --');
+    console.log(storedState);
+
+    // Set intial generation count
+    if (this.props.startGen) {
+      // Prop was explicitly set.
+      this.updateGenerationCount(this.props.startGen, false);
+    } else if (storedState.generationCount) {
+      this.updateGenerationCount(storedState.generationCount, false);
+    } else {
+      console.log('Missing initial generationCount. Default:', this.state.generationCount);
+    }
+
+    // Set intial generation speed
+    if (this.props.startSpeed) {
+      // Prop was explicitly set.
+      this.updateGenerationSpeed(this.props.startSpeed, true);
+    } else if (storedState.generationSpeed) {
+      this.updateGenerationSpeed(storedState.generationSpeed, true);
+    } else {
+      console.log('Missing initial generationSpeed. Default:', this.state.generationSpeed);
+    }
+
+    // Set intial avg friendliness level
+    if (storedState.averageFriendliness) {
+      this.setState({averageFriendliness:storedState.averageFriendliness});
+    } else {
+      console.log('Missing initial averageFriendliness. Default:', this.state.averageFriendliness);
+    }
+
+    // Set intial total spawned
+    if (storedState.totalVistasSpawned) {
+      this.setState({totalVistasSpawned:storedState.totalVistasSpawned});
+    } else {
+      console.log('Missing initial totalVistasSpawned. Default:', this.state.totalVistasSpawned);
+    }
+
+    if (storedState.friendlinessData) {
+      this.friendlinessData = storedState.friendlinessData;
+    }
+
+    return storedState;
+
+  }
+
+  // Save current state
+  // to local storage
+  storeCurrentState() {
+
+    const state = JSON.stringify({
+
+      generationCount: this.state.generationCount,
+      generationSpeed: this.state.generationSpeed,
+      averageFriendliness: this.state.averageFriendliness,
+      totalVistasSpawned: this.state.totalVistasSpawned,
+      friendlinessData: this.friendlinessData,
+
+    });
+
+    console.log('-- storing State --');
+    console.log(state);
+
+    localStorage.setItem(
+      'visualization-state', state
+    );
+
+  }
+
   /**
    *
    * UTILS
@@ -797,6 +896,14 @@ export default class Visualization extends Component {
 
         <img className='trainLights fs-image' ref='trainLights' src={images.vis_train_lights} />
 
+        <div className='sparkline-container'>
+          <Sparklines data={this.friendlinessData} limit={50} min={0.0} max={1.0}>
+            <SparklinesLine color={'red' } />
+          </Sparklines>
+        </div>
+
+        <img className='digi-clock' src={images.red_digital_clock} />
+
       </div>
 
     );
@@ -815,6 +922,8 @@ Visualization.propTypes = {
 };
 
 Visualization.defaultProps = {
+
   seedVistas: [],
   trainMode: false,
+
 };
