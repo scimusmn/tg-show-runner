@@ -202,14 +202,14 @@ p.evaluation .highlight {
 }
 
 .visualization .systemState {
-  display: none;
+  /*display: none;*/
   position: fixed;
   bottom: 1%;
-  left: 0%;
+  left: 5%;
   width: 100%;
-  text-align: center;
-  color: #a1b5ac;
-  font-size: 18px;
+  text-align: left;
+  color: #c41d25;
+  font-size: 20px;
 }
 
 .visualization .genSpeedBar {
@@ -246,6 +246,14 @@ p.evaluation .highlight {
   position: absolute;
   left: 10px;
   top: 180px;
+  width: 500px;
+  background-color: #111;
+}
+
+.visualization .bars-container {
+  position: absolute;
+  left: 10px;
+  top: 1080px;
   width: 500px;
   background-color: #111;
 }

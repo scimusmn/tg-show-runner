@@ -10,8 +10,6 @@ import VisGrid from '../utils/VisGrid';
 import generationSimulator from '../utils/GenerationSimulator';
 import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesBars } from 'react-sparklines';
 
-// import {Area, CirclePie, BarMetric} from 'react-simple-charts';
-
 export default class Visualization extends Component {
 
   constructor(props) {
@@ -31,6 +29,7 @@ export default class Visualization extends Component {
 
     this.newVistasSpawned = 0;
     this.friendlinessData = [];
+    this.totalSpawnsData = [];
 
     this.vistas = [];
     this.hearts = [];
@@ -333,12 +332,12 @@ export default class Visualization extends Component {
       // Determine number of offspring for thi
       // couple to produce...
       let numKids = 0;
-      if (this.currentGeneration.length < 6) {
+      if (this.currentGeneration.length < 10) {
         numKids = 3 + Math.round(Math.random());
-      } else if (this.currentGeneration.length < 30) {
+      } else if (this.currentGeneration.length < 40) {
         numKids = 2 + Math.round(Math.random());
       } else {
-        numKids = 1 + Math.round(Math.random() * 2);
+        numKids = 1 + Math.round(Math.random() * 1.8);
       }
 
       // Buffer time before spawn anims.
@@ -433,6 +432,8 @@ export default class Visualization extends Component {
     // Update data
     this.setState({totalVistasSpawned:this.newVistasSpawned});
 
+    this.totalSpawnsData.push(this.newVistasSpawned);
+
     // Get sum of all active vistas' friendliness
     let sumFriendliness = 0.0;
     let numActive = 0;
@@ -490,14 +491,14 @@ export default class Visualization extends Component {
 
     let numToExit = 20;
 
-    const stagger = 0.06;
+    const stagger = 0.2;
     const totalTime = this.currentGeneration.length * stagger;
 
     for (var i = this.currentGeneration.length - 1; i >= 0; i--) {
 
       if (i < numToExit) {
 
-        this.exitTL.add(this.createExit(this.currentGeneration[i]), (i * stagger) + 1.0);
+        this.exitTL.add(this.createExit(this.currentGeneration[i]), (i * stagger) + 1.5);
 
       } else {
 
@@ -515,11 +516,18 @@ export default class Visualization extends Component {
 
   createExit(vista, bezPoints) {
 
-    const tween = new TweenMax(vista.target, 0.6, {delay:0.0, x:this.exitPoint.x, y:this.exitPoint.y});
-    const scaleTween = new TweenMax(vista.target, 0.3, {delay:1.8, scale:this.vistaAdultScale});
-    const scaleTween2 = new TweenMax(vista.target, 0.1, {delay:2.1, scale:0.01});
+    let bezTween = new TweenMax(vista.target, 1.1, {
+      bezier:{
+        type:'soft',
+        values:[{x:this.visCenter.x, y:this.entrancePoint.y}, {x:this.exitPoint.x, y:this.exitPoint.y}],
+        autoRotate:false,
+      },
+      delay:0.0,
+      ease:Linear.easeNone,});
 
-    return [tween, scaleTween, scaleTween2];
+    const scaleTween = new TweenMax(vista.target, 0.3, {delay:2.0, scale:0.0});
+
+    return [bezTween, scaleTween];
 
   }
 
@@ -730,10 +738,18 @@ export default class Visualization extends Component {
     // for seed vistas.
     this.sortTL = new TimelineMax({onComplete:this.onSortAnimComplete});
 
+    const sortCols = 10;
+    const padding = 40;
+
     for (let i = 0; i < this.currentGeneration.length; i++) {
 
-      // Sorted grid.
-      this.sortTL.add(this.createSortAnim(this.currentGeneration[i].target, 200, (i * 40) + 200), i * 0.03);
+      const col = i % sortCols;
+      const row = (i - col) / sortCols;
+
+      const sortedX = 150 + (padding * col);
+      const sortedY = 350 + (padding * row);
+
+      this.sortTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);
 
     }
 
@@ -758,9 +774,17 @@ export default class Visualization extends Component {
 
   }
 
+  createOblivionAnim(element) {
+
+    let tween = new TweenMax(element, 0.5, {autoAlpha:0.0, y:'+=20', ease:Power2.easeIn});
+
+    return tween;
+
+  }
+
   createOblivionAnim(vista) {
 
-    let tween = new TweenMax(vista.target, 0.5, {autoAlpha:0.0, y:'+=20', ease:Power2.easeIn});
+    let tween = new TweenMax(vista.target, 0.4, {autoAlpha:0.0, y:'+=30', ease:Power2.easeIn});
 
     return tween;
 
@@ -819,6 +843,10 @@ export default class Visualization extends Component {
       this.friendlinessData = storedState.friendlinessData;
     }
 
+    if (storedState.totalSpawnsData) {
+      this.totalSpawnsData = storedState.totalSpawnsData;
+    }
+
     return storedState;
 
   }
@@ -834,6 +862,7 @@ export default class Visualization extends Component {
       averageFriendliness: this.state.averageFriendliness,
       totalVistasSpawned: this.state.totalVistasSpawned,
       friendlinessData: this.friendlinessData,
+      totalSpawnsData: this.totalSpawnsData,
 
     });
 
@@ -899,6 +928,12 @@ export default class Visualization extends Component {
         <div className='sparkline-container'>
           <Sparklines data={this.friendlinessData} limit={50} min={0.0} max={1.0}>
             <SparklinesLine color={'red' } />
+          </Sparklines>
+        </div>
+
+        <div className='bars-container'>
+          <Sparklines data={this.totalSpawnsData}>
+            <SparklinesBars color={'blue'} />
           </Sparklines>
         </div>
 
