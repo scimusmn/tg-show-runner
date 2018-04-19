@@ -707,6 +707,22 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Vista trait progression */}
+        <Cue notes='Alex shows vista progression'>
+
+          <Screen output='primary'>
+            <img src={images.progression} width='1920px'/>
+          </Screen>
+
+          <SoundCue src={sounds.upload} />
+
+        </Cue>
+
+        {/* Empty */}
+        <Cue notes='Empty'>
+
+        </Cue>
+
         {/* Alex sequence 5 */}
         <Cue notes='Alex triggers Sequence 5'>
 
@@ -832,20 +848,6 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_150} />
-
-        </Cue>
-
-        <Cue notes='Yes. I understand your problem. '>
-
-          <Screen output='primary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <SoundCue src={sounds.VO_152} />
 
         </Cue>
 

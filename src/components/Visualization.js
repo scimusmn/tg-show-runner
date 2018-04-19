@@ -183,8 +183,8 @@ export default class Visualization extends Component {
     const vistaFriendly = this.activateVista(1.0, -1);
     const vistaUnfriendly = this.activateVista(0.0, -1);
 
-    TweenMax.set(vistaFriendly.target, {x:5, y:-39, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
-    TweenMax.set(vistaUnfriendly.target, {x:5, y:-8, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
+    TweenMax.set(vistaFriendly.target, {x:50, y:22, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
+    TweenMax.set(vistaUnfriendly.target, {x:50, y:92, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
 
   }
 
@@ -374,8 +374,8 @@ export default class Visualization extends Component {
 
     this.onNewGenerationSpawned();
 
-    // Start entrance drama
-    this.setState({systemState:'Allowing for reproduction'});
+    // Start pairing
+    this.setState({systemState:'Pairing'});
     this.pairingTL.play();
 
   }
@@ -410,18 +410,18 @@ export default class Visualization extends Component {
     vista.cell = cell;
 
     const birthTargetPos = {x:cell.pixelX, y:cell.pixelY};
-/*
-    if (birthTargetPos.x > VisGrid.gridCenter.x) {
-      birthTargetPos.x += 15 + Math.random()*30;
-    } else {
-      birthTargetPos.x -= 15 + Math.random()*30;
-    }
+    /*
+        if (birthTargetPos.x > VisGrid.gridCenter.x) {
+          birthTargetPos.x += 15 + Math.random()*30;
+        } else {
+          birthTargetPos.x -= 15 + Math.random()*30;
+        }
 
-    if (birthTargetPos.y > VisGrid.gridCenter.y) {
-      birthTargetPos.y += 15 + Math.random()*30;
-    } else {
-      birthTargetPos.y -= 15 + Math.random()*30;
-    }*/
+        if (birthTargetPos.y > VisGrid.gridCenter.y) {
+          birthTargetPos.y += 15 + Math.random()*30;
+        } else {
+          birthTargetPos.y -= 15 + Math.random()*30;
+        }*/
 
     const setTween = new TweenMax.set(vista.target, {x:parentsX, y:parentsY, scale:this.vistaChildScale});
 
@@ -897,6 +897,12 @@ export default class Visualization extends Component {
     return (value - inmin) * (outmax - outmin) / (inmax - inmin) + outmin;
   }
 
+  utilPad(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  }
+
   utilShuffle(a) {
 
     for (let i = a.length - 1; i > 0; i--) {
@@ -918,15 +924,21 @@ export default class Visualization extends Component {
 
         <img src={images.vis_bg_1} className='fs-image'/>
 
-        <h1 className='genCounter' ref='genCounter'>000{this.state.generationCount}</h1>
+        <div className='data-pane legend'>
+          <h3 className='label friendly'>FRIENDLY</h3>
+          <h3 className='label unfriendly'>UNFRIENDLY</h3>
+        </div>
+
+        <h3 className='label counter'>GENERATION COUNTER</h3>
+        <h1 className='label genCounter' ref='genCounter'>{this.utilPad(this.state.generationCount, 2)}</h1>
 
         <img className='genSpeedBar' ref='genSpeedBar' src={images.vis_gen_speed} />
 
-        <h3 className='averageFriendliness'>{this.state.averageFriendliness}</h3>
+        <h3 className='label averageFriendliness'>{this.state.averageFriendliness}</h3>
 
-        <h3 className='totalVistasSpawned'>{this.state.totalVistasSpawned}</h3>
+        <h3 className='label totalVistasSpawned'>{this.state.totalVistasSpawned}</h3>
 
-        <h3 className='systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
+        <h3 className='label systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
 
         <div className='vistaContainer' ref='vistaContainer'></div>
 

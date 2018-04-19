@@ -8,7 +8,7 @@ const images = {
   sequence4: require('./images/sequence4.png'),
   sequence5: require('./images/sequence5.png'),
   evolution: require('./images/evolution.png'),
-  whatthefoxsay: require('./images/whatthefoxsay.gif'),
+  progression: require('./images/progression.png'),
 
   heart: require('./images/heart.png'),
   heart_small: require('./images/heart_small.png'),

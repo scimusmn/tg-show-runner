@@ -1,4 +1,37 @@
 /*----------  FONTS  ----------*/
+/* Roboto */
+@font-face {
+    font-family:"RobotoMono-Bold";
+    src:url("../fonts/RobotoMono-Bold.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"RobotoMono-Light";
+    src:url("../fonts/RobotoMono-Light.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"RobotoMono-Medium";
+    src:url("../fonts/RobotoMono-Medium.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"RobotoMono-Regular";
+    src:url("../fonts/RobotoMono-Regular.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+@font-face {
+    font-family:"RobotoMono-Thin";
+    src:url("../fonts/RobotoMono-Thin.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
+
+/* Tungsten */
 @font-face {
     font-family:"Tungsten-Black";
     src:url("../fonts/Tungsten-Black.woff") format("woff");
@@ -181,35 +214,68 @@ p.evaluation .highlight {
   left: 0px;
   width: 1080px;
   height: 1500px;
-  color: #a1b5ac;
-  /*background-color: #111;*/
-
-
+  /*background-color: #f89;*/
 
 }
 
-.visualization .genCounter {
-  position: fixed;
-  top: -77px;
-  left: 22.25%;
-  width: 100%;
+.visualization .data-pane {
+  border-radius: 12px;
+  background: #1a1a1a;
+  padding: 20px;
+  width: 360px;
+  height: 160px;
+  position: absolute;
+}
+
+.visualization .legend {
+  top: 3%;
+  left: 5%;
+}
+
+.visualization .label.friendly {
+  top: 16%;
+  left: 35%;
+}
+
+.visualization .label.unfriendly {
+  top: 56%;
+  left: 35%;
+}
+
+.visualization .label {
+  font-family: "RobotoMono-Regular";
+  font-size: 1em;
+  letter-spacing: 0.0em;
+  color: white;
+  position: absolute;
+  margin: 0;
+  padding: 0;
   text-align: center;
+}
+
+.visualization .label.counter {
+  top: 3%;
+  right: 9%;
+}
+
+.visualization .genCounter {
+  position: absolute;
+  top: 2%;
+  right: 12%;
   color: #c41d25;
 
-  font-family: "Tungsten-Medium";
-  font-size: 5em;
-  letter-spacing: 0.05em;
+  font-family: "RobotoMono-Thin";
+  font-size: 9em;
+  letter-spacing: -0.075em;
 }
 
 .visualization .systemState {
   /*display: none;*/
   position: fixed;
-  bottom: 1%;
-  left: 5%;
-  width: 100%;
+  bottom: 3%;
+  left: 4%;
   text-align: left;
   color: #c41d25;
-  font-size: 20px;
 }
 
 .visualization .genSpeedBar {
