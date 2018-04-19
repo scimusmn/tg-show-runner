@@ -133,6 +133,8 @@ const videos = {
   sequence4: require('./videos/sequence4.mp4'),
   sequence5: require('./videos/sequence5.mp4'),
 
+  foxsay: require('./videos/foxsay.mp4'),
+
 };
 
 const getVistaSet = () => {

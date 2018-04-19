@@ -337,7 +337,7 @@ export default class Visualization extends Component {
       } else if (this.currentGeneration.length < 40) {
         numKids = 2 + Math.round(Math.random());
       } else {
-        numKids = 1 + Math.round(Math.random() * 1.8);
+        numKids = 1 + Math.round(Math.random() * 2.5);
       }
 
       // Buffer time before spawn anims.
@@ -410,16 +410,26 @@ export default class Visualization extends Component {
     vista.cell = cell;
 
     const birthTargetPos = {x:cell.pixelX, y:cell.pixelY};
+/*
+    if (birthTargetPos.x > VisGrid.gridCenter.x) {
+      birthTargetPos.x += 15 + Math.random()*30;
+    } else {
+      birthTargetPos.x -= 15 + Math.random()*30;
+    }
+
+    if (birthTargetPos.y > VisGrid.gridCenter.y) {
+      birthTargetPos.y += 15 + Math.random()*30;
+    } else {
+      birthTargetPos.y -= 15 + Math.random()*30;
+    }*/
 
     const setTween = new TweenMax.set(vista.target, {x:parentsX, y:parentsY, scale:this.vistaChildScale});
 
     const tweenShow = new TweenMax(vista.target, 0.3 * this.timeScale, {autoAlpha:1.0, ease:Power2.easeOut});
 
-    // const tweenOffspring = new TweenMax(vista.target, 0.4 * this.timeScale, {delay:0.01 * this.timeScale, x:nearCell.pixelX, y:nearCell.pixelY, ease:Power3.easeOut});
+    const tweenToGrid = new TweenMax(vista.target, 0.6 * this.timeScale, {delay:0.05 * this.timeScale, x:birthTargetPos.x, y:birthTargetPos.y, ease:Power3.easeOut});
 
-    const tweenToGrid = new TweenMax(vista.target, 0.6 * this.timeScale, {delay:0.05 * this.timeScale, x:cell.pixelX, y:cell.pixelY, ease:Power3.easeOut});
-
-    const tweenGrow = new TweenMax(vista.target, 1.0 * this.timeScale, {delay:1.4 * this.timeScale, autoAlpha:1.0, scale:this.vistaAdultScale, ease:Power2.easeInOut});
+    const tweenGrow = new TweenMax(vista.target, 1.0 * this.timeScale, {delay:1.4 * this.timeScale, autoAlpha:1.0, x:cell.pixelX, y:cell.pixelY, scale:this.vistaAdultScale, ease:Power2.easeInOut});
 
     return [setTween, tweenShow, tweenToGrid, tweenGrow];
 
@@ -450,7 +460,6 @@ export default class Visualization extends Component {
     this.setState({averageFriendliness:newAvg});
 
     // Update sparkline data
-    console.log('newAvg', newAvg);
     this.friendlinessData.push(newAvg);
 
     setTimeout(() => {

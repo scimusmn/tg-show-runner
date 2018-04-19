@@ -105,10 +105,8 @@ export default class Show extends React.Component {
         <Cue notes='What Does the Fox Say?!'>
 
           <Screen output='primary'>
-            <img src={images.whatthefoxsay} width='1920px'/>
+            <VideoCue src={videos.foxsay} />
           </Screen>
-
-          <SoundCue src={sounds.whatthefoxsay} />
 
         </Cue>
 
