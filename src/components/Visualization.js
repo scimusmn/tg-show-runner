@@ -21,7 +21,7 @@ export default class Visualization extends Component {
       generationSpeed:0,
       averageFriendliness: 0,
       totalVistasSpawned: 0,
-      systemState: 'waiting...',
+      systemState: 'Waiting...',
     };
 
     this.currentGeneration = [];
@@ -43,6 +43,7 @@ export default class Visualization extends Component {
 
     this.utilTimer = {};
     this.timeScale = 1.0;
+    this.displayTimeScale = 100;
 
     // Important sizes
     // this.visWidth = 600;
@@ -51,13 +52,13 @@ export default class Visualization extends Component {
     this.visHeight = 1550;
 
     // Important scales
-    this.vistaAdultScale = 0.25;
+    this.vistaAdultScale = 0.32;
     this.vistaChildScale = 0.13;
 
     // Important locations
     this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
-    this.entrancePoint = {x:0.83 * this.visWidth, y:0.12 * this.visHeight};
-    this.exitPoint = {x:0.83 * this.visWidth, y:0.12 * this.visHeight};
+    this.entrancePoint = {x:0.99 * this.visWidth, y:0.03 * this.visHeight};
+    this.exitPoint = {x:0.99 * this.visWidth, y:0.03 * this.visHeight};
 
     // Bind methods
     this.onEntranceComplete = this.onEntranceComplete.bind(this);
@@ -263,8 +264,6 @@ export default class Visualization extends Component {
 
   generationSequence() {
 
-    console.log('=========== START generationSequence()');
-
     this.pairingTL = new TimelineMax({onComplete:this.onNewGenerationComplete});
 
     // const mateLookup = VisGrid.resetMates(this.currentGeneration);
@@ -297,8 +296,6 @@ export default class Visualization extends Component {
 
       const v1 = this.currentGeneration[mainIndex];
       const v2 = this.currentGeneration[mateIndex];
-
-      console.log('pairing:', i, mateIndex, this.currentGeneration.length);
 
       const cell1 = v1.cell;
       const cell2 = v2.cell;
@@ -375,7 +372,12 @@ export default class Visualization extends Component {
     this.onNewGenerationSpawned();
 
     // Start pairing
-    this.setState({systemState:'Pairing'});
+    this.setState({systemState:'Spawning'});
+
+    this.utilTimer = setTimeout(() => {
+      this.setState({systemState:'Pairing'});
+    }, 1200 * this.timeScale);
+
     this.pairingTL.play();
 
   }
@@ -532,11 +534,10 @@ export default class Visualization extends Component {
         autoRotate:false,
       },
       delay:0.0,
+      scale:this.vistaAdultScale,
       ease:Linear.easeNone,});
 
-    const scaleTween = new TweenMax(vista.target, 0.3, {delay:2.0, scale:0.0});
-
-    return [bezTween, scaleTween];
+    return [bezTween];
 
   }
 
@@ -722,6 +723,7 @@ export default class Visualization extends Component {
 
       if (generationSpeed >= 0.5) {
         this.timeScale = 0.35;
+        this.displayTimeScale = 100;
       }
 
     } else {
@@ -732,10 +734,15 @@ export default class Visualization extends Component {
 
       if (generationSpeed >= 0.5) {
         TweenMax.to(this, tweenTime, {timeScale:0.35});
+        TweenMax.to(this, tweenTime, {displayTimeScale:500});
       }
 
     }
 
+  }
+
+  getGenSpeedPercent() {
+    return Math.round(this.displayTimeScale) + '%';
   }
 
   sortByFriendliness() {
@@ -748,15 +755,15 @@ export default class Visualization extends Component {
     this.sortTL = new TimelineMax({onComplete:this.onSortAnimComplete});
 
     const sortCols = 10;
-    const padding = 40;
+    const padding = 50;
 
     for (let i = 0; i < this.currentGeneration.length; i++) {
 
       const col = i % sortCols;
       const row = (i - col) / sortCols;
 
-      const sortedX = 150 + (padding * col);
-      const sortedY = 350 + (padding * row);
+      const sortedX = 160 + (padding * col);
+      const sortedY = 450 + (padding * row);
 
       this.sortTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);
 
@@ -929,18 +936,19 @@ export default class Visualization extends Component {
           <h3 className='label unfriendly'>UNFRIENDLY</h3>
         </div>
 
+        <div className='vistaContainer' ref='vistaContainer'></div>
+
         <h3 className='label counter'>GENERATION COUNTER</h3>
         <h1 className='label genCounter' ref='genCounter'>{this.utilPad(this.state.generationCount, 2)}</h1>
 
+        <h3 className='label speed'>GENERATION SPEED: {this.getGenSpeedPercent()}</h3>
         <img className='genSpeedBar' ref='genSpeedBar' src={images.vis_gen_speed} />
 
-        <h3 className='label averageFriendliness'>{this.state.averageFriendliness}</h3>
+        <p className='label averageFriendliness'>AVERAGE FRIENDLINESS: {this.state.averageFriendliness}</p>
 
-        <h3 className='label totalVistasSpawned'>{this.state.totalVistasSpawned}</h3>
+        <p className='label totalVistasSpawned'>TOTAL VISTAS SPAWNED: {this.state.totalVistasSpawned}</p>
 
         <h3 className='label systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
-
-        <div className='vistaContainer' ref='vistaContainer'></div>
 
         <img src={images.vis_fg_1} className='fs-image'/>
 
@@ -953,7 +961,7 @@ export default class Visualization extends Component {
         </div>
 
         <div className='bars-container'>
-          <Sparklines data={this.totalSpawnsData}>
+          <Sparklines data={this.totalSpawnsData} limit={50} min={0.0} max={1600}>
             <SparklinesBars color={'blue'} />
           </Sparklines>
         </div>

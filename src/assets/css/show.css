@@ -242,6 +242,16 @@ p.evaluation .highlight {
   left: 35%;
 }
 
+.visualization .label.averageFriendliness {
+  bottom: 18%;
+  left: 4%;
+}
+
+.visualization .label.totalVistasSpawned {
+  bottom: 16%;
+  left: 4%;
+}
+
 .visualization .label {
   font-family: "RobotoMono-Regular";
   font-size: 1em;
@@ -253,36 +263,46 @@ p.evaluation .highlight {
   text-align: center;
 }
 
+.visualization p.label {
+  font-size: 0.7em;
+  color: #ACACAC;
+}
+
 .visualization .label.counter {
   top: 3%;
-  right: 9%;
+  right: 12.5%;
 }
 
 .visualization .genCounter {
   position: absolute;
   top: 2%;
-  right: 12%;
+  right: 15.5%;
   color: #c41d25;
 
   font-family: "RobotoMono-Thin";
   font-size: 9em;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.08em;
 }
 
 .visualization .systemState {
-  /*display: none;*/
-  position: fixed;
-  bottom: 3%;
-  left: 4%;
+  top: 15%;
+  left: 5%;
   text-align: left;
   color: #c41d25;
 }
 
+.visualization .label.speed {
+  bottom: 19%;
+  right: -7%;
+  z-index: 5;
+  -webkit-transform: rotate(-90deg);
+}
+
 .visualization .genSpeedBar {
-  position: fixed;
+  position: absolute;
   bottom: 0%;
   right: 0%;
-  width: 35px
+  width: 100px;
 }
 
 .visualization .vistaContainer {
@@ -310,18 +330,20 @@ p.evaluation .highlight {
 
 .visualization .sparkline-container {
   position: absolute;
-  left: 10px;
-  top: 180px;
-  width: 500px;
-  background-color: #111;
+  left: 3%;
+  bottom: 1%;
+  width: 800px;
+  border-radius: 12px;
+  background: #1a1a1a;
 }
 
 .visualization .bars-container {
   position: absolute;
-  left: 10px;
-  top: 1080px;
-  width: 500px;
-  background-color: #111;
+  left: 40%;
+  bottom: 15.5%;
+  width: 400px;
+  border-radius: 12px;
+  background: #1a1a1a;
 }
 
 .visualization .digi-clock {

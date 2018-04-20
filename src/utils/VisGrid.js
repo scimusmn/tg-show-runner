@@ -1,9 +1,9 @@
 const VisGrid = () => {
 
   const GRID_WIDTH = 11;
-  const GRID_HEIGHT = 17;
+  const GRID_HEIGHT = 15;
 
-  const CELL_PIXEL_SIZE = 54;
+  const CELL_PIXEL_SIZE = 61;
 
   const TOTAL_SLOTS = GRID_WIDTH * GRID_HEIGHT;
 
