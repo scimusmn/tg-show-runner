@@ -47,6 +47,7 @@ const images = {
   vis_sil_o_blue: require('./images/vis_sil_o_blue.png'),
 
   vis_gen_speed: require('./images/vis_gen_speed.png'),
+  vis_gen_speed_bg: require('./images/vis_gen_speed_bg.png'),
   vis_fg_1: require('./images/vis_fg_1.png'),
   vis_bg_1: require('./images/vis_bg_1.png'),
   vis_train_lights: require('./images/vis_train_lights.png'),

@@ -1,7 +1,7 @@
 const VisGrid = () => {
 
-  const GRID_WIDTH = 11;
-  const GRID_HEIGHT = 15;
+  const GRID_WIDTH = 12;
+  const GRID_HEIGHT = 13;
 
   const CELL_PIXEL_SIZE = 61;
 

@@ -214,7 +214,7 @@ p.evaluation .highlight {
   left: 0px;
   width: 1080px;
   height: 1500px;
-  /*background-color: #f89;*/
+  /*background-color: #389;*/
 
 }
 
@@ -240,6 +240,11 @@ p.evaluation .highlight {
 .visualization .label.unfriendly {
   top: 56%;
   left: 35%;
+}
+
+.visualization .label.currentPopulation {
+  bottom: 20%;
+  left: 4%;
 }
 
 .visualization .label.averageFriendliness {
@@ -282,6 +287,11 @@ p.evaluation .highlight {
   font-family: "RobotoMono-Thin";
   font-size: 9em;
   letter-spacing: -0.08em;
+}
+
+.visualization .data-val {
+  /*color: #c41d25;*/
+  /*font-family: "RobotoMono-Bold";*/
 }
 
 .visualization .systemState {

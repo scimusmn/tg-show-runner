@@ -21,6 +21,7 @@ export default class Visualization extends Component {
       generationSpeed:0,
       averageFriendliness: 0,
       totalVistasSpawned: 0,
+      currentPopulation: 0,
       systemState: 'Waiting...',
     };
 
@@ -375,8 +376,8 @@ export default class Visualization extends Component {
     this.setState({systemState:'Spawning'});
 
     this.utilTimer = setTimeout(() => {
-      this.setState({systemState:'Pairing'});
-    }, 1200 * this.timeScale);
+      this.setState({systemState:'Waiting'});
+    }, 1500 * this.timeScale);
 
     this.pairingTL.play();
 
@@ -463,6 +464,8 @@ export default class Visualization extends Component {
 
     // Update sparkline data
     this.friendlinessData.push(newAvg);
+
+    this.setState({currentPopulation:numActive});
 
     setTimeout(() => {
       this.updateGenerationCount(1);
@@ -942,11 +945,12 @@ export default class Visualization extends Component {
         <h1 className='label genCounter' ref='genCounter'>{this.utilPad(this.state.generationCount, 2)}</h1>
 
         <h3 className='label speed'>GENERATION SPEED: {this.getGenSpeedPercent()}</h3>
-        <img className='genSpeedBar' ref='genSpeedBar' src={images.vis_gen_speed} />
+        <img className='genSpeedBar gray' src={images.vis_gen_speed_bg} />
+        <img className='genSpeedBar red' ref='genSpeedBar' src={images.vis_gen_speed} />
 
-        <p className='label averageFriendliness'>AVERAGE FRIENDLINESS: {this.state.averageFriendliness}</p>
-
-        <p className='label totalVistasSpawned'>TOTAL VISTAS SPAWNED: {this.state.totalVistasSpawned}</p>
+        <p className='label currentPopulation'>CURRENT POPPER COUNT: <span className='data-val'>{this.state.currentPopulation}</span></p>
+        <p className='label averageFriendliness'>AVERAGE FRIENDLINESS: <span className='data-val'>{Math.floor(this.state.averageFriendliness * 100) }%</span></p>
+        <p className='label totalVistasSpawned'>TOTAL VISTAS SPAWNED: <span className='data-val'>{this.state.totalVistasSpawned}</span></p>
 
         <h3 className='label systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
 
