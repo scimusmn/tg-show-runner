@@ -379,11 +379,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
-
         {/* Highlight Popper */}
         <Cue notes='Highlight Popper'>
 
@@ -438,18 +433,6 @@ export default class Show extends React.Component {
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
-
-        </Cue>
-
-        {/* Highlight Chute */}
-        <Cue notes='Highlight Chute'>
-
-          <Screen output='secondary'>
-            <Visualization />
-          </Screen>
-
-          <CueServerOut cueId={Lookup.HIGHLIGHT_CHUTE} />
-          <h2 className='debug'>HIGHLIGHT_CHUTE</h2>
 
         </Cue>
 
