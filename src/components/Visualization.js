@@ -726,7 +726,7 @@ export default class Visualization extends Component {
 
       if (generationSpeed >= 0.5) {
         this.timeScale = 0.35;
-        this.displayTimeScale = 100;
+        this.displayTimeScale = 500;
       }
 
     } else {
