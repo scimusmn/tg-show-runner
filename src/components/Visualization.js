@@ -821,14 +821,11 @@ export default class Visualization extends Component {
     // Look for a previously saved initial state.
     let storedState = JSON.parse(window.localStorage.getItem('visualization-state'));
 
-    console.log('-- storedState --');
-    console.log(storedState);
-
     // Set intial generation count
     if (this.props.startGen) {
       // Prop was explicitly set.
       this.updateGenerationCount(this.props.startGen, false);
-    } else if (storedState.generationCount) {
+    } else if (storedState && storedState.generationCount) {
       this.updateGenerationCount(storedState.generationCount, false);
     } else {
       console.log('Missing initial generationCount. Default:', this.state.generationCount);
@@ -838,31 +835,31 @@ export default class Visualization extends Component {
     if (this.props.startSpeed) {
       // Prop was explicitly set.
       this.updateGenerationSpeed(this.props.startSpeed, true);
-    } else if (storedState.generationSpeed) {
+    } else if (storedState && storedState.generationSpeed) {
       this.updateGenerationSpeed(storedState.generationSpeed, true);
     } else {
       console.log('Missing initial generationSpeed. Default:', this.state.generationSpeed);
     }
 
     // Set intial avg friendliness level
-    if (storedState.averageFriendliness) {
+    if (storedState && storedState.averageFriendliness) {
       this.setState({averageFriendliness:storedState.averageFriendliness});
     } else {
       console.log('Missing initial averageFriendliness. Default:', this.state.averageFriendliness);
     }
 
     // Set intial total spawned
-    if (storedState.totalVistasSpawned) {
+    if (storedState && storedState.totalVistasSpawned) {
       this.setState({totalVistasSpawned:storedState.totalVistasSpawned});
     } else {
       console.log('Missing initial totalVistasSpawned. Default:', this.state.totalVistasSpawned);
     }
 
-    if (storedState.friendlinessData) {
+    if (storedState && storedState.friendlinessData) {
       this.friendlinessData = storedState.friendlinessData;
     }
 
-    if (storedState.totalSpawnsData) {
+    if (storedState && storedState.totalSpawnsData) {
       this.totalSpawnsData = storedState.totalSpawnsData;
     }
 
