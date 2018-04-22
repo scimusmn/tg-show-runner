@@ -181,22 +181,25 @@ p.evaluation .highlight {
 .text-fullscreen {
   text-align: center !important;
   padding-top: 20%;
+  font-family: "RobotoMono-Bold";
 }
 
 .primary .text-fullscreen {
   font-size: 3em;
   width: 100%;
-  margin: 0 22%;
+  margin: 0 20%;
+}
+
+.secondary .text-fullscreen {
+  font-size: 3em;
+  width: 100%;
+  margin: 22% 0%;
 }
 
 .primary .text-fullscreen.success {
-
-  margin: 0 17%;
+  margin: 0 16%;
 }
 
-.text-fullscreen.success {
-  color: #6ab452;
-}
 .text-fullscreen.success {
   color: #6ab452;
 }
