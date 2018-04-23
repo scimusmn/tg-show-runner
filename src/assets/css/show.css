@@ -213,12 +213,12 @@ p.evaluation .highlight {
 
 .visualization {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 150px;
+  left: 85px;
   width: 1080px;
-  height: 1500px;
+  height: 1550px;
   /*background-color: #3fa;*/
-  /*transform: scale(0.5, 0.5);*/
+  transform: scale(0.76);
 
 }
 
