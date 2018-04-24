@@ -251,6 +251,8 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.VO_061} delay={1.0} />
           <SoundCue src={sounds.correct_answer_1} />
 
+          <CueServerOut cueId={Lookup.BADGE_V} />
+
         </Cue>
 
 
@@ -315,6 +317,8 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.VO_074} delay={1.0} />
           <SoundCue src={sounds.correct_answer_2} />
 
+          <CueServerOut cueId={Lookup.BADGE_I} />
+
         </Cue>
 
         {/* Alex sequence 3 */}
@@ -376,6 +380,8 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.VO_084} delay={1.0} />
           <SoundCue src={sounds.correct_answer_3} />
+
+          <CueServerOut cueId={Lookup.BADGE_S} />
 
         </Cue>
 
@@ -688,6 +694,8 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.VO_116}  delay={1.0} />
           <SoundCue src={sounds.correct_answer_4} />
 
+          <CueServerOut cueId={Lookup.BADGE_T} />
+
         </Cue>
 
         {/* Vista trait progression */}
@@ -765,6 +773,8 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.fanfare} />
           <SoundCue src={sounds.VO_128} delay={2.5}/>
+
+          <CueServerOut cueId={Lookup.BADGE_A} />
 
         </Cue>
 
