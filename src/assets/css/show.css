@@ -213,37 +213,37 @@ p.evaluation .highlight {
 
 .visualization {
   position: fixed;
-  top: 150px;
-  left: 85px;
+  top: 0px;
+  left: 0px;
   width: 1080px;
   height: 1550px;
   /*background-color: #3fa;*/
-  transform: scale(0.76);
+  /*transform: scale(0.76);*/
 
 }
 
 .visualization .data-pane {
   border-radius: 12px;
-  background: #1a1a1a;
+  background: #1e1e1e;
   padding: 20px;
-  width: 360px;
-  height: 160px;
+  width: 410px;
+  height: 180px;
   position: absolute;
 }
 
 .visualization .legend {
-  top: 3%;
-  left: 5%;
+  top: 0%;
+  left: 0%;
 }
 
 .visualization .label.friendly {
-  top: 16%;
-  left: 35%;
+  top: 25%;
+  left: 39%;
 }
 
 .visualization .label.unfriendly {
-  top: 56%;
-  left: 35%;
+  top: 60%;
+  left: 39%;
 }
 
 .visualization .label.currentPopulation {
@@ -263,7 +263,7 @@ p.evaluation .highlight {
 
 .visualization .label {
   font-family: "RobotoMono-Regular";
-  font-size: 1em;
+  font-size: 1.0em;
   letter-spacing: 0.0em;
   color: white;
   position: absolute;
@@ -274,23 +274,26 @@ p.evaluation .highlight {
 
 .visualization p.label {
   font-size: 0.7em;
-  color: #ACACAC;
+  color: #CdCdCd;
 }
 
 .visualization .label.counter {
-  top: 3%;
-  right: 12.5%;
+  top: 11.5%;
+  right: 30%;
+  font-size: 0.75em;
+  /*-webkit-transform: rotate(-90deg);*/
+  text-align: right;
 }
 
 .visualization .genCounter {
   position: absolute;
-  top: 2%;
-  right: 15.5%;
-  color: #c41d25;
+  top: -3.5%;
+  right: 3%;
+  color: #FF0000;
 
   font-family: "RobotoMono-Thin";
   font-size: 9em;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.1em;
 }
 
 .visualization .data-val {
@@ -299,17 +302,19 @@ p.evaluation .highlight {
 }
 
 .visualization .systemState {
-  top: 15%;
-  left: 5%;
+  top: 13.5%;
+  left: 2%;
   text-align: left;
-  color: #c41d25;
+  color: #fff;
 }
 
 .visualization .label.speed {
-  bottom: 19%;
-  right: -7%;
+  bottom: 72%;
+  right: 10.5%;
   z-index: 5;
-  -webkit-transform: rotate(-90deg);
+  font-size: 0.75em;
+  text-align: right;
+  /*-webkit-transform: rotate(-90deg);*/
 }
 
 .visualization .genSpeedBar {
@@ -362,8 +367,8 @@ p.evaluation .highlight {
 
 .visualization .digi-clock {
   position: absolute;
-  left: 380px;
-  top: 250px;
+  left: 75%;
+  bottom: 35%;
 }
 
 

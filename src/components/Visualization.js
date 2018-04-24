@@ -58,8 +58,8 @@ export default class Visualization extends Component {
 
     // Important locations
     this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
-    this.entrancePoint = {x:0.99 * this.visWidth, y:0.03 * this.visHeight};
-    this.exitPoint = {x:0.99 * this.visWidth, y:0.03 * this.visHeight};
+    this.entrancePoint = {x:0.99 * this.visWidth, y:0.134 * this.visHeight};
+    this.exitPoint = {x:0.44 * this.visWidth, y:-0.1 * this.visHeight};
 
     // Bind methods
     this.onEntranceComplete = this.onEntranceComplete.bind(this);
@@ -185,8 +185,8 @@ export default class Visualization extends Component {
     const vistaFriendly = this.activateVista(1.0, -1);
     const vistaUnfriendly = this.activateVista(0.0, -1);
 
-    TweenMax.set(vistaFriendly.target, {x:50, y:22, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
-    TweenMax.set(vistaUnfriendly.target, {x:50, y:92, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
+    TweenMax.set(vistaFriendly.target, {x:40, y:0, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
+    TweenMax.set(vistaUnfriendly.target, {x:40, y:61, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
 
   }
 
@@ -533,7 +533,7 @@ export default class Visualization extends Component {
     let bezTween = new TweenMax(vista.target, 1.1, {
       bezier:{
         type:'soft',
-        values:[{x:this.visCenter.x, y:this.entrancePoint.y}, {x:this.exitPoint.x, y:this.exitPoint.y}],
+        values:[{x:this.exitPoint.x, y:this.entrancePoint.y}, {x:this.exitPoint.x, y:this.exitPoint.y}],
         autoRotate:false,
       },
       delay:0.0,
@@ -938,10 +938,10 @@ export default class Visualization extends Component {
 
         <div className='vistaContainer' ref='vistaContainer'></div>
 
-        <h3 className='label counter'>GENERATION COUNTER</h3>
+        <h3 className='label counter'>GENERATIONS<br/>PASSED</h3>
         <h1 className='label genCounter' ref='genCounter'>{this.utilPad(this.state.generationCount, 2)}</h1>
 
-        <h3 className='label speed'>GENERATION SPEED: {this.getGenSpeedPercent()}</h3>
+        <h3 className='label speed'>GENERATION<br/>SPEED<br/>{this.getGenSpeedPercent()}</h3>
         <img className='genSpeedBar gray' src={images.vis_gen_speed_bg} />
         <img className='genSpeedBar red' ref='genSpeedBar' src={images.vis_gen_speed} />
 
@@ -951,9 +951,9 @@ export default class Visualization extends Component {
 
         <h3 className='label systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
 
-        <img src={images.vis_fg_1} className='fs-image'/>
-
         <img className='trainLights fs-image' ref='trainLights' src={images.vis_train_lights} />
+
+        <img src={images.vis_fg_1} className='fs-image'/>
 
         <div className='sparkline-container'>
           <Sparklines data={this.friendlinessData} limit={50} min={0.0} max={1.0}>
