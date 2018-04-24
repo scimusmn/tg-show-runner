@@ -17,6 +17,11 @@ const CueServerLookup = {
   PLUG_IN_LOCKDOWN:     'CUE 11 Go',
   LOCKDOWN_RELEASE:     'CUE 13 Go',
   POST_SHOW:            'CUE 18 Go',
+  BADGE_V:              'CUE 22 Go',
+  BADGE_I:              'CUE 23 Go',
+  BADGE_S:              'CUE 24 Go',
+  BADGE_T:              'CUE 25 Go',
+  BADGE_A:              'CUE 26 Go',
 
 };
 
