@@ -247,18 +247,24 @@ p.evaluation .highlight {
 }
 
 .visualization .label.currentPopulation {
-  bottom: 20%;
-  left: 4%;
+  text-align: center;
+  bottom: 21%;
+  left: 54%;
+  z-index: 9;
 }
 
 .visualization .label.averageFriendliness {
-  bottom: 18%;
-  left: 4%;
+  text-align: right;
+  bottom: 10%;
+  left: 3%;
+  z-index: 9;
 }
 
 .visualization .label.totalVistasSpawned {
-  bottom: 16%;
-  left: 4%;
+  text-align: right;
+  bottom: 19.5%;
+  left: 3%;
+  z-index: 9;
 }
 
 .visualization .label {
@@ -273,13 +279,13 @@ p.evaluation .highlight {
 }
 
 .visualization p.label {
-  font-size: 0.7em;
-  color: #CdCdCd;
+  font-size: 0.75em;
+  color: #FFF;
 }
 
 .visualization .label.counter {
-  top: 11.5%;
-  right: 30%;
+  top: 7%;
+  right: 31%;
   font-size: 0.75em;
   /*-webkit-transform: rotate(-90deg);*/
   text-align: right;
@@ -294,6 +300,8 @@ p.evaluation .highlight {
   font-family: "RobotoMono-Thin";
   font-size: 9em;
   letter-spacing: -0.1em;
+
+  text-shadow: 0 0 23px rgba(255,255,255,0.4), 0 0 35px #f00;
 }
 
 .visualization .data-val {
@@ -305,7 +313,8 @@ p.evaluation .highlight {
   top: 13.5%;
   left: 2%;
   text-align: left;
-  color: #fff;
+  background-color: #83EAFE;
+  color: black;
 }
 
 .visualization .label.speed {
@@ -349,26 +358,26 @@ p.evaluation .highlight {
 
 .visualization .sparkline-container {
   position: absolute;
-  left: 3%;
-  bottom: 1%;
-  width: 800px;
+  left: -1%;
+  bottom: -1%;
+  width: 840px;
   border-radius: 12px;
-  background: #1a1a1a;
+  background: rgba(244,244,244,0.1);
 }
 
 .visualization .bars-container {
   position: absolute;
-  left: 40%;
-  bottom: 15.5%;
-  width: 400px;
+  left: -1%;
+  bottom: 13%;
+  width: 540px;
   border-radius: 12px;
-  background: #1a1a1a;
+  background: rgba(244,244,244,0.1);
 }
 
 .visualization .digi-clock {
   position: absolute;
-  left: 75%;
-  bottom: 35%;
+  left: 59%;
+  top: 1.5%;
 }
 
 

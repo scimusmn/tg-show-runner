@@ -397,7 +397,12 @@ export class Manager extends Component {
       // have just reset show.
       // Clear cache with referesh.
       /// - TN
-      window.location.reload();
+      setTimeout( () => {
+        // body...
+        console.log('go reset');
+        window.location.reload();
+      }, 250);
+
 
   }
 

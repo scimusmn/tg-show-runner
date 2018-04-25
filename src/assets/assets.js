@@ -50,7 +50,8 @@ const images = {
   vis_gen_speed_bg: require('./images/vis_gen_speed_bg.png'),
   vis_fg_1: require('./images/vis_fg_1.png'),
   vis_bg_1: require('./images/vis_bg_1.png'),
-  vis_train_lights: require('./images/vis_train_lights.png'),
+  vis_train_lights_enter: require('./images/vis_train_lights_enter.png'),
+  vis_train_lights_exit: require('./images/vis_train_lights_exit.png'),
 
   badges_none: require('./images/badges_none.png'),
   badges_v: require('./images/badges_v.png'),

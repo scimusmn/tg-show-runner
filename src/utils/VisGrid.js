@@ -1,13 +1,13 @@
 const VisGrid = () => {
 
-  const GRID_WIDTH = 15;
-  const GRID_HEIGHT = 16;
+  const GRID_WIDTH = 12;
+  const GRID_HEIGHT = 11;
 
-  const CELL_PIXEL_SIZE = 61;
+  const CELL_PIXEL_SIZE = 77;
 
   const TOTAL_SLOTS = GRID_WIDTH * GRID_HEIGHT;
 
-  const gridCenter = {x:344, y:670};
+  const gridCenter = {x:400, y:670};
   let cells = [];
   let proximityLookups = {};
 

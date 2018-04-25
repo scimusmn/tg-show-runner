@@ -423,7 +423,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization trainMode={true}/>
+            <Visualization trainMode='enter'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -446,7 +446,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization trainMode={true}/>
+            <Visualization trainMode='exit'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -524,7 +524,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization trainMode={true}/>
+            <Visualization trainMode='enter'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -548,7 +548,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization trainMode={true}/>
+            <Visualization trainMode='exit'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -591,7 +591,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas train to vis.'>
 
           <Screen output='secondary'>
-            <Visualization trainMode={true}/>
+            <Visualization trainMode='enter'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -625,7 +625,7 @@ export default class Show extends React.Component {
         <Cue notes='Vistas exit screen via train.'>
 
           <Screen output='secondary'>
-            <Visualization trainMode={true}/>
+            <Visualization trainMode='exit'/>
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />

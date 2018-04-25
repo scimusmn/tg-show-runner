@@ -8,7 +8,7 @@ import {images, sounds, getVistaSet} from '../assets/assets';
 import Vista from './Vista';
 import VisGrid from '../utils/VisGrid';
 import generationSimulator from '../utils/GenerationSimulator';
-import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesBars } from 'react-sparklines';
+import { Sparklines, SparklinesLine, SparklinesSpots, SparklinesBars, SparklinesReferenceLine } from 'react-sparklines';
 
 export default class Visualization extends Component {
 
@@ -29,8 +29,8 @@ export default class Visualization extends Component {
     this.nextGeneration = [];
 
     this.newVistasSpawned = 0;
-    this.friendlinessData = [];
-    this.totalSpawnsData = [];
+    this.friendlinessData = [0.01];
+    this.totalSpawnsData = [50,22,22,55,44,33];
 
     this.vistas = [];
     this.hearts = [];
@@ -53,13 +53,13 @@ export default class Visualization extends Component {
     this.visHeight = 1550;
 
     // Important scales
-    this.vistaAdultScale = 0.32;
-    this.vistaChildScale = 0.13;
+    this.vistaAdultScale = 0.43;
+    this.vistaChildScale = 0.21;
 
     // Important locations
     this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
     this.entrancePoint = {x:0.99 * this.visWidth, y:0.134 * this.visHeight};
-    this.exitPoint = {x:0.44 * this.visWidth, y:-0.1 * this.visHeight};
+    this.exitPoint = {x:0.435 * this.visWidth, y:-0.1 * this.visHeight};
 
     // Bind methods
     this.onEntranceComplete = this.onEntranceComplete.bind(this);
@@ -79,7 +79,8 @@ export default class Visualization extends Component {
     // Set initial states of visual refs.
     this.genCounter = this.refs.genCounter;
     this.genSpeedBar = this.refs.genSpeedBar;
-    this.trainLights = this.refs.trainLights;
+    this.trainLightsEnter = this.refs.trainLightsEnter;
+    this.trainLightsExit = this.refs.trainLightsExit;
 
     // Load initial state
     this.loadInitialState();
@@ -95,14 +96,17 @@ export default class Visualization extends Component {
     VisGrid.reset();
 
     // Turn on vistas glowing lights
-    if (this.props.trainMode) {
+    TweenMax.set(this.trainLightsEnter, {autoAlpha: 0.0});
+    TweenMax.set(this.trainLightsExit, {autoAlpha: 0.0});
+    if (this.props.trainMode == 'enter') {
 
-      TweenMax.set(this.trainLights, {autoAlpha: 0.9});
-      TweenMax.to(this.trainLights, 0.14, {autoAlpha: 0.0, ease: Power3.easeInOut, repeat:-1, yoyo:true});
+      TweenMax.set(this.trainLightsEnter, {autoAlpha: 1.0});
+      TweenMax.to(this.trainLightsEnter, 0.15, {autoAlpha: 0.0, ease: Power2.easeIn, repeat:-1, yoyo:true});
 
-    } else {
+    } else if (this.props.trainMode == 'exit') {
 
-      TweenMax.set(this.trainLights, {autoAlpha: 0.0});
+      TweenMax.set(this.trainLightsExit, {autoAlpha: 1.0});
+      TweenMax.to(this.trainLightsExit, 0.15, {autoAlpha: 0.0, ease: Power2.easeIn, repeat:-1, yoyo:true});
 
     }
 
@@ -766,9 +770,9 @@ export default class Visualization extends Component {
       const row = (i - col) / sortCols;
 
       const sortedX = 160 + (padding * col);
-      const sortedY = 450 + (padding * row);
+      const sortedY = 460 + (padding * row);
 
-      this.sortTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.03);
+      this.sortTL.add(this.createSortAnim(this.currentGeneration[i].target, sortedX, sortedY), i * 0.01);
 
     }
 
@@ -945,25 +949,28 @@ export default class Visualization extends Component {
         <img className='genSpeedBar gray' src={images.vis_gen_speed_bg} />
         <img className='genSpeedBar red' ref='genSpeedBar' src={images.vis_gen_speed} />
 
-        <p className='label currentPopulation'>CURRENT POPPER COUNT: <span className='data-val'>{this.state.currentPopulation}</span></p>
         <p className='label averageFriendliness'>AVERAGE FRIENDLINESS: <span className='data-val'>{Math.floor(this.state.averageFriendliness * 100) }%</span></p>
         <p className='label totalVistasSpawned'>TOTAL VISTAS SPAWNED: <span className='data-val'>{this.state.totalVistasSpawned}</span></p>
 
         <h3 className='label systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
 
-        <img className='trainLights fs-image' ref='trainLights' src={images.vis_train_lights} />
+        <img className='trainLights fs-image' ref='trainLightsEnter' src={images.vis_train_lights_enter} />
+        <img className='trainLights fs-image' ref='trainLightsExit' src={images.vis_train_lights_exit} />
 
         <img src={images.vis_fg_1} className='fs-image'/>
 
         <div className='sparkline-container'>
-          <Sparklines data={this.friendlinessData} limit={50} min={0.0} max={1.0}>
-            <SparklinesLine color={'red' } />
+          <Sparklines data={this.friendlinessData} limit={25} min={0.0} max={1.0}>
+            <SparklinesLine style={{ strokeWidth: 4, stroke: "red", fill: "red", fillOpacity: "0.325"}} />
+            <SparklinesSpots style={{ fill: "#FFaaaa" }} />
+            <SparklinesReferenceLine type="avg" />
           </Sparklines>
         </div>
 
         <div className='bars-container'>
-          <Sparklines data={this.totalSpawnsData} limit={50} min={0.0} max={1600}>
-            <SparklinesBars color={'blue'} />
+          <Sparklines data={this.totalSpawnsData} min={0.0} max={1500}>
+
+            <SparklinesBars style={{ fill: "#83EAFE" }}/>
           </Sparklines>
         </div>
 
@@ -983,12 +990,12 @@ Visualization.propTypes = {
   startSpeed: PropTypes.number,
   endSpeed: PropTypes.number,
   seedVistas: PropTypes.array,
-  trainMode: PropTypes.bool,
+  trainMode: PropTypes.string,
 };
 
 Visualization.defaultProps = {
 
   seedVistas: [],
-  trainMode: false,
+  trainMode: '',
 
 };
