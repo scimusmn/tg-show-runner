@@ -30,7 +30,7 @@ export default class Visualization extends Component {
 
     this.newVistasSpawned = 0;
     this.friendlinessData = [0.01];
-    this.totalSpawnsData = [50,22,22,55,44,33];
+    this.totalSpawnsData = [25,25,25,25,25];
 
     this.vistas = [];
     this.hearts = [];

@@ -30,31 +30,18 @@
     font-style:normal;font-weight:400;
 }
 
-
-/* Tungsten */
 @font-face {
-    font-family:"Tungsten-Black";
-    src:url("../fonts/Tungsten-Black.woff") format("woff");
+    font-family:"Roboto-Medium";
+    src:url("../fonts/Roboto-Medium.woff") format("woff");
     font-style:normal;font-weight:400;
 }
 
 @font-face {
-    font-family:"Tungsten-Bold";
-    src:url(url("../fonts/Tungsten-Bold.woff") format("woff");
+    font-family:"Roboto-Regular";
+    src:url("../fonts/Roboto-Regular.woff") format("woff");
     font-style:normal;font-weight:400;
 }
 
-@font-face {
-    font-family:"Tungsten-Medium";
-    src:url(url("../fonts/Tungsten-Medium.woff") format("woff");
-    font-style:normal;font-weight:400;
-}
-
-@font-face {
-    font-family:"Tungsten-Semibold";
-    src:url(url("../fonts/Tungsten-Semibold.woff") format("woff");
-    font-style:normal;font-weight:400;
-}
 
 /*----------  CUSTOM STYLES  ----------*/
 body {
@@ -139,10 +126,10 @@ p.evaluation {
   font-size: 0.66em;
   text-align: left;
   line-height: 1.9em;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.0px;
   color: black;
   font-weight: 500;
-  font-family: "Arial Narrow";
+
   background-color: #fff;
 }
 
@@ -151,16 +138,17 @@ p.evaluation .highlight {
 }
 
 .primary p.evaluation {
+
   width: 1920px;
-  margin-top: 7%;
+  margin-top: 6%;
   padding: 4% 14% 5.5% 14%;
   font-size: 2.2em;
   text-align: left;
   line-height: 1.9em;
-  letter-spacing: 0.4px;
+  letter-spacing: -0.0px;
   color: black;
   font-weight: 500;
-  font-family: "Arial Narrow";
+  font-family: "Roboto-Regular";
   background-color: #fff;
 
 }
@@ -187,13 +175,14 @@ p.evaluation .highlight {
 .primary .text-fullscreen {
   font-size: 3em;
   width: 100%;
-  margin: 0 20%;
+  margin: 10% 22%;
 }
 
 .secondary .text-fullscreen {
-  font-size: 3em;
+  font-size: 2.5em;
   width: 100%;
-  margin: 22% 0%;
+  margin: 40% 0%;
+  margin-left: 4%;
 }
 
 .primary .text-fullscreen.success {
@@ -213,12 +202,12 @@ p.evaluation .highlight {
 
 .visualization {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 138px;
+  left: 45px;
   width: 1080px;
   height: 1550px;
-  /*background-color: #3fa;*/
-  /*transform: scale(0.76);*/
+  /* background-color: #3fa; */
+  transform: scale(0.81);
 
 }
 

@@ -75,4 +75,7 @@ function toCueServer(message) {
 
 }
 
+/* HACK - Windows 10 + Socket.io delays incoming messages */
+/* A simple setInterval anywhere on server prevents this inconsistent delay. */
+setInterval(() => {}, 50);
 
