@@ -58,7 +58,7 @@ export default class Visualization extends Component {
 
     // Important locations
     this.visCenter = {x:0.37 * this.visWidth, y:0.37 * this.visHeight};
-    this.entrancePoint = {x:0.99 * this.visWidth, y:0.134 * this.visHeight};
+    this.entrancePoint = {x:0.99 * this.visWidth, y:0.15 * this.visHeight};
     this.exitPoint = {x:0.435 * this.visWidth, y:-0.1 * this.visHeight};
 
     // Bind methods
@@ -189,8 +189,8 @@ export default class Visualization extends Component {
     const vistaFriendly = this.activateVista(1.0, -1);
     const vistaUnfriendly = this.activateVista(0.0, -1);
 
-    TweenMax.set(vistaFriendly.target, {x:40, y:0, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
-    TweenMax.set(vistaUnfriendly.target, {x:40, y:61, scale:this.vistaAdultScale + 0.05, autoAlpha:1.0});
+    TweenMax.set(vistaFriendly.target, {x:25, y:-4, scale:this.vistaAdultScale, autoAlpha:1.0});
+    TweenMax.set(vistaUnfriendly.target, {x:25, y:61, scale:this.vistaAdultScale, autoAlpha:1.0});
 
   }
 
@@ -255,12 +255,9 @@ export default class Visualization extends Component {
     this.updateGenerationSpeed(this.props.startSpeed, true);
 
     // Tween timescale (geneation speed)
-    // if it doesn't match 4 secs into vis.
-    setTimeout(() => {
-      if (this.props.startSpeed != this.props.endSpeed) {
-        this.updateGenerationSpeed(this.props.endSpeed, false);
-      }
-    }, 1000);
+    if (this.props.startSpeed != this.props.endSpeed) {
+      this.updateGenerationSpeed(this.props.endSpeed, false);
+    }
 
     // Start generations sim
     this.generationSequence();
@@ -727,6 +724,7 @@ export default class Visualization extends Component {
     if (setInitial == true) {
 
       TweenMax.set(this.refs.genSpeedBar, {scaleY:generationSpeed, transformOrigin:'right bottom'});
+      TweenMax.set(this.refs.genSpeedBar, {autoAlpha: 0.7});
 
       if (generationSpeed >= 0.5) {
         this.timeScale = 0.35;
@@ -735,13 +733,15 @@ export default class Visualization extends Component {
 
     } else {
 
-      const tweenTime = 5.0;
+      const tweenTime = 7.0;
 
-      TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:generationSpeed, ease: Power2.easeInOut});
+      TweenMax.to(this.refs.genSpeedBar, tweenTime, {scaleY:generationSpeed, ease: Power3.easeOut});
 
       if (generationSpeed >= 0.5) {
         TweenMax.to(this, tweenTime, {timeScale:0.35});
         TweenMax.to(this, tweenTime, {displayTimeScale:500});
+        TweenMax.set(this.refs.genSpeedBar, {autoAlpha: 0.5});
+        TweenMax.to(this.refs.genSpeedBar, 0.24, {autoAlpha: 0.99, ease: Power2.easeInOut, repeat:-1, yoyo:true});
       }
 
     }
@@ -973,8 +973,6 @@ export default class Visualization extends Component {
             <SparklinesBars style={{ fill: "#83EAFE" }}/>
           </Sparklines>
         </div>
-
-        <img className='digi-clock' src={images.red_digital_clock} />
 
       </div>
 

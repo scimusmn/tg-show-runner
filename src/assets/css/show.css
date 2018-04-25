@@ -227,12 +227,12 @@ p.evaluation .highlight {
 
 .visualization .label.friendly {
   top: 25%;
-  left: 39%;
+  left: 36%;
 }
 
 .visualization .label.unfriendly {
   top: 60%;
-  left: 39%;
+  left: 36%;
 }
 
 .visualization .label.currentPopulation {
@@ -273,24 +273,25 @@ p.evaluation .highlight {
 }
 
 .visualization .label.counter {
-  top: 7%;
-  right: 31%;
+  top: 1%;
+  right: 30%;
   font-size: 0.75em;
   /*-webkit-transform: rotate(-90deg);*/
   text-align: right;
+  color: red;
 }
 
 .visualization .genCounter {
   position: absolute;
   top: -3.5%;
-  right: 3%;
+  right: 2%;
   color: #FF0000;
 
   font-family: "RobotoMono-Thin";
-  font-size: 9em;
-  letter-spacing: -0.1em;
+  font-size: 8.5em;
+  letter-spacing: -0.05em;
 
-  text-shadow: 0 0 23px rgba(255,255,255,0.4), 0 0 35px #f00;
+  text-shadow: 0 0 20px rgba(255,0,0,0.4), 0 0 30px #f00;
 }
 
 .visualization .data-val {
@@ -307,18 +308,19 @@ p.evaluation .highlight {
 }
 
 .visualization .label.speed {
-  bottom: 72%;
+  bottom: 14.5%;
   right: 10.5%;
   z-index: 5;
   font-size: 0.75em;
   text-align: right;
+  color: #83EAFE;
   /*-webkit-transform: rotate(-90deg);*/
 }
 
 .visualization .genSpeedBar {
   position: absolute;
   bottom: 0%;
-  right: 0%;
+  right: -2%;
   width: 100px;
 }
 
