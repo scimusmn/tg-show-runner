@@ -244,15 +244,15 @@ p.evaluation .highlight {
 
 .visualization .label.averageFriendliness {
   text-align: right;
-  bottom: 10%;
-  left: 3%;
+  bottom: 11%;
+  left: 4%;
   z-index: 9;
 }
 
 .visualization .label.totalVistasSpawned {
   text-align: right;
-  bottom: 19.5%;
-  left: 3%;
+  bottom: 20%;
+  left: 4%;
   z-index: 9;
 }
 
@@ -283,7 +283,7 @@ p.evaluation .highlight {
 
 .visualization .genCounter {
   position: absolute;
-  top: -3.5%;
+  top: -2.5%;
   right: 2%;
   color: #FF0000;
 
@@ -308,13 +308,17 @@ p.evaluation .highlight {
 }
 
 .visualization .label.speed {
-  bottom: 14.5%;
-  right: 10.5%;
+  bottom: 15%;
+  right: 9.5%;
   z-index: 5;
   font-size: 0.75em;
   text-align: right;
   color: #83EAFE;
   /*-webkit-transform: rotate(-90deg);*/
+}
+
+.visualization .label.speed span {
+  font-size: 2.5em;
 }
 
 .visualization .genSpeedBar {
@@ -350,8 +354,8 @@ p.evaluation .highlight {
 .visualization .sparkline-container {
   position: absolute;
   left: -1%;
-  bottom: -1%;
-  width: 840px;
+  bottom: 0.5%;
+  width: 780px;
   border-radius: 12px;
   background: rgba(244,244,244,0.1);
 }
@@ -359,8 +363,8 @@ p.evaluation .highlight {
 .visualization .bars-container {
   position: absolute;
   left: -1%;
-  bottom: 13%;
-  width: 540px;
+  bottom: 15%;
+  width: 440px;
   border-radius: 12px;
   background: rgba(244,244,244,0.1);
 }

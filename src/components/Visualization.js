@@ -740,8 +740,9 @@ export default class Visualization extends Component {
       if (generationSpeed >= 0.5) {
         TweenMax.to(this, tweenTime, {timeScale:0.35});
         TweenMax.to(this, tweenTime, {displayTimeScale:500});
-        TweenMax.set(this.refs.genSpeedBar, {autoAlpha: 0.5});
-        TweenMax.to(this.refs.genSpeedBar, 0.24, {autoAlpha: 0.99, ease: Power2.easeInOut, repeat:-1, yoyo:true});
+        TweenMax.set([this.refs.genSpeedBarLabel], {autoAlpha: 0.8});
+        TweenMax.set([this.refs.genSpeedBar], {autoAlpha: 0.5});
+        TweenMax.to([this.refs.genSpeedBar, this.refs.genSpeedBarLabel], 0.24, {autoAlpha: 0.99, ease: Power2.easeInOut, repeat:-1, yoyo:true});
       }
 
     }
@@ -945,7 +946,7 @@ export default class Visualization extends Component {
         <h3 className='label counter'>GENERATIONS<br/>PASSED</h3>
         <h1 className='label genCounter' ref='genCounter'>{this.utilPad(this.state.generationCount, 2)}</h1>
 
-        <h3 className='label speed'>GENERATION<br/>SPEED<br/>{this.getGenSpeedPercent()}</h3>
+        <h3 className='label speed' ><span ref='genSpeedBarLabel' className='speedNum'>{this.getGenSpeedPercent()}</span><br/>GENERATION<br/>SPEED</h3>
         <img className='genSpeedBar gray' src={images.vis_gen_speed_bg} />
         <img className='genSpeedBar red' ref='genSpeedBar' src={images.vis_gen_speed} />
 
