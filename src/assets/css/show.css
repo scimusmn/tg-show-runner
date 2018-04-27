@@ -42,6 +42,12 @@
     font-style:normal;font-weight:400;
 }
 
+@font-face {
+    font-family:"RobotoCondensed-Regular";
+    src:url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
 
 /*----------  CUSTOM STYLES  ----------*/
 body {
@@ -119,20 +125,6 @@ body {
   height: 640px;
 }
 
-p.evaluation {
-  width: 480px;
-  margin-top: 30%;
-  padding: 5% 10%;
-  font-size: 0.66em;
-  text-align: left;
-  line-height: 1.9em;
-  letter-spacing: 0.0px;
-  color: black;
-  font-weight: 500;
-
-  background-color: #fff;
-}
-
 p.evaluation .highlight {
   color: #d21349 !important;
 }
@@ -142,13 +134,13 @@ p.evaluation .highlight {
   width: 1920px;
   margin-top: 6%;
   padding: 4% 14% 5.5% 14%;
-  font-size: 2.2em;
+  font-size: 2.4em;
   text-align: left;
-  line-height: 1.9em;
+  line-height: 1.7em;
   letter-spacing: -0.0px;
   color: black;
   font-weight: 500;
-  font-family: "Roboto-Regular";
+  font-family: "RobotoCondensed-Regular";
   background-color: #fff;
 
 }

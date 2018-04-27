@@ -212,7 +212,6 @@ export default class Show extends React.Component {
         <Cue notes='Evaluation part ONE'>
 
           <Screen output='primary'>
-
             <p className='evaluation'>
               Variation’s the name of this <span className='highlight'>game</span><br/>
               Everything has it, wild or <span className='highlight'>tame</span><br/>
