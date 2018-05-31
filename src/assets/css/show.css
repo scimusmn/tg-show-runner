@@ -171,10 +171,10 @@ p.evaluation .highlight {
 }
 
 .secondary .text-fullscreen {
-  font-size: 2.5em;
+  font-size: 2.85em;
   width: 100%;
   margin: 40% 0%;
-  margin-left: 4%;
+  margin-left: 0%;
 }
 
 .primary .text-fullscreen.success {
@@ -194,12 +194,12 @@ p.evaluation .highlight {
 
 .visualization {
   position: fixed;
-  top: 125px;
+  top: 117px;
   left: -30px;
   width: 1080px;
   height: 1550px;
   /* background-color: #3fa; */
-  transform: scale(0.87);
+  transform: scale(0.8725);
 
 }
 
@@ -265,8 +265,8 @@ p.evaluation .highlight {
 }
 
 .visualization .label.counter {
-  top: 1.5%;
-  right: 31%;
+  top: 2%;
+  right: 29%;
   font-size: 0.75em;
   /*-webkit-transform: rotate(-90deg);*/
   text-align: right;
@@ -300,14 +300,14 @@ p.evaluation .highlight {
 }
 
 .visualization .label.speed {
-  top: 24%;
+  top: 24.5%;
   right: 9.35%;
   z-index: 5;
   font-size: 0.75em;
   text-align: right;
   color: #83EAFE;
 
-  text-shadow: 0px 1px 2px rgba(25, 25, 25, 1);
+  text-shadow: 0px 3px 3px rgba(7, 7, 7, 1);
   /*-webkit-transform: rotate(-90deg);*/
 }
 
