@@ -194,12 +194,12 @@ p.evaluation .highlight {
 
 .visualization {
   position: fixed;
-  top: 138px;
-  left: 45px;
+  top: 125px;
+  left: -30px;
   width: 1080px;
   height: 1550px;
   /* background-color: #3fa; */
-  transform: scale(0.81);
+  transform: scale(0.87);
 
 }
 
@@ -265,8 +265,8 @@ p.evaluation .highlight {
 }
 
 .visualization .label.counter {
-  top: 1%;
-  right: 30%;
+  top: 1.5%;
+  right: 31%;
   font-size: 0.75em;
   /*-webkit-transform: rotate(-90deg);*/
   text-align: right;
@@ -300,17 +300,20 @@ p.evaluation .highlight {
 }
 
 .visualization .label.speed {
-  bottom: 14%;
-  right: 9.5%;
+  top: 24%;
+  right: 9.35%;
   z-index: 5;
   font-size: 0.75em;
   text-align: right;
   color: #83EAFE;
+
+  text-shadow: 0px 1px 2px rgba(25, 25, 25, 1);
   /*-webkit-transform: rotate(-90deg);*/
 }
 
 .visualization .label.speed span {
   font-size: 3.5em;
+  /*background-color: rgba(0, 0, 0, 0.8);*/
 }
 
 .visualization .genSpeedBar {

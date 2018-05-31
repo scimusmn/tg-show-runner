@@ -951,7 +951,7 @@ export default class Visualization extends Component {
         <img className='genSpeedBar red' ref='genSpeedBar' src={images.vis_gen_speed} />
 
         <p className='label averageFriendliness'>AVERAGE FRIENDLINESS: <span className='data-val'>{Math.floor(this.state.averageFriendliness * 100) }%</span></p>
-        <p className='label totalVistasSpawned'>SUM VISTAS SPAWNED: <span className='data-val'>{this.state.totalVistasSpawned}</span></p>
+        <p className='label totalVistasSpawned'>TOTAL VISTAS SPAWNED: <span className='data-val'>{this.state.totalVistasSpawned}</span></p>
 
         <h3 className='label systemState' ref='systemState'>[ {this.state.systemState} ]</h3>
 
