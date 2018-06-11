@@ -55,6 +55,16 @@ export default class Show extends React.Component {
 
           <CueServerOut cueId={Lookup.PRE_SHOW} />
 
+          <SoundCue src={sounds.vista_unfriendly_1} volume={0.15} delay={0.0} repeat={false}/>
+
+          <SoundCue src={sounds.vista_friendly_3} volume={0.125} delay={17.5} repeat={true}/>
+          <SoundCue src={sounds.vista_unfriendly_1} volume={0.125} delay={19.0} repeat={true}/>
+          <SoundCue src={sounds.vista_unfriendly_2} volume={0.125} delay={31.4} repeat={true}/>
+          <SoundCue src={sounds.vista_unfriendly_3} volume={0.125} delay={26.8} repeat={true}/>
+          <SoundCue src={sounds.vista_unfriendly_4} volume={0.125} delay={36.9} repeat={true}/>
+          <SoundCue src={sounds.vista_friendly_2} volume={0.125} delay={29.5} repeat={true}/>
+          <SoundCue src={sounds.vista_burp} volume={0.2} delay={49.5} repeat={true}/>
+
         </Cue>
 
         {/* Show Start. VO Intro. */}

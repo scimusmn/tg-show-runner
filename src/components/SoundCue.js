@@ -23,11 +23,7 @@ export default class SoundCue extends Component {
 
   componentDidMount() {
 
-    this.delayTimeout = setTimeout(() => {
-
-      this.sound.play();
-
-    }, this.props.delay * 1000);
+    this.delayedSound();
 
   }
 
@@ -40,6 +36,20 @@ export default class SoundCue extends Component {
     this.sound.stop();
 
     clearTimeout(this.delayTimeout);
+
+  }
+
+  delayedSound() {
+
+    this.delayTimeout = setTimeout(() => {
+
+      this.sound.play();
+
+      if (this.props.repeat == true) {
+        this.delayedSound();
+      }
+
+    }, this.props.delay * 1000);
 
   }
 
@@ -56,9 +66,11 @@ SoundCue.propTypes = {
   src: PropTypes.string,
   delay: PropTypes.number,
   volume: PropTypes.number,
+  repeat: PropTypes.bool,
 };
 
 SoundCue.defaultProps = {
   delay: 0.0,
   volume: 1.0,
+  repeat: false,
 };
