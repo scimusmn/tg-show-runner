@@ -382,6 +382,16 @@ p.evaluation .highlight {
   overflow: hidden;
 }
 
+.dark-mode {
+  filter: grayscale(70%) brightness(35%);
+  -webkit-filter: grayscale(70%) brightness(35%);
+}
+
+.dark-mode .ReactTable {
+  background-color: #000;
+}
+
+
 .currentnotes span {
   color: #f3e523 !important;
 }

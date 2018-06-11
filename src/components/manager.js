@@ -763,6 +763,8 @@ export class Manager extends Component {
     // Render CONTROLLER view
     } else if (this.props.route.params.indexOf('controller') !== -1) {
       const isTimerMode = this.props.route.params.indexOf('timer') !== -1;
+      const isDarkMode = this.props.route.params.indexOf('dark') !== -1;
+      console.log('DARK MODE', isDarkMode);
       componentToRender = (
         <Controller
           dispatch={this.props.dispatch}
@@ -773,6 +775,7 @@ export class Manager extends Component {
           route={this.props.route}
           lastSlideIndex={this.state.lastSlideIndex}
           timer={isTimerMode}
+          darkMode={isDarkMode}
         />
       );
 

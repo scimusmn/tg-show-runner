@@ -298,7 +298,7 @@ export default class Controller extends Component {
     },];
 
     return (
-      <PresenterContent>
+      <PresenterContent className={this.props.darkMode === true ? 'dark-mode' : ''} >
         <HeaderContainer>
           <SlideInfo>
             Cue {this.props.slideIndex + 1} of{' '}
@@ -335,6 +335,7 @@ Controller.propTypes = {
   slideReference: PropTypes.array,
   slides: PropTypes.array,
   timer: PropTypes.bool,
+  darkMode: PropTypes.bool,
 };
 
 Controller.contextTypes = {

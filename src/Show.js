@@ -63,7 +63,7 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.vista_unfriendly_3} volume={0.125} delay={26.8} repeat={true}/>
           <SoundCue src={sounds.vista_unfriendly_4} volume={0.125} delay={36.9} repeat={true}/>
           <SoundCue src={sounds.vista_friendly_2} volume={0.125} delay={29.5} repeat={true}/>
-          <SoundCue src={sounds.vista_burp} volume={0.2} delay={49.5} repeat={true}/>
+          <SoundCue src={sounds.vista_burp} volume={0.125} delay={49.5} repeat={true}/>
 
         </Cue>
 
