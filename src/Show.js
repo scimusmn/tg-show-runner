@@ -51,7 +51,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Pre show */}
-        <Cue notes='Pre-show lighting. Audience entering.'>
+        <Cue notes='Pre-show vista noises. Audience entering.'>
 
           <CueServerOut cueId={Lookup.PRE_SHOW} />
 
@@ -63,7 +63,7 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.vista_unfriendly_3} volume={0.125} delay={26.8} repeat={true}/>
           <SoundCue src={sounds.vista_unfriendly_4} volume={0.125} delay={36.9} repeat={true}/>
           <SoundCue src={sounds.vista_friendly_2} volume={0.125} delay={29.5} repeat={true}/>
-          <SoundCue src={sounds.vista_burp} volume={0.125} delay={49.5} repeat={true}/>
+          <SoundCue src={sounds.vista_burp} volume={0.125} delay={69.5} repeat={true}/>
 
         </Cue>
 
@@ -133,25 +133,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Vista Cooing */}
-        <Cue notes='Vistas cooing'>
-
-          <SoundCue src={sounds.vista_friendly_1}/>
-          <SoundCue src={sounds.vista_friendly_2}/>
-
-        </Cue>
-
-        {/* Family Tree */}
-        <Cue notes='Tribble/Pygmy family tree.'>
-
-          <Screen output='primary' lifepan={10.0}>
-            <img src={images.tribble} width='1920px'/>
-          </Screen>
-
-          <SoundCue src={sounds.upload} />
-
-        </Cue>
-
         {/* VO: Should any cage open... */}
         <Cue notes='VO: Should any cage open...'>
 
@@ -194,20 +175,6 @@ export default class Show extends React.Component {
 
         {/* Empty */}
         <Cue notes='Empty'>
-
-        </Cue>
-
-        {/* Single Vista friendly sound. */}
-        <Cue notes='Single Vista friendly sound.'>
-
-          <SoundCue src={sounds.vista_friendly_1} />
-
-        </Cue>
-
-        {/* Vista gobbles sandwich */}
-        <Cue notes='Vista gobbles sandwich.'>
-
-          <SoundCue src={sounds.vista_gobble} />
 
         </Cue>
 
@@ -378,6 +345,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Highlight Popper */}
+        {/* CAGE SET 1 */}
         <Cue notes='Highlight Popper'>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_POPPER} />
@@ -385,18 +353,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* CAGE SET 1 */}
-
-        {/* Vista chorus 1. Mostly unfriendly. */}
-        <Cue notes='Vista chorus 1. Mostly unfriendly.'>
-
-          <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.5} />
-          <SoundCue src={sounds.vista_unfriendly_1} volume={0.3} delay={0.0} />
-          <SoundCue src={sounds.vista_unfriendly_2} volume={0.3} delay={0.4} />
-          <SoundCue src={sounds.vista_unfriendly_3} volume={0.3} delay={0.8} />
-          <SoundCue src={sounds.vista_unfriendly_4} volume={0.3} delay={0.9} />
-
-        </Cue>
 
         {/*  Vistas enter popper. */}
         <Cue notes='Vistas enter popper.'>
@@ -676,16 +632,11 @@ export default class Show extends React.Component {
         {/* Vista trait progression */}
         <Cue notes='Alex shows vista progression'>
 
-          <Screen output='primary'>
+          <Screen output='primary' lifespan={20.0}>
             <img src={images.progression} width='1920px'/>
           </Screen>
 
           <SoundCue src={sounds.upload} />
-
-        </Cue>
-
-        {/* Empty */}
-        <Cue notes='Empty'>
 
         </Cue>
 
@@ -813,7 +764,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        <Cue notes='Override codes are changed daily'>
+        <Cue notes='Labaratory access codes are encrypted'>
 
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
@@ -824,20 +775,6 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_157} />
-
-        </Cue>
-
-        <Cue notes='No. I was simply communicating...'>
-
-          <Screen output='primary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <SoundCue src={sounds.VO_159} />
 
         </Cue>
 
