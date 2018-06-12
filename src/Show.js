@@ -200,7 +200,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_060} />
-          <SoundCue src={sounds.quiz} delay={15.25} />
+          <SoundCue src={sounds.quiz} delay={13.5} />
 
         </Cue>
 
@@ -250,17 +250,17 @@ export default class Show extends React.Component {
           <Screen output='primary'>
 
             <p className='evaluation'>
-              You can have the best traits ever <span className='highlight'>seen</span><br/>
-              But if you covet them, what does it <span className='highlight'>mean?</span><br/>
-              You can’t evolve on your own<br/>
-              So remember, when you’re grown,<br/>
-              You simply must pass on your <span className='highlight'>______.</span>
+              Here’s what “inheritance” <span className='highlight'>means:</span><br/>
+              A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
+              Her mom and her dad<br/>
+              Passed on traits that they had,<br/>
+              And her kids get some of her <span className='highlight'>______.</span>
             </p>
 
           </Screen>
 
           <SoundCue src={sounds.VO_073} />
-          <SoundCue src={sounds.quiz} delay={14} />
+          <SoundCue src={sounds.quiz} delay={9.0} />
 
         </Cue>
 
@@ -270,11 +270,11 @@ export default class Show extends React.Component {
           <Screen output='primary' lifespan={8.0}>
 
             <p className='evaluation'>
-              You can have the best traits ever <span className='highlight'>seen</span><br/>
-              But if you covet them, what does it <span className='highlight'>mean?</span><br/>
-              You can’t evolve on your own<br/>
-              So remember, when you’re grown,<br/>
-              You simply must pass on your <span className='highlight'>genes.</span>
+              Here’s what “inheritance” <span className='highlight'>means:</span><br/>
+              A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
+              Her mom and her dad<br/>
+              Passed on traits that they had,<br/>
+              And her kids get some of her <span className='highlight'>genes.</span>
             </p>
 
           </Screen>
@@ -308,17 +308,17 @@ export default class Show extends React.Component {
           <Screen output='primary'>
 
             <p className='evaluation'>
-              Take a moment’s <span className='highlight'>reflection</span><br/>
-              On the effects of <span className='highlight'>selection:</span><br/>
-              Good traits pass on<br/>
-              And bad ones get gone<br/>
-              To improve survival, not achieve <span className='highlight'>_________.</span>
+              Here’s a fact you just can’t <span className='highlight'>ignore:</span><br/>
+              Useful traits get “selected <span className='highlight'>for.</span>”<br/>
+              Your strength, size, stealth, or coloration<br/>
+              Can help you succeed in your situation<br/>
+              By surviving longer and reproducing <span className='highlight'>_____.</span>
             </p>
 
           </Screen>
 
           <SoundCue src={sounds.VO_083} />
-          <SoundCue src={sounds.quiz} delay={13} />
+          <SoundCue src={sounds.quiz} delay={12} />
 
         </Cue>
 
@@ -328,11 +328,11 @@ export default class Show extends React.Component {
           <Screen output='primary' lifespan={8.0}>
 
             <p className='evaluation'>
-              Take a moment’s <span className='highlight'>reflection</span><br/>
-              On the effects of <span className='highlight'>selection:</span><br/>
-              Good traits pass on<br/>
-              And bad ones get gone<br/>
-              To improve survival, not achieve <span className='highlight'>perfection.</span>
+              Here’s a fact you just can’t <span className='highlight'>ignore:</span><br/>
+              Useful traits get “selected <span className='highlight'>for.</span>”<br/>
+              Your strength, size, stealth, or coloration<br/>
+              Can help you succeed in your situation<br/>
+              By surviving longer and reproducing <span className='highlight'>more.</span>
             </p>
 
           </Screen>
@@ -593,17 +593,17 @@ export default class Show extends React.Component {
           <Screen output='primary'>
 
             <p className='evaluation'>
-              Whenever a new feature <span className='highlight'>appears,</span><br/>
-              Like long hair, sharp teeth, or big <span className='highlight'>ears,</span><br/>
-              Not all will have the trait<br/>
-              First, genes must accumulate<br/>
+              Whenever a new feature <span className='highlight'>appears—</span><br/>
+              Like long hair, sharp teeth, or big <span className='highlight'>ears—</span><br/>
+              Genes must accumulate<br/>
+              Before all have the trait,<br/>
               And that can take thousands of <span className='highlight'>______.</span>
             </p>
 
           </Screen>
 
           <SoundCue src={sounds.VO_115} />
-          <SoundCue src={sounds.quiz} delay={15} />
+          <SoundCue src={sounds.quiz} delay={10} />
 
         </Cue>
 
@@ -613,10 +613,10 @@ export default class Show extends React.Component {
           <Screen output='primary' lifespan={8.0}>
 
             <p className='evaluation'>
-              Whenever a new feature <span className='highlight'>appears,</span><br/>
-              Like long hair, sharp teeth, or big <span className='highlight'>ears,</span><br/>
-              Not all will have the trait<br/>
-              First, genes must accumulate<br/>
+              Whenever a new feature <span className='highlight'>appears—</span><br/>
+              Like long hair, sharp teeth, or big <span className='highlight'>ears—</span><br/>
+              Genes must accumulate<br/>
+              Before all have the trait,<br/>
               And that can take thousands of <span className='highlight'>years.</span>
             </p>
 
@@ -662,17 +662,17 @@ export default class Show extends React.Component {
           <Screen output='primary'>
 
             <p className='evaluation'>
-              There’s no perfection, no goal, and no <span className='highlight'>win</span><br/>
-              You just pass your traits on to your <span className='highlight'>kin</span><br/>
-              The useful genes in you<br/>
-              Help your species continue<br/>
-              Adapting to the environment it’s <span className='highlight'>___.</span>
+              At first it may seem very <span className='highlight'>strange:</span><br/>
+              Evolution’s not a path you <span className='highlight'>arrange.</span><br/>
+              The environment organisms share<br/>
+              Makes traits common or rare<br/>
+              And causes a species to <span className='highlight'>______.</span>
             </p>
 
           </Screen>
 
           <SoundCue src={sounds.VO_127} />
-          <SoundCue src={sounds.quiz} delay={14.5} />
+          <SoundCue src={sounds.quiz} delay={11.0} />
 
         </Cue>
 
@@ -682,11 +682,11 @@ export default class Show extends React.Component {
           <Screen output='primary' lifespan={8.0}>
 
             <p className='evaluation'>
-              There’s no perfection, no goal, and no <span className='highlight'>win</span><br/>
-              You just pass your traits on to your <span className='highlight'>kin</span><br/>
-              The useful genes in you<br/>
-              Help your species continue<br/>
-              Adapting to the environment it’s <span className='highlight'>in.</span>
+              At first it may seem very <span className='highlight'>strange:</span><br/>
+              Evolution’s not a path you <span className='highlight'>arrange.</span><br/>
+              The environment organisms share<br/>
+              Makes traits common or rare<br/>
+              And causes a species to <span className='highlight'>change.</span>
             </p>
 
           </Screen>
