@@ -731,7 +731,7 @@ export default class Show extends React.Component {
           <CueServerOut cueId={Lookup.PLUG_IN_LOCKDOWN} />
 
           <SoundCue src={sounds.lockdown} />
-          <SoundCue src={sounds.alarm} delay={0.5} />
+          <SoundCue src={sounds.alarm} delay={0.5} loop={true} />
           <SoundCue src={sounds.VO_142} delay={3.5} />
 
         </Cue>
@@ -747,6 +747,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_144} />
+          <SoundCue src={sounds.alarm} volume={0.5} loop={true} />
 
         </Cue>
 
@@ -761,6 +762,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_150} />
+          <SoundCue src={sounds.alarm} volume={0.5} loop={true} />
 
         </Cue>
 
@@ -775,6 +777,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_157} />
+          <SoundCue src={sounds.alarm} volume={0.5} loop={true} />
 
         </Cue>
 
