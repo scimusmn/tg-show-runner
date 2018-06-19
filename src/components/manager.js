@@ -145,7 +145,7 @@ export class Manager extends Component {
       // Preload all images for all cues.
       preloadAllImages();
 
-      this.clearShowData();
+      this.clearVisData();
 
     }
 
@@ -387,7 +387,10 @@ export class Manager extends Component {
     const slideData = '{ "slide": "0", "forward": "false" }';
     this._goToSlide({ key: 'show-runner-slide', newValue: slideData });
 
-    this.clearShowData();
+    this.viewedIndexes.clear();
+    this.setLocalStorageSlide(0, true);
+
+    this.clearVisData();
 
     // When on slide zero, assume we
     // have just reset show.
@@ -401,13 +404,9 @@ export class Manager extends Component {
 
   }
 
-  clearShowData() {
+  clearVisData() {
 
-    console.log('clearSHowData');
-
-    this.viewedIndexes.clear();
-
-    this.setLocalStorageSlide(0, true);
+    console.log('clearVisData');
 
     // Reset any saved state for vizualiations
     localStorage.setItem(
