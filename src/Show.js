@@ -747,7 +747,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_144} />
-          <SoundCue src={sounds.alarm} volume={0.5} loop={true} />
+          <SoundCue src={sounds.alarm} loop={true} />
 
         </Cue>
 
@@ -762,7 +762,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_150} />
-          <SoundCue src={sounds.alarm} volume={0.5} loop={true} />
+          <SoundCue src={sounds.alarm} loop={true} />
 
         </Cue>
 
@@ -777,7 +777,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_157} />
-          <SoundCue src={sounds.alarm} volume={0.5} loop={true} />
+          <SoundCue src={sounds.alarm} loop={true} />
 
         </Cue>
 
