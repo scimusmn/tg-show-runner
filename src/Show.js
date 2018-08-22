@@ -9,6 +9,8 @@ import Screen from './components/Screen';
 
 import SoundCue from './components/SoundCue';
 import VideoCue from './components/VideoCue';
+import TimedCaptions from './components/TimedCaptions';
+import Caption from './components/Caption';
 import Visualization from './components/Visualization';
 import CueServerOut from './components/CueServerOut';
 import Lookup from './api/CueServerLookup';
@@ -69,6 +71,21 @@ export default class Show extends React.Component {
 
         {/* Show Start. VO Intro. */}
         <Cue notes='Stage lights. Presentation begins. VO.'>
+
+          <Screen output='primary'>
+            <img src={images.ai_bee}/>
+            <TimedCaptions>
+                <Caption duration={9.0}>
+                    You have entered a biocontaiment facility.
+                </Caption>
+                <Caption>
+                    This cap has no duration :D
+                </Caption>
+                <Caption duration={7.5}>
+                    For your own safety, please disable all recording devices.
+                </Caption>
+            </TimedCaptions>
+          </Screen>
 
           <SoundCue src={sounds.VO_001} />
 

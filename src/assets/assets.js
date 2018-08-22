@@ -63,6 +63,8 @@ const images = {
   testdude: require('./images/testdude.png'),
   red_digital_clock: require('./images/red_digital_clock.gif'),
 
+  ai_bee: require('./images/ai_bee.png'),
+
 };
 
 const sounds = {
