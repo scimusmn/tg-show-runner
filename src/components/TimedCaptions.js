@@ -10,13 +10,14 @@ export default class TimedCaptions extends Component {
 
     this.state = {
 
+      captionIndex: -1,
+
     };
 
     this.delayTimeout = {};
     this.captionTimeout = {};
 
     this.captionDurations = [];
-    this.captionIndex = -1;
 
   }
 
@@ -70,40 +71,39 @@ export default class TimedCaptions extends Component {
   timedCaption() {
 
     // Trigger next caption....
-    this.captionIndex++;
-    console.log('Caption index', this.captionIndex);
+    this.setState({ captionIndex: this.state.captionIndex + 1 });
 
     clearTimeout(this.captionTimeout);
 
     this.captionTimeout = setTimeout(() => {
 
-      if (this.captionIndex < this.captionDurations.length) {
+      if (this.state.captionIndex < this.captionDurations.length) {
 
-        console.log('Next caption :', this.captionDurations[this.captionIndex] * 1000);
+        console.log('Next caption :', this.captionDurations[this.state.captionIndex] * 1000);
 
         this.timedCaption();
 
       } else {
 
         console.log('No more captions :( ');
-        this.captionIndex = -1;
+        this.setState({ captionIndex: -1 });
       }
 
-    }, this.captionDurations[this.captionIndex] * 1000);
+    }, this.captionDurations[this.state.captionIndex] * 1000);
 
   }
 
-  renderCurrentCaption(index) {
+  renderCurrentCaption() {
 
-    console.log('~ renderCurrentCaption', index);
+    console.log('~ renderCurrentCaption', this.state.captionIndex);
 
-    if (index < 0) {
+    if (this.state.captionIndex < 0) {
 
       return null;
 
     } else {
 
-      return this.props.children[index];
+      return this.props.children[this.state.captionIndex];
 
     }
 
@@ -113,7 +113,7 @@ export default class TimedCaptions extends Component {
 
     return (
       <div className='timed-captions'>
-        {this.renderCurrentCaption(this.captionIndex)}
+        {this.renderCurrentCaption()}
       </div>
     );
 

@@ -30,7 +30,7 @@ export default class Caption extends Component {
   render() {
 
     return (
-      <div className='caption'>the actual caption text here?</div>
+      <div className='caption'>{this.props.children}</div>
     );
 
   }
