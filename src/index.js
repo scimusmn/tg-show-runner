@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Presentation from './presentation';
+import Show from './Show';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Presentation />, document.getElementById('root'));
+ReactDOM.render(<Show />, document.getElementById('root'));
 registerServiceWorker();
