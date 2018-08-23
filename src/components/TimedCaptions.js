@@ -23,17 +23,14 @@ export default class TimedCaptions extends Component {
 
   componentDidMount() {
 
-    let children = React.Children.toArray(this.props.children);
+    const children = React.Children.toArray(this.props.children);
 
-    for (let i = children.length - 1; i >= 0; i--) {
+    for (var i = 0; i < children.length; i++) {
 
       const child = children[i];
 
       // Screen Type
       if (child.type.name == 'Caption') {
-
-        console.log('Caption here');
-        console.log(child.props.duration);
 
         this.captionDurations.push(parseFloat(child.props.duration));
 
@@ -58,8 +55,6 @@ export default class TimedCaptions extends Component {
 
   delayedCaptions() {
 
-    console.log('delayeCaptions()----)');
-
     this.delayTimeout = setTimeout(() => {
 
       this.timedCaption();
@@ -77,16 +72,15 @@ export default class TimedCaptions extends Component {
 
     this.captionTimeout = setTimeout(() => {
 
-      if (this.state.captionIndex < this.captionDurations.length) {
-
-        console.log('Next caption :', this.captionDurations[this.state.captionIndex] * 1000);
+      if (this.state.captionIndex < this.captionDurations.length - 1) {
 
         this.timedCaption();
 
       } else {
 
-        console.log('No more captions :( ');
+        // No more captions :(
         this.setState({ captionIndex: -1 });
+
       }
 
     }, this.captionDurations[this.state.captionIndex] * 1000);
@@ -95,15 +89,14 @@ export default class TimedCaptions extends Component {
 
   renderCurrentCaption() {
 
-    console.log('~ renderCurrentCaption', this.state.captionIndex);
-
     if (this.state.captionIndex < 0) {
 
       return null;
 
     } else {
 
-      return this.props.children[this.state.captionIndex];
+      const childrenArray = React.Children.toArray(this.props.children);
+      return childrenArray[this.state.captionIndex];
 
     }
 

@@ -64,6 +64,7 @@ const images = {
   red_digital_clock: require('./images/red_digital_clock.gif'),
 
   ai_bee: require('./images/ai_bee.png'),
+  ai_bee_glow: require('./images/ai_bee_glow.png'),
 
 };
 

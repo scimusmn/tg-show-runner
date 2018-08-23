@@ -11,6 +11,7 @@ import SoundCue from './components/SoundCue';
 import VideoCue from './components/VideoCue';
 import TimedCaptions from './components/TimedCaptions';
 import Caption from './components/Caption';
+import Bee from './components/Bee';
 import Visualization from './components/Visualization';
 import CueServerOut from './components/CueServerOut';
 import Lookup from './api/CueServerLookup';
@@ -73,16 +74,24 @@ export default class Show extends React.Component {
         <Cue notes='Stage lights. Presentation begins. VO.'>
 
           <Screen output='primary'>
-            <img src={images.ai_bee}/>
+
+            <Bee></Bee>
+
             <TimedCaptions>
-                <Caption duration={9.0}>
-                    You have entered a biocontaiment facility.
-                </Caption>
-                <Caption>
-                    This cap has no duration :D
-                </Caption>
                 <Caption duration={7.5}>
-                    For your own safety, please disable all recording devices.
+                    Attention, museum visitors: You have entered the museum’s biocontainment facility. Wild animals are easily stressed.
+                </Caption>
+                <Caption duration={6.5}>
+                    For their safety and yours, please don't eat, drink, make any sudden movements, or use your camera's flash.
+                </Caption>
+                <Caption duration={5}>
+                    No animals are ever harmed in this facility. Unless you use your camera’s flash.
+                </Caption>
+                <Caption duration={0.75}>
+
+                </Caption>
+                <Caption duration={1.7}>
+                    That last part was a joke.
                 </Caption>
             </TimedCaptions>
           </Screen>
@@ -95,6 +104,14 @@ export default class Show extends React.Component {
 
         {/* It wasn't that funny. */}
         <Cue notes='VO: It wasnt that funny'>
+
+          <Bee></Bee>
+
+          <TimedCaptions>
+              <Caption duration={2.5}>
+                  It wasnt that funny
+              </Caption>
+          </TimedCaptions>
 
           <SoundCue src={sounds.VO_003} />
 

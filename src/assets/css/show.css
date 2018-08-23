@@ -125,6 +125,38 @@ body {
   height: 640px;
 }
 
+.bee-container {
+  position: absolute;
+  top: -150px;
+  left: 0px;
+}
+
+.bee-container img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.timed-captions {
+  position: absolute;
+  top: 70%;
+
+}
+
+.timed-captions .caption {
+
+  width: 70%;
+  /*background: rgba(155,11,55,0.3);*/
+  font-size: 2.4em;
+
+  /* Base color */
+  color: #43C0EE;
+
+  /* Glow color */
+  color: #85F4FF;
+
+}
+
 p.evaluation .highlight {
   color: #d21349 !important;
 }
