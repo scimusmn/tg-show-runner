@@ -93,13 +93,24 @@ class Bee extends Component {
 
   }
 
+  getClassNames() {
+    let classStr = 'bee-container ';
+
+    console.log('this.props.mode', this.props.mode);
+    if (this.props.mode != 'default') {
+      classStr += this.props.mode;
+    }
+
+    return classStr;
+  }
+
   utilMap(value, inmin, inmax, outmin, outmax) {
     return (value - inmin) * (outmax - outmin) / (inmax - inmin) + outmin;
   }
 
   render() {
 
-    return <div id={this.props.id} className='bee-container'>
+    return <div id={this.props.id} className={this.getClassNames()}>
 
               <img key='base' className='base bee' ref='base' src={images.ai_bee} />
 
@@ -113,10 +124,12 @@ class Bee extends Component {
 
 Bee.propTypes = {
   temperament: PropTypes.number,
+  mode: PropTypes.String,
 };
 
 Bee.defaultProps = {
   temperament: 0.5,
+  mode: 'default',
 };
 
 export default Bee;

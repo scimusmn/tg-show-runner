@@ -30,7 +30,11 @@ export default class Caption extends Component {
   render() {
 
     return (
-      <div className='caption'>{this.props.children}</div>
+      <div className='caption outer-box'>
+        <div className='inner-box'>
+          {this.props.children}
+        </div>
+      </div>
     );
 
   }

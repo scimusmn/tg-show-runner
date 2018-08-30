@@ -170,6 +170,19 @@ export default class Show extends React.Component {
         {/* VO: Should any cage open... */}
         <Cue notes='VO: Should any cage open...'>
 
+          <Bee></Bee>
+
+            <TimedCaptions>
+                <Caption duration={6.7}>
+                    If certification protocols are not followed, my biosecurity subsystem will trigger an emergency quarantine.
+                </Caption>
+                <Caption duration={4.2}>
+                    This system is hard-wired and completely encryption-protected.
+                </Caption>
+            </TimedCaptions>
+
+
+
           <SoundCue src={sounds.VO_034}/>
 
         </Cue>
@@ -223,6 +236,9 @@ export default class Show extends React.Component {
         <Cue notes='Evaluation part ONE'>
 
           <Screen output='primary'>
+
+            <Bee mode='evaluation-mode'></Bee>
+
             <p className='evaluation'>
               Variation’s the name of this <span className='highlight'>game</span><br/>
               Everything has it, wild or <span className='highlight'>tame</span><br/>
@@ -242,6 +258,8 @@ export default class Show extends React.Component {
         <Cue notes='Correct answer. Part 1 (V).'>
 
           <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
               Variation’s the name of this <span className='highlight'>game</span><br/>
@@ -283,6 +301,8 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
 
+            <Bee mode='evaluation-mode'></Bee>
+
             <p className='evaluation'>
               Here’s what “inheritance” <span className='highlight'>means:</span><br/>
               A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
@@ -302,6 +322,8 @@ export default class Show extends React.Component {
         <Cue notes='Correct answer 2 (I)'>
 
           <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
               Here’s what “inheritance” <span className='highlight'>means:</span><br/>
@@ -341,6 +363,8 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
 
+            <Bee mode='evaluation-mode'></Bee>
+
             <p className='evaluation'>
               Here’s a fact you just can’t <span className='highlight'>ignore:</span><br/>
               Useful traits get “selected <span className='highlight'>for.</span>”<br/>
@@ -360,6 +384,8 @@ export default class Show extends React.Component {
         <Cue notes='Correct answer. Part 3 (S).' lifespan={8.0}>
 
           <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
               Here’s a fact you just can’t <span className='highlight'>ignore:</span><br/>
@@ -624,6 +650,8 @@ export default class Show extends React.Component {
         {/* Evaluation part 4 */}
         <Cue notes='Evaluation part 4'>
 
+          <Bee mode='evaluation-mode'></Bee>
+
           <Screen output='primary'>
 
             <p className='evaluation'>
@@ -645,6 +673,8 @@ export default class Show extends React.Component {
         <Cue notes='Correct answer. Part FOUR (T)'>
 
           <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
               Whenever a new feature <span className='highlight'>appears—</span><br/>
@@ -695,6 +725,8 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
 
+            <Bee mode='evaluation-mode'></Bee>
+
             <p className='evaluation'>
               At first it may seem very <span className='highlight'>strange:</span><br/>
               Evolution’s not a path you <span className='highlight'>arrange.</span><br/>
@@ -714,6 +746,8 @@ export default class Show extends React.Component {
         <Cue notes='Correct answer. Part 5 (A)'>
 
           <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
               At first it may seem very <span className='highlight'>strange:</span><br/>
@@ -755,7 +789,23 @@ export default class Show extends React.Component {
         <Cue notes='Lockdown on plug in.'>
 
           <Screen output='primary'>
+
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={3.5}>
+
+                </Caption>
+                <Caption duration={3.5}>
+                    Infestation alert! We are at level tangerine.
+                </Caption>
+                <Caption duration={4.75}>
+                    I repeat—level tangerine. Quarantine initiated.
+                </Caption>
+            </TimedCaptions>
+
           </Screen>
 
           <Screen output='secondary'>
@@ -774,10 +824,20 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={8}>
+                    And whose fault is that? Isolation mode: engaged.
+                </Caption>
+            </TimedCaptions>
           </Screen>
 
           <Screen output='secondary'>
+
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
           </Screen>
 
           <SoundCue src={sounds.VO_144} />
@@ -788,7 +848,17 @@ export default class Show extends React.Component {
         <Cue notes='I cant. To ensure...'>
 
           <Screen output='primary'>
+
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={8}>
+                    I can’t. Protocols must remain in effect until all evolutionary test subjects are accounted for.
+                </Caption>
+            </TimedCaptions>
+
           </Screen>
 
           <Screen output='secondary'>
@@ -804,6 +874,33 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={6}>
+                    Laboratory access codes are encrypted in accordance with museum biosecurity protocols.
+                </Caption>
+                <Caption duration={6}>
+                    Unfortunately, I cannot directly tell you that the locking mechanism can be short circuited
+                </Caption>
+                <Caption duration={6.5}>
+                    if you synchronize the color-coded alarm system energy surges with the appropriate color-coded receptor circuits.
+                </Caption>
+                <Caption duration={2.2}>
+
+                </Caption>
+                <Caption duration={1.3}>
+                    ;)
+                </Caption>
+                <Caption duration={1.3}>
+
+                </Caption>
+                <Caption duration={2.9}>
+                    ;)
+                </Caption>
+            </TimedCaptions>
+
           </Screen>
 
           <Screen output='secondary'>
