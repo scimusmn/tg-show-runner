@@ -654,6 +654,8 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
 
+            <Bee mode='evaluation-mode'></Bee>
+
             <p className='evaluation'>
               Whenever a new feature <span className='highlight'>appears—</span><br/>
               Like long hair, sharp teeth, or big <span className='highlight'>ears—</span><br/>
