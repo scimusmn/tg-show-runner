@@ -140,7 +140,6 @@ const videos = {
 };
 
 const getVistaSet = () => {
-
   const random = Math.floor(Math.random() * 8) + 1;
 
   /*  return {
@@ -149,48 +148,41 @@ const getVistaSet = () => {
       unfriendly: images['vis_sil_'+random+'_red'],
       other: images['vis_sil_'+random+'_mint'],
 
-    };*/
+    }; */
 
   return {
 
-    friendly: images['vis_sil_o_blue'],
-    unfriendly: images['vis_sil_o_redb'],
-    other: images['vis_sil_o_mint'],
+    friendly: images.vis_sil_o_blue,
+    unfriendly: images.vis_sil_o_redb,
+    other: images.vis_sil_o_mint,
 
-  }
-
+  };
 };
 
 const preloadAllImages = () => {
-
   console.log('assets.preloadAllImages()');
 
   let numLoaded = 0;
   const loadTarget = Object.keys(images).length;
 
   if (!images || images.length <= 0) {
-
     console.log('Warning. No images found to preload.');
-
   } else {
-
-    Object.keys(images).forEach(function(key) {
-
+    Object.keys(images).forEach((key) => {
       // Do something with obj[key]
       const image = new Image();
 
-      image.onload = function() {
+      image.onload = function () {
         numLoaded++;
 
         // console.log('Image preloaded', numLoaded, '/', loadTarget);
-      }
+      };
 
       image.src = images[key];
-
     });
-
   }
-
 };
 
-export { images, sounds, videos, getVistaSet, preloadAllImages };
+export {
+  images, sounds, videos, getVistaSet, preloadAllImages,
+};

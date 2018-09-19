@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TweenMax from 'gsap';
-import {getVistaSet} from '../assets/assets';
+import { getVistaSet } from '../assets/assets';
 
 class Vista extends Component {
-
   constructor(props) {
-
     super(props);
 
     this.state = {
@@ -14,7 +12,6 @@ class Vista extends Component {
     };
 
     this.assets = getVistaSet();
-
   }
 
   componentDidMount() {
@@ -38,16 +35,15 @@ class Vista extends Component {
   }
 
   render() {
+    return (
+      <div id={this.props.id} className="vista">
 
-    return <div id={this.props.id} className='vista'>
+        <img key="unfriendly" className="silhouette unfriendly" ref="unfriendly" src={this.assets.unfriendly} />
+        <img key="friendly" className="silhouette friendly" ref="friendly" src={this.assets.friendly} />
 
-              <img key='unfriendly' className='silhouette unfriendly' ref='unfriendly' src={this.assets.unfriendly} />
-              <img key='friendly' className='silhouette friendly' ref='friendly' src={this.assets.friendly} />
-
-          </div>;
-
+      </div>
+    );
   }
-
 }
 
 Vista.propTypes = {
