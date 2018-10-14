@@ -65,6 +65,10 @@ const images = {
 
   ai_bee: require('./images/ai_bee.png'),
   ai_bee_glow: require('./images/ai_bee_glow.png'),
+  ai_bee_red: require('./images/ai_bee_red.png'),
+  ai_bee_red_glow: require('./images/ai_bee_red_glow.png'),
+  ai_bee_smile: require('./images/ai_bee_smile.png'),
+  ai_bee_smile_glow: require('./images/ai_bee_smile_glow.png'),
 
 };
 

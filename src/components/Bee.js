@@ -104,6 +104,24 @@ class Bee extends Component {
     return classStr;
   }
 
+  getImageAsset(append) {
+
+    let assetName = 'ai_bee';
+
+    if (this.props.mood.length > 0) {
+      assetName += ('_' + this.props.mood);
+    }
+
+    if (append.length > 0) {
+      assetName += ('_' + append);
+    }
+
+    console.log('getImageAsset', assetName);
+
+    return images[assetName];
+
+  }
+
   utilMap(value, inmin, inmax, outmin, outmax) {
     return (value - inmin) * (outmax - outmin) / (inmax - inmin) + outmin;
   }
@@ -112,9 +130,9 @@ class Bee extends Component {
 
     return <div id={this.props.id} className={this.getClassNames()}>
 
-              <img key='base' className='base bee' ref='base' src={images.ai_bee} />
+              <img key='base' className='base bee' ref='base' src={this.getImageAsset('')} />
 
-              <img key='glow' className='glow bee' ref='glow' src={images.ai_bee_glow} />
+              <img key='glow' className='glow bee' ref='glow' src={this.getImageAsset('glow')} />
 
           </div>;
 
@@ -123,12 +141,12 @@ class Bee extends Component {
 }
 
 Bee.propTypes = {
-  temperament: PropTypes.number,
+  mood: PropTypes.String,
   mode: PropTypes.String,
 };
 
 Bee.defaultProps = {
-  temperament: 0.5,
+  mood: '',
   mode: 'default',
 };
 

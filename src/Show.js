@@ -794,7 +794,7 @@ export default class Show extends React.Component {
 
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
 
-            <Bee mode='isolation-mode'></Bee>
+            <Bee mode='isolation-mode' mood='red'></Bee>
 
             <TimedCaptions>
                 <Caption duration={3.5}>
@@ -827,7 +827,7 @@ export default class Show extends React.Component {
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
 
-            <Bee mode='isolation-mode'></Bee>
+            <Bee mode='isolation-mode' mood='red'></Bee>
 
             <TimedCaptions>
                 <Caption duration={8}>
@@ -853,7 +853,7 @@ export default class Show extends React.Component {
 
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
 
-            <Bee mode='isolation-mode'></Bee>
+            <Bee mode='isolation-mode' mood='red'></Bee>
 
             <TimedCaptions>
                 <Caption duration={8}>
@@ -877,7 +877,7 @@ export default class Show extends React.Component {
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
 
-            <Bee mode='isolation-mode'></Bee>
+            <Bee mode='isolation-mode' mood='red'></Bee>
 
             <TimedCaptions>
                 <Caption duration={6}>
