@@ -109,7 +109,7 @@ export default class Show extends React.Component {
 
           <TimedCaptions>
               <Caption duration={2.5}>
-                  It wasnt that funny
+                  It wasn't that funny.
               </Caption>
           </TimedCaptions>
 

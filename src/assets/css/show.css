@@ -134,25 +134,25 @@ body {
 .bee-container img {
   position: absolute;
   top: 30px;
-  left: 1300px;
+  left: 1200px;
 }
 
 .bee-container.evaluation-mode {
-  transform: scale(0.25, 0.25);
+  transform: scale(0.3, 0.3);
 }
 
 .bee-container.evaluation-mode img {
-  top: -10px;
-  left: 30px;
+  top: 960px;
+  left: 95px;
 }
 
 .bee-container.isolation-mode {
-  transform: scale(0.38, 0.38) !important;
+  transform: scale(0.34, 0.34) !important;
 }
 
 .bee-container.isolation-mode img {
-  top: -40px;
-  left: 1899px;
+  top: 600px;
+  left: 2033px;
 }
 
 .timed-captions {
@@ -161,7 +161,6 @@ body {
   left: 200px;
   width: 80%;
   height: 30%;
-
 }
 
 .timed-captions .caption {
@@ -193,7 +192,7 @@ body {
 
 /* Typewriter Effect */
 .typewriter span {
-  border-right: .66em solid;
+  border-right: .61em solid;
   animation: caret 1s steps(1) infinite;
 }
 
@@ -210,8 +209,9 @@ p.evaluation .highlight {
 .primary p.evaluation {
 
   width: 1920px;
-  margin-top: 6%;
-  padding: 4% 14% 5.5% 17%;
+  margin-left:23%;
+  margin-top: 0%;
+  padding: 8% 14% 12% 9%;
   font-size: 2.4em;
   text-align: left;
   line-height: 1.7em;
@@ -244,7 +244,7 @@ p.evaluation .highlight {
 .primary .text-fullscreen {
   font-size: 3em;
   width: 100%;
-  margin: 10% 22%;
+  margin: -10% 22%;
 }
 
 .secondary .text-fullscreen {

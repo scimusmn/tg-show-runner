@@ -75,7 +75,7 @@ export default class Caption extends Component {
     return (
       <div className='caption outer-box typewriter'>
         <div className='inner-box'>
-          ...
+          
         </div>
       </div>
     );
