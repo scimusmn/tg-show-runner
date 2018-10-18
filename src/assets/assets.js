@@ -90,6 +90,7 @@ const sounds = {
   VO_157: require('./sounds/VO_157.mp3'),
   VO_159: require('./sounds/VO_159.mp3'),
   VO_161: require('./sounds/VO_161.mp3'),
+  VO_Ending: require('./sounds/VO_Ending.mp3'),
   vista_friendly_1: require('./sounds/vista_friendly_1.mp3'),
   vista_friendly_2: require('./sounds/vista_friendly_2.mp3'),
   vista_friendly_3: require('./sounds/vista_friendly_3.mp3'),
