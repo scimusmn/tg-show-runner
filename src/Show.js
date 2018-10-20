@@ -895,6 +895,13 @@ export default class Show extends React.Component {
 
         </Cue>
 
+      {/* Intro to Game 2 */}
+        <Cue notes='Intro to Game 2'>
+
+          <SoundCue src={sounds.VO_Ending}/>
+
+        </Cue>
+
 
       </Deck>
     );
