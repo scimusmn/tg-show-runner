@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Screen extends Component {
-
   constructor(props) {
-
     super(props);
 
     this.state = {
@@ -12,23 +10,16 @@ class Screen extends Component {
     };
 
     this.lifespanTimeout = {};
-
   }
 
   componentDidMount() {
-
-    this.setState({lifespanComplete:false});
+    this.setState({ lifespanComplete: false });
 
     if (this.props.lifespan > 0.0) {
-
       this.lifespanTimeout = setTimeout(() => {
-
-        this.setState({lifespanComplete:true});
-
+        this.setState({ lifespanComplete: true });
       }, this.props.lifespan * 1000);
-
     }
-
   }
 
   componentDidUpdate() {
@@ -36,22 +27,19 @@ class Screen extends Component {
   }
 
   componentWillUnmount() {
-
     clearTimeout(this.lifespanTimeout);
-
   }
 
   render() {
-
     const doFade = this.state.lifespanComplete ? 'fadeIn' : '';
 
-    return <div>
-              <div className={`fade-overlay ${doFade}`}></div>
-              {this.props.children}
-            </div>;
-
+    return (
+      <div>
+        <div className={`fade-overlay ${doFade}`} />
+        {this.props.children}
+      </div>
+    );
   }
-
 }
 
 Screen.propTypes = {

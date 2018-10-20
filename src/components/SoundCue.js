@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Howl} from '../vendors/howler/howler';
+import { Howl } from '../vendors/howler/howler';
 
 export default class SoundCue extends Component {
-
   constructor(props) {
-
     super(props);
 
     this.state = {
@@ -19,13 +17,10 @@ export default class SoundCue extends Component {
     });
 
     this.delayTimeout = {};
-
   }
 
   componentDidMount() {
-
     this.delayedSound();
-
   }
 
   componentDidUpdate() {
@@ -33,34 +28,26 @@ export default class SoundCue extends Component {
   }
 
   componentWillUnmount() {
-
     this.sound.stop();
 
     clearTimeout(this.delayTimeout);
-
   }
 
   delayedSound() {
-
     this.delayTimeout = setTimeout(() => {
-
       this.sound.play();
 
       if (this.props.repeat == true) {
         this.delayedSound();
       }
-
     }, this.props.delay * 1000);
-
   }
 
   render() {
-
     return (
-      <div className='debug'>Sound Cue</div>
+      <div className="debug">Sound Cue</div>
     );
   }
-
 }
 
 SoundCue.propTypes = {

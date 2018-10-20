@@ -48,6 +48,12 @@
     font-style:normal;font-weight:400;
 }
 
+@font-face {
+    font-family:"DirectiveFourCondensed";
+    src:url("../fonts/DirectiveFourCondensed.woff") format("woff");
+    font-style:normal;font-weight:400;
+}
+
 
 /*----------  CUSTOM STYLES  ----------*/
 body {
@@ -204,6 +210,7 @@ body {
 
 p.evaluation .highlight {
   color: #d21349 !important;
+  font-family: "DirectiveFourCondensed" !important;
 }
 
 .primary p.evaluation {

@@ -16,7 +16,7 @@ import Visualization from './components/Visualization';
 import CueServerOut from './components/CueServerOut';
 import Lookup from './api/CueServerLookup';
 
-import {images, sounds, videos} from './assets/assets';
+import { images, sounds, videos } from './assets/assets';
 
 // Import theme
 import createTheme from './themes/default';
@@ -31,47 +31,46 @@ const theme = createTheme(
     secondary: '#F74358',
     tertiary: '#677562',
     quartenary: '#A55C55',
-    correct:'#458985',
+    correct: '#458985',
   },
   {
     primary: 'Verdana',
     secondary: 'Helvetica',
-  }
+  },
 );
 
 export default class Show extends React.Component {
-
   render() {
     return (
 
-      <Deck theme={theme} progress='number' >
+      <Deck theme={theme} progress="number">
 
         {/* Empty first cue */}
-        <Cue notes='Empty first cue'>
+        <Cue notes="Empty first cue">
 
           <CueServerOut cueId={Lookup.PRE_SHOW} />
 
         </Cue>
 
         {/* Pre show */}
-        <Cue notes='Pre-show vista noises. Audience entering.'>
+        <Cue notes="Pre-show vista noises. Audience entering.">
 
           <CueServerOut cueId={Lookup.PRE_SHOW} />
 
-          <SoundCue src={sounds.vista_unfriendly_1} volume={0.15} delay={0.0} repeat={false}/>
+          <SoundCue src={sounds.vista_unfriendly_1} volume={0.15} delay={0.0} repeat={false} />
 
-          <SoundCue src={sounds.vista_friendly_3} volume={0.125} delay={17.5} repeat={true}/>
-          <SoundCue src={sounds.vista_unfriendly_1} volume={0.125} delay={19.0} repeat={true}/>
-          <SoundCue src={sounds.vista_unfriendly_2} volume={0.125} delay={31.4} repeat={true}/>
-          <SoundCue src={sounds.vista_unfriendly_3} volume={0.125} delay={26.8} repeat={true}/>
-          <SoundCue src={sounds.vista_unfriendly_4} volume={0.125} delay={36.9} repeat={true}/>
-          <SoundCue src={sounds.vista_friendly_2} volume={0.125} delay={29.5} repeat={true}/>
-          <SoundCue src={sounds.vista_burp} volume={0.125} delay={69.5} repeat={true}/>
+          <SoundCue src={sounds.vista_friendly_3} volume={0.125} delay={17.5} repeat />
+          <SoundCue src={sounds.vista_unfriendly_1} volume={0.125} delay={19.0} repeat />
+          <SoundCue src={sounds.vista_unfriendly_2} volume={0.125} delay={31.4} repeat />
+          <SoundCue src={sounds.vista_unfriendly_3} volume={0.125} delay={26.8} repeat />
+          <SoundCue src={sounds.vista_unfriendly_4} volume={0.125} delay={36.9} repeat />
+          <SoundCue src={sounds.vista_friendly_2} volume={0.125} delay={29.5} repeat />
+          <SoundCue src={sounds.vista_burp} volume={0.125} delay={69.5} repeat />
 
         </Cue>
 
         {/* Show Start. VO Intro. */}
-        <Cue notes='Stage lights. Presentation begins. VO.'>
+        <Cue notes="Stage lights. Presentation begins. VO.">
 
           <Screen output='primary'>
 
@@ -103,7 +102,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* It wasn't that funny. */}
-        <Cue notes='VO: It wasnt that funny'>
+        <Cue notes="VO: It wasnt that funny">
 
           <Bee></Bee>
 
@@ -118,10 +117,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Alex Intro */}
-        <Cue notes='Alex Intro'>
+        <Cue notes="Alex Intro">
 
-          <Screen output='primary'>
-            <img src={images.alex1}/>
+          <Screen output="primary">
+            <img src={images.alex1} />
           </Screen>
 
           <SoundCue src={sounds.alex_intro} />
@@ -129,46 +128,44 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Stop intro music */}
-        <Cue notes='Stop music'>
+        <Cue notes="Stop music">
 
-          <Screen output='primary'>
-            <img src={images.alex1}/>
+          <Screen output="primary">
+            <img src={images.alex1} />
           </Screen>
 
         </Cue>
 
         {/* Highlight Easel */}
-        <Cue notes='Highlight Easel'>
+        <Cue notes="Highlight Easel">
 
-          <h2 className='debug'>HIGHLIGHT_EASEL</h2>
+          <h2 className="debug">HIGHLIGHT_EASEL</h2>
           <CueServerOut cueId={Lookup.HIGHLIGHT_EASEL} />
 
         </Cue>
 
         {/* What does the Fox Say!? */}
-        <Cue notes='What Does the Fox Say?!'>
+        <Cue notes="What Does the Fox Say?!">
 
-          <Screen output='primary'>
+          <Screen output="primary">
             <VideoCue src={videos.foxsay} />
           </Screen>
 
         </Cue>
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
         {/* Highlight Cages */}
-        <Cue notes='Highlight Cages'>
+        <Cue notes="Highlight Cages">
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_CAGES} />
-          <h2 className='debug'>HIGHLIGHT_CAGES</h2>
+          <h2 className="debug">HIGHLIGHT_CAGES</h2>
 
         </Cue>
 
         {/* VO: Should any cage open... */}
-        <Cue notes='VO: Should any cage open...'>
+        <Cue notes="VO: Should any cage open...">
 
           <Bee></Bee>
 
@@ -189,15 +186,13 @@ export default class Show extends React.Component {
 
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
         {/* Theory of Evolution */}
-        <Cue notes='Theory of Evolution'>
+        <Cue notes="Theory of Evolution">
 
-          <Screen output='primary' lifespan={10.0}>
-            <img src={images.evolution} width='1920px'/>
+          <Screen output="primary" lifespan={10.0}>
+            <img src={images.evolution} width="1920px" />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -205,14 +200,12 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
         {/* Alex Sequence 1 */}
-        <Cue notes='Alex shows sequence 1'>
+        <Cue notes="Alex shows sequence 1">
 
-          <Screen output='primary'>
+          <Screen output="primary">
             <VideoCue src={videos.sequence1} />
           </Screen>
 
@@ -221,18 +214,17 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
         {/* Vista burp */}
-        <Cue notes='Vista burp interruption.'>
+        <Cue notes="Vista burp interruption.">
 
           <SoundCue src={sounds.vista_burp} />
 
         </Cue>
 
         {/* Evaluation part 1 */}
+
         <Cue notes='Evaluation part ONE'>
 
           <Screen output='primary'>
@@ -255,6 +247,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct Answer 1. */}
+
         <Cue notes='Correct answer. Part 1 (V).'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -280,10 +273,10 @@ export default class Show extends React.Component {
 
 
         {/* Alex sequence 2 */}
-        <Cue notes='Alex triggers sequence 2'>
+        <Cue notes="Alex triggers sequence 2">
 
-          <Screen output='primary'>
-            <VideoCue src={videos.sequence2} width='1920px'/>
+          <Screen output="primary">
+            <VideoCue src={videos.sequence2} width="1920px" />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -291,12 +284,11 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
 
         {/* Evaluation part 2 */}
+
         <Cue notes='Evaluation part 2'>
 
           <Screen output='primary'>
@@ -319,6 +311,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer 2. (I) */}
+
         <Cue notes='Correct answer 2 (I)'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -343,10 +336,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Alex sequence 3 */}
-        <Cue notes='Alex triggers Sequence 3'>
+        <Cue notes="Alex triggers Sequence 3">
 
-          <Screen output='primary'>
-            <VideoCue src={videos.sequence3} width='1920px'/>
+          <Screen output="primary">
+            <VideoCue src={videos.sequence3} width="1920px" />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -354,11 +347,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
         {/* Evaluation part 3 */}
+
         <Cue notes='Evaluation part 3.'>
 
           <Screen output='primary'>
@@ -381,6 +373,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer 3. */}
+
         <Cue notes='Correct answer. Part 3 (S).' lifespan={8.0}>
 
           <Screen output='primary' lifespan={8.0}>
@@ -406,18 +399,18 @@ export default class Show extends React.Component {
 
         {/* Highlight Popper */}
         {/* CAGE SET 1 */}
-        <Cue notes='Highlight Popper'>
+        <Cue notes="Highlight Popper">
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_POPPER} />
-          <h2 className='debug'>HIGHLIGHT_POPPER</h2>
+          <h2 className="debug">HIGHLIGHT_POPPER</h2>
 
         </Cue>
 
 
         {/*  Vistas enter popper. */}
-        <Cue notes='Vistas enter popper.'>
+        <Cue notes="Vistas enter popper.">
 
-          <Screen output='secondary'>
+          <Screen output="secondary">
             <Visualization startGen={0} endGen={0} startSpeed={0.1} endSpeed={0.1} />
           </Screen>
 
@@ -428,10 +421,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas train to vis. */}
-        <Cue notes='Vistas train to vis.'>
+        <Cue notes="Vistas train to vis.">
 
-          <Screen output='secondary'>
-            <Visualization trainMode='enter'/>
+          <Screen output="secondary">
+            <Visualization trainMode="enter" />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -440,9 +433,9 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas enter visualization. */}
-        <Cue notes='Visualization begins.'>
+        <Cue notes="Visualization begins.">
 
-          <Screen output='secondary'>
+          <Screen output="secondary">
             <Visualization startGen={0} endGen={5} startSpeed={0.1} endSpeed={0.1} seedVistas={[0.35, 0.2]} />
           </Screen>
 
@@ -451,10 +444,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen via train.'>
+        <Cue notes="Vistas exit screen via train.">
 
-          <Screen output='secondary'>
-            <Visualization trainMode='exit'/>
+          <Screen output="secondary">
+            <Visualization trainMode="exit" />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -464,10 +457,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vista-train off. Cages refill. */}
-        <Cue notes='Vistas train off. Cages refill.'>
+        <Cue notes="Vistas train off. Cages refill.">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.4} />
@@ -481,10 +474,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/*  Vista growls at Alex. */}
-        <Cue notes='Vista growls at Alex.'>
+        <Cue notes="Vista growls at Alex.">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.vista_unfriendly_4} />
@@ -492,14 +485,14 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Alex sequence 4 */}
-        <Cue notes='Alex triggers Sequence 4'>
+        <Cue notes="Alex triggers Sequence 4">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
-          <Screen output='primary'>
-            <VideoCue src={videos.sequence4} width='1920px'/>
+          <Screen output="primary">
+            <VideoCue src={videos.sequence4} width="1920px" />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -507,19 +500,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Empty. */}
-        <Cue notes='Empty'>
+        <Cue notes="Empty">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
         </Cue>
 
         {/*  Vistas enter popper. */}
-        <Cue notes='Vistas enter popper.'>
+        <Cue notes="Vistas enter popper.">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -529,10 +522,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas train to vis. */}
-        <Cue notes='Vistas train to vis.'>
+        <Cue notes="Vistas train to vis.">
 
-          <Screen output='secondary'>
-            <Visualization trainMode='enter'/>
+          <Screen output="secondary">
+            <Visualization trainMode="enter" />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -541,10 +534,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Visualization begins. */}
-        <Cue notes='Visualization begins.'>
+        <Cue notes="Visualization begins.">
 
-          <Screen output='secondary'>
-            <Visualization startGen={5} endGen={25} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.3, 0.65, 0.3, 0.4]}/>
+          <Screen output="secondary">
+            <Visualization startGen={5} endGen={25} startSpeed={0.1} endSpeed={1.0} seedVistas={[0.3, 0.65, 0.3, 0.4]} />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTAS_EXIT_POPPER} />
@@ -553,10 +546,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen via train.'>
+        <Cue notes="Vistas exit screen via train.">
 
-          <Screen output='secondary'>
-            <Visualization trainMode='exit'/>
+          <Screen output="secondary">
+            <Visualization trainMode="exit" />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -566,10 +559,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vista-train off. Cages refill. */}
-        <Cue notes='Vistas train off. Cages refill.'>
+        <Cue notes="Vistas train off. Cages refill.">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.vista_friendly_3} volume={0.3} delay={0.6} />
@@ -583,10 +576,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/*  Vistas enter popper. */}
-        <Cue notes='Vistas enter popper.'>
+        <Cue notes="Vistas enter popper.">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.popper} />
@@ -596,10 +589,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas train to vis. */}
-        <Cue notes='Vistas train to vis.'>
+        <Cue notes="Vistas train to vis.">
 
-          <Screen output='secondary'>
-            <Visualization trainMode='enter'/>
+          <Screen output="secondary">
+            <Visualization trainMode="enter" />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_ENTER} />
@@ -608,9 +601,9 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Visualization begins. */}
-        <Cue notes='Visualization begins.'>
+        <Cue notes="Visualization begins.">
 
-          <Screen output='secondary'>
+          <Screen output="secondary">
             <Visualization startGen={25} endGen={50} startSpeed={1.0} endSpeed={1.0} seedVistas={[0.65, 0.7, 0.5, 0.35, 0.75, 0.6, 0.6, 0.53]} />
           </Screen>
 
@@ -619,10 +612,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas exit screen. Cage refill. */}
-        <Cue notes='Vistas exit screen via train.'>
+        <Cue notes="Vistas exit screen via train.">
 
-          <Screen output='secondary'>
-            <Visualization trainMode='exit'/>
+          <Screen output="secondary">
+            <Visualization trainMode="exit" />
           </Screen>
 
           <CueServerOut cueId={Lookup.VISTA_TRAIN_EXIT} />
@@ -632,10 +625,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vista-train off. Cages refill. */}
-        <Cue notes='Vistas train off. Cages refill.'>
+        <Cue notes="Vistas train off. Cages refill.">
 
-          <Screen output='secondary'>
-            <Visualization/>
+          <Screen output="secondary">
+            <Visualization />
           </Screen>
 
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.4} />
@@ -648,6 +641,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Evaluation part 4 */}
+
         <Cue notes='Evaluation part 4'>
 
           <Bee mode='evaluation-mode'></Bee>
@@ -672,6 +666,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer. Part 4 (T) */}
+
         <Cue notes='Correct answer. Part FOUR (T)'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -688,7 +683,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_116}  delay={1.0} />
+          <SoundCue src={sounds.VO_116} delay={1.0} />
           <SoundCue src={sounds.correct_answer_4} />
 
           <CueServerOut cueId={Lookup.BADGE_T} />
@@ -696,10 +691,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vista trait progression */}
-        <Cue notes='Alex shows vista progression'>
+        <Cue notes="Alex shows vista progression">
 
-          <Screen output='primary' lifespan={20.0}>
-            <img src={images.progression} width='1920px'/>
+          <Screen output="primary" lifespan={20.0}>
+            <img src={images.progression} width="1920px" />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -707,10 +702,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Alex sequence 5 */}
-        <Cue notes='Alex triggers Sequence 5'>
+        <Cue notes="Alex triggers Sequence 5">
 
-          <Screen output='primary'>
-            <VideoCue src={videos.sequence5} width='1920px'/>
+          <Screen output="primary">
+            <VideoCue src={videos.sequence5} width="1920px" />
           </Screen>
 
           <SoundCue src={sounds.upload} />
@@ -718,11 +713,10 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Empty */}
-        <Cue notes='Empty'>
-
-        </Cue>
+        <Cue notes="Empty" />
 
         {/* Evaluation part 5 */}
+
         <Cue notes='Evaluation part 5'>
 
           <Screen output='primary'>
@@ -745,6 +739,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer. Part 5 (A) */}
+
         <Cue notes='Correct answer. Part 5 (A)'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -762,14 +757,14 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.fanfare} />
-          <SoundCue src={sounds.VO_128} delay={2.5}/>
+          <SoundCue src={sounds.VO_128} delay={2.5} />
 
           <CueServerOut cueId={Lookup.BADGE_A} />
 
         </Cue>
 
         {/* Unplug Blackout */}
-        <Cue notes='Unplug Blackout'>
+        <Cue notes="Unplug Blackout">
 
           <SoundCue src={sounds.power_down} />
           <SoundCue src={sounds.cages_open} delay={0.75} />
@@ -780,7 +775,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Vistas escape through door. */}
-        <Cue notes='Vistas escape through door.'>
+        <Cue notes="Vistas escape through door.">
 
           <SoundCue src={sounds.vistas_escape} />
 
@@ -788,7 +783,7 @@ export default class Show extends React.Component {
 
 
         {/* Plug in lockdown */}
-        <Cue notes='Lockdown on plug in.'>
+        <Cue notes="Lockdown on plug in.">
 
           <Screen output='primary'>
 
@@ -810,19 +805,19 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+          <Screen output="secondary">
+            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <CueServerOut cueId={Lookup.PLUG_IN_LOCKDOWN} />
 
           <SoundCue src={sounds.lockdown} />
-          <SoundCue src={sounds.alarm} delay={0.5} loop={true} />
+          <SoundCue src={sounds.alarm} delay={0.5} loop />
           <SoundCue src={sounds.VO_142} delay={3.5} />
 
         </Cue>
 
-        <Cue notes='And whose fault is that?'>
+        <Cue notes="And whose fault is that?">
 
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
@@ -843,11 +838,11 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_144} />
-          <SoundCue src={sounds.alarm} loop={true} />
+          <SoundCue src={sounds.alarm} loop />
 
         </Cue>
 
-        <Cue notes='I cant. To ensure...'>
+        <Cue notes="I cant. To ensure...">
 
           <Screen output='primary'>
 
@@ -863,16 +858,16 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+          <Screen output="secondary">
+            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_150} />
-          <SoundCue src={sounds.alarm} loop={true} />
+          <SoundCue src={sounds.alarm} loop />
 
         </Cue>
 
-        <Cue notes='Labaratory access codes are encrypted'>
+        <Cue notes="Labaratory access codes are encrypted">
 
           <Screen output='primary'>
             <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
@@ -905,39 +900,46 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+          <Screen output="secondary">
+            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.VO_157} />
-          <SoundCue src={sounds.alarm} loop={true} />
+          <SoundCue src={sounds.alarm} loop />
 
         </Cue>
 
         {/* Lockdown release after puzzle */}
-        <Cue notes='Lockdown release on puzzle solved.'>
+        <Cue notes="Lockdown release on puzzle solved.">
 
-          <Screen output='primary'>
-            <h1 className='text-fullscreen success' >ISOLATION MODE: DISENGAGED</h1>
+          <Screen output="primary">
+            <h1 className="text-fullscreen success">ISOLATION MODE: DISENGAGED</h1>
           </Screen>
 
-          <Screen output='secondary'>
-            <h1 className='text-fullscreen success' >ISOLATION MODE: DISENGAGED</h1>
+          <Screen output="secondary">
+            <h1 className="text-fullscreen success">ISOLATION MODE: DISENGAGED</h1>
           </Screen>
 
           <SoundCue src={sounds.unlock} />
-          <SoundCue src={sounds.unlock} delay={0.2}/>
-          <SoundCue src={sounds.VO_161} delay={0.35}/>
+          <SoundCue src={sounds.unlock} delay={0.2} />
+          <SoundCue src={sounds.VO_161} delay={0.35} />
 
           <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
 
         </Cue>
 
         {/* Post show. Audience extits. */}
-        <Cue notes='Post show. Audience exits.'>
+        <Cue notes="Post show. Audience exits.">
 
           <CueServerOut cueId={Lookup.POST_SHOW} />
-          <h2 className='debug'>Post show. Audience exits.</h2>
+          <h2 className="debug">Post show. Audience exits.</h2>
+
+        </Cue>
+
+      {/* Intro to Game 2 */}
+        <Cue notes='Intro to Game 2'>
+
+          <SoundCue src={sounds.VO_Ending}/>
 
         </Cue>
 
@@ -945,5 +947,4 @@ export default class Show extends React.Component {
       </Deck>
     );
   }
-
 }
