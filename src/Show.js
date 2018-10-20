@@ -104,13 +104,15 @@ export default class Show extends React.Component {
         {/* It wasn't that funny. */}
         <Cue notes="VO: It wasnt that funny">
 
-          <Bee></Bee>
+          <Screen output='primary'>
+            <Bee></Bee>
 
-          <TimedCaptions>
-              <Caption duration={2.5}>
-                  It wasn't that funny.
-              </Caption>
-          </TimedCaptions>
+            <TimedCaptions>
+                <Caption duration={2.5}>
+                    It wasn't that funny.
+                </Caption>
+            </TimedCaptions>
+          </Screen>
 
           <SoundCue src={sounds.VO_003} />
 
@@ -167,7 +169,9 @@ export default class Show extends React.Component {
         {/* VO: Should any cage open... */}
         <Cue notes="VO: Should any cage open...">
 
-          <Bee></Bee>
+          <Screen output='primary'>
+
+            <Bee></Bee>
 
             <TimedCaptions>
                 <Caption duration={6.7}>
@@ -178,7 +182,7 @@ export default class Show extends React.Component {
                 </Caption>
             </TimedCaptions>
 
-
+          </Screen>
 
           <SoundCue src={sounds.VO_034}/>
 
@@ -936,8 +940,22 @@ export default class Show extends React.Component {
 
         </Cue>
 
-      {/* Intro to Game 2 */}
+        {/* Intro to Game 2 */}
         <Cue notes='Intro to Game 2'>
+
+          <Screen output="primary">
+            <Bee></Bee>
+            
+            <TimedCaptions>
+                <Caption duration={10}>
+                    Attention
+                </Caption>
+                <Caption duration={3}>
+                    . . .
+                </Caption>
+            </TimedCaptions>
+
+          </Screen>
 
           <SoundCue src={sounds.VO_Ending}/>
 
