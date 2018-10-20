@@ -131,6 +131,83 @@ body {
   height: 640px;
 }
 
+.bee-container {
+  position: absolute;
+  top: 0px;
+  transform: scale(0.5, 0.5);
+}
+
+.bee-container img {
+  position: absolute;
+  top: 30px;
+  left: 1200px;
+}
+
+.bee-container.evaluation-mode {
+  transform: scale(0.3, 0.3);
+}
+
+.bee-container.evaluation-mode img {
+  top: 960px;
+  left: 95px;
+}
+
+.bee-container.isolation-mode {
+  transform: scale(0.34, 0.34) !important;
+}
+
+.bee-container.isolation-mode img {
+  top: 600px;
+  left: 2033px;
+}
+
+.timed-captions {
+  position: absolute;
+  top: 55%;
+  left: 200px;
+  width: 80%;
+  height: 30%;
+}
+
+.timed-captions .caption {
+
+  width: 100%;
+
+  position: absolute;
+
+  /*background: rgba(155,11,55,0.3);*/
+  font-size: 2.0em;
+
+  /* Base color */
+  color: #43C0EE;
+
+  /* Glow color */
+  color: #85F4FF;
+
+}
+
+.timed-captions .outer-box {
+    border-radius: 12px;
+    /*border: 5px solid #85F4FF;*/
+}
+
+.timed-captions .inner-box {
+  padding: 60px;
+  border-radius: 9px;
+}
+
+/* Typewriter Effect */
+.typewriter span {
+  border-right: .61em solid;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
 p.evaluation .highlight {
   color: #d21349 !important;
   font-family: "DirectiveFourCondensed" !important;
@@ -139,8 +216,9 @@ p.evaluation .highlight {
 .primary p.evaluation {
 
   width: 1920px;
-  margin-top: 6%;
-  padding: 4% 14% 5.5% 14%;
+  margin-left:23%;
+  margin-top: 0%;
+  padding: 8% 14% 12% 9%;
   font-size: 2.4em;
   text-align: left;
   line-height: 1.7em;
@@ -151,7 +229,6 @@ p.evaluation .highlight {
   background-color: #fff;
 
 }
-
 
 .fullscreen-cue {
 
@@ -174,7 +251,7 @@ p.evaluation .highlight {
 .primary .text-fullscreen {
   font-size: 3em;
   width: 100%;
-  margin: 10% 22%;
+  margin: -10% 22%;
 }
 
 .secondary .text-fullscreen {
@@ -397,7 +474,6 @@ p.evaluation .highlight {
 .dark-mode .ReactTable {
   background-color: #000;
 }
-
 
 .currentnotes span {
   color: #f3e523 !important;

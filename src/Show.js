@@ -9,6 +9,9 @@ import Screen from './components/Screen';
 
 import SoundCue from './components/SoundCue';
 import VideoCue from './components/VideoCue';
+import TimedCaptions from './components/TimedCaptions';
+import Caption from './components/Caption';
+import Bee from './components/Bee';
 import Visualization from './components/Visualization';
 import CueServerOut from './components/CueServerOut';
 import Lookup from './api/CueServerLookup';
@@ -69,6 +72,29 @@ export default class Show extends React.Component {
         {/* Show Start. VO Intro. */}
         <Cue notes="Stage lights. Presentation begins. VO.">
 
+          <Screen output='primary'>
+
+            <Bee></Bee>
+
+            <TimedCaptions>
+                <Caption duration={7.5}>
+                    Attention, museum visitors: You have entered the museum’s biocontainment facility. Wild animals are easily stressed.
+                </Caption>
+                <Caption duration={6.5}>
+                    For their safety and yours, please don't eat, drink, make any sudden movements, or use your camera's flash.
+                </Caption>
+                <Caption duration={5}>
+                    No animals are ever harmed in this facility. Unless you use your camera’s flash.
+                </Caption>
+                <Caption duration={0.75}>
+
+                </Caption>
+                <Caption duration={1.7}>
+                    That last part was a joke.
+                </Caption>
+            </TimedCaptions>
+          </Screen>
+
           <SoundCue src={sounds.VO_001} />
 
           <CueServerOut cueId={Lookup.SHOW_START} />
@@ -77,6 +103,14 @@ export default class Show extends React.Component {
 
         {/* It wasn't that funny. */}
         <Cue notes="VO: It wasnt that funny">
+
+          <Bee></Bee>
+
+          <TimedCaptions>
+              <Caption duration={2.5}>
+                  It wasn't that funny.
+              </Caption>
+          </TimedCaptions>
 
           <SoundCue src={sounds.VO_003} />
 
@@ -133,7 +167,20 @@ export default class Show extends React.Component {
         {/* VO: Should any cage open... */}
         <Cue notes="VO: Should any cage open...">
 
-          <SoundCue src={sounds.VO_034} />
+          <Bee></Bee>
+
+            <TimedCaptions>
+                <Caption duration={6.7}>
+                    If certification protocols are not followed, my biosecurity subsystem will trigger an emergency quarantine.
+                </Caption>
+                <Caption duration={4.2}>
+                    This system is hard-wired and completely encryption-protected.
+                </Caption>
+            </TimedCaptions>
+
+
+
+          <SoundCue src={sounds.VO_034}/>
 
         </Cue>
 
@@ -177,25 +224,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Evaluation part 1 */}
-        <Cue notes="Evaluation part ONE">
 
-          <Screen output="primary">
-            <p className="evaluation">
-              Variation’s the name of this
-              {' '}
-              <span className="highlight">game</span>
-              <br />
-              Everything has it, wild or
-              {' '}
-              <span className="highlight">tame</span>
-              <br />
-              In any group
-              <br />
-              School, flock, or troupe
-              <br />
-              Individuals are not all the
-              {' '}
-              <span className="highlight">_____.</span>
+        <Cue notes='Evaluation part ONE'>
+
+          <Screen output='primary'>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Variation’s the name of this <span className='highlight'>game</span><br/>
+              Everything has it, wild or <span className='highlight'>tame</span><br/>
+              In any group<br/>
+              School, flock, or troupe<br/>
+              Individuals are not all the <span className='highlight'>_____.</span>
             </p>
 
           </Screen>
@@ -206,26 +247,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct Answer 1. */}
-        <Cue notes="Correct answer. Part 1 (V).">
 
-          <Screen output="primary" lifespan={8.0}>
+        <Cue notes='Correct answer. Part 1 (V).'>
 
-            <p className="evaluation">
-              Variation’s the name of this
-              {' '}
-              <span className="highlight">game</span>
-              <br />
-              Everything has it, wild or
-              {' '}
-              <span className="highlight">tame</span>
-              <br />
-              In any group
-              <br />
-              School, flock, or troupe
-              <br />
-              Individuals are not all the
-              {' '}
-              <span className="highlight">same.</span>
+          <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Variation’s the name of this <span className='highlight'>game</span><br/>
+              Everything has it, wild or <span className='highlight'>tame</span><br/>
+              In any group<br/>
+              School, flock, or troupe<br/>
+              Individuals are not all the <span className='highlight'>same.</span>
             </p>
 
           </Screen>
@@ -254,26 +288,19 @@ export default class Show extends React.Component {
 
 
         {/* Evaluation part 2 */}
-        <Cue notes="Evaluation part 2">
 
-          <Screen output="primary">
+        <Cue notes='Evaluation part 2'>
 
-            <p className="evaluation">
-              Here’s what “inheritance”
-              {' '}
-              <span className="highlight">means:</span>
-              <br />
-              A baby’s slate doesn’t start
-              {' '}
-              <span className="highlight">clean.</span>
-              <br />
-              Her mom and her dad
-              <br />
-              Passed on traits that they had,
-              <br />
-              And her kids get some of her
-              {' '}
-              <span className="highlight">______.</span>
+          <Screen output='primary'>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Here’s what “inheritance” <span className='highlight'>means:</span><br/>
+              A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
+              Her mom and her dad<br/>
+              Passed on traits that they had,<br/>
+              And her kids get some of her <span className='highlight'>______.</span>
             </p>
 
           </Screen>
@@ -284,26 +311,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer 2. (I) */}
-        <Cue notes="Correct answer 2 (I)">
 
-          <Screen output="primary" lifespan={8.0}>
+        <Cue notes='Correct answer 2 (I)'>
 
-            <p className="evaluation">
-              Here’s what “inheritance”
-              {' '}
-              <span className="highlight">means:</span>
-              <br />
-              A baby’s slate doesn’t start
-              {' '}
-              <span className="highlight">clean.</span>
-              <br />
-              Her mom and her dad
-              <br />
-              Passed on traits that they had,
-              <br />
-              And her kids get some of her
-              {' '}
-              <span className="highlight">genes.</span>
+          <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Here’s what “inheritance” <span className='highlight'>means:</span><br/>
+              A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
+              Her mom and her dad<br/>
+              Passed on traits that they had,<br/>
+              And her kids get some of her <span className='highlight'>genes.</span>
             </p>
 
           </Screen>
@@ -330,27 +350,19 @@ export default class Show extends React.Component {
         <Cue notes="Empty" />
 
         {/* Evaluation part 3 */}
-        <Cue notes="Evaluation part 3.">
 
-          <Screen output="primary">
+        <Cue notes='Evaluation part 3.'>
 
-            <p className="evaluation">
-              Here’s a fact you just can’t
-              {' '}
-              <span className="highlight">ignore:</span>
-              <br />
-              Useful traits get “selected
-              {' '}
-              <span className="highlight">for.</span>
-”
-              <br />
-              Your strength, size, stealth, or coloration
-              <br />
-              Can help you succeed in your situation
-              <br />
-              By surviving longer and reproducing
-              {' '}
-              <span className="highlight">_____.</span>
+          <Screen output='primary'>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Here’s a fact you just can’t <span className='highlight'>ignore:</span><br/>
+              Useful traits get “selected <span className='highlight'>for.</span>”<br/>
+              Your strength, size, stealth, or coloration<br/>
+              Can help you succeed in your situation<br/>
+              By surviving longer and reproducing <span className='highlight'>_____.</span>
             </p>
 
           </Screen>
@@ -361,27 +373,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer 3. */}
-        <Cue notes="Correct answer. Part 3 (S)." lifespan={8.0}>
 
-          <Screen output="primary" lifespan={8.0}>
+        <Cue notes='Correct answer. Part 3 (S).' lifespan={8.0}>
 
-            <p className="evaluation">
-              Here’s a fact you just can’t
-              {' '}
-              <span className="highlight">ignore:</span>
-              <br />
-              Useful traits get “selected
-              {' '}
-              <span className="highlight">for.</span>
-”
-              <br />
-              Your strength, size, stealth, or coloration
-              <br />
-              Can help you succeed in your situation
-              <br />
-              By surviving longer and reproducing
-              {' '}
-              <span className="highlight">more.</span>
+          <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Here’s a fact you just can’t <span className='highlight'>ignore:</span><br/>
+              Useful traits get “selected <span className='highlight'>for.</span>”<br/>
+              Your strength, size, stealth, or coloration<br/>
+              Can help you succeed in your situation<br/>
+              By surviving longer and reproducing <span className='highlight'>more.</span>
             </p>
 
           </Screen>
@@ -637,26 +641,21 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Evaluation part 4 */}
-        <Cue notes="Evaluation part 4">
 
-          <Screen output="primary">
+        <Cue notes='Evaluation part 4'>
 
-            <p className="evaluation">
-              Whenever a new feature
-              {' '}
-              <span className="highlight">appears—</span>
-              <br />
-              Like long hair, sharp teeth, or big
-              {' '}
-              <span className="highlight">ears—</span>
-              <br />
-              Genes must accumulate
-              <br />
-              Before all have the trait,
-              <br />
-              And that can take thousands of
-              {' '}
-              <span className="highlight">______.</span>
+          <Bee mode='evaluation-mode'></Bee>
+
+          <Screen output='primary'>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Whenever a new feature <span className='highlight'>appears—</span><br/>
+              Like long hair, sharp teeth, or big <span className='highlight'>ears—</span><br/>
+              Genes must accumulate<br/>
+              Before all have the trait,<br/>
+              And that can take thousands of <span className='highlight'>______.</span>
             </p>
 
           </Screen>
@@ -667,26 +666,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer. Part 4 (T) */}
-        <Cue notes="Correct answer. Part FOUR (T)">
 
-          <Screen output="primary" lifespan={8.0}>
+        <Cue notes='Correct answer. Part FOUR (T)'>
 
-            <p className="evaluation">
-              Whenever a new feature
-              {' '}
-              <span className="highlight">appears—</span>
-              <br />
-              Like long hair, sharp teeth, or big
-              {' '}
-              <span className="highlight">ears—</span>
-              <br />
-              Genes must accumulate
-              <br />
-              Before all have the trait,
-              <br />
-              And that can take thousands of
-              {' '}
-              <span className="highlight">years.</span>
+          <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              Whenever a new feature <span className='highlight'>appears—</span><br/>
+              Like long hair, sharp teeth, or big <span className='highlight'>ears—</span><br/>
+              Genes must accumulate<br/>
+              Before all have the trait,<br/>
+              And that can take thousands of <span className='highlight'>years.</span>
             </p>
 
           </Screen>
@@ -724,26 +716,19 @@ export default class Show extends React.Component {
         <Cue notes="Empty" />
 
         {/* Evaluation part 5 */}
-        <Cue notes="Evaluation part 5">
 
-          <Screen output="primary">
+        <Cue notes='Evaluation part 5'>
 
-            <p className="evaluation">
-              At first it may seem very
-              {' '}
-              <span className="highlight">strange:</span>
-              <br />
-              Evolution’s not a path you
-              {' '}
-              <span className="highlight">arrange.</span>
-              <br />
-              The environment organisms share
-              <br />
-              Makes traits common or rare
-              <br />
-              And causes a species to
-              {' '}
-              <span className="highlight">______.</span>
+          <Screen output='primary'>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              At first it may seem very <span className='highlight'>strange:</span><br/>
+              Evolution’s not a path you <span className='highlight'>arrange.</span><br/>
+              The environment organisms share<br/>
+              Makes traits common or rare<br/>
+              And causes a species to <span className='highlight'>______.</span>
             </p>
 
           </Screen>
@@ -754,26 +739,19 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer. Part 5 (A) */}
-        <Cue notes="Correct answer. Part 5 (A)">
 
-          <Screen output="primary" lifespan={8.0}>
+        <Cue notes='Correct answer. Part 5 (A)'>
 
-            <p className="evaluation">
-              At first it may seem very
-              {' '}
-              <span className="highlight">strange:</span>
-              <br />
-              Evolution’s not a path you
-              {' '}
-              <span className="highlight">arrange.</span>
-              <br />
-              The environment organisms share
-              <br />
-              Makes traits common or rare
-              <br />
-              And causes a species to
-              {' '}
-              <span className="highlight">change.</span>
+          <Screen output='primary' lifespan={8.0}>
+
+            <Bee mode='evaluation-mode'></Bee>
+
+            <p className='evaluation'>
+              At first it may seem very <span className='highlight'>strange:</span><br/>
+              Evolution’s not a path you <span className='highlight'>arrange.</span><br/>
+              The environment organisms share<br/>
+              Makes traits common or rare<br/>
+              And causes a species to <span className='highlight'>change.</span>
             </p>
 
           </Screen>
@@ -807,8 +785,24 @@ export default class Show extends React.Component {
         {/* Plug in lockdown */}
         <Cue notes="Lockdown on plug in.">
 
-          <Screen output="primary">
-            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
+          <Screen output='primary'>
+
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode' mood='red'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={3.5}>
+
+                </Caption>
+                <Caption duration={3.5}>
+                    Infestation alert! We are at level tangerine.
+                </Caption>
+                <Caption duration={4.75}>
+                    I repeat—level tangerine. Quarantine initiated.
+                </Caption>
+            </TimedCaptions>
+
           </Screen>
 
           <Screen output="secondary">
@@ -825,12 +819,22 @@ export default class Show extends React.Component {
 
         <Cue notes="And whose fault is that?">
 
-          <Screen output="primary">
-            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
+          <Screen output='primary'>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode' mood='red'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={8}>
+                    And whose fault is that? Isolation mode: engaged.
+                </Caption>
+            </TimedCaptions>
           </Screen>
 
-          <Screen output="secondary">
-            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
+          <Screen output='secondary'>
+
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
           </Screen>
 
           <SoundCue src={sounds.VO_144} />
@@ -840,8 +844,18 @@ export default class Show extends React.Component {
 
         <Cue notes="I cant. To ensure...">
 
-          <Screen output="primary">
-            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
+          <Screen output='primary'>
+
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode' mood='red'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={8}>
+                    I can’t. Protocols must remain in effect until all evolutionary test subjects are accounted for.
+                </Caption>
+            </TimedCaptions>
+
           </Screen>
 
           <Screen output="secondary">
@@ -855,8 +869,35 @@ export default class Show extends React.Component {
 
         <Cue notes="Labaratory access codes are encrypted">
 
-          <Screen output="primary">
-            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
+          <Screen output='primary'>
+            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
+
+            <Bee mode='isolation-mode' mood='red'></Bee>
+
+            <TimedCaptions>
+                <Caption duration={6}>
+                    Laboratory access codes are encrypted in accordance with museum biosecurity protocols.
+                </Caption>
+                <Caption duration={6}>
+                    Unfortunately, I cannot directly tell you that the locking mechanism can be short circuited
+                </Caption>
+                <Caption duration={6.5}>
+                    if you synchronize the color-coded alarm system energy surges with the appropriate color-coded receptor circuits.
+                </Caption>
+                <Caption duration={2.2}>
+
+                </Caption>
+                <Caption duration={1.3}>
+                    ;)
+                </Caption>
+                <Caption duration={1.3}>
+
+                </Caption>
+                <Caption duration={2.9}>
+                    ;)
+                </Caption>
+            </TimedCaptions>
+
           </Screen>
 
           <Screen output="secondary">
