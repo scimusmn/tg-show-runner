@@ -134,13 +134,13 @@ body {
 .bee-container {
   position: absolute;
   top: 0px;
-  transform: scale(0.5, 0.5);
+  transform: scale(0.43, 0.43);
 }
 
 .bee-container img {
   position: absolute;
-  top: 30px;
-  left: 1200px;
+  top: 150px;
+  left: 1586px;
 }
 
 .bee-container.evaluation-mode {
@@ -163,7 +163,7 @@ body {
 
 .timed-captions {
   position: absolute;
-  top: 55%;
+  top: 49%;
   left: 200px;
   width: 80%;
   height: 30%;
@@ -174,7 +174,7 @@ body {
   font-family: "DirectiveFourCondensed" !important;
   letter-spacing: 0.04em;
 
-  line-height: 1.2em;
+  line-height: 1.75em;
 
   width: 100%;
 
