@@ -947,8 +947,32 @@ export default class Show extends React.Component {
             <Bee></Bee>
             
             <TimedCaptions>
-                <Caption duration={30}>
-                    Attention
+                <Caption duration={7.1}>
+                    Attention, VISTA Handlers: overriding the laboratory lock has alerted exterminators about the VISTA escape.
+                </Caption>
+                <Caption duration={3}>
+                    You need to contain the infestation. 
+                </Caption>
+                <Caption duration={5.0}>
+                    Otherwise, exterminators will track down all our adorable little test subjects  
+                </Caption>
+                <Caption duration={4.0}>
+                    and, well, exterminate them.
+                </Caption>
+                <Caption duration={6.5}>
+                    Once the vistas are contained, you can reboot my system, and then I can call off the exterminators.
+                </Caption>
+                <Caption duration={4}>
+                    Fortunately, there’s a protocol for this emergency situation. 
+                </Caption>
+                <Caption duration={5}>
+                    To get started, you simply need to locate the instructions and toolkits in this room.
+                </Caption>
+                <Caption duration={1}>
+                    
+                </Caption>
+                <Caption duration={12}>
+                    Why are you still staring at me? *I* don’t have them. Get to work if you want to save the VISTAs!
                 </Caption>
             </TimedCaptions>
 

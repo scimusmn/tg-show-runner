@@ -140,7 +140,7 @@ body {
 .bee-container img {
   position: absolute;
   top: 150px;
-  left: 1586px;
+  left: 1590px;
 }
 
 .bee-container.evaluation-mode {
@@ -157,8 +157,8 @@ body {
 }
 
 .bee-container.isolation-mode img {
-  top: 690px;
-  left: 2144px;
+  top: 670px;
+  left: 2166px;
 }
 
 .timed-captions {
