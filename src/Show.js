@@ -888,17 +888,17 @@ export default class Show extends React.Component {
                 <Caption duration={6.5}>
                     if you synchronize the color-coded alarm system energy surges with the appropriate color-coded receptor circuits.
                 </Caption>
-                <Caption duration={2.2}>
+                <Caption duration={2.0}>
 
                 </Caption>
                 <Caption duration={1.3}>
-                    ;)
+                    wink
                 </Caption>
                 <Caption duration={1.3}>
 
                 </Caption>
                 <Caption duration={2.9}>
-                    ;)
+                    wink
                 </Caption>
             </TimedCaptions>
 
@@ -960,7 +960,7 @@ export default class Show extends React.Component {
                     and, well, exterminate them.
                 </Caption>
                 <Caption duration={6.5}>
-                    Once the vistas are contained, you can reboot my system, and then I can call off the exterminators.
+                    Once the VISTAs are contained, you can reboot my system, and then I can call off the exterminators.
                 </Caption>
                 <Caption duration={4}>
                     Fortunately, there’s a protocol for this emergency situation. 
