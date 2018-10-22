@@ -85,7 +85,7 @@ class Bee extends Component {
       average /= dataArray.length;
 
       const newOpacity = this.utilMap(max, 0, 10, 0, 1);
-      const newScale = this.utilMap(average, 0, 15, 1, 1.036);
+      const newScale = this.utilMap(average, 0, 15, 1, 1.038);
 
       TweenMax.to(this.refs.glow, 0.125, {scale: newScale, opacity:newOpacity, ease: Power2.easeInOut});
 

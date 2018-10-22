@@ -44,7 +44,7 @@ export default class Caption extends Component {
       // Wait for a while and call this function again for next character
       setTimeout(() => {
         this.typeWriter(text, i + 1, fnCallback)
-      }, 19);
+      }, 15);
 
     }
 

@@ -137,6 +137,10 @@ body {
   transform: scale(0.43, 0.43);
 }
 
+.bee-container img.base {
+  opacity: 0.85;
+}
+
 .bee-container img {
   position: absolute;
   top: 150px;
@@ -172,7 +176,8 @@ body {
 .timed-captions .caption {
 
   font-family: "DirectiveFourCondensed" !important;
-  letter-spacing: 0.04em;
+
+  letter-spacing: 0.08em;
 
   line-height: 1.75em;
 
