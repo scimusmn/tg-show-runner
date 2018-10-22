@@ -157,8 +157,8 @@ body {
 }
 
 .bee-container.isolation-mode img {
-  top: 600px;
-  left: 2033px;
+  top: 690px;
+  left: 2144px;
 }
 
 .timed-captions {
@@ -226,10 +226,10 @@ p.evaluation .highlight {
   font-size: 2.4em;
   text-align: left;
   line-height: 1.7em;
-  letter-spacing: -0.0px;
+  letter-spacing: 0.00em !important;
   color: black;
   font-weight: 500;
-  font-family: "RobotoCondensed-Regular";
+  font-family: "RobotoCondensed-Regular" !important;
   background-color: #fff;
 
 }

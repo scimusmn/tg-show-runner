@@ -746,9 +746,9 @@ export default class Show extends React.Component {
 
         <Cue notes='Correct answer. Part 5 (A)'>
 
-          <Screen output='primary' lifespan={8.0}>
+          <Screen output='primary' lifespan={14.0}>
 
-            <Bee mode='evaluation-mode'></Bee>
+            <Bee mode='evaluation-mode' mood='smile'></Bee>
 
             <p className='evaluation'>
               At first it may seem very <span className='highlight'>strange:</span><br/>
@@ -947,11 +947,8 @@ export default class Show extends React.Component {
             <Bee></Bee>
             
             <TimedCaptions>
-                <Caption duration={10}>
+                <Caption duration={30}>
                     Attention
-                </Caption>
-                <Caption duration={3}>
-                    . . .
                 </Caption>
             </TimedCaptions>
 
