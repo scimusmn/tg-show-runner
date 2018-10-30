@@ -648,8 +648,6 @@ export default class Show extends React.Component {
 
         <Cue notes='Evaluation part 4'>
 
-          <Bee mode='evaluation-mode'></Bee>
-
           <Screen output='primary'>
 
             <Bee mode='evaluation-mode'></Bee>
