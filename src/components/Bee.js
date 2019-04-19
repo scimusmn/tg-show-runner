@@ -141,8 +141,8 @@ class Bee extends Component {
 }
 
 Bee.propTypes = {
-  mood: PropTypes.String,
-  mode: PropTypes.String,
+  mood: PropTypes.string,
+  mode: PropTypes.string,
 };
 
 Bee.defaultProps = {

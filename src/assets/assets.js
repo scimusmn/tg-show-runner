@@ -77,6 +77,9 @@ const sounds = {
   kiss1: require('./sounds/kiss1.mp3'),
   kiss2: require('./sounds/kiss2.mp3'),
   kiss3: require('./sounds/kiss3.mp3'),
+
+  /* ----------  Bee Voice Overs ---------- */
+
   VO_001: require('./sounds/VO_001.mp3'),
   VO_003: require('./sounds/VO_003.mp3'),
   VO_034: require('./sounds/VO_034.mp3'),
@@ -98,6 +101,32 @@ const sounds = {
   VO_159: require('./sounds/VO_159.mp3'),
   VO_161: require('./sounds/VO_161.mp3'),
   VO_Ending: require('./sounds/VO_Ending.mp3'),
+
+  B_7: require('./sounds/B_7.mp3'),
+  B_9: require('./sounds/B_9.mp3'),
+  B_35: require('./sounds/B_35.mp3'),
+  B_53: require('./sounds/B_53.mp3'),
+  B_54: require('./sounds/B_54.mp3'),
+  B_65: require('./sounds/B_65.mp3'),
+  B_66: require('./sounds/B_66.mp3'),
+  B_74: require('./sounds/B_74.mp3'),
+  B_75: require('./sounds/B_75.mp3'),
+  B_106: require('./sounds/B_106.mp3'),
+  B_107: require('./sounds/B_107.mp3'),
+  B_115: require('./sounds/B_115.mp3'),
+  B_116: require('./sounds/B_116.mp3'),
+  B_129: require('./sounds/B_129.mp3'),
+  B_131: require('./sounds/B_131.mp3'),
+  B_133: require('./sounds/B_133.mp3'),
+  B_135: require('./sounds/B_135.mp3'),
+  B_240: require('./sounds/B_240.mp3'),
+  B_133: require('./sounds/B_133.mp3'),
+  B_133: require('./sounds/B_133.mp3'),
+  B_133: require('./sounds/B_133.mp3'),
+  B_133: require('./sounds/B_133.mp3'),
+  B_240: require('./sounds/B_240.mp3'),
+
+  /* ----------  VISTA Sounds ---------- */
   vista_friendly_1: require('./sounds/vista_friendly_1.mp3'),
   vista_friendly_2: require('./sounds/vista_friendly_2.mp3'),
   vista_friendly_3: require('./sounds/vista_friendly_3.mp3'),
@@ -142,6 +171,15 @@ const videos = {
   sequence3: require('./videos/sequence3.mp4'),
   sequence4: require('./videos/sequence4.mp4'),
   sequence5: require('./videos/sequence5.mp4'),
+
+  jobsworth_2_10_v1: require('./videos/jobsworth_2-10_v1.mp4'),
+  jobsworth_139: require('./videos/jobsworth_139.mp4'),
+  jobsworth_202: require('./videos/jobsworth_202.mp4'),
+  jobsworth_213: require('./videos/jobsworth_213.mp4'),
+  jobsworth_217_v1: require('./videos/jobsworth_217_v1.mp4'),
+  jobsworth_221_225: require('./videos/jobsworth_221-225.mp4'),
+  jobsworth_238: require('./videos/jobsworth_238.mp4'),
+  jobsworth_243_246: require('./videos/jobsworth_234-246.mp4'),
 
   foxsay: require('./videos/foxsay.mp4'),
 

@@ -69,6 +69,17 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Jobsworth_2_10 */}
+        <Cue notes="Jobsworth_2_10">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_2_10_v1} />
+          </Screen>
+
+          <CueServerOut cueId={Lookup.SHOW_START} />
+
+        </Cue>
+
         {/* Show Start. VO Intro. */}
         <Cue notes="Stage lights. Presentation begins. VO.">
 
@@ -96,8 +107,6 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.VO_001} />
-
-          <CueServerOut cueId={Lookup.SHOW_START} />
 
         </Cue>
 
