@@ -172,7 +172,7 @@ const videos = {
   sequence4: require('./videos/sequence4.mp4'),
   sequence5: require('./videos/sequence5.mp4'),
 
-  jobsworth_2_10_v1: require('./videos/jobsworth_2-10_v1.mp4'),
+  jobsworth_2_10_v2: require('./videos/jobsworth_2-10_v2.mp4'),
   jobsworth_139: require('./videos/jobsworth_139.mp4'),
   jobsworth_202: require('./videos/jobsworth_202-211.mp4'),
   jobsworth_213: require('./videos/jobsworth_213.mp4'),

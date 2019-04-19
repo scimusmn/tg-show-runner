@@ -69,61 +69,38 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Jobsworth_2_10 */}
+        {/* Jobsworth */}
         <Cue notes="Jobsworth_2_10">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_2_10_v1} />
+            <VideoCue src={videos.jobsworth_2_10_v2} />
           </Screen>
 
           <CueServerOut cueId={Lookup.SHOW_START} />
 
         </Cue>
 
-        {/* Show Start. VO Intro. */}
-        <Cue notes="Stage lights. Presentation begins. VO.">
+        <Cue notes="Bee Hello BS">
 
           <Screen output='primary'>
 
             <Bee></Bee>
 
-            <TimedCaptions>
-                <Caption duration={7.5}>
-                    Attention, museum visitors: You have entered the museum’s biocontainment facility. Wild animals are easily stressed.
-                </Caption>
-                <Caption duration={6.5}>
-                    For their safety and yours, please don't eat, drink, make any sudden movements, or use your camera's flash.
-                </Caption>
-                <Caption duration={5}>
-                    No animals are ever harmed in this facility. Unless you use your camera’s flash.
-                </Caption>
-                <Caption duration={0.75}>
-
-                </Caption>
-                <Caption duration={1.7}>
-                    That last part was a joke.
-                </Caption>
-            </TimedCaptions>
           </Screen>
 
-          <SoundCue src={sounds.VO_001} />
+          <SoundCue src={sounds.B_7} />
 
         </Cue>
 
-        {/* It wasn't that funny. */}
-        <Cue notes="VO: It wasnt that funny">
+        <Cue notes="Bee Hello Bee">
 
           <Screen output='primary'>
+
             <Bee></Bee>
 
-            <TimedCaptions>
-                <Caption duration={2.5}>
-                    It wasn't that funny.
-                </Caption>
-            </TimedCaptions>
           </Screen>
 
-          <SoundCue src={sounds.VO_003} />
+          <SoundCue src={sounds.B_9} />
 
         </Cue>
 
@@ -175,8 +152,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* VO: Should any cage open... */}
-        <Cue notes="VO: Should any cage open...">
+        <Cue notes="Bee: Certification">
 
           <Screen output='primary'>
 
@@ -193,7 +169,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_034}/>
+          <SoundCue src={sounds.B_35}/>
 
         </Cue>
 
@@ -254,7 +230,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_060} />
+          <SoundCue src={sounds.B_53} />
           <SoundCue src={sounds.quiz} delay={13.5} />
 
         </Cue>
@@ -277,7 +253,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_061} delay={1.0} />
+          <SoundCue src={sounds.B_54} delay={1.0} />
           <SoundCue src={sounds.correct_answer_1} />
 
           <CueServerOut cueId={Lookup.BADGE_V} />
@@ -318,13 +294,12 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_073} />
+          <SoundCue src={sounds.B_65} />
           <SoundCue src={sounds.quiz} delay={9.0} />
 
         </Cue>
 
         {/* Correct answer 2. (I) */}
-
         <Cue notes='Correct answer 2 (I)'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -341,7 +316,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_074} delay={1.0} />
+          <SoundCue src={sounds.B_66} delay={1.0} />
           <SoundCue src={sounds.correct_answer_2} />
 
           <CueServerOut cueId={Lookup.BADGE_I} />
@@ -380,7 +355,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_083} />
+          <SoundCue src={sounds.B_74} />
           <SoundCue src={sounds.quiz} delay={12} />
 
         </Cue>
@@ -403,7 +378,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_084} delay={1.0} />
+          <SoundCue src={sounds.V_75} delay={1.0} />
           <SoundCue src={sounds.correct_answer_3} />
 
           <CueServerOut cueId={Lookup.BADGE_S} />
@@ -671,7 +646,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_115} />
+          <SoundCue src={sounds.B_106} />
           <SoundCue src={sounds.quiz} delay={10} />
 
         </Cue>
@@ -694,7 +669,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_116} delay={1.0} />
+          <SoundCue src={sounds.B_107} delay={1.0} />
           <SoundCue src={sounds.correct_answer_4} />
 
           <CueServerOut cueId={Lookup.BADGE_T} />
@@ -744,7 +719,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_127} />
+          <SoundCue src={sounds.B_115} />
           <SoundCue src={sounds.quiz} delay={11.0} />
 
         </Cue>
@@ -768,7 +743,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.fanfare} />
-          <SoundCue src={sounds.VO_128} delay={2.5} />
+          <SoundCue src={sounds.B_116} delay={2.5} />
 
           <CueServerOut cueId={Lookup.BADGE_A} />
 
@@ -824,7 +799,7 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.lockdown} />
           <SoundCue src={sounds.alarm} delay={0.5} loop />
-          <SoundCue src={sounds.VO_142} delay={3.5} />
+          <SoundCue src={sounds.B_129} delay={3.5} />
 
         </Cue>
 
@@ -848,7 +823,7 @@ export default class Show extends React.Component {
 
           </Screen>
 
-          <SoundCue src={sounds.VO_144} />
+          <SoundCue src={sounds.B_131} />
           <SoundCue src={sounds.alarm} loop />
 
         </Cue>
@@ -861,19 +836,13 @@ export default class Show extends React.Component {
 
             <Bee mode='isolation-mode' mood='red'></Bee>
 
-            <TimedCaptions>
-                <Caption duration={8}>
-                    I can’t. Protocols must remain in effect until all evolutionary test subjects are accounted for.
-                </Caption>
-            </TimedCaptions>
-
           </Screen>
 
           <Screen output="secondary">
             <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
-          <SoundCue src={sounds.VO_150} />
+          <SoundCue src={sounds.B_133} />
           <SoundCue src={sounds.alarm} loop />
 
         </Cue>
@@ -915,7 +884,7 @@ export default class Show extends React.Component {
             <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
           </Screen>
 
-          <SoundCue src={sounds.VO_157} />
+          <SoundCue src={sounds.B_135} />
           <SoundCue src={sounds.alarm} loop />
 
         </Cue>
@@ -933,7 +902,7 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.unlock} />
           <SoundCue src={sounds.unlock} delay={0.2} />
-          <SoundCue src={sounds.VO_161} delay={0.35} />
+          <SoundCue src={sounds.B_240} delay={0.35} />
 
           <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
 
