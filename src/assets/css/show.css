@@ -171,6 +171,7 @@ body {
   left: 200px;
   width: 80%;
   height: 30%;
+  display: none !important;
 }
 
 .timed-captions .caption {
