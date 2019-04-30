@@ -80,30 +80,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        <Cue notes="Bee Hello BS">
-
-          <Screen output='primary'>
-
-            <Bee></Bee>
-
-          </Screen>
-
-          <SoundCue src={sounds.B_7} />
-
-        </Cue>
-
-        <Cue notes="Bee Hello Bee">
-
-          <Screen output='primary'>
-
-            <Bee></Bee>
-
-          </Screen>
-
-          <SoundCue src={sounds.B_9} />
-
-        </Cue>
-
         {/* Alex Intro */}
         <Cue notes="Alex Intro">
 
@@ -213,7 +189,6 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Evaluation part 1 */}
-
         <Cue notes='Evaluation part ONE'>
 
           <Screen output='primary'>
@@ -236,7 +211,6 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct Answer 1. */}
-
         <Cue notes='Correct answer. Part 1 (V).'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -275,9 +249,7 @@ export default class Show extends React.Component {
         {/* Empty */}
         <Cue notes="Empty" />
 
-
         {/* Evaluation part 2 */}
-
         <Cue notes='Evaluation part 2'>
 
           <Screen output='primary'>
@@ -386,14 +358,12 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Highlight Popper */}
-        {/* CAGE SET 1 */}
         <Cue notes="Highlight Popper">
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_POPPER} />
           <h2 className="debug">HIGHLIGHT_POPPER</h2>
 
         </Cue>
-
 
         {/*  Vistas enter popper. */}
         <Cue notes="Vistas enter popper.">
@@ -629,7 +599,6 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Evaluation part 4 */}
-
         <Cue notes='Evaluation part 4'>
 
           <Screen output='primary'>
@@ -652,7 +621,6 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer. Part 4 (T) */}
-
         <Cue notes='Correct answer. Part FOUR (T)'>
 
           <Screen output='primary' lifespan={8.0}>
@@ -702,7 +670,6 @@ export default class Show extends React.Component {
         <Cue notes="Empty" />
 
         {/* Evaluation part 5 */}
-
         <Cue notes='Evaluation part 5'>
 
           <Screen output='primary'>
@@ -725,9 +692,7 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Correct answer. Part 5 (A) */}
-
         <Cue notes='Correct answer. Part 5 (A)'>
-
           <Screen output='primary' lifespan={14.0}>
 
             <Bee mode='evaluation-mode' mood='smile'></Bee>
@@ -767,7 +732,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-
         {/* Plug in lockdown */}
         <Cue notes="Lockdown on plug in.">
 
@@ -803,6 +767,7 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* And whose fault is that? */}
         <Cue notes="And whose fault is that?">
 
           <Screen output='primary'>
@@ -828,7 +793,8 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        <Cue notes="I cant. To ensure...">
+        {/* Overriding security measures */}
+        <Cue notes="Overriding security measures">
 
           <Screen output='primary'>
 
@@ -847,48 +813,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        <Cue notes="Labaratory access codes are encrypted">
-
-          <Screen output='primary'>
-            <h1 className='text-fullscreen' >ISOLATION MODE: ENGAGED</h1>
-
-            <Bee mode='isolation-mode' mood='red'></Bee>
-
-            <TimedCaptions>
-                <Caption duration={6}>
-                    Laboratory access codes are encrypted in accordance with museum biosecurity protocols.
-                </Caption>
-                <Caption duration={6}>
-                    Unfortunately, I cannot directly tell you that the locking mechanism can be short circuited
-                </Caption>
-                <Caption duration={6.5}>
-                    if you synchronize the color-coded alarm system energy surges with the appropriate color-coded receptor circuits.
-                </Caption>
-                <Caption duration={2.0}>
-
-                </Caption>
-                <Caption duration={1.3}>
-                    wink
-                </Caption>
-                <Caption duration={1.3}>
-
-                </Caption>
-                <Caption duration={2.9}>
-                    wink
-                </Caption>
-            </TimedCaptions>
-
-          </Screen>
-
-          <Screen output="secondary">
-            <h1 className="text-fullscreen">ISOLATION MODE: ENGAGED</h1>
-          </Screen>
-
-          <SoundCue src={sounds.B_135} />
-          <SoundCue src={sounds.alarm} loop />
-
-        </Cue>
-
         {/* Lockdown release after puzzle */}
         <Cue notes="Lockdown release on puzzle solved.">
 
@@ -902,62 +826,213 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.unlock} />
           <SoundCue src={sounds.unlock} delay={0.2} />
-          <SoundCue src={sounds.B_240} delay={0.35} />
+          <SoundCue src={sounds.B_135} delay={0.35} />
 
           <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
 
         </Cue>
 
-        {/* Post show. Audience extits. */}
-        <Cue notes="Post show. Audience exits.">
+        {/* Jobsworth: What's going on */}
+        <Cue notes="Jobsworth: What's going on">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_139} />
+          </Screen>
+
+        </Cue>
+=
+        {/* Post show. Audience exits. */}
+        <Cue notes="Post show lights. Partial audience exit.">
 
           <CueServerOut cueId={Lookup.POST_SHOW} />
           <h2 className="debug">Post show. Audience exits.</h2>
 
         </Cue>
 
-        {/* Intro to Game 2 */}
-        <Cue notes='Intro to Game 2'>
+        {/* Jobsworth: I knew this would happen */}
+        <Cue notes="Jobsworth: I knew this would happen">
 
-          <Screen output="primary">
-            <Bee></Bee>
-            
-            <TimedCaptions>
-                <Caption duration={7.1}>
-                    Attention, VISTA Handlers: overriding the laboratory lock has alerted exterminators about the VISTA escape.
-                </Caption>
-                <Caption duration={3}>
-                    You need to contain the infestation. 
-                </Caption>
-                <Caption duration={5.0}>
-                    Otherwise, exterminators will track down all our adorable little test subjects  
-                </Caption>
-                <Caption duration={4.0}>
-                    and, well, exterminate them.
-                </Caption>
-                <Caption duration={6.5}>
-                    Once the VISTAs are contained, you can reboot my system, and then I can call off the exterminators.
-                </Caption>
-                <Caption duration={4}>
-                    Fortunately, there’s a protocol for this emergency situation. 
-                </Caption>
-                <Caption duration={5}>
-                    To get started, you simply need to locate the instructions and toolkits in this room.
-                </Caption>
-                <Caption duration={1}>
-                    
-                </Caption>
-                <Caption duration={12}>
-                    Why are you still staring at me? *I* don’t have them. Get to work if you want to save the VISTAs!
-                </Caption>
-            </TimedCaptions>
-
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_202_211} />
           </Screen>
-
-          <SoundCue src={sounds.VO_Ending}/>
 
         </Cue>
 
+        {/* Jobsworth: Gestures over button */}
+        <Cue notes="Jobsworth: Gestures over button">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_213} />
+          </Screen>
+
+        </Cue>
+
+        {/* Jobsworth: You really did a number on the */}
+        <Cue notes="Jobsworth: You really did a number on the">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_217_v1} />
+          </Screen>
+
+        </Cue>
+
+        {/* Empty */}
+        <Cue notes="Empty: 3" />
+
+        {/* Empty */}
+        <Cue notes="Empty: 2" />
+
+        {/* Empty */}
+        <Cue notes="Empty: 1" />
+
+        {/* Jobsworth: Not so fast */}
+        <Cue notes="Jobsworth: Not so fast">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_221_225} />
+          </Screen>
+
+        </Cue>
+
+        {/* Jobsworth: Empty office */}
+        <Cue notes="Jobsworth: Empty office">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_238} />
+          </Screen>
+
+        </Cue>
+
+        {/* Variation circuit */}
+        <Cue notes="Highlight variation circuit">
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_VARIATION_CIRCUIT} />
+
+        </Cue>
+
+        {/* Correct Answer: V */}
+        <Cue notes="Correct Answer: V">
+
+          <CueServerOut cueId={Lookup.BADGE_V} />
+          <SoundCue src={sounds.correct_answer_1} />
+
+        </Cue>
+
+        {/* Inheritance circuit */}
+        <Cue notes="Highlight inheritance circuit">
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_INHERITANCE_CIRCUIT} />
+
+        </Cue>
+
+        {/* Correct Answer: I */}
+        <Cue notes="Correct Answer: I">
+
+          <CueServerOut cueId={Lookup.BADGE_I} />
+          <SoundCue src={sounds.correct_answer_2} />
+
+        </Cue>
+
+        {/* Selection circuit */}
+        <Cue notes="Highlight selection circuit">
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_SELECTION_CIRCUIT} />
+
+        </Cue>
+
+        {/* Correct Answer: S */}
+        <Cue notes="Correct Answer: S">
+
+          <CueServerOut cueId={Lookup.BADGE_S} />
+          <SoundCue src={sounds.correct_answer_3} />
+
+        </Cue>
+
+        {/* Highlight time circuit */}
+        <Cue notes="Highlight time circuit">
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_TIME_CIRCUIT} />
+
+        </Cue>
+
+        {/* Correct Answer: T */}
+        <Cue notes="Correct Answer: T">
+
+          <CueServerOut cueId={Lookup.BADGE_T} />
+          <SoundCue src={sounds.correct_answer_4} />
+
+        </Cue>
+
+        {/* Highlight adaptation circuit */}
+        <Cue notes="Highlight adaptation circuit">
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_ADAPTATION_CIRCUIT} />
+
+        </Cue>
+
+        {/* Correct Answer: A */}
+        <Cue notes="Correct Answer: A">
+
+          <CueServerOut cueId={Lookup.BADGE_A} />
+          <SoundCue src={sounds.fanfare} />
+          <SoundCue src={sounds.fireworks} delay={1.5} />
+
+        </Cue>
+
+        {/* Jobsworth: Spit take */}
+        <Cue notes="Jobsworth: Spit take">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_238} />
+          </Screen>
+
+        </Cue>
+
+        {/* Bee reboot */}
+        <Cue notes="Bee Reboot">
+
+          <Screen output='primary'>
+
+            <Bee></Bee>
+
+          </Screen>
+
+          <SoundCue src={sounds.bee_reboot} delay={0.0} />
+          <SoundCue src={sounds.B_240} delay={1.5}/>
+
+        </Cue>
+
+        {/* VISTA Drop */}
+        <Cue notes="VISTA Drop">
+
+          <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.0} />
+          <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.5} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.2} delay={1.0} />
+          <SoundCue src={sounds.vista_friendly_4} volume={0.3} delay={1.5} />
+          <SoundCue src={sounds.vista_friendly_5} volume={0.3} delay={2.0} />
+          <SoundCue src={sounds.vista_friendly_6} volume={0.3} delay={2.5} />
+          <SoundCue src={sounds.vista_friendly_7} volume={0.2} delay={3.0} />
+          <SoundCue src={sounds.vista_friendly_8} volume={0.3} delay={3.5} />
+
+          <CueServerOut cueId={Lookup.VISTA_DROP} />
+
+        </Cue>
+
+        {/* Jobsworth: You've passed the test */}
+        <Cue notes="Jobsworth: You've passed the test">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_238} />
+          </Screen>
+
+        </Cue>
+
+        {/* Post show. Audience exits. */}
+        <Cue notes="Post show lights. Partial audience exit.">
+
+          <CueServerOut cueId={Lookup.POST_SHOW} />
+
+        </Cue>
 
       </Deck>
     );

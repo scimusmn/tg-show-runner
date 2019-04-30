@@ -161,6 +161,8 @@ const sounds = {
   train_swoosh_long: require('./sounds/train_swoosh_long.mp3'),
   power_increasing: require('./sounds/power_increasing.mp3'),
   generation_ding: require('./sounds/generation_ding.mp3'),
+  fireworks: require('./sounds/fireworks.mp3'),
+  bee_reboot: require('./sounds/bee_reboot.mp3'),
 
 };
 
