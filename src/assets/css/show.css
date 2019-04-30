@@ -131,6 +131,13 @@ body {
   height: 640px;
 }
 
+.secondary video {
+  position: absolute;
+  top: -400px;
+  left: -415px;
+  transform: scale(0.7, 0.7);
+}
+
 .bee-container {
   position: absolute;
   top: 0px;

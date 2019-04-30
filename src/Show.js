@@ -840,7 +840,7 @@ export default class Show extends React.Component {
           </Screen>
 
         </Cue>
-=
+
         {/* Post show. Audience exits. */}
         <Cue notes="Post show lights. Partial audience exit.">
 
@@ -998,7 +998,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.bee_reboot} delay={0.0} />
-          <SoundCue src={sounds.B_240} delay={1.5}/>
+          <SoundCue src={sounds.B_240} delay={1.65}/>
 
         </Cue>
 
@@ -1006,13 +1006,21 @@ export default class Show extends React.Component {
         <Cue notes="VISTA Drop">
 
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.0} />
-          <SoundCue src={sounds.vista_friendly_2} volume={0.3} delay={0.5} />
+          <SoundCue src={sounds.vista_friendly_2} volume={0.6} delay={0.5} />
           <SoundCue src={sounds.vista_friendly_3} volume={0.2} delay={1.0} />
-          <SoundCue src={sounds.vista_friendly_4} volume={0.3} delay={1.5} />
-          <SoundCue src={sounds.vista_friendly_5} volume={0.3} delay={2.0} />
-          <SoundCue src={sounds.vista_friendly_6} volume={0.3} delay={2.5} />
+          <SoundCue src={sounds.vista_friendly_4} volume={0.6} delay={1.5} />
+          <SoundCue src={sounds.vista_friendly_5} volume={0.5} delay={2.2} />
+          <SoundCue src={sounds.vista_friendly_6} volume={0.6} delay={2.5} />
           <SoundCue src={sounds.vista_friendly_7} volume={0.2} delay={3.0} />
-          <SoundCue src={sounds.vista_friendly_8} volume={0.3} delay={3.5} />
+          <SoundCue src={sounds.vista_friendly_8} volume={0.7} delay={3.9} />
+          <SoundCue src={sounds.vista_friendly_1} volume={0.5} delay={4.0} />
+          <SoundCue src={sounds.vista_friendly_2} volume={0.6} delay={6.5} />
+          <SoundCue src={sounds.vista_friendly_3} volume={0.2} delay={6.9} />
+          <SoundCue src={sounds.vista_friendly_4} volume={0.6} delay={7.9} />
+          <SoundCue src={sounds.vista_friendly_5} volume={0.3} delay={6.9} />
+          <SoundCue src={sounds.vista_friendly_6} volume={0.6} delay={6.2} />
+          <SoundCue src={sounds.vista_friendly_7} volume={0.2} delay={8.0} />
+          <SoundCue src={sounds.vista_friendly_8} volume={0.7} delay={6.5} />
 
           <CueServerOut cueId={Lookup.VISTA_DROP} />
 
