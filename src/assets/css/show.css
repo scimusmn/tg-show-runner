@@ -131,6 +131,14 @@ body {
   height: 640px;
 }
 
+.secondary video,
+.secondary .video-bg {
+  position: absolute;
+  top: -400px;
+  left: -415px;
+  transform: scale(0.7, 0.7);
+}
+
 .bee-container {
   position: absolute;
   top: 0px;
@@ -171,6 +179,7 @@ body {
   left: 200px;
   width: 80%;
   height: 30%;
+  display: none !important;
 }
 
 .timed-captions .caption {
@@ -276,6 +285,10 @@ p.evaluation .highlight {
 
 .text-fullscreen.success {
   color: #6ab452;
+}
+
+.text-fullscreen.normal {
+  color: #FFF;
 }
 
 .fs-image {
