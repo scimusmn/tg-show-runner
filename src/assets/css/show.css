@@ -105,6 +105,10 @@ body {
   opacity: 1.0;
 }
 
+.fade-overlay.fadeOut {
+  opacity: 0.0;
+}
+
 .spectacle-content {
   position: fixed !important;
   top: 0px !important;

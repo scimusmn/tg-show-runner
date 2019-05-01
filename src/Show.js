@@ -75,6 +75,10 @@ export default class Show extends React.Component {
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_2_10_v2} />
           </Screen>
+          
+          <Screen output='primary' birthDelay={74.0}>
+            <Bee></Bee>
+          </Screen>
 
           <CueServerOut cueId={Lookup.SHOW_START} />
 

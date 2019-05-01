@@ -7,9 +7,11 @@ class Screen extends Component {
 
     this.state = {
       lifespanComplete: false,
+      birthDelayComplete: false,
     };
 
     this.lifespanTimeout = {};
+    this.birthDelayTimeout = {};
   }
 
   componentDidMount() {
@@ -20,6 +22,13 @@ class Screen extends Component {
         this.setState({ lifespanComplete: true });
       }, this.props.lifespan * 1000);
     }
+
+    if (this.props.birthDelay > 0.0) {
+      this.birthDelayTimeout = setTimeout(() => {
+        this.setState({ birthDelayComplete: true });
+      }, this.props.birthDelay * 1000);
+    }
+
   }
 
   componentDidUpdate() {
@@ -31,11 +40,28 @@ class Screen extends Component {
   }
 
   render() {
-    const doFade = this.state.lifespanComplete ? 'fadeIn' : '';
+
+    const fadeCSS = () => {
+
+      if (this.state.lifespanComplete === true) {
+        return 'fadeIn';
+      }
+
+      if (this.props.birthDelay > 0.0) {
+        if (this.state.birthDelayComplete === true) {
+          return 'fadeOut';
+        } else {
+          return 'fadeIn';
+        }
+      }
+
+      return '';
+
+    }
 
     return (
       <div>
-        <div className={`fade-overlay ${doFade}`} />
+        <div className={`fade-overlay ${fadeCSS()}`} />
         {this.props.children}
       </div>
     );
@@ -45,10 +71,12 @@ class Screen extends Component {
 Screen.propTypes = {
   output: PropTypes.string,
   lifespan: PropTypes.number,
+  birthDelay: PropTypes.number,
 };
 
 Screen.defaultProps = {
   lifespan: 0.0,
+  birthDelay: 0.0,
 };
 
 export default Screen;
