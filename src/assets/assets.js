@@ -60,6 +60,8 @@ const images = {
   badges_t: require('./images/badges_t.png'),
   badges_a: require('./images/badges_a.png'),
 
+  jobsworth_office: require('./images/jobsworth_office.png'),
+
   testdude: require('./images/testdude.png'),
   red_digital_clock: require('./images/red_digital_clock.gif'),
 
@@ -182,6 +184,7 @@ const videos = {
   jobsworth_221_225: require('./videos/jobsworth_221-225.mp4'),
   jobsworth_238: require('./videos/jobsworth_238.mp4'),
   jobsworth_243_246: require('./videos/jobsworth_243-246.mp4'),
+  jobsworth_empty: require('./videos/jobsworth_empty.mp4'),
 
   foxsay: require('./videos/foxsay.mp4'),
 

@@ -131,7 +131,8 @@ body {
   height: 640px;
 }
 
-.secondary video {
+.secondary video,
+.secondary .video-bg {
   position: absolute;
   top: -400px;
   left: -415px;

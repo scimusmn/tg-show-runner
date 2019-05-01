@@ -894,17 +894,12 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Jobsworth: Empty office */}
-        <Cue notes="Jobsworth: Empty office">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_238} />
-          </Screen>
-
-        </Cue>
-
         {/* Variation circuit */}
         <Cue notes="Highlight variation circuit">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_VARIATION_CIRCUIT} />
 
@@ -912,6 +907,10 @@ export default class Show extends React.Component {
 
         {/* Correct Answer: V */}
         <Cue notes="Correct Answer: V">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
 
           <CueServerOut cueId={Lookup.BADGE_V} />
           <SoundCue src={sounds.correct_answer_1} />
@@ -921,12 +920,20 @@ export default class Show extends React.Component {
         {/* Inheritance circuit */}
         <Cue notes="Highlight inheritance circuit">
 
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
+
           <CueServerOut cueId={Lookup.HIGHLIGHT_INHERITANCE_CIRCUIT} />
 
         </Cue>
 
         {/* Correct Answer: I */}
         <Cue notes="Correct Answer: I">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
 
           <CueServerOut cueId={Lookup.BADGE_I} />
           <SoundCue src={sounds.correct_answer_2} />
@@ -936,12 +943,20 @@ export default class Show extends React.Component {
         {/* Selection circuit */}
         <Cue notes="Highlight selection circuit">
 
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
+
           <CueServerOut cueId={Lookup.HIGHLIGHT_SELECTION_CIRCUIT} />
 
         </Cue>
 
         {/* Correct Answer: S */}
         <Cue notes="Correct Answer: S">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
 
           <CueServerOut cueId={Lookup.BADGE_S} />
           <SoundCue src={sounds.correct_answer_3} />
@@ -951,12 +966,20 @@ export default class Show extends React.Component {
         {/* Highlight time circuit */}
         <Cue notes="Highlight time circuit">
 
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
+
           <CueServerOut cueId={Lookup.HIGHLIGHT_TIME_CIRCUIT} />
 
         </Cue>
 
         {/* Correct Answer: T */}
         <Cue notes="Correct Answer: T">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
 
           <CueServerOut cueId={Lookup.BADGE_T} />
           <SoundCue src={sounds.correct_answer_4} />
@@ -966,12 +989,20 @@ export default class Show extends React.Component {
         {/* Highlight adaptation circuit */}
         <Cue notes="Highlight adaptation circuit">
 
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
+
           <CueServerOut cueId={Lookup.HIGHLIGHT_ADAPTATION_CIRCUIT} />
 
         </Cue>
 
         {/* Correct Answer: A */}
         <Cue notes="Correct Answer: A">
+
+          <Screen output="secondary">
+            <VideoCue src={videos.jobsworth_empty} />
+          </Screen>
 
           <CueServerOut cueId={Lookup.BADGE_A} />
           <SoundCue src={sounds.fanfare} />
@@ -980,13 +1011,13 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Jobsworth: Spit take */}
-{/*        <Cue notes="Jobsworth: Spit take">
+       <Cue notes="Jobsworth: Spit take">
 
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_238} />
           </Screen>
 
-        </Cue>*/}
+        </Cue>
 
         {/* Bee reboot */}
         <Cue notes="Bee Reboot">

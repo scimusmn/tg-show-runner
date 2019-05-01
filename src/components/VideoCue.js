@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { images, sounds, videos } from '../assets/assets';
 
 export default class VideoCue extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class VideoCue extends Component {
 
     };
 
-    this.videoPlayer = {};
+    this.videoPlayer;
 
     this.delayTimeout = {};
   }
@@ -25,11 +26,10 @@ export default class VideoCue extends Component {
   }
 
   componentWillUnmount() {
-    console.log('Stop Video');
 
     this.unloadVideo();
-
     clearTimeout(this.delayTimeout);
+
   }
 
   loadVideo() {
@@ -43,16 +43,28 @@ export default class VideoCue extends Component {
   }
 
   unloadVideo() {
-    this.videoPlayer.pause();
-    this.videoPlayer.src = '';
-    this.videoPlayer.load();
+    if (this.videoPlayer) {
+      this.videoPlayer.pause();
+      this.videoPlayer.src = '';
+      this.videoPlayer.load();
+    }
+  }
+
+  renderStaticBg() {
+    if (this.props.staticBgSrc !== '') {
+      return <img className="video-bg" width="1920" src={this.props.staticBgSrc} />;
+    } else {
+      return null;
+    }
   }
 
   render() {
     return (
 
-      <div>
+      <div>        
 
+        {this.renderStaticBg()}
+        
         <video ref="videoCue" width="1920">
           <source ref="cueSrc" type="video/mp4" />
         </video>
@@ -68,8 +80,10 @@ export default class VideoCue extends Component {
 VideoCue.propTypes = {
   src: PropTypes.string,
   delay: PropTypes.number,
+  staticBgSrc: PropTypes.string,
 };
 
 VideoCue.defaultProps = {
   delay: 0.0,
+  staticBgSrc:'',
 };
