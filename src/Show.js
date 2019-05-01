@@ -980,13 +980,13 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Jobsworth: Spit take */}
-        <Cue notes="Jobsworth: Spit take">
+{/*        <Cue notes="Jobsworth: Spit take">
 
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_238} />
           </Screen>
 
-        </Cue>
+        </Cue>*/}
 
         {/* Bee reboot */}
         <Cue notes="Bee Reboot">
@@ -1030,7 +1030,7 @@ export default class Show extends React.Component {
         <Cue notes="Jobsworth: You've passed the test">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_238} />
+            <VideoCue src={videos.jobsworth_243_246} />
           </Screen>
 
         </Cue>
