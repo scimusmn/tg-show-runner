@@ -880,6 +880,7 @@ export default class Show extends React.Component {
         <Cue notes="Alex Phone Number">
 
           <Screen output="primary">
+            <br/>
             <h1 className="text-fullscreen normal">Text me your team name!</h1>
             <h1 className="text-fullscreen normal">(651) 123-4567</h1>
           </Screen>
