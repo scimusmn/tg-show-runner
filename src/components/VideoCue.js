@@ -33,13 +33,15 @@ export default class VideoCue extends Component {
   }
 
   loadVideo() {
-    this.videoPlayer = this.refs.videoCue;
-    const videoSrc = this.refs.cueSrc;
+    if (this.props.src !== '') {
+      this.videoPlayer = this.refs.videoCue;
+      const videoSrc = this.refs.cueSrc;
 
-    videoSrc.src = this.props.src;
+      videoSrc.src = this.props.src;
 
-    this.videoPlayer.load();
-    this.videoPlayer.play();
+      this.videoPlayer.load();
+      this.videoPlayer.play();
+    }
   }
 
   unloadVideo() {
@@ -51,8 +53,8 @@ export default class VideoCue extends Component {
   }
 
   renderStaticBg() {
-    if (this.props.staticBgSrc !== '') {
-      return <img className="video-bg" width="1920" src={this.props.staticBgSrc} />;
+    if (this.props.staticSrc !== '') {
+      return <img className="video-bg" width="1920" src={this.props.staticSrc} />;
     } else {
       return null;
     }
@@ -80,10 +82,11 @@ export default class VideoCue extends Component {
 VideoCue.propTypes = {
   src: PropTypes.string,
   delay: PropTypes.number,
-  staticBgSrc: PropTypes.string,
+  staticSrc: PropTypes.string,
 };
 
 VideoCue.defaultProps = {
+  src: '',
   delay: 0.0,
-  staticBgSrc:'',
+  staticSrc:'',
 };

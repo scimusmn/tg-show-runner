@@ -849,6 +849,10 @@ export default class Show extends React.Component {
         {/* Post show. Audience exits. */}
         <Cue notes="Post show lights. Partial audience exit.">
 
+         <Screen output="secondary">
+            <VideoCue staticSrc={images.jobsworth_freeze_1} />
+          </Screen>
+
           <CueServerOut cueId={Lookup.POST_SHOW} />
           <h2 className="debug">Post show. Audience exits.</h2>
 
@@ -858,7 +862,7 @@ export default class Show extends React.Component {
         <Cue notes="Jobsworth: I knew this would happen">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_202_211} />
+            <VideoCue src={videos.jobsworth_202_211} staticSrc={images.jobsworth_freeze_1} />
           </Screen>
 
         </Cue>
@@ -867,7 +871,7 @@ export default class Show extends React.Component {
         <Cue notes="Jobsworth: Gestures over button">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_213} />
+            <VideoCue src={videos.jobsworth_213} staticSrc={images.jobsworth_freeze_2} />
           </Screen>
 
         </Cue>
@@ -876,7 +880,7 @@ export default class Show extends React.Component {
         <Cue notes="Jobsworth: You really did a number on the">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_217_v1} />
+            <VideoCue src={videos.jobsworth_217_v1} staticSrc={images.jobsworth_freeze_2} />
           </Screen>
 
         </Cue>
@@ -939,7 +943,7 @@ export default class Show extends React.Component {
         <Cue notes="Highlight variation circuit">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_VARIATION_CIRCUIT} />
@@ -950,7 +954,7 @@ export default class Show extends React.Component {
         <Cue notes="Correct Answer: V">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_V} />
@@ -973,7 +977,7 @@ export default class Show extends React.Component {
         <Cue notes="Correct Answer: I">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_I} />
@@ -985,7 +989,7 @@ export default class Show extends React.Component {
         <Cue notes="Highlight selection circuit">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_SELECTION_CIRCUIT} />
@@ -996,7 +1000,7 @@ export default class Show extends React.Component {
         <Cue notes="Correct Answer: S">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_S} />
@@ -1008,7 +1012,7 @@ export default class Show extends React.Component {
         <Cue notes="Highlight time circuit">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_TIME_CIRCUIT} />
@@ -1019,7 +1023,7 @@ export default class Show extends React.Component {
         <Cue notes="Correct Answer: T">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_T} />
@@ -1031,7 +1035,7 @@ export default class Show extends React.Component {
         <Cue notes="Highlight adaptation circuit">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.HIGHLIGHT_ADAPTATION_CIRCUIT} />
@@ -1042,7 +1046,7 @@ export default class Show extends React.Component {
         <Cue notes="Correct Answer: A">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
+            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
           </Screen>
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_A} />
@@ -1055,7 +1059,7 @@ export default class Show extends React.Component {
        <Cue notes="Jobsworth: Spit take">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_238} />
+            <VideoCue src={videos.jobsworth_238}  staticSrc={images.jobsworth_office} />
           </Screen>
 
         </Cue>
@@ -1069,6 +1073,10 @@ export default class Show extends React.Component {
 
           </Screen>
 
+          <Screen output="secondary">
+            <VideoCue staticSrc={images.jobsworth_freeze_3} />
+          </Screen>
+
           <SoundCue src={sounds.bee_reboot} delay={0.0} />
           <SoundCue src={sounds.B_240} delay={1.65}/>
 
@@ -1076,6 +1084,10 @@ export default class Show extends React.Component {
 
         {/* VISTA Drop */}
         <Cue notes="VISTA Drop">
+
+          <Screen output="secondary">
+            <VideoCue staticSrc={images.jobsworth_freeze_3} />
+          </Screen>
 
           <SoundCue src={sounds.vista_friendly_1} volume={0.3} delay={0.0} />
           <SoundCue src={sounds.vista_friendly_2} volume={0.6} delay={0.5} />
@@ -1102,7 +1114,7 @@ export default class Show extends React.Component {
         <Cue notes="Jobsworth: You've passed the test">
 
           <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_243_246} />
+            <VideoCue src={videos.jobsworth_243_246} staticSrc={images.jobsworth_freeze_3} />
           </Screen>
 
         </Cue>

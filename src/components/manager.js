@@ -300,7 +300,7 @@ export class Manager extends Component {
     // w to jump to beginning of game 2
     ) {
       // w
-      this.resetShow(68);
+      this.resetShow(67);
     }
   }
 

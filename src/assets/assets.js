@@ -61,6 +61,10 @@ const images = {
   badges_a: require('./images/badges_a.png'),
 
   jobsworth_office: require('./images/jobsworth_office.png'),
+  jobsworth_freeze_1: require('./images/jobsworth_freeze_1.png'),
+  jobsworth_freeze_2: require('./images/jobsworth_freeze_2.png'),
+  jobsworth_freeze_3: require('./images/jobsworth_freeze_3.png'),
+
 
   testdude: require('./images/testdude.png'),
   red_digital_clock: require('./images/red_digital_clock.gif'),
