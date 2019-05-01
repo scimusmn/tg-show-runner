@@ -287,6 +287,10 @@ p.evaluation .highlight {
   color: #6ab452;
 }
 
+.text-fullscreen.normal {
+  color: #FFF;
+}
+
 .fs-image {
   position: absolute;
   top: 0px;

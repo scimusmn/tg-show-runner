@@ -876,14 +876,49 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Empty */}
-        <Cue notes="Empty: 3" />
+        {/* Alex Phone Number */}
+        <Cue notes="Alex Phone Number">
 
-        {/* Empty */}
-        <Cue notes="Empty: 2" />
+          <Screen output="primary">
+            <h1 className="text-fullscreen normal">Text me your team name!</h1>
+            <h1 className="text-fullscreen normal">(651) 123-4567</h1>
+          </Screen>
 
-        {/* Empty */}
-        <Cue notes="Empty: 1" />
+        </Cue>
+
+        {/* G2 Countdown: 3 */}
+        <Cue notes="G2 Countdown: 3" >
+
+          <Screen output="primary">
+            <h3 className="text-fullscreen">3</h3>
+          </Screen>
+
+        </Cue>
+
+        {/* G2 Countdown: 2 */}
+        <Cue notes="G2 Countdown: 2" >
+
+          <Screen output="primary">
+            <h3 className="text-fullscreen">2</h3>
+          </Screen>
+
+        </Cue>
+
+        {/* G2 Countdown: 1 */}
+        <Cue notes="G2 Countdown: 1" >
+
+          <Screen output="primary">
+            <h3 className="text-fullscreen">1</h3>
+          </Screen>
+
+        </Cue>
+
+        {/* Game 2 Pre Show */}
+        <Cue notes="Game 2 Pre Show">
+
+          <CueServerOut cueId={Lookup.GAME_2_PRE_SHOW} />
+
+        </Cue>
 
         {/* Jobsworth: Not so fast */}
         <Cue notes="Jobsworth: Not so fast">
@@ -912,7 +947,7 @@ export default class Show extends React.Component {
             <VideoCue src={videos.jobsworth_empty} />
           </Screen>
 
-          <CueServerOut cueId={Lookup.BADGE_V} />
+          <CueServerOut cueId={Lookup.GAME_2_BADGE_V} />
           <SoundCue src={sounds.correct_answer_1} />
 
         </Cue>
@@ -935,7 +970,7 @@ export default class Show extends React.Component {
             <VideoCue src={videos.jobsworth_empty} />
           </Screen>
 
-          <CueServerOut cueId={Lookup.BADGE_I} />
+          <CueServerOut cueId={Lookup.GAME_2_BADGE_I} />
           <SoundCue src={sounds.correct_answer_2} />
 
         </Cue>
@@ -958,7 +993,7 @@ export default class Show extends React.Component {
             <VideoCue src={videos.jobsworth_empty} />
           </Screen>
 
-          <CueServerOut cueId={Lookup.BADGE_S} />
+          <CueServerOut cueId={Lookup.GAME_2_BADGE_S} />
           <SoundCue src={sounds.correct_answer_3} />
 
         </Cue>
@@ -981,7 +1016,7 @@ export default class Show extends React.Component {
             <VideoCue src={videos.jobsworth_empty} />
           </Screen>
 
-          <CueServerOut cueId={Lookup.BADGE_T} />
+          <CueServerOut cueId={Lookup.GAME_2_BADGE_T} />
           <SoundCue src={sounds.correct_answer_4} />
 
         </Cue>
@@ -1004,7 +1039,7 @@ export default class Show extends React.Component {
             <VideoCue src={videos.jobsworth_empty} />
           </Screen>
 
-          <CueServerOut cueId={Lookup.BADGE_A} />
+          <CueServerOut cueId={Lookup.GAME_2_BADGE_A} />
           <SoundCue src={sounds.fanfare} />
           <SoundCue src={sounds.fireworks} delay={1.5} />
 
@@ -1069,7 +1104,7 @@ export default class Show extends React.Component {
         {/* Post show. Audience exits. */}
         <Cue notes="Post show lights. Partial audience exit.">
 
-          <CueServerOut cueId={Lookup.POST_SHOW} />
+          <CueServerOut cueId={Lookup.GAME_2_POST_SHOW} />
 
         </Cue>
 
