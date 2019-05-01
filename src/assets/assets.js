@@ -71,6 +71,8 @@ const images = {
   ai_bee_red_glow: require('./images/ai_bee_red_glow.png'),
   ai_bee_smile: require('./images/ai_bee_smile.png'),
   ai_bee_smile_glow: require('./images/ai_bee_smile_glow.png'),
+  ai_bee_glitch: require('./images/ai_bee_glitch.png'),
+  ai_bee_glitch_glow: require('./images/ai_bee_glitch_glow.png'),
 
 };
 

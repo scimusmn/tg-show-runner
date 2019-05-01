@@ -292,6 +292,15 @@ export class Manager extends Component {
     ) {
       // q
       this.resetShow();
+    } else if (
+      event.keyCode === 87 &&
+      !event.ctrlKey &&
+      !event.metaKey
+
+    // w to jump to beginning of game 2
+    ) {
+      // w
+      this.resetShow(68);
     }
   }
 
@@ -382,24 +391,27 @@ export class Manager extends Component {
 
   }
 
-  resetShow() {
+  resetShow(_jumpToSlide) {
 
-    const slideData = '{ "slide": "0", "forward": "false" }';
+    const jumpToSlide = _jumpToSlide || 0;
+
+    const slideData = '{ "slide": "'+jumpToSlide.toString()+'", "forward": "false" }';
     this._goToSlide({ key: 'show-runner-slide', newValue: slideData });
 
     this.viewedIndexes.clear();
-    this.setLocalStorageSlide(0, true);
+    this.setLocalStorageSlide(jumpToSlide, true);
 
     this.clearVisData();
 
     // When on slide zero, assume we
     // have just reset show.
-    // Clear cache with referesh.
-    /// - TN
+    // Clear cache with refresh.
     setTimeout(() => {
       // body...
-      console.log('Go reset');
+      console.log('Go reset', jumpToSlide);
+      this.setLocalStorageSlide(jumpToSlide, true);
       window.location.reload();
+      this.setLocalStorageSlide(jumpToSlide, true);
     }, 250);
 
   }

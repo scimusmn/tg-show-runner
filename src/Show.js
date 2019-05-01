@@ -818,6 +818,7 @@ export default class Show extends React.Component {
 
           <Screen output="primary">
             <h1 className="text-fullscreen success">ISOLATION MODE: DISENGAGED</h1>
+            <Bee mode='isolation-mode' mood='glitch'></Bee>
           </Screen>
 
           <Screen output="secondary">
