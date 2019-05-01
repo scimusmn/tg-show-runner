@@ -134,9 +134,9 @@ body {
 .secondary video,
 .secondary .video-bg {
   position: absolute;
-  top: -400px;
-  left: -415px;
-  transform: scale(0.7, 0.7);
+  top: -515px;
+  left: -440px;
+  transform: scale(0.53, 0.53);
 }
 
 .bee-container {
