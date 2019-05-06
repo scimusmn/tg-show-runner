@@ -94,6 +94,8 @@ export default class Show extends React.Component {
             <Bee></Bee>
           </Screen>
 
+          <CueServerOut cueId={Lookup.BEE_ACTIVATE} delay={73.0} />
+
         </Cue>
 
         {/* Alex Intro */}
@@ -632,7 +634,7 @@ export default class Show extends React.Component {
           </Screen>
 
           <SoundCue src={sounds.B_106} />
-          <SoundCue src={sounds.quiz} delay={10} />
+          <SoundCue src={sounds.quiz} delay={11} />
 
         </Cue>
 
@@ -846,6 +848,7 @@ export default class Show extends React.Component {
           <SoundCue src={sounds.B_135} delay={0.35} />
 
           <CueServerOut cueId={Lookup.LOCKDOWN_RELEASE} />
+          <CueServerOut cueId={Lookup.BEE_DROP_LINE} delay={2.0} />
 
         </Cue>
 
@@ -875,15 +878,6 @@ export default class Show extends React.Component {
 
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_202_211} staticSrc={images.jobsworth_freeze_1} />
-          </Screen>
-
-        </Cue>
-
-        {/* Jobsworth: Gestures over button */}
-        <Cue notes="Jobsworth: Gestures over button">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_213} staticSrc={images.jobsworth_freeze_2} />
           </Screen>
 
         </Cue>
@@ -951,17 +945,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Variation circuit */}
-        <Cue notes="Highlight variation circuit">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
-          </Screen>
-
-          <CueServerOut cueId={Lookup.HIGHLIGHT_VARIATION_CIRCUIT} />
-
-        </Cue>
-
         {/* Correct Answer: V */}
         <Cue notes="Correct Answer: V">
 
@@ -971,17 +954,6 @@ export default class Show extends React.Component {
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_V} />
           <SoundCue src={sounds.correct_answer_1} />
-
-        </Cue>
-
-        {/* Inheritance circuit */}
-        <Cue notes="Highlight inheritance circuit">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} />
-          </Screen>
-
-          <CueServerOut cueId={Lookup.HIGHLIGHT_INHERITANCE_CIRCUIT} />
 
         </Cue>
 
@@ -997,17 +969,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Selection circuit */}
-        <Cue notes="Highlight selection circuit">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
-          </Screen>
-
-          <CueServerOut cueId={Lookup.HIGHLIGHT_SELECTION_CIRCUIT} />
-
-        </Cue>
-
         {/* Correct Answer: S */}
         <Cue notes="Correct Answer: S">
 
@@ -1020,17 +981,6 @@ export default class Show extends React.Component {
 
         </Cue>
 
-        {/* Highlight time circuit */}
-        <Cue notes="Highlight time circuit">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
-          </Screen>
-
-          <CueServerOut cueId={Lookup.HIGHLIGHT_TIME_CIRCUIT} />
-
-        </Cue>
-
         {/* Correct Answer: T */}
         <Cue notes="Correct Answer: T">
 
@@ -1040,17 +990,6 @@ export default class Show extends React.Component {
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_T} />
           <SoundCue src={sounds.correct_answer_4} />
-
-        </Cue>
-
-        {/* Highlight adaptation circuit */}
-        <Cue notes="Highlight adaptation circuit">
-
-          <Screen output="secondary">
-            <VideoCue src={videos.jobsworth_empty} staticSrc={images.jobsworth_office} />
-          </Screen>
-
-          <CueServerOut cueId={Lookup.HIGHLIGHT_ADAPTATION_CIRCUIT} />
 
         </Cue>
 
@@ -1073,6 +1012,8 @@ export default class Show extends React.Component {
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_238}  staticSrc={images.jobsworth_office} />
           </Screen>
+
+          <SoundCue src={sounds.fireworks} delay={0.0} />
 
         </Cue>
 
