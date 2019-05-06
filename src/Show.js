@@ -273,7 +273,7 @@ export default class Show extends React.Component {
             <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
-              Here’s what “inheritance” <span className='highlight'>means:</span><br/>
+              It’s what “inheritance” <span className='highlight'>means:</span><br/>
               A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
               Her mom and her dad<br/>
               Passed on traits that they had,<br/>
@@ -295,7 +295,7 @@ export default class Show extends React.Component {
             <Bee mode='evaluation-mode'></Bee>
 
             <p className='evaluation'>
-              Here’s what “inheritance” <span className='highlight'>means:</span><br/>
+              It’s what “inheritance” <span className='highlight'>means:</span><br/>
               A baby’s slate doesn’t start <span className='highlight'>clean.</span><br/>
               Her mom and her dad<br/>
               Passed on traits that they had,<br/>
