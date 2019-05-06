@@ -69,6 +69,20 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Show Start Lights */}
+        <Cue notes="Show start lights">
+
+          <CueServerOut cueId={Lookup.SHOW_START} />
+
+        </Cue>
+
+        {/* Jobsworth Poster Highlight */}
+        <Cue notes="Jobsworth Poster Highlight">
+
+          <CueServerOut cueId={Lookup.HIGHLIGHT_POSTER} />
+
+        </Cue>
+
         {/* Jobsworth */}
         <Cue notes="Jobsworth_2_10">
 
@@ -79,8 +93,6 @@ export default class Show extends React.Component {
           <Screen output='primary' birthDelay={74.0}>
             <Bee></Bee>
           </Screen>
-
-          <CueServerOut cueId={Lookup.SHOW_START} />
 
         </Cue>
 
