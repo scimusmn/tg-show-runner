@@ -932,7 +932,7 @@ export default class Show extends React.Component {
         {/* Game 2 Pre Show */}
         <Cue notes="Game 2 Pre Show">
 
-          <CueServerOut cueId={Lookup.GAME_2_PRE_SHOW} />
+          <CueServerOut cueId={Lookup.GAME_2_PRESHOW} />
 
         </Cue>
 
@@ -1001,6 +1001,8 @@ export default class Show extends React.Component {
           </Screen>
 
           <CueServerOut cueId={Lookup.GAME_2_BADGE_A} />
+          <CueServerOut cueId={Lookup.FIREWORKS_FINALE} />
+
           <SoundCue src={sounds.fanfare} />
           <SoundCue src={sounds.fireworks} delay={1.5} />
 
@@ -1032,6 +1034,8 @@ export default class Show extends React.Component {
 
           <SoundCue src={sounds.bee_reboot} delay={0.0} />
           <SoundCue src={sounds.B_240} delay={1.65}/>
+
+          <CueServerOut cueId={Lookup.GAME_2_BEE_ACTIVATE}/>
 
         </Cue>
 
@@ -1069,6 +1073,13 @@ export default class Show extends React.Component {
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_243_246} staticSrc={images.jobsworth_freeze_3} />
           </Screen>
+
+        </Cue>
+
+        {/* VISTA Pickup. */}
+        <Cue notes="VISTA Pickup">
+
+          <CueServerOut cueId={Lookup.VISTA_PICKUP} />
 
         </Cue>
 
