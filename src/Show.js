@@ -1024,7 +1024,7 @@ export default class Show extends React.Component {
 
           <Screen output='primary'>
 
-            <Bee></Bee>
+            <Bee mood='smile'></Bee>
 
           </Screen>
 
