@@ -883,13 +883,13 @@ export default class Show extends React.Component {
         </Cue>
 
         {/* Jobsworth: You really did a number on the */}
-        <Cue notes="Jobsworth: You really did a number on the">
+        {/* <Cue notes="Jobsworth: You really did a number on the">
 
           <Screen output="secondary">
             <VideoCue src={videos.jobsworth_217_v1} staticSrc={images.jobsworth_freeze_2} />
           </Screen>
 
-        </Cue>
+        </Cue> */}
 
         {/* Alex Phone Number */}
         <Cue notes="Alex Phone Number">
