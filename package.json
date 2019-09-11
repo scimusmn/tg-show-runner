@@ -58,9 +58,10 @@
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "archive-assets": "dateZip=assets-$(date +%Y_%m_%d_%H%M%S).zip; S3Bucket=s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/archive/; zip -r $dateZip src/assets/images src/assets/sounds src/assets/videos && aws s3 cp $dateZip $S3Bucket && rm $dateZip && echo 'Archive created and uploaded to S3'",
-    "push-assets": "aws s3 sync ./src/assets/ s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/latest/ --exclude '*' --include 'images/*' --include 'sounds/*' --include 'videos/*' --delete",
-    "pull-assets": "aws s3 sync s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/latest/ ./src/assets/ --exclude '*' --include 'images/*' --include 'sounds/*' --include 'videos/*' --delete"
+    "mac:archive-assets": "dateZip=assets-$(date +%Y_%m_%d_%H%M%S).zip; S3Bucket=s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/archive/; zip -r $dateZip src/assets/images src/assets/sounds src/assets/videos && aws s3 cp $dateZip $S3Bucket && rm $dateZip && echo 'Archive created and uploaded to S3'",
+    "mac:push-assets": "aws s3 sync ./src/assets/ s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/latest/ --exclude '*' --include 'images/*' --include 'sounds/*' --include 'videos/*' --delete",
+    "mac:pull-assets": "aws s3 sync s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/latest/ ./src/assets/ --exclude '*' --include 'images/*' --include 'sounds/*' --include 'videos/*' --delete",
+    "win:pull-assets": "aws s3 sync s3://smm-depot/projects/tg/game-1-assets/tg-show-runner/latest/ ./src/assets/ --exclude \"*\" --include \"images/*\" --include \"sounds/*\" --include \"videos/*\" --delete"
   },
   "devDependencies": {
     "eslint": "^5.5.0",
@@ -114,3 +115,5 @@
     "extends": "react-app"
   }
 }
+
+
