@@ -882,6 +882,9 @@ export default class Show extends React.Component {
 
         </Cue>
 
+        {/* Empty */}
+        <Cue notes="Empty" />
+
         {/* Jobsworth: You really did a number on the */}
         {/* <Cue notes="Jobsworth: You really did a number on the">
 
